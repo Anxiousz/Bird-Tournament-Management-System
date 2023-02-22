@@ -1,0 +1,179 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+
+}
+/* Tournament Detail */
+.tnmde-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-bottom: 50px;
+}
+.tnm-basic-info{
+    width: 100%;
+    padding: 40px;
+    height: auto;
+    border-radius: 10px;
+}
+.tnm-basic-info{
+    width: 100%;
+}
+.tnm-picture{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tnm-heading{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.tnm-heading h1{
+    text-transform: uppercase;
+    font-family: 'Baloo';
+    font-size: 45px;
+    color: #A87B24;
+}
+.tnm-heading p{
+    font-size: 20px;
+    color: green;
+    font-weight: bolder;
+    font-family: 'Montserrat';font-size: 20px;
+}
+/* line section */
+.line-section{
+    width: 100%;
+    padding: 50px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line-section p{
+    width: 60%;
+    border: 0.5px solid grey;
+    opacity: 0.2!important;
+}
+
+/* Section 3  */
+.basic-tnm-form{
+    margin-top: 20px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.basic-tnm-form-categories{
+    height: inherit;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.basic-tnm-form-categories h1{
+    padding-bottom: 20px;
+    font-family: 'Baloo';font-size: 22px;
+    color: #A87B24;
+}
+.prize-site{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+.prize-site h1,.player-site h1{
+    font-family: 'Baloo';font-size: 30px;
+    color: #A87B24;
+    padding-bottom: 20px;
+}
+.prize-site p, .player-site p{
+    font-size: 20px;
+}
+.player-site{
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.both-prize-player-site{
+    width: 100%;
+    display: flex;
+    
+}
+/* Section 4 */
+.avatar-sponsor {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.sponsor-site{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+.sponsor-site h1{
+    font-family: 'Baloo';font-size: 30px;
+    color: #A87B24;
+    padding-bottom: 20px;
+}
+.sponsor-site-picture{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+/* Section 5 */
+.policy-site{
+    margin-top: 80px;
+    width: 100%;
+    height: auto;
+}
+.policy-site h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Baloo';font-size: 30px;
+    color: #A87B24;
+    padding-bottom: 40px;
+}
+.scroll-container{
+
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffff;
+    width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.scroll-page p{
+    font-size: 40px;
+}
+    
