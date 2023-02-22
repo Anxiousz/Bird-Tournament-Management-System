@@ -17,7 +17,7 @@ public class TournamentDAO implements Serializable {
 
     private final static String GET_TOURNAMENT = "SELECT DISTINCT TOP 3 t.tournamentName, t.dateTime, t.tournamentStatus, t.numberOfPlayer, r.fee, t.prize, t.image\n"
             + "FROM Tournament t JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
-            + "WHERE t.dateTime >= CURRENT_TIMESTAMP\n"
+            + "WHERE t.dateTime >= CURRENT_TIMESTAMP AND t.tournamentStatus = 1\n"
             + "ORDER BY t.dateTime ASC";
 
     public List<TournamentDTO> getAllTournament() throws Exception {

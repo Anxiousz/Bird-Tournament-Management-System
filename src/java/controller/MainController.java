@@ -18,9 +18,8 @@ public class MainController extends HttpServlet {
 
     //link to jsp
     private static final String HOME_USER_PAGE = "userPage.jsp";
-    private static final String TOURNAMENT_PAGE = "tournament.jsp";
     private static final String HOME_GUEST_PAGE = "welcome.jsp";
-    
+
     //value of action
     private static final String LOGIN = "Login";
     private static final String REGISTER = "Register";
@@ -28,13 +27,19 @@ public class MainController extends HttpServlet {
     private static final String HOME_USER = "HOME_USER";
     private static final String TOURNAMENT = "TOURNAMENT";
     private static final String HOME_GUEST = "HOME_GUEST";
-    
+    private static final String ON_GOING_TOURNAMENT = "ON_GOING_TOURNAMENT";
+    private static final String OLD_TOURNAMENT = "OLD_TOURNAMENT";
+    private static final String DELAY_TOURNAMENT = "DELAY_TOURNAMENT";
 
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
     private static final String LOGIN_CONTROLLER = "LoginController";
     private static final String REGISTER_CONTROLLER = "RegisterController";
     private static final String LOGOUT_CONTROLLER = "LogoutController";
+    private static final String ALL_TOURNAMENT_CONTROLLER = "AllTournamentController";
+    private static final String ON_GOING_TOURNAMENT_CONTROLLER = "OnGoingTournamentController";
+    private static final String OLD_TOURNAMENT_CONTROLLER = "OldTournamentController";
+    private static final String DELAY_TOURNAMENT_CONTROLLER = "DelayTournamentController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,7 +64,16 @@ public class MainController extends HttpServlet {
                     url = HOME_USER_PAGE;
                     break;
                 case TOURNAMENT:
-                    url = TOURNAMENT_PAGE;
+                    url = ALL_TOURNAMENT_CONTROLLER;
+                    break;
+                case ON_GOING_TOURNAMENT:
+                    url = ON_GOING_TOURNAMENT_CONTROLLER;
+                    break;
+                case OLD_TOURNAMENT:
+                    url = OLD_TOURNAMENT_CONTROLLER;
+                    break;
+                case DELAY_TOURNAMENT:
+                    url = DELAY_TOURNAMENT_CONTROLLER;
                     break;
             }
         } catch (Exception e) {
