@@ -19,12 +19,16 @@ public class MainController extends HttpServlet {
     //link to jsp
     private static final String HOME_USER_PAGE = "userPage.jsp";
     private static final String TOURNAMENT_PAGE = "tournament.jsp";
+    private static final String HOME_GUEST_PAGE = "welcome.jsp";
+    
     //value of action
     private static final String LOGIN = "Login";
     private static final String REGISTER = "Register";
     private static final String LOGOUT = "Logout";
-    private static final String HOME_USER = "HOME";
+    private static final String HOME_USER = "HOME_USER";
     private static final String TOURNAMENT = "TOURNAMENT";
+    private static final String HOME_GUEST = "HOME_GUEST";
+    
 
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";

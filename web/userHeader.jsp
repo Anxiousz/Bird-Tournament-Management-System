@@ -27,7 +27,7 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
                         <form name="MainController" method="post">
-                            <input class="nav-link custom-button" type="submit" value="HOME" name="action">
+                            <input class="nav-link custom-button" type="submit" value="HOME_USER" name="action">
                         </form>
                     </li>
                     <li class="nav-item">
