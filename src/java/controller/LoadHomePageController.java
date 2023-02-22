@@ -5,6 +5,8 @@
  */
 package controller;
 
+import bird.BirdDAO;
+import bird.BirdDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -31,9 +33,12 @@ public class LoadHomePageController extends HttpServlet {
             HttpSession s = request.getSession(false);
             try {
                 TournamentDAO tour = new TournamentDAO();
+                BirdDAO bird = new BirdDAO();
                 List<TournamentDTO> t = tour.getAllTournament();
-                if (tour != null) {
+                List<BirdDTO> b = bird.getAllBird();
+                if (tour != null && bird != null) {
                     s.setAttribute("GET_TOURNAMENT", t);
+                    s.setAttribute("GET_BIRD", b);
                     url = SUCCESS;
                 } else {
                     url = ERROR;

@@ -141,86 +141,39 @@
             </div>
             <div class="bird-site-main-body mt-5">
                 <!-- 1 -->
-                <div class="card" style="width: 35rem;">
-                    <img class="card-img-top" src="https://i.pinimg.com/236x/b6/92/27/b69227ac9500c404a7b8b50c3c7bf02b.jpg" alt="Card image cap">
-                    <div class="card-body" style="height: 40rem;">
-                        <div class="bird-rank-number d-flex justify-content-center">
-                            TOP 1
-                        </div>
-                        <div class="bird-info-site">
-                            <div class="bird-left-info-site">
-                                <h4>Bird Name:</h4>
-                                <h4>Height:</h4>
-                                <h4>Weight:</h4>
-                                <h4>Color:</h4>
-                                <h4>Bird Status:</h4>
-                                <h4>Score:</h4>
+                <c:forEach var="bird" varStatus="counter" items="${sessionScope.GET_BIRD}">
+                    <div class="card" style="width: 35rem;">
+                        <img class="card-img-top" src="${bird.birdPhoto}" alt="Card image cap">
+                        <div class="card-body" style="height: 40rem;">
+                            <div class="bird-rank-number d-flex justify-content-center">
+                                TOP ${counter.count}
                             </div>
-                            <div class="bird-left-right-site">
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 2 -->
-                <div class="card" style="width: 35rem;">
-                    <img class="card-img-top" src="https://i.pinimg.com/236x/b6/92/27/b69227ac9500c404a7b8b50c3c7bf02b.jpg" alt="Card image cap">
-                    <div class="card-body" style="height: 40rem;">
-                        <div class="bird-rank-number d-flex justify-content-center">
-                            TOP 2
-                        </div>
-                        <div class="bird-info-site">
-                            <div class="bird-left-info-site">
-                                <h4>Bird Name:</h4>
-                                <h4>Height:</h4>
-                                <h4>Weight:</h4>
-                                <h4>Color:</h4>
-                                <h4>Bird Status:</h4>
-                                <h4>Score:</h4>
-                            </div>
-                            <div class="bird-left-right-site">
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
+                            <div class="bird-info-site">
+                                <div class="bird-left-info-site">
+                                    <h4>Bird Name:</h4>
+                                    <h4>Height:</h4>
+                                    <h4>Weight:</h4>
+                                    <h4>Color:</h4>
+                                    <h4>Bird Status:</h4>
+                                    <h4>Score:</h4>
+                                </div>
+                                <div class="bird-left-right-site">
+                                    <h4>${bird.birdName}</h4>
+                                    <h4>${bird.height}</h4>
+                                    <h4>${bird.weight}</h4>
+                                    <h4>${bird.color}</h4>
+                                    <h4>
+                                        <c:choose>
+                                            <c:when test="${bird.birdStatus == 1}">Live</c:when>
+                                            <c:otherwise>Dead</c:otherwise>
+                                        </c:choose>
+                                    </h4>
+                                    <h4>${bird.totalScore}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- 3 -->
-                <div class="card" style="width: 35rem;">
-                    <img class="card-img-top" src="https://i.pinimg.com/236x/b6/92/27/b69227ac9500c404a7b8b50c3c7bf02b.jpg" alt="Card image cap">
-                    <div class="card-body" style="height: 40rem;">
-                        <div class="bird-rank-number d-flex justify-content-center">
-                            TOP 3
-                        </div>
-                        <div class="bird-info-site">
-                            <div class="bird-left-info-site">
-                                <h4>Bird Name:</h4>
-                                <h4>Height:</h4>
-                                <h4>Weight:</h4>
-                                <h4>Color:</h4>
-                                <h4>Bird Status:</h4>
-                                <h4>Score:</h4>
-                            </div>
-                            <div class="bird-left-right-site">
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
         <!-- Support-site -->
