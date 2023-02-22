@@ -13,12 +13,30 @@ body{
     font-size: 22px;
     color: #5f5104;
 }
+.card-img-top{
+    width: 35rem;
+    height: 30rem;
+    display: block;
+    object-fit: cover;
+}
 .tnm-card-site{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: nowrap;
     flex-direction: row;
+}
+.tnm-card-right-site{
+
+    display: flex;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+}
+.tnm-card-right-site p{
+        margin:0px 0px 15px 0px ;
 }
 .card-end{
     margin-left: 100px;
@@ -274,10 +292,11 @@ body{
     height: inherit ;
 }
 .sub-box-right-site{
+    padding-left: 10px;
     width: 70%;
     height: 150px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     justify-content: center;
 }

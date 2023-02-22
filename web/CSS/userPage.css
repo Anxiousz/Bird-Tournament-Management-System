@@ -83,6 +83,12 @@ body{
     font-size: 22px;
     color: #5f5104;
 }
+.card-img-top{
+    width: 35rem;
+    height: 30rem;
+    display: block;
+    object-fit: cover;
+}
 .tnm-card-site{
     display: flex;
     align-items: center;

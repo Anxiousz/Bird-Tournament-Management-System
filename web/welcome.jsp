@@ -31,8 +31,10 @@
                 </div>
                 <div class="tnm-card-site">
                     <c:forEach var="list" items="${sessionScope.GET_TOURNAMENT}">
-                        <div class="card" style="width: 35rem; height: 55rem;">
-                            <img class="card-img-top" src="${list.image}" alt="Card image cap">
+                        <div class="card" style="width: 35rem; height: 60rem;">
+                            <div class="card-img" style="width: 35rem; height: 30rem;">
+                                 <img class="card-img-top" src="${list.image}" alt="Card image cap">
+                            </div>
                             <div class="card-body tnm-card-body"  style="height: 70rem;">
                                 <div class="tnm-card-top-body">
                                     <div class="tnm-card-left-site">
