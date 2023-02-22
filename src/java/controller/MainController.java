@@ -16,10 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
 
+    //link to jsp
+    private static final String HOME_USER_PAGE = "userPage.jsp";
+    private static final String TOURNAMENT_PAGE = "tournament.jsp";
     //value of action
     private static final String LOGIN = "Login";
     private static final String REGISTER = "Register";
     private static final String LOGOUT = "Logout";
+    private static final String HOME_USER = "HOME";
+    private static final String TOURNAMENT = "TOURNAMENT";
 
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -45,6 +50,12 @@ public class MainController extends HttpServlet {
                     break;
                 case LOGOUT:
                     url = LOGOUT_CONTROLLER;
+                    break;
+                case HOME_USER:
+                    url = HOME_USER_PAGE;
+                    break;
+                case TOURNAMENT:
+                    url = TOURNAMENT_PAGE;
                     break;
             }
         } catch (Exception e) {
