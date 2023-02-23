@@ -134,6 +134,7 @@
                         <div class="regis-left-site">
                             <h1>PLAY WITH US NOW</h1>
                             <p>Gift, Achivement waiting you</p>
+                            <button class="left-join-tnm">PLAY NOW</button>
                         </div>
                         <div class="regis-right-site">
                             <form action="">
