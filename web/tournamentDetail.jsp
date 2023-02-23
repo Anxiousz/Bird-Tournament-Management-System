@@ -97,11 +97,11 @@
                     </div>
                 </div>
                 <!-- div line -->
-                <div class="line-section">
+<!--                <div class="line-section">
                     <p></p>
                 </div>
-                <!-- Section 6 -->
-                <!-- Policy -->
+                 Section 6 
+                 Policy 
                 <div class="policy-site">
                     <h1><i class="fa-solid fa-bookmark"></i>  Policy and Rules</h1>
                     <div class="scroll-container">
@@ -121,7 +121,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- div-site -->
                 <div class="line-section">
                     <p></p>
