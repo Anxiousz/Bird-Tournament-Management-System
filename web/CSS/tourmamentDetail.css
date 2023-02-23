@@ -176,4 +176,55 @@ body{
 .scroll-page p{
     font-size: 40px;
 }
+/* Regis site */
+.regis-site{
+    width: 100%;
+    height: 300px;
+    background-color: #E9C277;
+}
+.regis-both-site{
+    width: 100%;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.regis-left-site{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.regis-left-site h1{
+    font-family: 'Baloo';font-size: 40px;
+    color: #ffff;
+}
+.regis-left-site p{
+    font-family: 'Montserrat';font-size: 15px;
+    color: #ffff;
+}
+.regis-right-site{
+    padding: 0px 50px;
+    width: 50%;
+}
+.tnm-regis label{
+    font-family: 'Baloo';font-size: 18px;
+    color: #A87B24;
+}
+.tnm-regis input{
+    padding: 10px;
+    font-size: 15px;
+}
+.btn-regis{
+    padding: 10px 15px;
+    border: none;
+    background-color: #A87B24;
+    color: #ffff;
+}
+.btn-regis:hover{
+    opacity: 0.5;
+}
     
