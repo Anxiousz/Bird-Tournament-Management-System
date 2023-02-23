@@ -35,11 +35,13 @@
                     <li class="nav-item">
                         <form name="MainController" method="post">
                             <input class="nav-link custom-button" type="submit" value="HOME_USER" name="action">
+<!--                             <a href="MainController?action=HOME_USER">Home</a>-->
                         </form>
                     </li>
                     <li class="nav-item">
                         <form name="MainController" method="post">
                             <input class="nav-link custom-button" type="submit" value="TOURNAMENT" name="action"><span class="sr-only">(current)</span>
+<!--                            <a href="MainController?action=TOURNAMENT">TOURNAMENT</a><span class="sr-only">(current)</span>-->
                         </form>
                     </li>
                     <li class="nav-item">

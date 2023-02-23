@@ -20,7 +20,8 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private static final String ERROR = "login.jsp";
-    private static final String SUCCESS = "userPage.jsp";
+    private static final String SUCCESS_USER = "userPage.jsp";
+    private static final String SUCCESS_ADMIN = "adminPage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,14 +40,14 @@ public class LoginController extends HttpServlet {
                 if (a.getRole() == 0) {
                     if (a.getAccountStatus() == 1) {
                         session.setAttribute("acc", a);
-                        url = SUCCESS;
+                        url = SUCCESS_USER;
                     } else {
                         session.setAttribute("mess", "Your account blocked. Please contact Admin !!!!");
                         url = ERROR;
                     }
                 } else {
                     session.setAttribute("acc", a);
-                    url = SUCCESS;
+                    url = SUCCESS_ADMIN;
                 }
             }
         } catch (Exception e) {

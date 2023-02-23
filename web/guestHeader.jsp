@@ -26,13 +26,15 @@
             <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <form name="MainController" method="post">
-                            <input class="nav-link custom-button" type="submit" value="HOME_GUEST" name="action" >
+                        <form>
+                        <input class="nav-link custom-button" type="submit" value="HOME_GUEST" name="action" >
+                        <!--                        <a href="MainController?action=HOME_GUEST">Home</a>-->
                         </form>
                     </li>
                     <li class="nav-item">
                         <form>
                             <input class="nav-link custom-button" type="submit" value="TOURNAMENT"><span class="sr-only">(current)</span>
+<!--                            <a href="MainController?action=TOURNAMENT">TOURNAMENT</a>-->
                         </form>
                     </li>
                     <li class="nav-item">

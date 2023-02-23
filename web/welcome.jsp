@@ -114,7 +114,7 @@
                             <img class="card-img-top" src="${bird.birdPhoto}" alt="Card image cap">
                             <div class="card-body" style="height: 40rem;">
                                 <div class="bird-rank-number d-flex justify-content-center">
-                                    TOP 1
+                                    TOP ${counter.count}
                                 </div>
                                 <div class="bird-info-site">
                                     <div class="bird-left-info-site">
