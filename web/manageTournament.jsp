@@ -39,19 +39,13 @@
                             <td>100</td>
                             <td>1</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="View">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -60,19 +54,13 @@
                             <td>100</td>
                             <td>1</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="View">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -81,19 +69,13 @@
                             <td>100</td>
                             <td>1</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="View">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -102,19 +84,13 @@
                             <td>100</td>
                             <td>1</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="View">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -123,19 +99,13 @@
                             <td>100</td>
                             <td>1</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="View">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
                             </td>
                         </tr>
                     </tbody>

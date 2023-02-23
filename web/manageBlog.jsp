@@ -38,14 +38,10 @@
                             <td>Mark</td>
                             <td>22-02-2023</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -54,14 +50,10 @@
                             <td>Jacob</td>
                             <td>22-02-2023</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Blog">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Blog_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -70,14 +62,10 @@
                             <td>Larry</td>
                             <td>22-02-2023</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Blog">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Blog_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -86,14 +74,10 @@
                             <td>Andy</td>
                             <td>22-02-2023</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Blog">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Blog_Detail">Detail</a>
                             </td>
                         </tr>
                         <tr>
@@ -102,14 +86,10 @@
                             <td>Jay</td>
                             <td>22-02-2023</td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Remove">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Remove_Blog">Remove</a>
                             </td>
                             <td>
-                                <form>
-                                    <input class="custom-button_2" type="submit" value="Detail">
-                                </form>
+                                <a class="custom-button_2" href="MainController?action=Blog_Detail">Detail</a>
                             </td>
                         </tr>
                     </tbody>

@@ -34,24 +34,16 @@
                         <td>User1</td>
                         <td>1</td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Block">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Unblock">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Remove">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Detail">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
                     <tr>
@@ -60,24 +52,16 @@
                         <td>User2</td>
                         <td>1</td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Block">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Unblock">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Remove">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Detail">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
                     <tr>
@@ -86,24 +70,16 @@
                         <td>User3</td>
                         <td>1</td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Block">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Unblock">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Remove">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Detail">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
                     <tr>
@@ -112,24 +88,16 @@
                         <td>User4</td>
                         <td>1</td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Block">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Unblock">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Remove">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Detail">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
                     <tr>
@@ -138,24 +106,16 @@
                         <td>User5</td>
                         <td>1</td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Block">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Unblock">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Remove">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
                         </td>
                         <td>
-                            <form>
-                                <input class="custom-button_2" type="submit" value="Detail">
-                            </form>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
                 </tbody>
