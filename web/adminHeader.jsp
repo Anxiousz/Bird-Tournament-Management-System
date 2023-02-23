@@ -26,44 +26,28 @@
             <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="HOME">
-                        </form>
+                        <a class="nav-link" href="MainController?action=HOME_GUEST">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="TOURNAMENT"><span class="sr-only">(current)</span>
-                        </form>
+                        <a class="nav-link" href="MainController?action=TOURNAMENT">TOURNAMENT</a><span class="sr-only">(current)</span>
                     </li>
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="BLOG">
-                        </form>
+                        <a class="nav-link" href="MainController?action=BLOG">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="INTRODUCTION">
-                        </form>
+                        <a class="nav-link" href="MainController?action=INTRODUCTION">INTRODUCTION</a>
                     </li>
-                    <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="BIRD">
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form class="dropdown show">
-                            <input class="nav-link custom-button dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="submit" value="MANAGE">
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <input class="custom-button dropdown-item" type="submit" value="ACCOUNT">
-                                <input class="custom-button dropdown-item" type="submit" value="BIRD">
-                                <input class="custom-button dropdown-item" type="submit" value="TOURNAMENT">
-                                <input class="custom-button dropdown-item" type="submit" value="BLOG">
-                                <input class="custom-button dropdown-item" type="submit" value="POLICY">
-                                <input class="custom-button dropdown-item" type="submit" value="INTRODUCTION">
-                                <input class="custom-button dropdown-item" type="submit" value="FEEDBACK">
-                                <input class="custom-button dropdown-item" type="submit" value="STATISTIC">
-                            </div>
-                        </form>
+                    <li class="nav-item dropdown show">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MANAGE</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="MainController?action=MANAGE ACCOUNT">ACCOUNT</a>
+                            <a class="dropdown-item" href="MainController?action=MANAGE BIRD">BIRD</a>
+                            <a class="dropdown-item" href="MainController?action=MANAGE TOURNAMENT">TOURNAMENT</a>
+                            <a class="dropdown-item" href="MainController?action=MANAGE BLOG">BLOG</a>
+                            <a class="dropdown-item" href="MainController?action=MANAGE INTRODUCTION">INTRODUCTION</a>
+                            <a class="dropdown-item" href="MainController?action=FEEDBACK">FEEDBACK</a>
+                            <a class="dropdown-item" href="MainController?action=STATISTIC">STATISTIC</a>
+                        </div>
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">

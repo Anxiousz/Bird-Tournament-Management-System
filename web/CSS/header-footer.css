@@ -7,19 +7,15 @@
     padding: 0 !important;
 
 }
-.nav-item form input{
+.nav-item a{
     font-size: 20px;
     margin-left: 30px ;
     color: #fff !important;
     font-weight: bold;
 }
-.nav-item form input div input{
-    font-size: 20px;
-    color: #fff !important;
-    font-weight: bold;
-}
-.nav-item form input:hover{
+.nav-item a:hover{
     opacity: 0.5;
+    text-decoration: none;
 }
 .navbar-nav{
     margin-left: 30px  ;
@@ -62,9 +58,11 @@
     background-color: #A87B24!important;
 }
 .dropdown-item:hover{
-    background-color: #A87B24;
+    width: 80%;
+    background-color: #A87B24!important;
 }
 .dropdown-item{
+    width: 80%;
     background-color: #A87B24;
 }
 .right-site-form p a{

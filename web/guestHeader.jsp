@@ -26,31 +26,16 @@
             <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <form>
-                        <input class="nav-link custom-button" type="submit" value="HOME_GUEST" name="action" >
-                        <!--                        <a href="MainController?action=HOME_GUEST">Home</a>-->
-                        </form>
+                        <a class="nav-link" href="MainController?action=HOME_GUEST">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="TOURNAMENT"><span class="sr-only">(current)</span>
-<!--                            <a href="MainController?action=TOURNAMENT">TOURNAMENT</a>-->
-                        </form>
+                        <a class="nav-link" href="MainController?action=TOURNAMENT">TOURNAMENT</a><span class="sr-only">(current)</span>
                     </li>
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="BLOG">
-                        </form>
+                        <a class="nav-link" href="MainController?action=BLOG">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="INTRODUCTION">
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form>
-                            <input class="nav-link custom-button" type="submit" value="BIRD">
-                        </form>
+                        <a class="nav-link" href="MainController?action=INTRODUCTION">INTRODUCTION</a>
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
