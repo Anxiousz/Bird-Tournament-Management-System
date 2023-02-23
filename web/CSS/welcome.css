@@ -183,6 +183,9 @@ body{
     font-size: 22px;
     color: #694a06;
 }
+.bird-site-heading p{
+    font-size: 22px
+}
 .bird-site-main-body{
     width: 100%;
     display: flex;
@@ -190,6 +193,12 @@ body{
     align-items: center;
     flex-wrap: nowrap;
     flex-direction: row;
+}
+.bird-left-right-site{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
 }
 .bird-info-site{
     margin-top: 30px;

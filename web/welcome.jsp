@@ -80,7 +80,7 @@
                         <div class="card card-left-blog" style="width: 55rem; height: 550px;">
                             <img class="card-img-top" style="width: 65rem;height: 600px;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Card image cap">
                             <div class="card-body card-blog" style="width: 65rem;">
-                                <p class="card-text">Prepare for Tournament 2023 </p>
+                                <p class="card-text">Prepare for Tournament 2023, <a href="" style="text-decoration: underline;color: red;font-size: 15px">Read more</a></p>
                             </div>
                         </div>
                     </div>
@@ -89,13 +89,13 @@
                             <div class="card card-left-blog mb-5" style="width: 40rem; height: 240px;">
                                 <img class="card-img-top" style="width: 40rem;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Card image cap">
                                 <div class="card-body card-blog" style="width: 40rem;height: 100px;">
-                                    <p class="card-text card-right-p">Food for crested birds before competition</p>
+                                    <p class="card-text card-right-p">Food for crested birds before competition<a href="" style="text-decoration: underline;color: red;font-size: 15px">Read more</a></p>
                                 </div>
                             </div>
                             <div class="card card-left-blog " style="width: 40rem; height: 240px;">
                                 <img class="card-img-top" style="width: 40rem;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Card image cap">
                                 <div class="card-body card-blog" style="width: 20rem;">
-                                    <p class="card-text cart-right-p"></p>
+                                    <p class="card-text cart-right-p"> The champion <a href="" style="text-decoration: underline;color: red;font-size: 15px">Read more</a></p>
                                 </div>
                             </div>
                         </div>
