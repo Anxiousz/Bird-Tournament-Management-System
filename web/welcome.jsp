@@ -20,7 +20,15 @@
     </head>
     <body>
         <header>
-            <%@include file="guestHeader.jsp" %>
+            <c:choose>
+                <c:when test="${sessionscope.acc.role}=='User'">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:otherwise>
+                    <%@include file="guestHeader.jsp" %>
+                </c:otherwise>
+            </c:choose>
+            <%--<%@include file="guestHeader.jsp" %>--%>
         </header>
         <section>
             <!-- Tnm-site -->
