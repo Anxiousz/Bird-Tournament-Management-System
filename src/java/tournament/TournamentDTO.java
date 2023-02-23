@@ -15,10 +15,10 @@ public class TournamentDTO {
     private int numberOfPlayer;
     private String dateTime;
     private int tournamentStatus;
-    private float fee;
+    private String fee;
     private String image;
 
-    public TournamentDTO(int tournamentID, int accountID, String tournamentName, String sponsor, String prize, int numberOfPlayer, String dateTime, int tournamentStatus, float fee, String image) {
+    public TournamentDTO(int tournamentID, int accountID, String tournamentName, String sponsor, String prize, int numberOfPlayer, String dateTime, int tournamentStatus, String fee, String image) {
         this.tournamentID = tournamentID;
         this.accountID = accountID;
         this.tournamentName = tournamentName;
@@ -31,7 +31,7 @@ public class TournamentDTO {
         this.image = image;
     }
 
-    public TournamentDTO(String tournamentName, String dateTime, int tournamentStatus, int numberOfPlayer, float fee, String prize, String image) {
+    public TournamentDTO(String tournamentName, String dateTime, int tournamentStatus, int numberOfPlayer, String fee, String prize, String image) {
         this.tournamentName = tournamentName;
         this.dateTime = dateTime;
         this.tournamentStatus = tournamentStatus;
@@ -116,16 +116,12 @@ public class TournamentDTO {
         this.tournamentStatus = tournamentStatus;
     }
 
-    public float getFee() {
+    public String getFee() {
         return fee;
     }
 
-    public void setFee(float fee) {
+    public void setFee(String fee) {
         this.fee = fee;
     }
 
-    @Override
-    public String toString() {
-        return "TournamentDTO{" + "tournamentID=" + tournamentID + ", accountID=" + accountID + ", tournamentName=" + tournamentName + ", sponsor=" + sponsor + ", prize=" + prize + ", numberOfPlayer=" + numberOfPlayer + ", dateTime=" + dateTime + ", tournamentStatus=" + tournamentStatus + ", fee=" + fee + ", image=" + image + '}';
-    }
 }

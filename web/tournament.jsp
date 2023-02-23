@@ -107,10 +107,10 @@
             <!-- tnm categories heading  -->
             <form name="MainController" method="post">
                 <div class=" container tnm-categories-heading">
-                   <a href="MainController?action=TOURNAMENT"><p> All Tournaments<i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
-                   <a href="MainController?action=ON_GOING_TOURNAMENT"><p>On Going Tournaments</p></a>
-                   <a href="MainController?action=OLD_TOURNAMENT"><p>Old Tournaments</p></a>
-                   <a href="MainController?action=DELAY_TOURNAMENT"><p>Delay Tournament<i class='fas fa-hourglass-end' style='font-size:24px;color: green;'></i></p></a>
+                    <a href="MainController?action=TOURNAMENT"><p> All Tournaments<i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
+                    <a href="MainController?action=ON_GOING_TOURNAMENT"><p>On Going Tournaments</p></a>
+                    <a href="MainController?action=OLD_TOURNAMENT"><p>Old Tournaments</p></a>
+                    <a href="MainController?action=DELAY_TOURNAMENT"><p>Delay Tournament<i class='fas fa-hourglass-end' style='font-size:24px;color: green;'></i></p></a>
                 </div>
             </form>
             <!-- tnm-list -->
@@ -130,7 +130,6 @@
                                                 <c:when test="${list.tournamentStatus == 0}">Coming soon</c:when>
                                                 <c:when test="${list.tournamentStatus == 1}">On Going</c:when>
                                                 <c:when test="${list.tournamentStatus == 2}">Finish</c:when>
-                                                <c:when test="${list.tournamentStatus == 3}">Delay</c:when>
                                                 <c:otherwise>Delay</c:otherwise>
                                             </c:choose>
                                         </p>
@@ -152,7 +151,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-card-tnm">
-                                    <a href="">More Detail</a>
+                                    <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
                                 </div>
                             </div>
                         </div>

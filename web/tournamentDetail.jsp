@@ -1,10 +1,5 @@
-<%-- 
-    Document   : tournamentDetail
-    Created on : Feb 22, 2023, 9:10:01 PM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,29 +34,36 @@
                 <div class="tnm-picture">
                     <div class="card" style="width: 90rem;">
                         <img class="card-img-top" style="width: 90rem; height: 70rem;"
-                             src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.6435-9/132410054_239568537523026_1305047298580901566_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=iMfT7OFbd7EAX_8or26&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfAhcTDu2WioU6CAzHrDinbD0NSbTjulvPW6Styb-_59Vg&oe=641BEFAB"
+                             src="${sessionScope.GET_DETAIL.image}"
                              alt="Card image cap">
                     </div>
                 </div>
                 <!-- section 2  -->
                 <div class="tnm-heading mt-5">
-                    <h1>Spring Bird Tournament 2023 KonTum <i class="fa-solid fa-crown"></i></h1>
-                    <p>Status: On-Going</p>
+                    <h1>${sessionScope.GET_DETAIL.tournamentName}<i class="fa-solid fa-crown"></i></h1>
+                    <p>
+                        <c:choose>
+                            <c:when test="${list.tournamentStatus == 0}">Status: Coming soon</c:when>
+                            <c:when test="${list.tournamentStatus == 1}">Status: On Going</c:when>
+                            <c:when test="${list.tournamentStatus == 2}">Status: Finish</c:when>
+                            <c:otherwise>Status: Delay</c:otherwise>
+                        </c:choose>
+                    </p>
                 </div>
                 <!-- Section 3 -->
                 <div class="basic-tnm-form">
                     <div class="basic-tnm-form-categories">
                         <h1><i class="fa-solid fa-clock"></i>  Date and Time</h1>
-                        <p>#########</p>
+                        <p>${sessionScope.GET_DETAIL.dateTime}</p>
                     </div>
                     <div class="basic-tnm-form-categories"
                          style="border-left: 4px solid #A87B24; border-right: 4px solid #A87B24;">
                         <h1><i class="fa-solid fa-location-dot"></i>  Location</h1>
-                        <p>#########</p>
+                        <p>${sessionScope.GET_DETAIL.location}</p>
                     </div>
                     <div class="basic-tnm-form-categories">
                         <h1><i class="fa-sharp fa-solid fa-money-bill"></i> Fee</h1>
-                        <p>#########</p>
+                        <p>${sessionScope.GET_DETAIL.fee} </p>
                     </div>
                 </div>
                 <!-- div line -->
@@ -79,7 +81,7 @@
                     </div>
                     <div class="player-site">
                         <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player:  </h1>
-                        <p>100</p>
+                        <p>${sessionScope.GET_DETAIL.numberOfPlayer}</p>
                     </div>
                 </div>
                 <!-- div line -->
@@ -90,11 +92,7 @@
                 <div class="sponsor-site">
                     <h1>Main Sponsor <i class="fa-solid fa-hand-holding-heart" style="color: green;"></i></h1>
                     <div class="sponsor-site-picture">
-                        <img src="https://i.pinimg.com/564x/ee/f2/bb/eef2bb94fee278841e2ced335008216b.jpg" alt="Avatar"
-                             class="avatar-sponsor ">
-                        <img src="https://i.pinimg.com/236x/49/33/96/49339665366f51689443db2b6832f2cb.jpg" alt="Avatar"
-                             class="avatar-sponsor ">
-                        <img src="https://i.pinimg.com/564x/30/f4/38/30f4385c60633caaa8cdcf430d3bb16d.jpg" alt="Avatar"
+                        <img src="${sessionScope.GET_DETAIL.sponsor}" alt="Avatar"
                              class="avatar-sponsor ">
                     </div>
                 </div>

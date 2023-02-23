@@ -35,7 +35,7 @@ public class TournamentDAO implements Serializable {
                     String dateTime = rs.getString("dateTime");
                     int tournamentStatus = rs.getInt("tournamentStatus");
                     int numberOfPlayer = rs.getInt("numberOfPlayer");
-                    float fee = rs.getFloat("fee");
+                    String fee = rs.getString("fee");
                     String prize = rs.getString("prize");
                     String image = rs.getString("image");
                     TournamentDTO tour = new TournamentDTO(tournamentName, dateTime, tournamentStatus, numberOfPlayer, fee, prize, image);

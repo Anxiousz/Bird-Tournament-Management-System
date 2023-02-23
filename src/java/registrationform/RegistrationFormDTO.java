@@ -16,17 +16,20 @@ public class RegistrationFormDTO {
     private int accountID;
     private int birdID;
     private String location;
-    private float fee;
+    private String fee;
     private int formStatus;
     private String image;
     private String tournamentName;
     private String dateTime;
     private String tournamentStatus;
+    private String prize;
+    private int numberOfPlayer;
+    private String sponsor;
 
     public RegistrationFormDTO() {
     }
 
-    public RegistrationFormDTO(int tournamentID, String location, float fee, String tournamentStatus, String image, String tournamentName, String dateTime) {
+    public RegistrationFormDTO(int tournamentID, String location, String fee, String tournamentStatus, String image, String tournamentName, String dateTime) {
         this.tournamentID = tournamentID;
         this.location = location;
         this.fee = fee;
@@ -36,7 +39,19 @@ public class RegistrationFormDTO {
         this.dateTime = dateTime;
     }
 
-    public RegistrationFormDTO(int registrationFormID, int tournamentID, int accountID, int birdID, String location, float fee, int formStatus, String image, String tournamentName, String dateTime, String tournamentStatus) {
+    public RegistrationFormDTO(String image, String tournamentName, String tournamentStatus, String dateTime, String location, String fee, String prize, int numberOfPlayer, String sponsor) {
+        this.image = image;
+        this.tournamentName = tournamentName;
+        this.tournamentStatus = tournamentStatus;
+        this.dateTime = dateTime;
+        this.location = location;
+        this.fee = fee;
+        this.prize = prize;
+        this.numberOfPlayer = numberOfPlayer;
+        this.sponsor = sponsor;
+    }
+
+    public RegistrationFormDTO(int registrationFormID, int tournamentID, int accountID, int birdID, String location, String fee, int formStatus, String image, String tournamentName, String dateTime, String tournamentStatus, String prize, int numberOfPlayer, String sponsor) {
         this.registrationFormID = registrationFormID;
         this.tournamentID = tournamentID;
         this.accountID = accountID;
@@ -48,6 +63,34 @@ public class RegistrationFormDTO {
         this.tournamentName = tournamentName;
         this.dateTime = dateTime;
         this.tournamentStatus = tournamentStatus;
+        this.prize = prize;
+        this.numberOfPlayer = numberOfPlayer;
+        this.sponsor = sponsor;
+    }
+
+    public String getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
+    }
+
+  
+    public int getNumberOfPlayer() {
+        return numberOfPlayer;
+    }
+
+    public void setNumberOfPlayer(int numberOfPlayer) {
+        this.numberOfPlayer = numberOfPlayer;
+    }
+
+    public String getPrize() {
+        return prize;
+    }
+
+    public void setPrize(String prize) {
+        this.prize = prize;
     }
 
     public String getTournamentStatus() {
@@ -57,7 +100,6 @@ public class RegistrationFormDTO {
     public void setTournamentStatus(String tournamentStatus) {
         this.tournamentStatus = tournamentStatus;
     }
-
 
     public int getRegistrationFormID() {
         return registrationFormID;
@@ -99,14 +141,15 @@ public class RegistrationFormDTO {
         this.location = location;
     }
 
-    public float getFee() {
+    public String getFee() {
         return fee;
     }
 
-    public void setFee(float fee) {
+    public void setFee(String fee) {
         this.fee = fee;
     }
 
+   
     public int getFormStatus() {
         return formStatus;
     }
@@ -138,11 +181,5 @@ public class RegistrationFormDTO {
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
-
-    @Override
-    public String toString() {
-        return "RegistrationFormDTO{" + "registrationFormID=" + registrationFormID + ", tournamentID=" + tournamentID + ", accountID=" + accountID + ", birdID=" + birdID + ", location=" + location + ", fee=" + fee + ", formStatus=" + formStatus + ", image=" + image + ", tournamentName=" + tournamentName + ", dateTime=" + dateTime + ", tournamentStatus=" + tournamentStatus + '}';
-    }
-
 
 }

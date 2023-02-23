@@ -30,6 +30,7 @@ public class MainController extends HttpServlet {
     private static final String ON_GOING_TOURNAMENT = "ON_GOING_TOURNAMENT";
     private static final String OLD_TOURNAMENT = "OLD_TOURNAMENT";
     private static final String DELAY_TOURNAMENT = "DELAY_TOURNAMENT";
+    private static final String TOURNAMENT_DETAIL = "TOURNAMENT_DETAIL";
 
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -40,6 +41,7 @@ public class MainController extends HttpServlet {
     private static final String ON_GOING_TOURNAMENT_CONTROLLER = "OnGoingTournamentController";
     private static final String OLD_TOURNAMENT_CONTROLLER = "OldTournamentController";
     private static final String DELAY_TOURNAMENT_CONTROLLER = "DelayTournamentController";
+    private static final String TOURNAMENT_DETAIL_CONTROLLER = "TournamentDetailController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -74,6 +76,9 @@ public class MainController extends HttpServlet {
                     break;
                 case DELAY_TOURNAMENT:
                     url = DELAY_TOURNAMENT_CONTROLLER;
+                    break;
+                case TOURNAMENT_DETAIL:
+                    url = TOURNAMENT_DETAIL_CONTROLLER;
                     break;
             }
         } catch (Exception e) {
