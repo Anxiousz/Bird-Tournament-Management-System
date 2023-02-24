@@ -8,6 +8,18 @@ body{
     background-color: #fff;   
 }
 /* navbar-site */
+.navbar{
+    margin: 0px !important;
+    position:absolute !important;
+    top:0;
+    right: 0;
+    left:0;
+    z-index: 1;
+    
+}
+.drop-nav{
+    position: relative;
+}
 .nav-container{
     padding: 80px 5px;
     background-color: #A87B24 ;
@@ -59,6 +71,27 @@ body{
     text-decoration: none;
     display: block;
 }
+.drop-down-menu-list{
+    padding: 15px 20px !important;
+    z-index: 4;
+    font-size: 15px !important;
+    font-family: 'Baloo';
+    background-color: #c9ae16 !important;
+    
+}
+.dropdown-item{
+    padding: 10px 15px;
+    color: #fff !important ;
+}
+.dropdown-item:hover{
+    background: none !important;
+    opacity: 0.6;
+}
+.carousel-item{
+    top: 90px;
+    position: absolute;
+    z-index: 0;
+}
 .tnm-site{
     margin-top: 30px;
     height: 650px;
@@ -82,13 +115,15 @@ body{
   }
 .right-site-form h5{
     margin-left: 10px;
-    width: 50%;
+    width: 100%;
+    color: white;
+    font-family: 'Baloo';
   }
 /* Search site */
 .search-tnm-main-site{
         margin-left: 200px;
         width: 80%;
-        top: 590px;
+        top: 760px;
         position:absolute;
         padding: 0 200px;
 }
@@ -96,7 +131,7 @@ body{
     display: flex;
 }
 .search-tnm-form input{
-    padding: 20px 40px;
+    padding: 30px 40px;
     font-size: 20px;
 }
 /* Categpries heading  */

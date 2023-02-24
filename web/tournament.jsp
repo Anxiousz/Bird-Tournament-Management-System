@@ -23,8 +23,10 @@
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
                   integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
             <link rel="stylesheet" href="CSS/tournament.css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         </head>
         <body>
             <!-- nav-site -->
@@ -57,10 +59,10 @@
                             <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-menu drop-down-menu-list" aria-labelledby="dropdownMenuLink">
                                 <form name="Maincontroller" method="post">
-                                    <button class="dropdown-item" name="action" >Account Setting</button>
-                                    <button class="dropdown-item" name="action" value="Logout">Logout</button>
+                                    <button class="dropdown-item" name="action" ><i class="fa-solid fa-gear"></i>  Account Setting</button>
+                                    <button class="dropdown-item" name="action" value="Logout"><i class="fa-solid fa-right-from-bracket"></i>  Logout</button>
                                 </form>
                             </div>
                         </div>
@@ -77,13 +79,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" style="height: 500px;" src="https://scontent.fhan4-1.fna.fbcdn.net/v/t1.6435-9/120244547_181839916770252_7737017247524544281_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=PF1sXFl2oHsAX8AwXzL&_nc_ht=scontent.fhan4-1.fna&oh=00_AfCA14tKPHXIttJSN6pO3YQ5wzyRdgTGYC8GfcCJ6Pjm5A&oe=6416C5C0" alt="First slide">
+                        <img class="d-block w-100" style="height: 800px;" src="https://scontent.fhan4-1.fna.fbcdn.net/v/t1.6435-9/120244547_181839916770252_7737017247524544281_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=PF1sXFl2oHsAX8AwXzL&_nc_ht=scontent.fhan4-1.fna&oh=00_AfCA14tKPHXIttJSN6pO3YQ5wzyRdgTGYC8GfcCJ6Pjm5A&oe=6416C5C0" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" style="height: 500px;" src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.6435-9/100323510_144014140552830_4161607449062670336_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=-azFYExJaA8AX-6uNBh&_nc_ht=scontent.fhan3-4.fna&oh=00_AfACLg1J0HnlQ4LNrRPkailW8nP6FBYI00nCApmQLm70eA&oe=6416D8B4" alt="Second slide">
+                        <img class="d-block w-100" style="height: 800px;" src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.6435-9/100323510_144014140552830_4161607449062670336_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=-azFYExJaA8AX-6uNBh&_nc_ht=scontent.fhan3-4.fna&oh=00_AfACLg1J0HnlQ4LNrRPkailW8nP6FBYI00nCApmQLm70eA&oe=6416D8B4" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100"  style="height: 500px;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Third slide">
+                        <img class="d-block w-100"  style="height: 800px;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
