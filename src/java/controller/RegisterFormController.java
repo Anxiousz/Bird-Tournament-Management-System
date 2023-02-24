@@ -5,13 +5,19 @@
  */
 package controller;
 
+import bird.BirdDAO;
+import bird.BirdDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import registrationform.RegistrationFormDAO;
+import registrationform.RegistrationFormDTO;
 
 /**
  *
@@ -19,6 +25,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegisterFormController", urlPatterns = {"/RegisterFormController"})
 public class RegisterFormController extends HttpServlet {
+
+    private static final String SUCCESS = "registrationForm.jsp";
+    private static final String ERROR = "error.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +42,26 @@ public class RegisterFormController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            int tournamentID = Integer.valueOf(request.getParameter("tID"));
-            int accountID = Integer.valueOf(request.getParameter("aID"));
-            
+            String url = ERROR;
+            HttpSession s = request.getSession();
+            try {
+                RegistrationFormDAO r = new RegistrationFormDAO();
+                BirdDAO b = new BirdDAO();
+                int tID = Integer.valueOf(request.getParameter("tID"));
+                int aID = Integer.valueOf(request.getParameter("aID"));
+                RegistrationFormDTO regis_detail = r.getDetailTour(tID);
+                List<BirdDTO> bird_detail = b.getBirdByID(aID);
+                if (regis_detail != null && bird_detail != null) {
+                    s.setAttribute("FORM_DETAIL_TOUR", regis_detail);
+                    s.setAttribute("FORM_DETAIL_BIRD", bird_detail);
+                    url = SUCCESS;
+                } else {
+                    url = ERROR;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

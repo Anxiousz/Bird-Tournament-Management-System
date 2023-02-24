@@ -60,5 +60,42 @@ public class BirdDAO implements Serializable {
         }
         return list;
     }
-    
+
+    private final static String GET_BIRD_BY_ID = "SELECT b.birdName\n"
+            + "FROM Bird b\n"
+            + "INNER JOIN Account a ON b.accountID = a.accountID\n"
+            + "WHERE a.accountID = ?";
+
+    public List<BirdDTO> getBirdByID(int accountID) throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<BirdDTO> list = new ArrayList<>();
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BIRD_BY_ID);
+                stm.setInt(1, accountID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String birdName = rs.getString("birdName");
+                    BirdDTO b = new BirdDTO(birdName);
+                    list.add(b);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
 }

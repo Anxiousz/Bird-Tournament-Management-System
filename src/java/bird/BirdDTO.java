@@ -55,6 +55,10 @@ public class BirdDTO {
         this.birdPhoto = birdPhoto;
     }
 
+    public BirdDTO(String birdName) {
+        this.birdName = birdName;
+    }
+
     public int getBirdID() {
         return birdID;
     }
@@ -164,5 +168,4 @@ public class BirdDTO {
         return "BirdDTO{" + "birdID=" + birdID + ", accountID=" + accountID + ", birdName=" + birdName + ", birdPhoto=" + birdPhoto + ", height=" + height + ", weight=" + weight + ", color=" + color + ", birdStatus=" + birdStatus + ", identity=" + identity + ", description=" + description + ", medals=" + medals + ", totalScore=" + totalScore + ", top=" + top + '}';
     }
 
-    
 }
