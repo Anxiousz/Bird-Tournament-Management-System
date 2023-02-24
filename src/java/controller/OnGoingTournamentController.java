@@ -45,7 +45,7 @@ public class OnGoingTournamentController extends HttpServlet {
             HttpSession s = request.getSession();
             try {
                 RegistrationFormDAO regis = new RegistrationFormDAO();
-                List<RegistrationFormDTO> r = regis.getOnGoingTour();
+                List<RegistrationFormDTO> r = regis.getTourByStatus(1);
                 if (r != null) {
                     s.setAttribute("GET_LIST", r);
                     url = SUCCESS;

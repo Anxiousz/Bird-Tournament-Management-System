@@ -43,7 +43,7 @@ public class OldTournamentController extends HttpServlet {
             HttpSession s = request.getSession();
             try {
                 RegistrationFormDAO regis = new RegistrationFormDAO();
-                List<RegistrationFormDTO> r = regis.getOldTour();
+                List<RegistrationFormDTO> r = regis.getTourByStatus(2);
                 if (r != null) {
                     s.setAttribute("GET_LIST", r);
                     url = SUCCESS;

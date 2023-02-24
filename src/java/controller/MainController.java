@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     //link to jsp
-    private static final String HOME_USER_PAGE = "userPage.jsp";
-    private static final String HOME_GUEST_PAGE = "guestPage.jsp";
+    private static final String HOME_PAGE = "homePage.jsp";
     //value of action
     private static final String LOGIN = "Login";
     private static final String REGISTER = "Register";
@@ -62,10 +61,10 @@ public class MainController extends HttpServlet {
                     url = LOGOUT_CONTROLLER;
                     break;
                 case HOME_USER:
-                    url = HOME_USER_PAGE;
+                    url = HOME_PAGE;
                     break;
                 case HOME_GUEST:
-                    url = HOME_GUEST_PAGE;
+                    url = HOME_PAGE;
                     break;
                 case TOURNAMENT:
                     url = ALL_TOURNAMENT_CONTROLLER;

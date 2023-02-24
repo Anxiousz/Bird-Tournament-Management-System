@@ -45,7 +45,7 @@ public class DelayTournamentController extends HttpServlet {
             HttpSession s = request.getSession();
             try {
                 RegistrationFormDAO regis = new RegistrationFormDAO();
-                List<RegistrationFormDTO> r = regis.getDelayTour();
+                List<RegistrationFormDTO> r = regis.getTourByStatus(3);
                 if (r != null) {
                     s.setAttribute("GET_LIST", r);
                     url = SUCCESS;
