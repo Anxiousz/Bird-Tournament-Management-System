@@ -17,7 +17,7 @@ import utils.DBContext;
  *
  * @author anh12
  */
-public class BirdDAO implements Serializable {
+public class BirdDAO {
 
     private final static String GET_BIRD = "SELECT TOP 3 b.birdName, b.height, b.weight, b.color, b.birdStatus, a.totalScore, b.birdPhoto\n"
             + "FROM Bird b JOIN Achievement a ON b.birdID = a.birdID\n"

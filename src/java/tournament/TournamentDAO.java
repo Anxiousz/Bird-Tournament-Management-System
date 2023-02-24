@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
 
-public class TournamentDAO implements Serializable {
+public class TournamentDAO{
 
     private final static String GET_TOURNAMENT = "SELECT TOP 3 *\n"
             + "FROM (\n"

@@ -49,26 +49,26 @@
                     <div class="registration-inf-form-tnm">
                         <div class="mb-3 large-categories">
                             <label class="form-label form-name-categories">Tournament Name</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}"/>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}" readonly=""/>
                         </div>
                         <div class="mb-3 large-categories">
                             <label class="form-label form-name-categories">Status</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}"/>
+                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}" readonly=""/>
 
                         </div>
                         <!-- Small input -->
                         <div class="other-inf-tnm-regis-form">
                             <div class="mb-3 small-categories">
                                 <label class="form-label form-name-categories"> Player</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}">
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}" readonly="">
                             </div>
                             <div class="mb-3 small-categories">
                                 <label class="form-label form-name-categories">Date Time</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.dateTime}">
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.dateTime}" readonly="">
                             </div>
                             <div class="mb-3 small-categories">
                                 <label class="form-label form-name-categories">Location</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}">
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}" readonly="">
                             </div>
                         </div>
                         <!-- Sponsor -->
@@ -113,7 +113,7 @@
                         </div>
                         <div class="fee-registration right-small-site" style="padding-right: 100px; width: 60%;">
                             <label class="form-label lable-right"> Tournament Fee</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee}">
+                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee}" readonly="">
                             <div class="form-text" style="color: #ffff;">Cash Payment Only</div>
                         </div>
                     </div>

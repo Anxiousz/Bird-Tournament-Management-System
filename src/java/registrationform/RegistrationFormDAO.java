@@ -17,7 +17,7 @@ import utils.DBContext;
  *
  * @author anh12
  */
-public class RegistrationFormDAO implements Serializable {
+public class RegistrationFormDAO{
 
     private final static String GET_TOURNAMENT = "SELECT DISTINCT t.tournamentID, r.location, r.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
             + "FROM RegistrationForm r\n"
