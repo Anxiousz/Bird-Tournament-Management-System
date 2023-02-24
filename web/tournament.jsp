@@ -61,8 +61,8 @@
                             </a>
                             <div class="dropdown-menu drop-down-menu-list" aria-labelledby="dropdownMenuLink">
                                 <form name="MainController" method="post">
-                                    <button class="dropdown-item" name="action" ><i class="fa-solid fa-gear"></i>  </button>
-                                    <button class="dropdown-item" name="action" value="Logout"><i class="fa-solid fa-right-from-bracket"></i>  </button>
+                                    <button class="dropdown-item" name="action" ><i class="fa-solid fa-gear"></i> Account Setting </button>
+                                    <button class="dropdown-item" name="action" value="Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout </button>
                                 </form>
                             </div>
                         </div>
