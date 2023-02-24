@@ -26,7 +26,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         </head>
         <body>
             <!-- nav-site -->
@@ -52,18 +52,14 @@
                             <a class="nav-link" href="#">BIRD</a>
                         </li>
                     </ul>
-                    <!--- Thêm welcome + user và avatar giống như bên userPage từ dòng 59 ---->
                     <div class="right-site-form my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">
                         <div class="dropdown show drop-nav">
                             <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
                             </a>
                             <div class="dropdown-menu drop-down-menu-list" aria-labelledby="dropdownMenuLink">
-                                <form name="MainController" method="post">
-                                    <button class="dropdown-item" name="action" ><i class="fa-solid fa-gear"></i> Account Setting </button>
-                                    <button class="dropdown-item" name="action" value="Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout </button>
-                                </form>
+                                <a class="dropdown-item" href=""><i class="fa-solid fa-gear"></i> Account Setting </a>
+                                <a class="dropdown-item" href="MainController?action=Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout </a>
                             </div>
                         </div>
                         <h5>Welcome ${sessionScope.acc.getName()}</h5>
