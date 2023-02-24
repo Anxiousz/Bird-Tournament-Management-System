@@ -97,31 +97,31 @@
                     </div>
                 </div>
                 <!-- div line -->
-<!--                <div class="line-section">
-                    <p></p>
-                </div>
-                 Section 6 
-                 Policy 
-                <div class="policy-site">
-                    <h1><i class="fa-solid fa-bookmark"></i>  Policy and Rules</h1>
-                    <div class="scroll-container">
-                        <div class="scroll-page">
-                            <p>fdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfd
-                                sdfdsfsdfsdfdsfdsfsfdsfdsfdsfdsfdsfdsfdsfds
-                                fdsfsdfdfdsfdsfsdfdsfdsfdsfdsfdsfdsfefdsfdsfds
-                                fsdfdsfdsfdsfdsfdsfsdfsdfsdfdsfsdfsdfdsfdsfdfd
-                                dfdsfdsfsdfsdfdsfdsfdsfdsfsdfdsfdsfsdfsdfsdfsdf
-                                dsfdsfdsfsdfdsffdsfsdfsdfsdfdsfsdfsdfdsfdsfdsfds
-                                fsdfdsfdsfdsfsdfdsfdsfsdfsdfdsfdsfsdfsdfsdfsdfsdf
-                            </p><br>
-                            <p>sadasdsadsadsadsadasdsadsadsadsadsadsadsadsadsad
-                                sadsadsadsadsadsadsadsadsadsadsfdsfdsfdsfdsfsdfsdf
-                                fsdfdsfdsfdsfdsfdsfdsfdsfdsfdsfsdfdsfdsfdsfdsfdsf
-                                dsfdsfdsfds
-                            </p>
-                        </div>
-                    </div>
-                </div>-->
+                <!--                <div class="line-section">
+                                    <p></p>
+                                </div>
+                                 Section 6 
+                                 Policy 
+                                <div class="policy-site">
+                                    <h1><i class="fa-solid fa-bookmark"></i>  Policy and Rules</h1>
+                                    <div class="scroll-container">
+                                        <div class="scroll-page">
+                                            <p>fdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfd
+                                                sdfdsfsdfsdfdsfdsfsfdsfdsfdsfdsfdsfdsfdsfds
+                                                fdsfsdfdfdsfdsfsdfdsfdsfdsfdsfdsfdsfefdsfdsfds
+                                                fsdfdsfdsfdsfdsfdsfsdfsdfsdfdsfsdfsdfdsfdsfdfd
+                                                dfdsfdsfsdfsdfdsfdsfdsfdsfsdfdsfdsfsdfsdfsdfsdf
+                                                dsfdsfdsfsdfdsffdsfsdfsdfsdfdsfsdfsdfdsfdsfdsfds
+                                                fsdfdsfdsfdsfsdfdsfdsfsdfsdfdsfdsfsdfsdfsdfsdfsdf
+                                            </p><br>
+                                            <p>sadasdsadsadsadsadasdsadsadsadsadsadsadsadsadsad
+                                                sadsadsadsadsadsadsadsadsadsadsfdsfdsfdsfdsfsdfsdf
+                                                fsdfdsfdsfdsfdsfdsfdsfdsfdsfdsfsdfdsfdsfdsfdsfdsf
+                                                dsfdsfdsfds
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>-->
                 <!-- div-site -->
                 <div class="line-section">
                     <p></p>
