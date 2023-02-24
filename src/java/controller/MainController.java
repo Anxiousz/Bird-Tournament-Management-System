@@ -18,8 +18,7 @@ public class MainController extends HttpServlet {
 
     //link to jsp
     private static final String HOME_USER_PAGE = "userPage.jsp";
-    private static final String HOME_GUEST_PAGE = "welcome.jsp";
-
+    private static final String HOME_GUEST_PAGE = "guestPage.jsp";
     //value of action
     private static final String LOGIN = "Login";
     private static final String REGISTER = "Register";
@@ -64,6 +63,9 @@ public class MainController extends HttpServlet {
                     break;
                 case HOME_USER:
                     url = HOME_USER_PAGE;
+                    break;
+                case HOME_GUEST:
+                    url = HOME_GUEST_PAGE;
                     break;
                 case TOURNAMENT:
                     url = ALL_TOURNAMENT_CONTROLLER;

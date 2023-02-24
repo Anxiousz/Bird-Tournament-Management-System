@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "";
+    private static final String SUCCESS = "guestPage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,13 +27,13 @@ public class LogoutController extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                session.invalidate();
+                session.removeAttribute("acc");
                 url = SUCCESS;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect(SUCCESS);
+        response.sendRedirect(url);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

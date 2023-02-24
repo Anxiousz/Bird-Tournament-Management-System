@@ -22,7 +22,7 @@ import tournament.TournamentDTO;
 @WebServlet(name = "LoadHomePageController", urlPatterns = {"/LoadHomePageController"})
 public class LoadHomePageController extends HttpServlet {
 
-    private final static String SUCCESS = "welcome.jsp";
+    private final static String SUCCESS = "guestPage.jsp";
     private final static String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

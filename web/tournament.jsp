@@ -35,10 +35,10 @@
                 <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="">HOME</a>
+                            <a class="nav-link" href="MainController?action=HOME_USER">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">TOURNAMENT<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="MainController?action=TOURNAMENT">TOURNAMENT<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">BLOG</a>
@@ -59,7 +59,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <form name="Maincontroller" method="post">
-                                    <button class="dropdown-item" href="#" >Account Setting</button>
+                                    <button class="dropdown-item" name="action" >Account Setting</button>
                                     <button class="dropdown-item" name="action" value="Logout">Logout</button>
                                 </form>
                             </div>

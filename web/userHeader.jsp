@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="MainController?action=HOME_GUEST">HOME</a>
+                        <a class="nav-link" href="MainController?action=HOME_USER">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="MainController?action=TOURNAMENT">TOURNAMENT</a><span class="sr-only">(current)</span>
