@@ -22,6 +22,7 @@ public class MainController extends HttpServlet {
     private static final String LOGIN = "Login";
     private static final String REGISTER = "Register";
     private static final String LOGOUT = "Logout";
+    private static final String REGISTER_FORM = "RegisterForm";
     private static final String HOME_USER = "HOME_USER";
     private static final String TOURNAMENT = "TOURNAMENT";
     private static final String HOME_GUEST = "HOME_GUEST";
@@ -40,6 +41,7 @@ public class MainController extends HttpServlet {
     private static final String OLD_TOURNAMENT_CONTROLLER = "OldTournamentController";
     private static final String DELAY_TOURNAMENT_CONTROLLER = "DelayTournamentController";
     private static final String TOURNAMENT_DETAIL_CONTROLLER = "TournamentDetailController";
+    private static final String REGISTER_FORM_CONTROLLER = "RegisterFormController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -80,6 +82,9 @@ public class MainController extends HttpServlet {
                     break;
                 case TOURNAMENT_DETAIL:
                     url = TOURNAMENT_DETAIL_CONTROLLER;
+                    break;
+                case REGISTER_FORM:
+                    url = REGISTER_FORM_CONTROLLER;
                     break;
             }
         } catch (Exception e) {

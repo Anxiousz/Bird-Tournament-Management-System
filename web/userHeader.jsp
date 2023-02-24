@@ -55,10 +55,8 @@
                             <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <form name="Maincontroller" method="post">
-                                <button class="dropdown-item" name="action" > <i class="fa-solid fa-gear"></i>  Account Setting</button>
-                                <button class="dropdown-item" name="action" value="Logout"> <i class="fa-solid fa-right-from-bracket"></i>  Logout</button>
-                            </form>
+                                <a class="dropdown-item" name="action" > <i class="fa-solid fa-gear"></i>  Account Setting</a>
+                                <a class="dropdown-item" href="MainController?action=Logout"> <i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
                         </div>
                     </div>
                     <h5 class="custom-font">Welcome ${sessionScope.acc.getName()}</h5>

@@ -39,7 +39,8 @@ public class RegistrationFormDTO {
         this.dateTime = dateTime;
     }
 
-    public RegistrationFormDTO(String image, String tournamentName, String tournamentStatus, String dateTime, String location, String fee, String prize, int numberOfPlayer, String sponsor) {
+    public RegistrationFormDTO(int tournamentID, String image, String tournamentName, String tournamentStatus, String dateTime, String location, String fee, String prize, int numberOfPlayer, String sponsor) {
+        this.tournamentID = tournamentID;
         this.image = image;
         this.tournamentName = tournamentName;
         this.tournamentStatus = tournamentStatus;
@@ -76,7 +77,6 @@ public class RegistrationFormDTO {
         this.sponsor = sponsor;
     }
 
-  
     public int getNumberOfPlayer() {
         return numberOfPlayer;
     }
@@ -149,7 +149,6 @@ public class RegistrationFormDTO {
         this.fee = fee;
     }
 
-   
     public int getFormStatus() {
         return formStatus;
     }

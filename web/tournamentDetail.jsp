@@ -130,9 +130,9 @@
                 <div class="regis-site container">
                     <div class="regis-both-site">
                         <div class="regis-left-site">
-                            <h1>PLAY WITH US NOW</h1>
+                            <h1><a>PLAY WITH US NOW</h1>
                             <p>Gift, Achivement waiting you</p>
-                            <button class="left-join-tnm">PLAY NOW</button>
+                            <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${sessionScope.GET_DETAIL.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
                         </div>
                         <div class="regis-right-site">
                             <form action="">

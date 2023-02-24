@@ -20,7 +20,9 @@ import utils.DBContext;
 public class RegistrationFormDAO implements Serializable {
 
     private final static String GET_TOURNAMENT = "SELECT DISTINCT t.tournamentID, r.location, r.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
-            + " FROM RegistrationForm r JOIN Tournament t ON t.tournamentID = r.tournamentID";
+            + "FROM RegistrationForm r\n"
+            + "INNER JOIN Tournament t ON t.tournamentID = r.tournamentID\n"
+            + "ORDER BY t.tournamentID";
 
     public List<RegistrationFormDTO> getAllTour() throws Exception {
         List<RegistrationFormDTO> list = new ArrayList<>();
@@ -61,8 +63,10 @@ public class RegistrationFormDAO implements Serializable {
     }
 
     private final static String GET_TOURNAMENT_BY_STATUS = " SELECT DISTINCT t.tournamentID, r.location, r.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
-            + "FROM RegistrationForm r JOIN Tournament t ON t.tournamentID = r.tournamentID\n"
-            + "WHERE t.tournamentStatus = ?";
+            + "FROM RegistrationForm r\n"
+            + "INNER JOIN Tournament t ON t.tournamentID = r.tournamentID\n"
+            + "WHERE t.tournamentStatus = ?\n"
+            + "ORDER BY t.tournamentID";
 
     public List<RegistrationFormDTO> getTourByStatus(int status) throws Exception {
         List<RegistrationFormDTO> list = new ArrayList<>();
@@ -103,8 +107,9 @@ public class RegistrationFormDAO implements Serializable {
         return list;
     }
 
-    private final static String GET_TOURNAMENT_DETAIL = "SELECT DISTINCT t.image, t.tournamentName, t.tournamentStatus, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime, r.location, r.fee, t.prize, t.numberOfPlayer, t.sponsor\n"
-            + "FROM  Tournament t  JOIN RegistrationForm r ON r.tournamentID = t.tournamentID\n"
+    private final static String GET_TOURNAMENT_DETAIL = "SELECT DISTINCT t.tournamentID,t.image, t.tournamentName, t.tournamentStatus, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime, r.location, r.fee, t.prize, t.numberOfPlayer, t.sponsor\n"
+            + "FROM  Tournament t\n"
+            + "INNER JOIN RegistrationForm r ON r.tournamentID = t.tournamentID\n"
             + "WHERE t.tournamentID = ?";
 
     public RegistrationFormDTO getDetailTour(int ID) throws Exception {
@@ -121,6 +126,7 @@ public class RegistrationFormDAO implements Serializable {
                 rs = stm.executeQuery();
 
                 if (rs.next()) {
+                    int tournamentID = rs.getInt("tournamentID");
                     String image = rs.getString("image");
                     String tournament = rs.getString("tournamentName");
                     String tournamentStatus = rs.getString("tournamentStatus");
@@ -130,7 +136,7 @@ public class RegistrationFormDAO implements Serializable {
                     String prize = rs.getString("prize");
                     int numberOfPlayer = rs.getInt("numberOfPlayer");
                     String sponsor = rs.getString("sponsor");
-                    tour = new RegistrationFormDTO(image, tournament, tournamentStatus, dateTime, location, fee, prize, numberOfPlayer, sponsor);
+                    tour = new RegistrationFormDTO(tournamentID, image, tournament, tournamentStatus, dateTime, location, fee, prize, numberOfPlayer, sponsor);
                     return tour;
                 }
             }
@@ -148,6 +154,5 @@ public class RegistrationFormDAO implements Serializable {
             }
         }
         return null;
-
     }
 }
