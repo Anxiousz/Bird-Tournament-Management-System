@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+  height: 100vh;
+
+}
+.bird-repository {
+    margin: 40px 0px;
+    height: auto;
+    width: 100%;
+    border: 1px solid red;
+}
+.main-body-bird{
+        width: 100%;
+        display: flex;
+}
+.left-main-site li, .right-main-site li{
+    list-style: none;
+}
+.bird-repositoryp-main-card{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.img-card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.img-card-container p {
+    padding: 10px;
+    font-family: 'Baloo';font-size: 18px;
+    color: green;
+}
+.card{
+    margin: 30px !important;
+}
+.main-body-bird{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.left-main-site li{
+    padding: 10px;
+    font-family: 'Baloo';font-size: 22px;
+}
+.right-main-site li{
+    padding: 15px;
+    font-family: 'Montserrat';font-size: 16px;
+}
+.right-main-site{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+}
