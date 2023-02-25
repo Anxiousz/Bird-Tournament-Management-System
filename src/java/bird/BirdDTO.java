@@ -40,6 +40,17 @@ public class BirdDTO {
         this.totalScore = totalScore;
         this.top = top;
     }
+    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, String identity, int birdStatus) {
+        this.birdID = birdID;
+        this.accountID = accountID;
+        this.birdName = birdName;
+        this.birdPhoto = birdPhoto;
+        this.height = height;
+        this.weight = weight;
+        this.color = color;
+        this.identity = identity;
+        this.birdStatus = birdStatus;
+    }
 
     public BirdDTO() {
 

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,9 @@
         <header>
             <%@include file="adminHeader.jsp" %>
         </header>
+        <form action="LoadAccountController" method="POST">
+            <input type="submit" value="" name="action" />
+        </form>
         <section>
             <table class="table table-striped">
                 <thead>
@@ -28,96 +32,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:forEach items="${accs}" var="a">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>User</td>
-                        <td>1</td>
+                        <th scope="row">${a.accountID}</th>
+                        <td>${a.name}</td>
+                        <td>${a.role}</td>
+                        <td>${a.accountStatus}</td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Account">Block</a>
+                            <a class="custom-button_2" href="ManageAccountController?action=Block&accountID=${a.accountID}">Block</a>
                         </td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Account">Unblock</a>
+                            <a class="custom-button_2" href="ManageAccountController?action=Unblock&accountID=${a.accountID}">Unblock</a>
                         </td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Account">Remove</a>
+                            <a class="custom-button_2" href="ManageAccountController?action=Remove&accountID=${a.accountID}">Remove</a>
                         </td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Account_Detail">Detail</a>
+                            <a class="custom-button_2" href="ManageAccountController?action=Detail&accountID=${a.accountID}">Detail</a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>User</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Account">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Account">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Account">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Account_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>User</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Account">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Account">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Account">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Account_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Andy</td>
-                        <td>User</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Account">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Account">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Account">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Account_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Jay</td>
-                        <td>User</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Account">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Account">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Account">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Account_Detail">Detail</a>
-                        </td>
-                    </tr>
+                 </c:forEach>
                 </tbody>
             </table>
         </section>

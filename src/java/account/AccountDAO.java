@@ -28,7 +28,47 @@ public class AccountDAO implements Serializable {
             = "UPDATE Account SET email= ? , password = ? ,name = ?, profilePhoto = ?, role = ?, phone = ?, accountStatus = ? WHERE accountID = ? ";
     private static final String DELETE_ACCOUNT
             = "DETELE FROM Account WHERE accountID = ?";
+    private static final String GET_BY_ID 
+            = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE accountID = ? ";
 
+    public AccountDTO getByID(int accountID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BY_ID);
+                stm.setInt(1, accountID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    AccountDTO acc = new AccountDTO();
+                    acc.setAccountID(rs.getInt(1));
+                    acc.setEmail(rs.getString(2));
+                    acc.setPassword(rs.getString(3));
+                    acc.setName(rs.getString(4));
+                    acc.setProfilePhoto(rs.getString(5));
+                    acc.setRole(rs.getInt(6));
+                    acc.setPhone(rs.getInt(7));
+                    acc.setAccountStatus(rs.getInt(8));
+                    return acc;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
     public List<AccountDTO> getAllAccount() throws SQLException {
         List<AccountDTO> list = new ArrayList<>();
         Connection con = null;

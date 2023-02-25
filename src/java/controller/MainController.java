@@ -30,6 +30,8 @@ public class MainController extends HttpServlet {
     private static final String OLD_TOURNAMENT = "OLD_TOURNAMENT";
     private static final String DELAY_TOURNAMENT = "DELAY_TOURNAMENT";
     private static final String TOURNAMENT_DETAIL = "TOURNAMENT_DETAIL";
+    private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
+    private static final String MANAGE_BIRD = "MANAGE_BIRD";
 
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -42,6 +44,8 @@ public class MainController extends HttpServlet {
     private static final String DELAY_TOURNAMENT_CONTROLLER = "DelayTournamentController";
     private static final String TOURNAMENT_DETAIL_CONTROLLER = "TournamentDetailController";
     private static final String REGISTER_FORM_CONTROLLER = "RegisterFormController";
+    private static final String LOAD_ACCOUNT_CONTROLLER ="LoadAccountController";
+    private static final String LOAD_BIRD_CONTROLLER = "LoadBirdController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,6 +89,12 @@ public class MainController extends HttpServlet {
                     break;
                 case REGISTER_FORM:
                     url = REGISTER_FORM_CONTROLLER;
+                    break;
+                case MANAGE_ACCOUNT:
+                    url = LOAD_ACCOUNT_CONTROLLER;
+                    break;
+                case MANAGE_BIRD:
+                    url = LOAD_BIRD_CONTROLLER;
                     break;
             }
         } catch (Exception e) {

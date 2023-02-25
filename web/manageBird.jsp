@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,9 @@
         <header>
             <%@include file="adminHeader.jsp" %>
         </header>
+        <form action="LoadBirdController" method="POST">
+            <input type="submit" value="" name="action" />
+        </form>
         <section>
             <table class="table table-striped">
                 <thead>
@@ -28,96 +32,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:forEach items="${birds}" var="b">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>User1</td>
-                        <td>1</td>
+                        <th scope="row">${b.birdID}</th>
+                        <td>${b.birdName}</td>
+                        <td>${b.accountID}</td>
+                        <td>${b.birdStatus}</td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
+                            <a class="custom-button_2" href="ManageBirdController?action=Block&birdID=${b.birdID}">Block</a>
                         </td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
+                            <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
                         </td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
+                            <a class="custom-button_2" href="ManageBirdController?action=Remove&birdID=${b.birdID}">Remove</a>
                         </td>
                         <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
+                            <a class="custom-button_2" href="ManageBirdController?action=Detail&birdID=${b.birdID}">Detail</a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>User2</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>User3</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Andy</td>
-                        <td>User4</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Jay</td>
-                        <td>User5</td>
-                        <td>1</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Block_Bird">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Unblock_Bird">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Remove_Bird">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
+                    </c:forEach>>
                 </tbody>
             </table>
         </section>
