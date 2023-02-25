@@ -33,25 +33,30 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${accs}" var="a">
-                    <tr>
-                        <th scope="row">${a.accountID}</th>
-                        <td>${a.name}</td>
-                        <td>${a.role}</td>
-                        <td>${a.accountStatus}</td>
-                        <td>
-                            <a class="custom-button_2" href="ManageAccountController?action=Block&accountID=${a.accountID}">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageAccountController?action=Unblock&accountID=${a.accountID}">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageAccountController?action=Remove&accountID=${a.accountID}">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageAccountController?action=Detail&accountID=${a.accountID}">Detail</a>
-                        </td>
-                    </tr>
-                 </c:forEach>
+                        <tr>
+                            <th scope="row">${a.accountID}</th>
+                            <td>${a.name}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${a.role == 0}">User</c:when>
+                                    <c:otherwise>Admin</c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>${a.accountStatus}</td>
+                            <td>
+                                <a class="custom-button_2" href="ManageAccountController?action=Block&accountID=${a.accountID}">Block</a>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="ManageAccountController?action=Unblock&accountID=${a.accountID}">Unblock</a>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="ManageAccountController?action=Remove&accountID=${a.accountID}">Remove</a>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="ManageAccountController?action=Detail&accountID=${a.accountID}">Detail</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </section>

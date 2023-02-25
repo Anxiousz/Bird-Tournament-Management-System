@@ -8,7 +8,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <title>Manage Bird</title>
+        <title>Manage Account</title>
     </head>
     <body>
         <header>
@@ -18,37 +18,53 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Bird Name</th>
-                        <th scope="col">Owner ID</th>
+                        <th scope="col">Candidate ID</th>
+                        <th scope="col">Bird ID</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Block</th>
-                        <th scope="col">Unblock</th>
-                        <th scope="col">Remove</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${birds}" var="b">
                     <tr>
-                        <th scope="row">${b.birdID}</th>
-                        <td>${b.birdName}</td>
-                        <td>${b.accountID}</td>
-                        <td>${b.birdStatus}</td>
+                        <th scope="row">1</th>
+                        <td>Bird1</td>
+                        <td>0</td>
                         <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Block&birdID=${b.birdID}">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Remove&birdID=${b.birdID}">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Detail&birdID=${b.birdID}">Detail</a>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
-                    </c:forEach>>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Bird2</td>
+                        <td>0</td>
+                        <td>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Bird3</td>
+                        <td>0</td>
+                        <td>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Bird4</td>
+                        <td>0</td>
+                        <td>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Bird5</td>
+                        <td>0</td>
+                        <td>
+                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </section>

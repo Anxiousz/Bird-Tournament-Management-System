@@ -49,7 +49,7 @@
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
-                    <input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">
+                    <!--<input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">-->
                     <div class="dropdown show drop-nav">
                         <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
