@@ -192,14 +192,18 @@ body{
     color: #c9ae16;
 }
 .btn-card-tnm {
-
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
 .btn-card-tnm a{
     display: block;
     margin: 20px 120px 20px 120px;
     padding-left: 50px;
-    text-decoration: none;
+    text-decoration: none !important;
     padding: 10px 20px;
+    font-size: 20px;
+    color: #A87B24;
 
 }
 .card-tnm{
