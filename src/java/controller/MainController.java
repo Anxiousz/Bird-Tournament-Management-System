@@ -24,6 +24,7 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "Logout";
     private static final String REGISTER_FORM = "RegisterForm";
     private static final String CONFIRM_FORM = "ConfirmForm";
+    private static final String LOAD_BIRD ="BIRD";
 
     private static final String HOME_USER = "HOME_USER";
     private static final String TOURNAMENT = "TOURNAMENT";
@@ -34,6 +35,7 @@ public class MainController extends HttpServlet {
     private static final String TOURNAMENT_DETAIL = "TOURNAMENT_DETAIL";
     private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
     private static final String MANAGE_BIRD = "MANAGE_BIRD";
+    private static final String LOAD_BIRD_BY_ID ="LoadBirdByAccountID";
 
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -102,6 +104,9 @@ public class MainController extends HttpServlet {
                 case CONFIRM_FORM:
                     url = CONFIRM_FORM_CONTROLLER;
                     break;
+                case LOAD_BIRD:
+                    url =LOAD_BIRD_BY_ID;
+                    break;
             }
         } catch (Exception e) {
             log("Error at MainController" + e.toString());
@@ -112,15 +117,7 @@ public class MainController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -32,7 +32,8 @@ public class BirdDAO {
             "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, [identity] FROM Bird WHERE birdID = ? ";
     private static final String DELETE_BIRD 
             = "DElETE FROM Bird WHERE birdID = ? ";
-    
+    private final static String GET_BIRD_BY_ACCOUNT = 
+            "SELECT * FROM Bird WHERE accountID=?";
     public BirdDTO getByID(int birdID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -111,7 +112,48 @@ public class BirdDAO {
         }
         return list;
     }
-    
+//    Get Bird By Account
+     public List<BirdDTO> getAllBirdByAccountID(int accountID) throws SQLException {
+        List<BirdDTO> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BIRD_BY_ACCOUNT);
+                stm.setInt(1, accountID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    BirdDTO bird = new BirdDTO();
+                    bird.setBirdID(rs.getInt(1));
+                    bird.setAccountID(rs.getInt(2));
+                    bird.setBirdName(rs.getString(3));
+                    bird.setBirdPhoto(rs.getString(4));
+                    bird.setHeight(rs.getString(5));
+                    bird.setWeight(rs.getString(6));
+                    bird.setColor(rs.getString(7));
+                    bird.setBirdStatus(rs.getInt(8));
+                    bird.setIdentity(rs.getString(9));
+                    list.add(bird);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
+//    ----------------------------------------------------------------------
     public List<BirdDTO> getAllBird() throws Exception {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
