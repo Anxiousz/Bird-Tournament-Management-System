@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author anh12
@@ -40,10 +41,12 @@ public class ConfirmFormController extends HttpServlet {
                 HttpSession s = request.getSession();
                 int phone = Integer.parseInt(request.getParameter("phone"));
                 String bName = request.getParameter("bName");
-                //String imageSrc = request.getParameter("image");
-                //s.setAttribute("imageSrc", imageSrc);
+                String imageSrc = request.getParameter("image");
+                String image = "image/" + imageSrc;
                 s.setAttribute("PHONE", phone);
                 s.setAttribute("BIRD_NAME", bName);
+                s.setAttribute("IMAGE", image);
+                out.print(imageSrc);
             } catch (Exception e) {
                 e.printStackTrace();
             }

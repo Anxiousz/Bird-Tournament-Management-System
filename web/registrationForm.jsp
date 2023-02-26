@@ -107,9 +107,9 @@
                                 <div class="bird-identify-container">
                                     <label for="input-img" class="preview">
                                         <i class="fas fa-cloud-upload-alt"></i>
-                                        <span><img id="previewImg" src="${sessionScope.image}">Preview to image</span>
+                                        <span><img id="previewImg" src="">Preview to image</span>
                                     </label>
-                                    <input type="file" hidden id="input-img"/>
+                                    <input type="file" hidden id="input-img" name="image"/>
                                 </div>
                             </div>
                             <div class="fee-registration right-small-site" style="padding-right: 100px; width: 60%;">
