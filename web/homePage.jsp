@@ -70,8 +70,8 @@
                                             </c:choose>
                                         </p>
                                         <p>${list.numberOfPlayer}</p>
-                                        <p>${list.fee}</p>
-                                        <p>${list.prize}</p>
+                                        <p>${list.fee} VND</p>
+                                        <p>${list.prize} VND</p>
                                     </div>
                                 </div>
                                 <div class="card-end">

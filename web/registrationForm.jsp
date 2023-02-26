@@ -35,95 +35,97 @@
     <header>
         <%@include file="userHeader.jsp" %>
     </header>
-    <section>
-        <div class="registration-form container">
-            <div class="registration-main-form">
-                <!-- left site -->
-                <div class="registration-left-site">
-                    <!-- img site -->
-                    <div class="registration-img-form-tnm">
-                        <img class="card-img-top"
-                             src="${sessionScope.FORM_DETAIL_TOUR.image}"
-                             alt="Card image cap">
-                    </div>
-                    <div class="registration-inf-form-tnm">
-                        <div class="mb-3 large-categories">
-                            <label class="form-label form-name-categories">Tournament Name</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}" readonly=""/>
+    <form action="MainController" method="post">
+        <section>
+            <div class="registration-form container">
+                <div class="registration-main-form">
+                    <!-- left site -->
+                    <div class="registration-left-site">
+                        <!-- img site -->
+                        <div class="registration-img-form-tnm">
+                            <img class="card-img-top"
+                                 src="${sessionScope.FORM_DETAIL_TOUR.image}"
+                                 alt="Card image cap">
                         </div>
-                        <div class="mb-3 large-categories">
-                            <label class="form-label form-name-categories">Status</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}" readonly=""/>
+                        <div class="registration-inf-form-tnm">
+                            <div class="mb-3 large-categories">
+                                <label class="form-label form-name-categories">Tournament Name</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}" readonly=""/>
+                            </div>
+                            <div class="mb-3 large-categories">
+                                <label class="form-label form-name-categories">Status</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}" readonly=""/>
 
-                        </div>
-                        <!-- Small input -->
-                        <div class="other-inf-tnm-regis-form">
-                            <div class="mb-3 small-categories">
-                                <label class="form-label form-name-categories"> Player</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}" readonly="">
                             </div>
-                            <div class="mb-3 small-categories">
-                                <label class="form-label form-name-categories">Date Time</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.dateTime}" readonly="">
+                            <!-- Small input -->
+                            <div class="other-inf-tnm-regis-form">
+                                <div class="mb-3 small-categories">
+                                    <label class="form-label form-name-categories"> Player</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}" readonly="">
+                                </div>
+                                <div class="mb-3 small-categories">
+                                    <label class="form-label form-name-categories">Date Time</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.dateTime}" readonly="">
+                                </div>
+                                <div class="mb-3 small-categories">
+                                    <label class="form-label form-name-categories">Location</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}" readonly="">
+                                </div>
                             </div>
-                            <div class="mb-3 small-categories">
-                                <label class="form-label form-name-categories">Location</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}" readonly="">
-                            </div>
-                        </div>
-                        <!-- Sponsor -->
-                        <div class="mb-3 large-categories">
-                            <label class="form-label form-name-categories">Main Sponsor </label>
-                            <div class="img-sponsor">
-                                <img src="${sessionScope.FORM_DETAIL_TOUR.sponsor}"
-                                     alt="Avatar" class="avatar">
+                            <!-- Sponsor -->
+                            <div class="mb-3 large-categories">
+                                <label class="form-label form-name-categories">Main Sponsor </label>
+                                <div class="img-sponsor">
+                                    <img src="${sessionScope.FORM_DETAIL_TOUR.sponsor}"
+                                         alt="Avatar" class="avatar">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- right -site -->
-                <div class="registration-right-site">
-                    <div class="registration-right-heading">
-                        <h1>REGISTRATION FORM</h1>
-                    </div>
-                    <div class="registration-right-form">
-                        <div class="mb-3 right-small-site">
-                            <label for="exampleInputEmail1" class="form-label lable-right">Telephone number Now*</label>
-                            <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text" style="color:#ffff;">Telephone is compulsory</div>
+                    <!-- right -site -->
+                    <div class="registration-right-site">
+                        <div class="registration-right-heading">
+                            <h1>REGISTRATION FORM</h1>
                         </div>
-                        <div class="mb-3 right-small-site">
-                            <label class="form-label lable-right">Choose your bird</label><br>
-                            <select class="section-bird">
-                                <c:forEach var="b" items="${sessionScope.FORM_DETAIL_BIRD}">
-                                    <option value="">Bird ${b.birdName}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <!-- image section -->
-                        <div class="bird-img-section right-small-site">
-                            <label class="form-label lable-right">Upload your bird image</label>
-                            <div class="bird-identify-container">
-                                <label for="input-img" class="preview">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <span><img id="previewImg" src="">Preview to image</span>
-                                </label>
-                                <input type="file" hidden id="input-img" />
+                        <div class="registration-right-form">
+                            <div class="mb-3 right-small-site">
+                                <label for="exampleInputEmail1" class="form-label lable-right">Telephone number Now*</label>
+                                <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone">
+                                <div id="emailHelp" class="form-text" style="color:#ffff;">Telephone is compulsory</div>
+                            </div>
+                            <div class="mb-3 right-small-site">
+                                <label class="form-label lable-right">Choose your bird</label><br>
+                                <select class="section-bird" name="bName">
+                                    <c:forEach var="b" items="${sessionScope.FORM_DETAIL_BIRD}">
+                                        <option value="${b.birdName}">Bird ${b.birdName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <!-- image section -->
+                            <div class="bird-img-section right-small-site">
+                                <label class="form-label lable-right">Upload your bird image</label>
+                                <div class="bird-identify-container">
+                                    <label for="input-img" class="preview">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span><img id="previewImg" src="${sessionScope.image}">Preview to image</span>
+                                    </label>
+                                    <input type="file" hidden id="input-img"/>
+                                </div>
+                            </div>
+                            <div class="fee-registration right-small-site" style="padding-right: 100px; width: 60%;">
+                                <label class="form-label lable-right"> Tournament Fee</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee} VND" readonly="">
+                                <div class="form-text" style="color: #ffff;">Cash Payment Only</div>
                             </div>
                         </div>
-                        <div class="fee-registration right-small-site" style="padding-right: 100px; width: 60%;">
-                            <label class="form-label lable-right"> Tournament Fee</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee}" readonly="">
-                            <div class="form-text" style="color: #ffff;">Cash Payment Only</div>
+                        <div class="right-button">
+                            <button type="submit" name="action" value="ConfirmForm">NEXT</button>
                         </div>
-                    </div>
-                    <div class="right-button">
-                        <button type="submit">NEXT</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </form>
     <footer>
         <%@include file="footer.jsp" %>
     </footer>

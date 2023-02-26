@@ -23,6 +23,8 @@ public class MainController extends HttpServlet {
     private static final String REGISTER = "Register";
     private static final String LOGOUT = "Logout";
     private static final String REGISTER_FORM = "RegisterForm";
+    private static final String CONFIRM_FORM = "ConfirmForm";
+
     private static final String HOME_USER = "HOME_USER";
     private static final String TOURNAMENT = "TOURNAMENT";
     private static final String HOME_GUEST = "HOME_GUEST";
@@ -44,8 +46,9 @@ public class MainController extends HttpServlet {
     private static final String DELAY_TOURNAMENT_CONTROLLER = "DelayTournamentController";
     private static final String TOURNAMENT_DETAIL_CONTROLLER = "TournamentDetailController";
     private static final String REGISTER_FORM_CONTROLLER = "RegisterFormController";
-    private static final String LOAD_ACCOUNT_CONTROLLER ="LoadAccountController";
+    private static final String LOAD_ACCOUNT_CONTROLLER = "LoadAccountController";
     private static final String LOAD_BIRD_CONTROLLER = "LoadBirdController";
+    private static final String CONFIRM_FORM_CONTROLLER = "ConfirmFormController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -95,6 +98,9 @@ public class MainController extends HttpServlet {
                     break;
                 case MANAGE_BIRD:
                     url = LOAD_BIRD_CONTROLLER;
+                    break;
+                case CONFIRM_FORM:
+                    url = CONFIRM_FORM_CONTROLLER;
                     break;
             }
         } catch (Exception e) {

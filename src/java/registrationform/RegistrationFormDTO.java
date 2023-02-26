@@ -16,7 +16,7 @@ public class RegistrationFormDTO {
     private int accountID;
     private int birdID;
     private String location;
-    private String fee;
+    private int fee;
     private int formStatus;
     private String image;
     private String tournamentName;
@@ -29,7 +29,7 @@ public class RegistrationFormDTO {
     public RegistrationFormDTO() {
     }
 
-    public RegistrationFormDTO(int tournamentID, String location, String fee, String tournamentStatus, String image, String tournamentName, String dateTime) {
+    public RegistrationFormDTO(int tournamentID, String location, int fee, String tournamentStatus, String image, String tournamentName, String dateTime) {
         this.tournamentID = tournamentID;
         this.location = location;
         this.fee = fee;
@@ -39,7 +39,7 @@ public class RegistrationFormDTO {
         this.dateTime = dateTime;
     }
 
-    public RegistrationFormDTO(int tournamentID, String image, String tournamentName, String tournamentStatus, String dateTime, String location, String fee, String prize, int numberOfPlayer, String sponsor) {
+    public RegistrationFormDTO(int tournamentID, String image, String tournamentName, String tournamentStatus, String dateTime, String location, int fee, String prize, int numberOfPlayer, String sponsor) {
         this.tournamentID = tournamentID;
         this.image = image;
         this.tournamentName = tournamentName;
@@ -52,7 +52,7 @@ public class RegistrationFormDTO {
         this.sponsor = sponsor;
     }
 
-    public RegistrationFormDTO(int registrationFormID, int tournamentID, int accountID, int birdID, String location, String fee, int formStatus, String image, String tournamentName, String dateTime, String tournamentStatus, String prize, int numberOfPlayer, String sponsor) {
+    public RegistrationFormDTO(int registrationFormID, int tournamentID, int accountID, int birdID, String location, int fee, int formStatus, String image, String tournamentName, String dateTime, String tournamentStatus, String prize, int numberOfPlayer, String sponsor) {
         this.registrationFormID = registrationFormID;
         this.tournamentID = tournamentID;
         this.accountID = accountID;
@@ -141,11 +141,11 @@ public class RegistrationFormDTO {
         this.location = location;
     }
 
-    public String getFee() {
+    public int getFee() {
         return fee;
     }
 
-    public void setFee(String fee) {
+    public void setFee(int fee) {
         this.fee = fee;
     }
 

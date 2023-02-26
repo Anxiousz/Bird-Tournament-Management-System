@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="each-other-inf-tnm">
                                             <h5>Fee</h5>
-                                            <p>${list.fee}</p>
+                                            <p>${list.fee} VND</p>
                                         </div>
                                     </div>
                                 </div>

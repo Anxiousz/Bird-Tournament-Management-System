@@ -63,21 +63,27 @@
                     </div>
                     <div class="basic-tnm-form-categories">
                         <h1><i class="fa-sharp fa-solid fa-money-bill"></i> Fee</h1>
-                        <p>${sessionScope.GET_DETAIL.fee} </p>
+                        <p>${sessionScope.GET_DETAIL.fee} VND</p>
                     </div>
                 </div>
                 <!-- div line -->
                 <div class="line-section">
                     <p></p>
                 </div>
-                <!-- Section 4 -->
+                <% int TotalPrize = Integer.parseInt(session.getAttribute("GET_PRIZE").toString());
+                    int top1Prize = (int) (TotalPrize * 0.4);
+                    int top2Prize = (int) (TotalPrize * 0.28);
+                    int top3Prize = (int) (TotalPrize * 0.18);
+                    int top4Prize = (int) (TotalPrize * 0.14);
+                %>
+
                 <div class="both-prize-player-site">
                     <div class="prize-site" style="border-right: 4px solid #A87B24;">
                         <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
-                        <p>Top 1: ######</p>
-                        <p>Top 2: ######</p>
-                        <p>Top 3: ######</p>
-                        <p>Top 4: ######</p>
+                        <p>Top 1: <%= top1Prize %> VND</p>
+                        <p>Top 2: <%= top2Prize %> VND</p>
+                        <p>Top 3: <%= top3Prize %> VND</p>
+                        <p>Top 4: <%= top4Prize %> VND</p>
                     </div>
                     <div class="player-site">
                         <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player:  </h1>

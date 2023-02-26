@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
 
-public class TournamentDAO{
+public class TournamentDAO {
 
     private final static String GET_TOURNAMENT = "SELECT TOP 3 *\n"
             + "FROM (\n"
@@ -38,7 +38,7 @@ public class TournamentDAO{
                     String dateTime = rs.getString("dateTime");
                     int tournamentStatus = rs.getInt("tournamentStatus");
                     int numberOfPlayer = rs.getInt("numberOfPlayer");
-                    String fee = rs.getString("fee");
+                    int fee = rs.getInt("fee");
                     String prize = rs.getString("prize");
                     String image = rs.getString("image");
                     TournamentDTO tour = new TournamentDTO(tournamentName, dateTime, tournamentStatus, numberOfPlayer, fee, prize, image);

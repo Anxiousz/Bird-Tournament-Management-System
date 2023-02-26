@@ -17,7 +17,7 @@ import utils.DBContext;
  *
  * @author anh12
  */
-public class RegistrationFormDAO{
+public class RegistrationFormDAO {
 
     private final static String GET_TOURNAMENT = "SELECT DISTINCT t.tournamentID, r.location, r.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
             + "FROM RegistrationForm r\n"
@@ -37,7 +37,7 @@ public class RegistrationFormDAO{
                 while (rs.next()) {
                     int tournamentID = rs.getInt("tournamentID");
                     String location = rs.getString("location");
-                    String fee = rs.getString("fee");
+                    int fee = rs.getInt("fee");
                     String tournamentStatus = rs.getString("tournamentStatus");
                     String image = rs.getString("image");
                     String tournamentName = rs.getString("tournamentName");
@@ -82,7 +82,7 @@ public class RegistrationFormDAO{
                 while (rs.next()) {
                     int tournamentID = rs.getInt("tournamentID");
                     String location = rs.getString("location");
-                    String fee = rs.getString("fee");
+                    int fee = rs.getInt("fee");
                     String tournamentStatus = rs.getString("tournamentStatus");
                     String image = rs.getString("image");
                     String tournamentName = rs.getString("tournamentName");
@@ -132,7 +132,7 @@ public class RegistrationFormDAO{
                     String tournamentStatus = rs.getString("tournamentStatus");
                     String dateTime = rs.getString("dateTime");
                     String location = rs.getString("location");
-                    String fee = rs.getString("fee");
+                    int fee = rs.getInt("fee");
                     String prize = rs.getString("prize");
                     int numberOfPlayer = rs.getInt("numberOfPlayer");
                     String sponsor = rs.getString("sponsor");

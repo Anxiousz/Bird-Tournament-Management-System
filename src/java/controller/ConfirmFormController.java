@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,18 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
+import org.jsoup.nodes.Element;
 
 /**
  *
  * @author anh12
  */
-@WebServlet(name = "TournamentDetailController", urlPatterns = {"/TournamentDetailController"})
-public class TournamentDetailController extends HttpServlet {
+@WebServlet(name = "ConfirmFormController", urlPatterns = {"/ConfirmFormController"})
+public class ConfirmFormController extends HttpServlet {
 
-    private final static String SUCCESS = "tournamentDetail.jsp";
-    private final static String ERROR = "error.jsp";
+    private static final String URL = "confirmedRegistrationForm.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,26 +41,18 @@ public class TournamentDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String url = null;
-            HttpSession s = request.getSession();
             try {
-                int tournamentID = Integer.parseInt(request.getParameter("ID"));
-                RegistrationFormDAO r = new RegistrationFormDAO();
-                RegistrationFormDTO detail = r.getDetailTour(tournamentID);
-                //double prize = Double.parseDouble(detail.getPrize());
-                if (detail != null) {
-                    s.setAttribute("GET_DETAIL", detail);
-
-                    s.setAttribute("GET_PRIZE", detail.getPrize());
-                    url = SUCCESS;
-                } else {
-                    url = ERROR;
-                }
+                HttpSession s = request.getSession();
+                int phone = Integer.parseInt(request.getParameter("phone"));
+                String bName = request.getParameter("bName");
+                //String imageSrc = request.getParameter("image");
+                //s.setAttribute("imageSrc", imageSrc);
+                s.setAttribute("PHONE", phone);
+                s.setAttribute("BIRD_NAME", bName);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(URL).forward(request, response);
         }
     }
 
