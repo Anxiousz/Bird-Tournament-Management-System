@@ -14,11 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
-import org.jsoup.nodes.Element;
-
 /**
  *
  * @author anh12
