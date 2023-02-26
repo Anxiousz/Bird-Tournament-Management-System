@@ -18,12 +18,14 @@ body{
     object-fit:cover;
 }
 .registration-form{
+    margin-top:50px;
     margin-bottom: 50px;
     width: 100%;
     height: auto;
 
 }
 .registration-main-form{
+    margin-top:50px;
     padding: 30px;
     width: 100%;
     height:auto;

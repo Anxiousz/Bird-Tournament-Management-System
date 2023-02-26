@@ -28,7 +28,6 @@
             <%@include file="userHeader.jsp" %>
         </header>
         <form name="MainController" method="post"> 
-            <section>
                 <div class="confirmed-regisgtration-form container">
                     <div class="confirmed-registration-main-form">
                         <!-- Left-site -->
@@ -99,7 +98,6 @@
                         </div>
                     </div>
                 </div>
-            </section>
         </form>
         <footer>
             <%@include file="footer.jsp" %>

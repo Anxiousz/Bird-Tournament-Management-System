@@ -7,6 +7,7 @@ body{
     height: 100vh;
 }
 .confirmed-regisgtration-form{
+    margin-top:60px;
     margin-bottom: 30px;
     padding: 30px;
     width: 100%;
@@ -15,6 +16,7 @@ body{
     border-radius: 5px;
 }
 .confirmed-registration-main-form{
+    
     width: 100%;
     height: 800px;
     display: flex;
@@ -49,10 +51,11 @@ body{
 }
 .btn-back{
     margin-top: 200px;
-    font-family: 'Baloo';font-size: 25px;
+    font-family: 'Baloo';font-size: 25px!important;
     border-radius: 10px ;
     color: red;
     padding: 25px 60px;
+    border-radius: 10px;
 }
 /* Right site */
 .confirmed-right-registration-form{
@@ -79,7 +82,7 @@ body{
 }
 .btn-complete{
     border-radius: 10px;
-    font-family: 'Baloo';font-size: 20px;
+    font-family: 'Baloo';font-size: 20px!important;
     color: green;
     padding: 10px 25px;
 }

@@ -47,6 +47,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="MainController?action=BIRD">BIRD</a>
                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="MainController?action=BIRD"><i class="fa-solid fa-bell" style="color: yellow"></i>  My Tournament<sup class="sup-number">1</sup></a>
+                    </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
                     <!--<input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">-->

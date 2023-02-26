@@ -181,3 +181,8 @@ p{
     margin-bottom: 1rem;
     font-size: 1.4rem;
 }
+.sup-number{
+    padding: 5px 10px 5px 10px;
+    background-color: green;
+    border-radius: 10px
+}
