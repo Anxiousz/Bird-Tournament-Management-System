@@ -69,6 +69,15 @@ public class RegistrationFormDTO {
         this.sponsor = sponsor;
     }
 
+    public RegistrationFormDTO(int tournamentID, int accountID, int birdID, String location, int fee, int formStatus) {
+        this.tournamentID = tournamentID;
+        this.accountID = accountID;
+        this.birdID = birdID;
+        this.location = location;
+        this.fee = fee;
+        this.formStatus = formStatus;
+    }
+
     public String getSponsor() {
         return sponsor;
     }

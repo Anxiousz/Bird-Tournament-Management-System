@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
@@ -155,4 +156,39 @@ public class RegistrationFormDAO {
         }
         return null;
     }
+
+    private static final String INSERT_FORM = "INSERT INTO RegistrationForm([tournamentID],[accountID],[birdID],[location],[fee],[formStatus])\n"
+            + "VALUES(?,?,?,?,?,?)";
+
+    public boolean insertForm(int tournamentID, int accountID, int birdID, String location, int fee, int formStatus) throws SQLException {
+        RegistrationFormDTO r = null;
+        boolean check = true;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(INSERT_FORM);
+                stm.setInt(1, tournamentID);
+                stm.setInt(2, accountID);
+                stm.setInt(3, birdID);
+                stm.setString(4, location);
+                stm.setInt(5, fee);
+                stm.setInt(6, formStatus);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
+
 }

@@ -41,7 +41,7 @@ public class TournamentDTO {
         this.image = image;
     }
 
-    TournamentDTO() {
+    public TournamentDTO() {
     }
 
     public String getImage() {

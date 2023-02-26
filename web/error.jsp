@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>There is some error. Please click <a href="welcome.jsp">here</a> to renturn homepage</h1>
+        <h1>There is some error. Please click <a href="homePage.jsp">here</a> to renturn homepage</h1>
     </body>
 </html>

@@ -28,79 +28,79 @@
             <%@include file="userHeader.jsp" %>
         </header>
         <form name="MainController" method="post"> 
-                <div class="confirmed-regisgtration-form container">
-                    <div class="confirmed-registration-main-form">
-                        <!-- Left-site -->
-                        <div class="confirmed-left-registration-form">
-                            <h1>Confirmed Tournament Registration</h1>
-                            <div class="confirmed-left-registration-support">
-                                <h2>If something wrong or you do not understand something. Let's us know throught: </h2>
-                                <li><i class="fa-solid fa-phone"></i> (78)321-32-432</li>
-                                <li><i class="fa-solid fa-envelope"></i> (78)321-32-432</li>
-                                <li><i class="fa-brands fa-facebook"></i> (78)321-32-432</li>
-                            </div>
-                            <div class="button-left-site">
-                                <button class="btn btn-back"><a href="registrationForm.jsp">Return</a></button>
-                            </div>
+            <div class="confirmed-regisgtration-form container">
+                <div class="confirmed-registration-main-form">
+                    <!-- Left-site -->
+                    <div class="confirmed-left-registration-form">
+                        <h1>Confirmed Tournament Registration</h1>
+                        <div class="confirmed-left-registration-support">
+                            <h2>If something wrong or you do not understand something. Let's us know throught: </h2>
+                            <li><i class="fa-solid fa-phone"></i> (78)321-32-432</li>
+                            <li><i class="fa-solid fa-envelope"></i> (78)321-32-432</li>
+                            <li><i class="fa-brands fa-facebook"></i> (78)321-32-432</li>
                         </div>
-                        <!-- Right-site -->
-                        <div class="confirmed-right-registration-form">
-                            <div class="form-right-registration-form">
-                                <form>
-                                    <!-- Tounrament -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Tournament Name</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}" readonly="">
-                                    </div>
-                                    <div class="mb-3"  style="padding-right: 300px;">
-                                        <label for="exampleInputPassword1" class="form-label">Staus</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}" readonly="">
-                                    </div>
-                                    <div class="small-categories">
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label small-item">Player</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}" readonly="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label small-item">Date Time</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword1"  value="${sessionScope.FORM_DETAIL_TOUR.dateTime}" readonly="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label small-item">Location</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}" readonly="">
-                                        </div>
-                                    </div>
-                                    <!-- Player Information -->
-                                    <div class="Player-categories">
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label small-item-p">Telephone number now*</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.PHONE}" readonly="">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label small-item-p">Your bird</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.BIRD_NAME}" readonly="">
-                                        </div>
-                                        <label for="">Bird Image</label>
-                                        <div class="card" style="width: 18rem;">
-                                            <img class="card-img-top" src="${sessionScope.IMAGE}" alt="Card image cap">
-                                        </div>
-                                        <div class="mb-3"   style="padding-right: 300px;">
-                                            <label for="exampleInputPassword1" class="form-label small-item-p">Fee</label>
-                                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee}" readonly="">
-                                        </div>
-                                    </div>
-                                    <div class="form-text">Please check your information carefully before completed this form. If something wrong or not same , let us know  throughtout left site tools</div>
-                                    <div class="btn-site">
-                                        <button type="submit" class="btn btn-complete">Complete</button>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="button-left-site">
+                            <button class="btn btn-back"><a href="registrationForm.jsp">Return</a></button>
                         </div>
                     </div>
-                </div>
-        </form>
-        <footer>
-            <%@include file="footer.jsp" %>
-        </footer>
-    </body>
-</html>
+                    <!-- Right-site -->
+                    <div class="confirmed-right-registration-form">
+                        <div class="form-right-registration-form">
+                            <form>
+                                <!-- Tounrament -->
+                                <div class="mb-3">
+                                    <label class="form-label">Tournament Name</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}" readonly="">
+                                </div>
+                                <div class="mb-3"  style="padding-right: 300px;">
+                                    <label for="exampleInputPassword1" class="form-label">Staus</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}" readonly="">
+                                </div>
+                                <div class="small-categories">
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label small-item">Player</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}" readonly="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label small-item">Date Time</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"  value="${sessionScope.FORM_DETAIL_TOUR.dateTime}" readonly="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label small-item">Location</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}" readonly="">
+                                    </div>
+                                </div>
+                                <!-- Player Information -->
+                                <div class="Player-categories">
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label small-item-p">Telephone number now*</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.PHONE}" readonly="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label small-item-p">Your bird</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.BIRD_NAME}" readonly="">
+                                    </div>
+                                    <label for="">Bird Image</label>
+                                    <div class="card" style="width: 18rem;">
+                                        <img class="card-img-top" src="${sessionScope.IMAGE}" alt="Card image cap">
+                                    </div>
+                                    <div class="mb-3"   style="padding-right: 300px;">
+                                        <label for="exampleInputPassword1" class="form-label small-item-p">Fee</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee}" readonly="">
+                                    </div>
+                                </div>
+                                <div class="form-text">Please check your information carefully before completed this form. If something wrong or not same , let us know  throughtout left site tools</div>
+                                <div class="btn-site">
+                                    <button type="submit" class="btn btn-complete"><a href="MainController?action=FinalForm&tID=${sessionScope.FORM_DETAIL_TOUR.tournamentID}&aID=${sessionScope.acc.accountID}&bName=${sessionScope.BIRD_NAME}&location=${sessionScope.FORM_DETAIL_TOUR.location}&fee=${sessionScope.FORM_DETAIL_TOUR.fee}">Complete<a></button>
+                                                </div>
+                                                </form>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </form>
+                                                <footer>
+                                                    <%@include file="footer.jsp" %>
+                                                </footer>
+                                                </body>
+                                                </html>

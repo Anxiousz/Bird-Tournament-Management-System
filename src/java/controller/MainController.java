@@ -24,7 +24,7 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT = "Logout";
     private static final String REGISTER_FORM = "RegisterForm";
     private static final String CONFIRM_FORM = "ConfirmForm";
-    private static final String LOAD_BIRD ="BIRD";
+    private static final String LOAD_BIRD = "BIRD";
 
     private static final String HOME_USER = "HOME_USER";
     private static final String TOURNAMENT = "TOURNAMENT";
@@ -35,8 +35,8 @@ public class MainController extends HttpServlet {
     private static final String TOURNAMENT_DETAIL = "TOURNAMENT_DETAIL";
     private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
     private static final String MANAGE_BIRD = "MANAGE_BIRD";
-    private static final String LOAD_BIRD_BY_ID ="LoadBirdByAccountID";
-
+    private static final String LOAD_BIRD_BY_ID = "LoadBirdByAccountID";
+    private static final String FINAL_FORM = "FinalForm";
     //link to servlet
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
     private static final String LOGIN_CONTROLLER = "LoginController";
@@ -51,6 +51,7 @@ public class MainController extends HttpServlet {
     private static final String LOAD_ACCOUNT_CONTROLLER = "LoadAccountController";
     private static final String LOAD_BIRD_CONTROLLER = "LoadBirdController";
     private static final String CONFIRM_FORM_CONTROLLER = "ConfirmFormController";
+    private static final String FINAL_FORM_CONTROLLER = "FinalConfirmFormController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,7 +106,10 @@ public class MainController extends HttpServlet {
                     url = CONFIRM_FORM_CONTROLLER;
                     break;
                 case LOAD_BIRD:
-                    url =LOAD_BIRD_BY_ID;
+                    url = LOAD_BIRD_BY_ID;
+                    break;
+                case FINAL_FORM:
+                    url = FINAL_FORM_CONTROLLER;
                     break;
             }
         } catch (Exception e) {
@@ -116,7 +120,6 @@ public class MainController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

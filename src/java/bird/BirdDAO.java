@@ -23,17 +23,18 @@ public class BirdDAO {
     private final static String GET_BIRD = "SELECT TOP 3 b.birdName, b.height, b.weight, b.color, b.birdStatus, a.totalScore, b.birdPhoto\n"
             + "FROM Bird b JOIN Achievement a ON b.birdID = a.birdID\n"
             + "ORDER BY a.[top] ASC";
-    private final static String GET_ALL_BIRD =
-             "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, [identity] FROM Bird ";
-    private static final String UPDATE_BIRD = 
-            "UPDATE Bird SET accountID = ? , birdName = ? , birdPhoto = ? , height = ? , weight = ? , color = ? , birdStatus = ? , [identity] = ?\n"
+    private final static String GET_ALL_BIRD
+            = "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, [identity] FROM Bird ";
+    private static final String UPDATE_BIRD
+            = "UPDATE Bird SET accountID = ? , birdName = ? , birdPhoto = ? , height = ? , weight = ? , color = ? , birdStatus = ? , [identity] = ?\n"
             + "WHERE birdID = ? ";
-    private final static String GET_BY_ID = 
-            "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, [identity] FROM Bird WHERE birdID = ? ";
-    private static final String DELETE_BIRD 
+    private final static String GET_BY_ID
+            = "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, [identity] FROM Bird WHERE birdID = ? ";
+    private static final String DELETE_BIRD
             = "DElETE FROM Bird WHERE birdID = ? ";
-    private final static String GET_BIRD_BY_ACCOUNT = 
-            "SELECT * FROM Bird WHERE accountID=?";
+    private final static String GET_BIRD_BY_ACCOUNT
+            = "SELECT * FROM Bird WHERE accountID=?";
+
     public BirdDTO getByID(int birdID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -73,6 +74,7 @@ public class BirdDAO {
         }
         return null;
     }
+
     public List<BirdDTO> getAllBird1() throws SQLException {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
@@ -113,7 +115,8 @@ public class BirdDAO {
         return list;
     }
 //    Get Bird By Account
-     public List<BirdDTO> getAllBirdByAccountID(int accountID) throws SQLException {
+
+    public List<BirdDTO> getAllBirdByAccountID(int accountID) throws SQLException {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
@@ -154,6 +157,7 @@ public class BirdDAO {
         return list;
     }
 //    ----------------------------------------------------------------------
+
     public List<BirdDTO> getAllBird() throws Exception {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
@@ -229,6 +233,7 @@ public class BirdDAO {
         }
         return list;
     }
+
     public boolean updateBird(BirdDTO bird) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -260,8 +265,9 @@ public class BirdDAO {
             }
         }
         return check;
-        
+
     }
+
     public boolean deleteBird(int birdID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -284,5 +290,42 @@ public class BirdDAO {
             }
         }
         return check;
+    }
+
+    private static final String SEARCH_BIRD_ID = "SELECT b.birdID\n"
+            + "FROM Bird b\n"
+            + "WHERE b.accountID = ? AND b.birdName = ?";
+
+    public BirdDTO search_bird(int accountID, String birdName) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(SEARCH_BIRD_ID);
+                stm.setInt(1, accountID);
+                stm.setString(2, birdName);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int birdID = rs.getInt("birdID");
+                    BirdDTO bird = new BirdDTO(birdID);
+                    return bird;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
     }
 }
