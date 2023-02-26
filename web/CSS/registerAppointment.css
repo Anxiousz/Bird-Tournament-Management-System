@@ -1,0 +1,139 @@
+/**{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+}*/
+.tnm-list-notification {
+    margin: 100px 0px;
+    width: 100%;
+    border: 2px solid red;
+    height: 1200px;
+}
+.tnm-all-list-notification{
+    width: 100%;
+    height: auto;
+}
+.tnm-one-match-notification{
+    width: 100%;
+    border: 0.5px grey solid;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 20px;
+}
+.tnm-left-match-notification{
+    padding: 25px;
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #A87B24;
+    border-radius: 10px;
+}
+/* image */
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  /* ohter info */
+  .other-info-personal{
+    width: 100%;
+     margin-top: 20px;
+     font-size: 30px;
+     display: flex;
+     flex-direction: column;
+     flex-wrap: nowrap;
+     justify-content: center;
+  }
+  .other-info-personal li{
+    padding: 10px 0px;
+    list-style: none;
+    font-family: 'Montserrat';font-size: 25px;color: #ffff;
+  }
+  .other-info-personal li i{
+    color: #ffff;
+    padding-right: 10px;
+  }
+  /* right site */
+  .tnm-right-match-notification{
+    width: 55%;
+  }
+  .tnm-right-match-top-small-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .top-right label{
+    font-family: 'Baloo';font-size: 12px;
+    color: #A87B24;
+  }
+  .line-normal {
+    margin: 30px 0px;
+    padding: 0px 60px;
+  }
+  .line-normal p{
+
+    border:  2px solid #A87B24;
+  }
+  /* bird */
+  .tnm-eight-bird-bottom-info-tnm{
+    width: 100%;
+    height: auto;
+  }
+  .bird-img img{
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+  }
+  .card-bird{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 20px;
+    border:  1px solid grey;
+  }
+  .card-body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-bird-left-body li, .card-bird-right-body li{
+    list-style: none;
+  }
+  .card-bird-left-body li {
+    font-family: 'Montserrat';font-size: 20px;
+    color: #A87B24;
+    padding: 5px;
+  }
+  .card-bird-right-body li {
+    padding: 10px;
+    font-family: 'Montserrat';font-size: 15px;
+    color: black;
+  }
+  .avatar-logo-guide {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 60%;
+    object-fit: cover;
+  }
+  .guide-notification h1{
+    font-family: 'Montserrat';font-size: 12px;
+  }
+  
