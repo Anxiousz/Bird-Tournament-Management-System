@@ -19,52 +19,22 @@
                 <thead>
                     <tr>
                         <th scope="col">Candidate ID</th>
-                        <th scope="col">Bird ID</th>
+                        <th scope="col">Bird Name</th>
                         <th scope="col">Status</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <c:forEach items="${cands}" var="c">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Bird1</td>
-                        <td>0</td>
+                        <th scope="row">${c.candidatesID}</th>
+                        <td>${c.bird.birdName}</td>
+                        <td>${c.candidatesStatus}</td>
                         <td>
                             <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Bird2</td>
-                        <td>0</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Bird3</td>
-                        <td>0</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Bird4</td>
-                        <td>0</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Bird5</td>
-                        <td>0</td>
-                        <td>
-                            <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
-                        </td>
-                    </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </section>

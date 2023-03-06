@@ -28,7 +28,7 @@
     </head>
     <body>
         <header>
-            <%@include file="userHeader.jsp" %>
+            <%@include file="userHeader.jsp"%>
         </header>
         <section>
             <div class="bird-repository container">
@@ -37,9 +37,15 @@
                         <div class="card" style="width: 40rem; height: 60rem;">
                             <div class="img-card-container">
                                 <img class="card-img-top"
-                                     src="https://i.pinimg.com/236x/76/51/01/7651010aa8b3ccbbb0786d9e1c045d25.jpg"
-                                     alt="Card image cap">
-                                <p>Status: Alive </p>
+                                     src="${bird.birdPhoto}"
+                                     alt="Card image cap">  
+                                <p>
+                                    <c:choose>
+                                        <c:when test="${bird.birdStatus == 0}">Status: Dead</c:when>
+                                        <c:when test="${bird.birdStatus == 1}">Status: Alive</c:when>
+                                        <c:when test="${bird.birdStatus == 2}">Status: Unvailable</c:when>
+                                    </c:choose>
+                                </p>
                             </div>
 
                             <div class="card-body main-body-bird">

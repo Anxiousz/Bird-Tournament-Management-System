@@ -47,8 +47,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="MainController?action=BIRD">BIRD</a>
                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="MainController?action=?"><i class="fa-solid fa-bell" style="color: yellow"></i>  My Tournament<sup class="sup-number">1</sup></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MainController?action=MY_TOURNAMENT&accID=${sessionScope.acc.accountID}"><i class="fa-solid fa-bell" style="color: yellow"></i>  My Tournament<sup class="sup-number">${sessionScope.count}</sup></a>
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
@@ -58,7 +58,7 @@
                             <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="" > <i class="fa-solid fa-gear"></i>  Account Setting</a>
+                            <a class="dropdown-item" href="MainController?action=ProfileLoad" > <i class="fa-solid fa-gear"></i>  Account Setting</a> 
                             <a class="dropdown-item" href="MainController?action=Logout"> <i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
                         </div>
                     </div>

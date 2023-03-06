@@ -43,9 +43,11 @@
                     <h1>${sessionScope.GET_DETAIL.tournamentName}<i class="fa-solid fa-crown"></i></h1>
                     <p>
                         <c:choose>
-                            <c:when test="${list.tournamentStatus == 0}">Status: Coming soon</c:when>
-                            <c:when test="${list.tournamentStatus == 1}">Status: On Going</c:when>
-                            <c:when test="${list.tournamentStatus == 2}">Status: Finish</c:when>
+                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 0}">Status: Up Coming</c:when>
+                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 1}">Status: Open Form</c:when>
+                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 2}">Status: Close Form</c:when>
+                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 3}">Status: On Going</c:when>
+                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 4}">Status: Finished</c:when>
                             <c:otherwise>Status: Delay</c:otherwise>
                         </c:choose>
                     </p>
@@ -70,24 +72,14 @@
                 <div class="line-section">
                     <p></p>
                 </div>
-                <% int TotalPrize = Integer.parseInt(session.getAttribute("GET_PRIZE").toString());
-                    int top1Prize = (int) (TotalPrize * 0.4);
-                    int top2Prize = (int) (TotalPrize * 0.28);
-                    int top3Prize = (int) (TotalPrize * 0.18);
-                    int top4Prize = (int) (TotalPrize * 0.14);
-                %>
-
                 <div class="both-prize-player-site">
                     <div class="prize-site" style="border-right: 4px solid #A87B24;">
                         <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
-                        <p>Top 1: <%= top1Prize %> VND</p>
-                        <p>Top 2: <%= top2Prize %> VND</p>
-                        <p>Top 3: <%= top3Prize %> VND</p>
-                        <p>Top 4: <%= top4Prize %> VND</p>
+                        <p>Total Prize: ${sessionScope.GET_DETAIL.prize} VND</p>
                     </div>
                     <div class="player-site">
-                        <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player:  </h1>
-                        <p>${sessionScope.GET_DETAIL.numberOfPlayer}</p>
+                        <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player(required):  </h1>
+                        <p>${sessionScope.GET_DETAIL.minParticipant}</p>
                     </div>
                 </div>
                 <!-- div line -->
@@ -108,22 +100,70 @@
                     <p></p>
                 </div>
                 <!-- Section 7 -->
-                <div class="regis-site container">
-                    <div class="regis-both-site">
-                        <div class="regis-left-site">
-                            <h1><a>PLAY WITH US NOW</h1>
-                            <p>Gift, Achivement waiting you</p>
-                            <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${sessionScope.GET_DETAIL.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                <c:choose>
+                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 0}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Please wait until the date of the registration form</h1></a>
+                                </div>
+                            </div>
                         </div>
-                
-                    </div>
-                </div>
+                    </c:when>
+                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 1}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>PLAY WITH US NOW</h1>
+                                    <p>Gift, Achivement waiting you</p>
+                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${sessionScope.GET_DETAIL.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 2}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Oh Sorry :( The form has been closed. Please choose another tournament</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 3}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>The match is in progress so can't register</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 4}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Oh Sorry :( The Tournament finshed.</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Game is suspended but you can register</h1></a>
+                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${sessionScope.GET_DETAIL.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
-
-
         </div>
         <footer>
-            <%@include file="footer.jsp" %>
+            <%@ include file="footer.jsp" %>
         </footer>
     </body>
 </html>

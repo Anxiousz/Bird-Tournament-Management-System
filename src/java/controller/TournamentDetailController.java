@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
 import registrationform.RegistrationFormDTO;
+import tournament.TournamentDAO;
+import tournament.TournamentDTO;
 
 /**
  *
@@ -42,15 +44,12 @@ public class TournamentDetailController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String url = null;
             HttpSession s = request.getSession();
+            TournamentDAO t  = new TournamentDAO();
             try {
                 int tournamentID = Integer.parseInt(request.getParameter("ID"));
-                RegistrationFormDAO r = new RegistrationFormDAO();
-                RegistrationFormDTO detail = r.getDetailTour(tournamentID);
-                //double prize = Double.parseDouble(detail.getPrize());
+                TournamentDTO detail = t.getDetailTournament(tournamentID);
                 if (detail != null) {
                     s.setAttribute("GET_DETAIL", detail);
-
-                    s.setAttribute("GET_PRIZE", detail.getPrize());
                     url = SUCCESS;
                 } else {
                     url = ERROR;

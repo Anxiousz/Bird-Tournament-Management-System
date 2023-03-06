@@ -9,6 +9,7 @@ import account.AccountDAO;
 import account.AccountDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author thang
+ * @author anh12
  */
 @WebServlet(name = "ManageAccountController", urlPatterns = {"/ManageAccountController"})
 public class ManageAccountController extends HttpServlet {
-    
-     private final String ERROR = "error.jsp";
-     private final String  SUCCESS = "LoadAccountController";
+
+    private final String ERROR = "error.jsp";
+    private final String SUCCESS = "LoadAccountController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,52 +38,56 @@ public class ManageAccountController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        AccountDTO acc = new AccountDTO();
-        try  {
-            String accountID = request.getParameter("accountID");
-            String action = request.getParameter("action");
-            if (action.equals("Block")) {
-                AccountDAO dao = new AccountDAO();
-                acc = dao.getByID(Integer.parseInt(accountID));
-                if (acc != null) {
-                    acc.setAccountStatus(0);
-                    if (dao.updateAccount(acc)) {
+        try (PrintWriter out = response.getWriter()) {
+            String url = ERROR;
+            AccountDTO acc = new AccountDTO();
+            try {
+                String accountID = request.getParameter("accountID");
+                String action = request.getParameter("action");
+                if (action.equals("Block")) {
+                    AccountDAO dao = new AccountDAO();
+                    acc = dao.getByID(Integer.parseInt(accountID));
+                    if (acc != null) {
+                        acc.setAccountStatus(0);
+                        if (dao.updateAccount(acc)) {
+                            url = SUCCESS;
+                        } else {
+                            url = ERROR;
+                        }
+                    } else {
+                        url = ERROR;
+                    }
+
+                }
+                if (action.equals("Unblock")) {
+                    AccountDAO dao = new AccountDAO();
+                    acc = dao.getByID(Integer.parseInt(accountID));
+                    if (acc != null) {
+                        acc.setAccountStatus(1);
+                        if (dao.updateAccount(acc)) {
+                            url = SUCCESS;
+                        } else {
+                            url = ERROR;
+                        }
+                    } else {
+                        url = ERROR;
+                    }
+                }
+                if (action.equals("Remove")) {
+                    AccountDAO dao = new AccountDAO();
+                    if (dao.deleteAccount(Integer.parseInt(accountID))) {
                         url = SUCCESS;
                     } else {
                         url = ERROR;
                     }
-                }else {
-                    url = ERROR;
                 }
-                
-                
-            }if (action.equals("Unblock")) {
-                AccountDAO dao = new AccountDAO();
-                acc = dao.getByID(Integer.parseInt(accountID));
-                if (acc != null) {
-                acc.setAccountStatus(1);
-                if (dao.updateAccount(acc)) {
-                    url = SUCCESS;
-                }else{
-                    url = ERROR;
+                if (action.equals("Detail")) {
                 }
-                }else{
-                    url = ERROR;
-                }
-            }if (action.equals("Remove")) {
-                AccountDAO dao = new AccountDAO();
-                if(dao.deleteAccount(Integer.parseInt(accountID))){
-                     url = SUCCESS;
-                }else{
-                    url = ERROR;
-                }
-            }if (action.equals("Detail")) {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                request.getRequestDispatcher(url).forward(request, response);
             }
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

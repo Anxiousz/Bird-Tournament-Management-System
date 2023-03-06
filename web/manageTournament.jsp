@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,9 +16,7 @@
         </header>
         <section>
             <div>
-                <form>
-                    <input class="custom-button_3" type="submit" value="Add Tournament">
-                </form>
+                <a class="custom-button_3" href="MainController?action=LOAD_BIRD_CATEGORY">Add Tournament</a> <!--                tournamentCreate.jsp-->
             </div>
             <div>
                 <table class="table table-striped">
@@ -25,7 +24,8 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Tournament Name</th>
-                            <th scope="col">Num Of Player</th>
+                            <th scope="col">Min Player</th>
+                            <th scope="col">Max Player</th>
                             <th scope="col">Status</th>
                             <th scope="col">Participant</th>
                             <th scope="col">Remove</th>
@@ -33,81 +33,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>100</td>
-                            <td>1</td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>100</td>
-                            <td>1</td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>100</td>
-                            <td>1</td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Andy</td>
-                            <td>100</td>
-                            <td>1</td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Jay</td>
-                            <td>100</td>
-                            <td>1</td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=View_Participant">View</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Remove_Tournament">Remove</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="MainController?action=Tournament_Detail">Detail</a>
-                            </td>
-                        </tr>
+                        <c:forEach items="${tours}" var="t">
+                            <tr>
+                                <th scope="row">${t.tournamentID}</th>
+                                <td>${t.tournamentName}</td>
+                                <td>${t.minParticipant}</td>
+                                <td>${t.maxParticipant}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${t.tournamentStatus == 0}">Up Coming</c:when>
+                                        <c:when test="${t.tournamentStatus == 1}">Open Form</c:when>
+                                        <c:when test="${t.tournamentStatus == 2}">Closed Form</c:when>
+                                        <c:when test="${t.tournamentStatus == 3}">On Going</c:when>
+                                        <c:when test="${t.tournamentStatus == 4}">Finished</c:when>
+                                        <c:otherwise>Delay</c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <a class="custom-button_2" href="MainController?action=MANAGE_PARTICIPANT&tournamentID=${t.tournamentID}">View</a>
+                                </td>
+                                <td>
+                                    <a class="custom-button_2" href="MainController?action=REMOVE_TOURNAMENT&tournamentID=${t.tournamentID}">Remove</a>
+                                </td>
+                                <td>
+                                    <a class="custom-button_2" href="ManageTournamentDetailController?tournamentID=${t.tournamentID}">Detail</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

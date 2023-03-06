@@ -44,16 +44,15 @@ public class RegisterFormController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
             HttpSession s = request.getSession();
+            RegistrationFormDAO r = new RegistrationFormDAO();
             try {
-                RegistrationFormDAO r = new RegistrationFormDAO();
-                BirdDAO b = new BirdDAO();
-                int tID = Integer.valueOf(request.getParameter("tID"));
-                int aID = Integer.valueOf(request.getParameter("aID"));
-                RegistrationFormDTO regis_detail = r.getDetailTour(tID);
-                List<BirdDTO> bird_detail = b.getBirdByID(aID);
-                if (regis_detail != null && bird_detail != null) {
-                    s.setAttribute("FORM_DETAIL_TOUR", regis_detail);
-                    s.setAttribute("FORM_DETAIL_BIRD", bird_detail);
+                int tournamentID = Integer.valueOf(request.getParameter("tID"));
+                int accountID = Integer.valueOf(request.getParameter("aID"));
+                RegistrationFormDTO tour_detail = r.getDetailTournament(tournamentID);
+                List<RegistrationFormDTO> bird_detail = r.listBirdByAccountID(accountID, 1);
+                if (tour_detail != null && bird_detail != null) {
+                    s.setAttribute("DETAIL_TOUR", tour_detail);
+                    s.setAttribute("DETAIL_BIRD", bird_detail);
                     url = SUCCESS;
                 } else {
                     url = ERROR;
@@ -61,7 +60,7 @@ public class RegisterFormController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.getRequestDispatcher(url).forward(request, response);
+           request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

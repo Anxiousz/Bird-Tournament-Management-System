@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
 
 /**
  *
@@ -41,28 +40,23 @@ public class FinalConfirmFormController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            BirdDAO bird = new BirdDAO();
-            RegistrationFormDAO regis = new RegistrationFormDAO();
             HttpSession s = request.getSession();
+            RegistrationFormDAO r = new RegistrationFormDAO();
+            BirdDAO b = new BirdDAO();
             String url = null;
             try {
-                int tID = Integer.valueOf(request.getParameter("tID"));
-                int aID = Integer.valueOf(request.getParameter("aID"));
-                String birdName = request.getParameter("bName");
-                String location = request.getParameter("location");
-                int fee = Integer.valueOf(request.getParameter("fee"));
-                int formStatus = 1;
-                BirdDTO b = bird.search_bird(aID, birdName);
-                int birdID = b.getBirdID();
-                BirdDTO bird_form = bird.getByID(birdID);
-                boolean final_form = regis.insertForm(birdID, aID, birdID, location, fee, formStatus);
-                if (final_form == true) {
+                int tournamentID = Integer.valueOf(request.getParameter("tID"));
+                int accountID = Integer.valueOf(request.getParameter("aID"));
+                int birdID = Integer.valueOf(request.getParameter("bID"));
+                boolean Add_Form = r.insertForm(tournamentID, accountID, birdID, 1);
+                BirdDTO Bird_Form = b.getBirdFormByID(birdID);
+                if (Add_Form == true && Bird_Form != null) {
                     url = SUCCESS;
-                    s.setAttribute("FINAL_FORM", final_form);
-                    s.setAttribute("BIRD_FORM", bird_form);
+                    s.setAttribute("BIRD_FORM", Bird_Form);
                 } else {
                     url = ERROR;
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

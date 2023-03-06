@@ -38,7 +38,7 @@
         <section>
             <div class="tnm-list-notification container">
                 <div class="tnm-list-notification-heading">
-                    <h1>${sessionScope.FORM_DETAIL_TOUR.tournamentName}</h1>
+                    <h1></h1>
                 </div>
                 <div class="tnm-all-list-notification">
                     <div class="tnm-one-match-notification">
@@ -49,7 +49,6 @@
                             <div class="other-info-personal">
                                 <li><i class="fa-sharp fa-solid fa-signature"></i>   ${sessionScope.acc.name}</li>
                                 <li><i class="fa-solid fa-envelope"></i>   ${sessionScope.acc.email}</li>
-                                <li><i class="fa-solid fa-phone"></i>   ${sessionScope.PHONE}</li>
                             </div>
 
                         </div>
@@ -58,28 +57,28 @@
                                 <form action="">
                                     <div class="form-group top-right">
                                         <label >Tournament name</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.tournamentName}">
                                     </div>
                                     <div class="form-group top-right">
                                         <label >Location</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.location}">
                                     </div>
                                     <div class="form-group top-right">
                                         <label > Present Telephone</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.PHONE}">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.acc.phone}">
                                     </div>
                                     <div class="tnm-right-match-top-small-info">
                                         <div class="form-group top-right">
                                             <label >Fee</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.FORM_DETAIL_TOUR.fee}">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.fee}">
                                         </div>
                                         <div class="Date Time top-right">
                                             <label >Date Time</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.FORM_DETAIL_TOUR.dateTime}">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.dateTime}">
                                         </div>
                                         <div class="form-group top-right">
                                             <label >Player</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.minParticipant}">
                                         </div>
                                     </div>
                                 </form>  
@@ -101,7 +100,7 @@
                             <div class="tnm-eight-bird-bottom-info-tnm">
                                 <div class=" card-bird" style="width: 100%;">
                                     <div class="bird-img" style="width: 20rem; height:20rem;">
-                                        <img class="card-img-top" src="https://i.pinimg.com/236x/70/8b/71/708b71d3e405e5ec1713cd0511fb58f4.jpg" alt="Card image cap">
+                                        <img class="card-img-top" src="${sessionScope.IMAGE}" alt="Card image cap">
                                     </div>
                                     <div class="card-body">
                                         <div class="card-bird-left-body">
@@ -109,19 +108,12 @@
                                             <li>Height</li>
                                             <li>Weight</li>
                                             <li>Color</li>
-                                            <li>Status</li>
                                         </div>
                                         <div class="card-bird-right-body">
                                             <li>${sessionScope.BIRD_FORM.birdName}</li>
                                             <li>${sessionScope.BIRD_FORM.height}</li>
                                             <li>${sessionScope.BIRD_FORM.weight}</li>
                                             <li>${sessionScope.BIRD_FORM.color}</li>
-                                            <li>
-                                                <c:choose>
-                                                    <c:when test="${sessionScope.BIRD_FORM.birdStatus == 0}">Dead</c:when>
-                                                    <c:otherwise>Alive</c:otherwise>
-                                                </c:choose>
-                                            </li>
                                         </div>
                                     </div>
                                 </div>

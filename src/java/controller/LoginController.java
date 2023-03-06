@@ -8,18 +8,19 @@ package controller;
 import account.AccountDAO;
 import account.AccountDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import registrationform.RegistrationFormDAO;
+import registrationform.RegistrationFormDTO;
 
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "login.jsp";
     private static final String SUCCESS = "homePage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -32,6 +33,7 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("password");
             AccountDAO adb = new AccountDAO();
             AccountDTO a = adb.checkLogin(email, password);
+            RegistrationFormDAO r = new RegistrationFormDAO();
             if (a == null) {
                 session.setAttribute("mess", "Wrong email or pass");
                 url = ERROR;
@@ -39,6 +41,8 @@ public class LoginController extends HttpServlet {
                 if (a.getRole() == 0) {
                     if (a.getAccountStatus() == 1) {
                         session.setAttribute("acc", a);
+                        int count = r.countTournament(a.getAccountID());
+                        session.setAttribute("count", count);
                         url = SUCCESS;
                     } else {
                         session.setAttribute("mess", "Your account blocked. Please contact Admin !!!!");

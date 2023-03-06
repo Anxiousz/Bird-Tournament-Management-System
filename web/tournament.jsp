@@ -49,7 +49,7 @@
                             <a class="nav-link" href="#">INTRODUCTION</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">BIRD</a>
+                            <a class="nav-link" href="MainController?action=BIRD">BIRD</a>
                         </li>
                     </ul>
                     <div class="right-site-form my-2 my-lg-0">
@@ -58,7 +58,7 @@
                                 <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
                             </a>
                             <div class="dropdown-menu drop-down-menu-list" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href=""><i class="fa-solid fa-gear"></i> Account Setting </a>
+                                <a class="dropdown-item" href="MainController?action=ProfileLoad"><i class="fa-solid fa-gear"></i> Account Setting </a>
                                 <a class="dropdown-item" href="MainController?action=Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout </a>
                             </div>
                         </div>
@@ -96,27 +96,25 @@
             <!-- search tnm by name site -->
             <div class="search-tnm-site">
                 <div class="search-tnm-main-site">
-                    <form action="" class="search-tnm-form">
-                        <input type="text" placeholder="Search tournament" class="form-control">
-                        <button class="btn btn-search" type="search"><i class='fas fa-search' style='font-size:40px'></i></button>
+                    <form action="MainController" class="search-tnm-form" method="post">
+                        <input type="text" placeholder="Search tournament" class="form-control" name="TournamentName">
+                        <button class="btn btn-search" type="search" name="action" value="SEARCH_TOURNAMENT"><i class='fas fa-search' style='font-size:40px'></i></button>
                     </form>
                 </div>     
             </div>
             <!-- tnm categories heading  -->
-            <form name="MainController" method="post">
-                <div class=" container tnm-categories-heading">
-                    <a href="MainController?action=TOURNAMENT"><p> All Tournaments<i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
-                    <a href="MainController?action=ON_GOING_TOURNAMENT"><p>On Going Tournaments</p></a>
-                    <a href="MainController?action=OLD_TOURNAMENT"><p>Old Tournaments</p></a>
-                    <a href="MainController?action=DELAY_TOURNAMENT"><p>Delay Tournament<i class='fas fa-hourglass-end' style='font-size:24px;color: green;'></i></p></a>
-                </div>
-            </form>
+            <div class=" container tnm-categories-heading">
+                <a href="MainController?action=TOURNAMENT"><p> All Tournaments<i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
+                <a href="MainController?action=ON_GOING_TOURNAMENT"><p>On Going Tournaments</p></a>
+                <a href="MainController?action=OLD_TOURNAMENT"><p>Old Tournaments</p></a>
+                <a href="MainController?action=DELAY_TOURNAMENT"><p>Delay Tournament<i class='fas fa-hourglass-end' style='font-size:24px;color: green;'></i></p></a>
+            </div>
             <!-- tnm-list -->
             <div class="tnm-site-all container">
                 <div class="tnm-list container">
                     <!-- card 1 -->
                     <c:forEach var="list" items="${sessionScope.GET_LIST}">
-                        <div class="tnm-card-site-ptr">
+                        <div class="tnm-card-site-ptr">     
                             <div class="card" style="width: 45rem;">
                                 <img class="card-img-top" style="height: 30rem;" src="${list.image}" alt="Card image cap">
                                 <div class="card-body" style="height:20rem;">
@@ -125,9 +123,11 @@
                                         <h3>${list.tournamentName}</h3>
                                         <p>
                                             <c:choose>
-                                                <c:when test="${list.tournamentStatus == 0}">Coming soon</c:when>
-                                                <c:when test="${list.tournamentStatus == 1}">On Going</c:when>
-                                                <c:when test="${list.tournamentStatus == 2}">Finish</c:when>
+                                                <c:when test="${list.tournamentStatus == 0}">Up Coming</c:when>
+                                                <c:when test="${list.tournamentStatus == 1}">Open Form</c:when>
+                                                <c:when test="${list.tournamentStatus == 2}">Close Form</c:when>
+                                                <c:when test="${list.tournamentStatus == 3}">On Going</c:when>
+                                                <c:when test="${list.tournamentStatus == 4}">Finished</c:when>
                                                 <c:otherwise>Delay</c:otherwise>
                                             </c:choose>
                                         </p>

@@ -5,8 +5,6 @@
  */
 package controller;
 
-import account.AccountDAO;
-import account.AccountDTO;
 import bird.BirdDAO;
 import bird.BirdDTO;
 import java.io.IOException;
@@ -17,15 +15,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author thang
+ * @author anh12
  */
 @WebServlet(name = "LoadBirdController", urlPatterns = {"/LoadBirdController"})
 public class LoadBirdController extends HttpServlet {
-     private final String ERROR = "error.jsp";
-     private final String  SUCCESS = "manageBird.jsp";
+
+    private final String ERROR = "error.jsp";
+    private final String SUCCESS = "manageBird.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,25 +39,25 @@ public class LoadBirdController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String url = ERROR;
-        try  {
-            BirdDAO bird = new BirdDAO();
-            List<BirdDTO> birds = bird.getAllBird1();
-            if(birds.isEmpty()){
-                url = ERROR;
-            }else {
-                request.setAttribute("birds", birds);
-                url = SUCCESS;
+        try (PrintWriter out = response.getWriter()) {
+            String url = null;
+            try {
+                BirdDAO bird = new BirdDAO();
+                List<BirdDTO> birds = bird.manageBird();
+                if (birds == null) {
+                    url = ERROR;
+                } else {
+                    request.setAttribute("birds", birds);
+                    url = SUCCESS;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -30,25 +30,29 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${birds}" var="b">
-                    <tr>
-                        <th scope="row">${b.birdID}</th>
-                        <td>${b.birdName}</td>
-                        <td>${b.accountID}</td>
-                        <td>${b.birdStatus}</td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Block&birdID=${b.birdID}">Block</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Remove&birdID=${b.birdID}">Remove</a>
-                        </td>
-                        <td>
-                            <a class="custom-button_2" href="ManageBirdController?action=Detail&birdID=${b.birdID}">Detail</a>
-                        </td>
-                    </tr>
-                    </c:forEach>>
+                        <tr>
+                            <th scope="row">${b.birdID}</th>
+                            <td>${b.birdName}</td>
+                            <td>${b.accountID}</td>
+                            <td>
+                                 <c:choose>
+                                    <c:when test="${b.birdStatus == 1}">Active</c:when>
+                                    <c:otherwise>UnActive</c:otherwise>
+                                </c:choose>
+                            <td>
+                                <a class="custom-button_2" href="ManageBirdController?action=Block&birdID=${b.birdID}">Block</a>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="ManageBirdController?action=Remove&birdID=${b.birdID}">Remove</a>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="ManageBirdController?action=Detail&birdID=${b.birdID}">Detail</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </section>

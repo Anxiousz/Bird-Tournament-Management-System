@@ -5,8 +5,6 @@
  */
 package controller;
 
-import account.AccountDAO;
-import account.AccountDTO;
 import bird.BirdDAO;
 import bird.BirdDTO;
 import java.io.IOException;
@@ -19,12 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author thang
+ * @author anh12
  */
 @WebServlet(name = "ManageBirdController", urlPatterns = {"/ManageBirdController"})
 public class ManageBirdController extends HttpServlet {
-     private final String ERROR = "error.jsp";
-     private final String  SUCCESS = "LoadBirdController";
+
+    private final String ERROR = "error.jsp";
+    private final String SUCCESS = "LoadBirdController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,53 +37,57 @@ public class ManageBirdController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        BirdDTO bird = new BirdDTO();
-        try  {
-            String birdID = request.getParameter("birdID");
-            String action = request.getParameter("action");
-            if (action.equals("Block")) {
-                BirdDAO dao = new BirdDAO();
-                bird = dao.getByID(Integer.parseInt(birdID));
-                if (bird != null) {
-                    bird.setBirdStatus(0);
-                    if (dao.updateBird(bird)) {
+        try (PrintWriter out = response.getWriter()) {
+            String url = ERROR;
+            BirdDTO bird = new BirdDTO();
+            try {
+                String birdID = request.getParameter("birdID");
+                String action = request.getParameter("action");
+                if (action.equals("Block")) {
+                    BirdDAO dao = new BirdDAO();
+                    bird = dao.getByID(Integer.parseInt(birdID));
+                    if (bird != null) {
+                        bird.setBirdStatus(0);
+                        if (dao.updateBird(bird)) {
+                            url = SUCCESS;
+                        } else {
+                            url = ERROR;
+                        }
+                    } else {
+                        url = ERROR;
+                    }
+
+                }
+                if (action.equals("Unblock")) {
+                    BirdDAO dao = new BirdDAO();
+                    bird = dao.getByID(Integer.parseInt(birdID));
+                    if (bird != null) {
+                        bird.setBirdStatus(1);
+                        if (dao.updateBird(bird)) {
+                            url = SUCCESS;
+                        } else {
+                            url = ERROR;
+                        }
+                    } else {
+                        url = ERROR;
+                    }
+
+                }
+                if (action.equals("Remove")) {
+                    BirdDAO dao = new BirdDAO();
+                    if (dao.deleteBird(Integer.parseInt(birdID))) {
                         url = SUCCESS;
                     } else {
                         url = ERROR;
                     }
-                }else {
-                    url = ERROR;
                 }
-                
-                
-            }if (action.equals("Unblock")) {
-                BirdDAO dao = new BirdDAO();
-                bird = dao.getByID(Integer.parseInt(birdID));
-                if (bird != null) {
-                    bird.setBirdStatus(1);
-                    if (dao.updateBird(bird)) {
-                        url = SUCCESS;
-                    } else {
-                        url = ERROR;
-                    }
-                }else {
-                    url = ERROR;
+                if (action.equals("Detail")) {
                 }
-                
-            }if (action.equals("Remove")) {
-                BirdDAO dao = new BirdDAO();
-                if(dao.deleteBird(Integer.parseInt(birdID))){
-                     url = SUCCESS;
-                }else{
-                    url = ERROR;
-                }
-            }if (action.equals("Detail")) {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                request.getRequestDispatcher(url).forward(request, response);
             }
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

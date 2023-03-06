@@ -31,10 +31,10 @@ public class LoadHomePageController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String url = null;
             HttpSession s = request.getSession(false);
+            TournamentDAO tour = new TournamentDAO();
+            BirdDAO bird = new BirdDAO();
             try {
-                TournamentDAO tour = new TournamentDAO();
-                BirdDAO bird = new BirdDAO();
-                List<TournamentDTO> t = tour.getAllTournament();
+                List<TournamentDTO> t = tour.viewTournament();
                 List<BirdDTO> b = bird.getAllBird();
                 if (tour != null && bird != null) {
                     s.setAttribute("GET_TOURNAMENT", t);

@@ -12,16 +12,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-
+/**
+ *
+ * @author anh12
+ */
+@WebServlet(name = "LoadBirdByAccountID", urlPatterns = {"/LoadBirdByAccountID"})
 public class LoadBirdByAccountID extends HttpServlet {
-        private final String SUCCESS = "birdRepository.jsp";
-        private final String ERROR ="error.jsp";
+
+    private final String SUCCESS = "birdRepository.jsp";
+    private final String ERROR = "error.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,27 +40,28 @@ public class LoadBirdByAccountID extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                String url =null;
-        try {
-            HttpSession s = request.getSession();
-            AccountDTO accountID = (AccountDTO) s.getAttribute("acc");
-            BirdDAO bird = new BirdDAO();
-            List<BirdDTO> Blist = bird.getAllBirdByAccountID(accountID.getAccountID());
-            if(Blist.isEmpty()){
-                url = ERROR;
-            }else {
-                request.setAttribute("birdList", Blist);
-                url = SUCCESS;
+        try (PrintWriter out = response.getWriter()) {
+            String url = ERROR;
+            try {
+                HttpSession s = request.getSession();
+                AccountDTO accountID = (AccountDTO) s.getAttribute("acc");
+                BirdDAO bird = new BirdDAO();
+                List<BirdDTO> Blist = bird.getAllBirdByAccountID(accountID.getAccountID());
+                if (Blist.isEmpty()) {
+                    url = ERROR;
+                } else {
+                    s.setAttribute("birdList", Blist);
+                    url = SUCCESS;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
             request.getRequestDispatcher(url).forward(request, response);
+
         }
-        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

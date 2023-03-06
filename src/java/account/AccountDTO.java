@@ -5,7 +5,9 @@
  */
 package account;
 
-public class AccountDTO {
+import java.io.Serializable;
+
+public class AccountDTO implements Serializable{
 
     private int accountID;
     private String email;
@@ -17,14 +19,12 @@ public class AccountDTO {
     private int accountStatus;
 
     public AccountDTO() {
-        this.accountID = 0;
-        this.email = "";
-        this.password = "";
-        this.name = "";
-        this.profilePhoto = "";
-        this.role = 0;
-        this.phone = 0;
-        this.accountStatus = 0;
+    }
+
+    public AccountDTO(int phone, String email, String name) {
+        this.phone = phone;
+        this.email = email;
+        this.name = name;
     }
 
     public AccountDTO(int accountID, String email, String password, String name, String profilePhoto, int role, int phone, int accountStatus) {
@@ -106,4 +106,5 @@ public class AccountDTO {
     public String toString() {
         return "AccountDTO{" + "accountID=" + accountID + ", email=" + email + ", password=" + password + ", name=" + name + ", profilePhoto=" + profilePhoto + ", role=" + role + ", phone=" + phone + ", accountStatus=" + accountStatus + '}';
     }
+
 }

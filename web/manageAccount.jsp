@@ -14,9 +14,6 @@
         <header>
             <%@include file="adminHeader.jsp" %>
         </header>
-        <form action="LoadAccountController" method="POST">
-            <input type="submit" value="" name="action" />
-        </form>
         <section>
             <table class="table table-striped">
                 <thead>
@@ -42,7 +39,12 @@
                                     <c:otherwise>Admin</c:otherwise>
                                 </c:choose>
                             </td>
-                            <td>${a.accountStatus}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${a.accountStatus == 1}">Active</c:when>
+                                    <c:otherwise>UnActive</c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>
                                 <a class="custom-button_2" href="ManageAccountController?action=Block&accountID=${a.accountID}">Block</a>
                             </td>

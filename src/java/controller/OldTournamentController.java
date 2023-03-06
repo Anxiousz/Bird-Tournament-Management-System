@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
+import tournament.TournamentDAO;
+import tournament.TournamentDTO;
 
 /**
  *
@@ -26,6 +26,7 @@ public class OldTournamentController extends HttpServlet {
 
     private final static String SUCCESS = "tournament.jsp";
     private final static String ERROR = "error.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,11 +42,11 @@ public class OldTournamentController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String url = null;
             HttpSession s = request.getSession();
+            TournamentDAO t = new TournamentDAO();
             try {
-                RegistrationFormDAO regis = new RegistrationFormDAO();
-                List<RegistrationFormDTO> r = regis.getTourByStatus(2);
-                if (r != null) {
-                    s.setAttribute("GET_LIST", r);
+                List<TournamentDTO> list = t.getTourByStatus(4);
+                if (list != null) {
+                    s.setAttribute("GET_LIST", list);
                     url = SUCCESS;
                 } else {
                     url = ERROR;

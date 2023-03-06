@@ -23,7 +23,6 @@
         <link rel="stylesheet" href="CSS/createTournament.css">
         <title>Registration Form</title>
     </head>
-    <title>Create Tournament</title>
 </head>
 <body>
     <header>
@@ -41,82 +40,110 @@
                     </div>
                 </div>
                 <!-- right -site -->
-                <div class="registration-right-site">
+                <form action="MainController" method="post">
                     <div class="registration-right-form">
                         <div class="registration-inf-form-tnm">
                             <div class="mb-3 large-categories">
                                 <label class="form-label form-name-categories">Tournament Name*</label>
-                                <input type="text" class="form-control" required=""/>
+                                <input type="text" class="form-control" name="tournamentName" required=""/>
                             </div>
                             <!-- Small input -->
                             <div class="other-inf-tnm-regis-form">
                                 <div class="mb-3 small-categories">
-                                    <label class="form-label form-name-categories">Total Slot*</label>
-                                    <input type="text" class="form-control" required="">
-                                </div>
-                                <div class="mb-3 small-categories">
                                     <label class="form-label form-name-categories">Date Time*</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input type="text" class="form-control" name="dateTime" required="">
                                 </div>
                                 <div class="mb-3 small-categories">
                                     <label class="form-label form-name-categories">Location*</label>
-                                    <input type="text" class="form-control" required="">
+                                    <input type="text" class="form-control" name="location" required="">
+                                </div>
+                            </div>
+                            <div class="other-inf-tnm-regis-form">
+                                <div class="mb-3 small-categories">
+                                    <label class="form-label form-name-categories">Min Slot*</label>
+                                    <input type="text" class="form-control" name="minSlot" required="">
+                                </div>
+                                <div class="mb-3 small-categories">
+                                    <label class="form-label form-name-categories">Max Slot*</label>
+                                    <input type="text" class="form-control" name="maxSlot" required="">
                                 </div>
                             </div>
                             <div class="mb-3 small-categories">
                                 <label class="form-label lable-right">Prize*</label>
-                                <input type="text" class="form-control" required="" >
+                                <br>
+                                <p class="custom-font-2"><input type="text" class="form-control-custom" name="prize" required="" >  VND</p>
                             </div>
                             <div class="mb-3 small-categories">
-                                <label class="form-label lable-right">Choose bird category</label><br>
-                                <select class="section-bird">
-                                    <option value=""></option>
+                                <label class="form-label lable-right">Choose Bird Category*</label><br>
+                                <select class="section-bird" name="bCateID">
+                                    <c:forEach var="b" items="${sessionScope.BIRD_CATE}">
+                                        <option value="${b.categoriesID}">${b.categoriesName}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
-                            <div class="fee-registration mb-3 small-categories" style="padding-right: 100px; width: 60%;">
+                            <div class="fee-registration mb-3 small-categories">
+                                <label class="form-label lable-right custom-label"> Description*</label>
+                                <br>
+                                <textarea class="custom-font-3" rows="4" cols="35" name="description"></textarea>
+                            </div>
+                            <div class="fee-registration mb-3 small-categories">
                                 <label class="form-label lable-right"> Fee*</label>
-                                <input type="text" class="form-control" required="">
+                                <p class="custom-font-2"><input type="text" class="form-control-custom" name="fee" required="">  VND</p>
                             </div>
                             <!-- Sponsor -->
                             <div class="mb-3 large-categories">
-                                <label class="form-label form-name-categories">Main Sponsor </label>
-                                <div class="img-sponsor">
-                                    <img src="${sessionScope.FORM_DETAIL_TOUR.sponsor}"
-                                         alt="Avatar" class="avatar">
+                                <label class="form-label form-name-categories upload-label">Sponsor Image:</label>
+                                <button type="button" class="btn btn-light" onclick="document.getElementById('input-img1').click()">Upload</button>
+                                <div class="bird-identify-container">
+                                    <label for="input-img1" class="preview">
+                                        <img class="sponsor-img" id="previewImg1" src="">
+                                    </label>
+                                    <input type="file" hidden id="input-img1" name="sponsor"/>
                                 </div>
                             </div>
                             <!-- image section -->
-                            <div class="bird-img-section right-small-site">
-                                <label class="form-label lable-right">Upload tournament image</label>
+                            <div class="mb-3 large-categories">
+                                <label class="form-label form-name-categories upload-label">Tournament Image:</label>
+                                <button type="button" class="btn btn-light" onclick="document.getElementById('input-img2').click()">Upload</button>
                                 <div class="bird-identify-container">
-                                    <label for="input-img" class="preview">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                        <span><img id="previewImg" src="">Preview to image</span>
+                                    <label for="input-img2" class="preview">
+                                        <img class="tournament-img" id="previewImg2" src="">
                                     </label>
-                                    <input type="file" hidden id="input-img" />
+                                    <input type="file" hidden id="input-img2" name="image"/>
                                 </div>
                             </div>
                         </div>
                         <div class="right-button">
-                            <button type="submit">CREATE</button>
+                            <button type="submit" name="action" value="CREATE_TOURNAMENT">CREATE</button>
                         </div>
-                    </div>
-                </div>
+                </form>
             </div>
     </section>
     <footer>
         <%@include file="footer.jsp" %>
     </footer>
     <script>
-        const fileInput = document.getElementById('input-img');
-        const previewImg = document.getElementById('previewImg');
-        fileInput.addEventListener('change', function () {
-            if (fileInput.files && fileInput.files[0]) {
+        const fileInput1 = document.getElementById('input-img1');
+        const previewImg1 = document.getElementById('previewImg1');
+        fileInput1.addEventListener('change', function () {
+            if (fileInput1.files && fileInput1.files[0]) {
                 const reader = new FileReader();
                 reader.addEventListener('load', function (e) {
-                    previewImg.src = e.target.result;
+                    previewImg1.src = e.target.result;
                 });
-                reader.readAsDataURL(fileInput.files[0]);
+                reader.readAsDataURL(fileInput1.files[0]);
+            }
+        });
+
+        const fileInput2 = document.getElementById('input-img2');
+        const previewImg2 = document.getElementById('previewImg2');
+        fileInput2.addEventListener('change', function () {
+            if (fileInput2.files && fileInput2.files[0]) {
+                const reader = new FileReader();
+                reader.addEventListener('load', function (e) {
+                    previewImg2.src = e.target.result;
+                });
+                reader.readAsDataURL(fileInput2.files[0]);
             }
         });
     </script>

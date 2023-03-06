@@ -44,7 +44,7 @@
                 </div>
                 <div class="tnm-card-site">
                     <c:forEach var="list" items="${sessionScope.GET_TOURNAMENT}">
-                        <div class="card" style="width: 35rem; height: 60rem;">
+                        <div class="card" style="width: 35rem; height: 65rem;">
                             <div class="card-img" style="width: 35rem; height: 30rem;">
                                 <img class="card-img-top" src="${list.image}" alt="Card image cap">
                             </div>
@@ -54,7 +54,8 @@
                                         <h5>Tournament Name:</h5>
                                         <h5>Date and Time: </h5>
                                         <h5>Status: </h5>
-                                        <h5>Number of Player: </h5>
+                                        <h5>Number of Player(min): </h5>
+                                        <h5>Number of Player(max): </h5>
                                         <h5>Tournament Fee: </h5>
                                         <h5>Prizes: </h5>
                                     </div>
@@ -63,21 +64,34 @@
                                         <p>${list.dateTime}</p>
                                         <p>
                                             <c:choose>
-                                                <c:when test="${list.tournamentStatus == 0}">Coming soon</c:when>
-                                                <c:when test="${list.tournamentStatus == 1}">On Going</c:when>
-                                                <c:when test="${list.tournamentStatus == 2}">Finish</c:when>
+                                                <c:when test="${list.tournamentStatus == 0}">Up Coming</c:when>
+                                                <c:when test="${list.tournamentStatus == 1}">Open Form</c:when>
+                                                <c:when test="${list.tournamentStatus == 2}">Close Form</c:when>
+                                                <c:when test="${list.tournamentStatus == 3}">On Going</c:when>
+                                                <c:when test="${list.tournamentStatus == 4}">Finished</c:when>
                                                 <c:otherwise>Delay</c:otherwise>
                                             </c:choose>
                                         </p>
-                                        <p>${list.numberOfPlayer}</p>
+                                        <p>${list.minParticipant}</p>
+                                        <p>${list.maxParticipant}</p>
                                         <p>${list.fee} VND</p>
                                         <p>${list.prize} VND</p>
                                     </div>
                                 </div>
-                                <div class="card-end">
-                                    <a href="login.jsp">More Detail</a>
-                                    <a href="login.jsp">Register</a>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${sessionScope.acc.role == 0}">
+                                        <div class="card-end">
+                                            <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
+                                            <a href="MainController?action=RegisterForm&tID=${list.tournamentID}&aID=${sessionScope.acc.accountID}">Register</a>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="card-end">
+                                            <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
+                                            <a href="login.jsp">Register</a>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </c:forEach>
@@ -148,7 +162,7 @@
                                                 <c:when test="${bird.birdStatus == 1}">Live</c:when>
                                                 <c:otherwise>Dead</c:otherwise>
                                             </c:choose></h4>
-                                        <h4>${bird.totalScore}</h4>
+                                        <h4>${bird.achivement.totalScore}</h4>
                                     </div>
                                 </div>
                             </div>

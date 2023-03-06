@@ -5,109 +5,43 @@
  */
 package registrationform;
 
+import account.AccountDTO;
+import bird.BirdDTO;
+import java.io.Serializable;
+import tournament.TournamentDTO;
+
 /**
  *
  * @author anh12
  */
-public class RegistrationFormDTO {
+public class RegistrationFormDTO implements Serializable {
 
     private int registrationFormID;
     private int tournamentID;
     private int accountID;
     private int birdID;
-    private String location;
-    private int fee;
     private int formStatus;
-    private String image;
-    private String tournamentName;
-    private String dateTime;
-    private String tournamentStatus;
-    private String prize;
-    private int numberOfPlayer;
-    private String sponsor;
+    private BirdDTO bird;
+    private TournamentDTO tour;
+    private AccountDTO acc;
 
     public RegistrationFormDTO() {
     }
 
-    public RegistrationFormDTO(int tournamentID, String location, int fee, String tournamentStatus, String image, String tournamentName, String dateTime) {
-        this.tournamentID = tournamentID;
-        this.location = location;
-        this.fee = fee;
-        this.tournamentStatus = tournamentStatus;
-        this.image = image;
-        this.tournamentName = tournamentName;
-        this.dateTime = dateTime;
-    }
-
-    public RegistrationFormDTO(int tournamentID, String image, String tournamentName, String tournamentStatus, String dateTime, String location, int fee, String prize, int numberOfPlayer, String sponsor) {
-        this.tournamentID = tournamentID;
-        this.image = image;
-        this.tournamentName = tournamentName;
-        this.tournamentStatus = tournamentStatus;
-        this.dateTime = dateTime;
-        this.location = location;
-        this.fee = fee;
-        this.prize = prize;
-        this.numberOfPlayer = numberOfPlayer;
-        this.sponsor = sponsor;
-    }
-
-    public RegistrationFormDTO(int registrationFormID, int tournamentID, int accountID, int birdID, String location, int fee, int formStatus, String image, String tournamentName, String dateTime, String tournamentStatus, String prize, int numberOfPlayer, String sponsor) {
-        this.registrationFormID = registrationFormID;
-        this.tournamentID = tournamentID;
-        this.accountID = accountID;
-        this.birdID = birdID;
-        this.location = location;
-        this.fee = fee;
+    public RegistrationFormDTO(int formStatus, TournamentDTO tour, BirdDTO bird, AccountDTO acc) {
         this.formStatus = formStatus;
-        this.image = image;
-        this.tournamentName = tournamentName;
-        this.dateTime = dateTime;
-        this.tournamentStatus = tournamentStatus;
-        this.prize = prize;
-        this.numberOfPlayer = numberOfPlayer;
-        this.sponsor = sponsor;
+        this.tour = tour;
+        this.bird = bird;
+        this.acc = acc;
     }
 
-    public RegistrationFormDTO(int tournamentID, int accountID, int birdID, String location, int fee, int formStatus) {
+    public RegistrationFormDTO(int tournamentID, TournamentDTO tour) {
         this.tournamentID = tournamentID;
-        this.accountID = accountID;
-        this.birdID = birdID;
-        this.location = location;
-        this.fee = fee;
-        this.formStatus = formStatus;
+        this.tour = tour;
     }
 
-    public String getSponsor() {
-        return sponsor;
-    }
-
-    public void setSponsor(String sponsor) {
-        this.sponsor = sponsor;
-    }
-
-    public int getNumberOfPlayer() {
-        return numberOfPlayer;
-    }
-
-    public void setNumberOfPlayer(int numberOfPlayer) {
-        this.numberOfPlayer = numberOfPlayer;
-    }
-
-    public String getPrize() {
-        return prize;
-    }
-
-    public void setPrize(String prize) {
-        this.prize = prize;
-    }
-
-    public String getTournamentStatus() {
-        return tournamentStatus;
-    }
-
-    public void setTournamentStatus(String tournamentStatus) {
-        this.tournamentStatus = tournamentStatus;
+    public RegistrationFormDTO(BirdDTO bird) {
+        this.bird = bird;
     }
 
     public int getRegistrationFormID() {
@@ -142,22 +76,6 @@ public class RegistrationFormDTO {
         this.birdID = birdID;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public int getFee() {
-        return fee;
-    }
-
-    public void setFee(int fee) {
-        this.fee = fee;
-    }
-
     public int getFormStatus() {
         return formStatus;
     }
@@ -166,28 +84,33 @@ public class RegistrationFormDTO {
         this.formStatus = formStatus;
     }
 
-    public String getImage() {
-        return image;
+    public BirdDTO getBird() {
+        return bird;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setBird(BirdDTO bird) {
+        this.bird = bird;
     }
 
-    public String getTournamentName() {
-        return tournamentName;
+    public TournamentDTO getTour() {
+        return tour;
     }
 
-    public void setTournamentName(String tournamentName) {
-        this.tournamentName = tournamentName;
+    public void setTour(TournamentDTO tour) {
+        this.tour = tour;
     }
 
-    public String getDateTime() {
-        return dateTime;
+    public AccountDTO getAcc() {
+        return acc;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setAcc(AccountDTO acc) {
+        this.acc = acc;
+    }
+
+    @Override
+    public String toString() {
+        return "RegistrationFormDTO{" + "registrationFormID=" + registrationFormID + ", tournamentID=" + tournamentID + ", accountID=" + accountID + ", birdID=" + birdID + ", formStatus=" + formStatus + ", bird=" + bird + ", tour=" + tour + ", acc=" + acc + '}';
     }
 
 }

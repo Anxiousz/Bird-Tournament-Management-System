@@ -18,13 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author thang
+ * @author anh12
  */
 @WebServlet(name = "LoadAccountController", urlPatterns = {"/LoadAccountController"})
 public class LoadAccountController extends HttpServlet {
-    
-     private final String ERROR = "error.jsp";
-     private final String  SUCCESS = "manageAccount.jsp";
+
+    private final String ERROR = "error.jsp";
+    private final String SUCCESS = "manageAccount.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,21 +38,23 @@ public class LoadAccountController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try  {
-            AccountDAO acc = new AccountDAO();
-            List<AccountDTO> accs = acc.getAllAccount();
-            if(accs.isEmpty()){
-                url = ERROR;
-            }else {
-                request.setAttribute("accs", accs);
-                url = SUCCESS;
+        try (PrintWriter out = response.getWriter()) {
+            String url = ERROR;
+            try {
+                AccountDAO acc = new AccountDAO();
+                List<AccountDTO> accs = acc.getAllAccount();
+                if (accs.isEmpty()) {
+                    url = ERROR;
+                } else {
+                    request.setAttribute("accs", accs);
+                    url = SUCCESS;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                request.getRequestDispatcher(url).forward(request, response);
+
             }
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
-            
         }
     }
 

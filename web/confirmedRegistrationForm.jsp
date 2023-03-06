@@ -50,31 +50,32 @@
                                 <!-- Tounrament -->
                                 <div class="mb-3">
                                     <label class="form-label">Tournament Name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.FORM_DETAIL_TOUR.tournamentName}" readonly="">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.DETAIL_TOUR.tour.tournamentName}" readonly="">
                                 </div>
                                 <div class="mb-3"  style="padding-right: 300px;">
                                     <label for="exampleInputPassword1" class="form-label">Staus</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 0 ? 'Coming soon' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 1 ? 'On Going' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 2 ? 'Finished' : (sessionScope.FORM_DETAIL_TOUR.tournamentStatus == 3 ? 'Delay' : '')))}" readonly="">
+                                    <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.DETAIL_TOUR.tour.tournamentStatus == 0 ? 'Up Coming' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 1 ? 'Open Form' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 2 ? 'Close Form' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 3 ? 'On Going' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 4 ? 'Finished' : 'Delay'))))}" readonly="">
+
                                 </div>
                                 <div class="small-categories">
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label small-item">Player</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.numberOfPlayer}" readonly="">
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.DETAIL_TOUR.tour.minParticipant}" readonly="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label small-item">Date Time</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1"  value="${sessionScope.FORM_DETAIL_TOUR.dateTime}" readonly="">
+                                        <input type="text" class="form-control" id="exampleInputPassword1"  value="${sessionScope.DETAIL_TOUR.tour.dateTime}" readonly="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label small-item">Location</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.location}" readonly="">
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.DETAIL_TOUR.tour.location}" readonly="">
                                     </div>
                                 </div>
                                 <!-- Player Information -->
                                 <div class="Player-categories">
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label small-item-p">Telephone number now*</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.PHONE}" readonly="">
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.phone}" readonly="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label small-item-p">Your bird</label>
@@ -82,16 +83,16 @@
                                     </div>
                                     <label for="">Bird Image</label>
                                     <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="${sessionScope.IMAGE}" alt="Card image cap">
+                                        <img class="card-img-top" src="${sessionScope.IMAGE}" alt="Card image cap" >
                                     </div>
                                     <div class="mb-3"   style="padding-right: 300px;">
                                         <label for="exampleInputPassword1" class="form-label small-item-p">Fee</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.FORM_DETAIL_TOUR.fee}" readonly="">
+                                        <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.DETAIL_TOUR.tour.fee}" readonly="">
                                     </div>
                                 </div>
                                 <div class="form-text">Please check your information carefully before completed this form. If something wrong or not same , let us know  throughtout left site tools</div>
                                 <div class="btn-site">
-                                    <button type="submit" class="btn btn-complete"><a href="MainController?action=FinalForm&tID=${sessionScope.FORM_DETAIL_TOUR.tournamentID}&aID=${sessionScope.acc.accountID}&bName=${sessionScope.BIRD_NAME}&location=${sessionScope.FORM_DETAIL_TOUR.location}&fee=${sessionScope.FORM_DETAIL_TOUR.fee}">Complete<a></button>
+                                    <button type="submit" class="btn btn-complete"><a href="MainController?action=FinalForm&tID=${sessionScope.DETAIL_TOUR.tour.tournamentID}&aID=${sessionScope.acc.accountID}&bID=${sessionScope.BIRD_ID.birdID}">Complete<a></button
                                                 </div>
                                                 </form>
                                                 </div>

@@ -5,8 +5,9 @@
  */
 package controller;
 
+import bird.BirdDAO;
+import bird.BirdDTO;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,16 +38,16 @@ public class ConfirmFormController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession s = request.getSession();
+            BirdDAO b = new BirdDAO();
             try {
-                HttpSession s = request.getSession();
-                int phone = Integer.parseInt(request.getParameter("phone"));
-                String bName = request.getParameter("bName");
-                String imageSrc = request.getParameter("image");
-                String image = "image/" + imageSrc;
-                s.setAttribute("PHONE", phone);
-                s.setAttribute("BIRD_NAME", bName);
-                s.setAttribute("IMAGE", image);
-                out.print(imageSrc);
+                int accID = Integer.parseInt(request.getParameter("accID"));
+                String birdName = request.getParameter("birdName");
+                String birdPhoto = "image/" + birdName + ".jpg";
+                BirdDTO birdID = b.FindBird(accID, birdName);
+                s.setAttribute("BIRD_NAME", birdName);
+                s.setAttribute("IMAGE", birdPhoto);
+                s.setAttribute("BIRD_ID", birdID);
             } catch (Exception e) {
                 e.printStackTrace();
             }

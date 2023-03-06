@@ -5,6 +5,8 @@
  */
 package registrationform;
 
+import account.AccountDTO;
+import bird.BirdDTO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,38 +14,87 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import tournament.TournamentDTO;
 import utils.DBContext;
 
 /**
  *
  * @author anh12
  */
-public class RegistrationFormDAO {
+public class RegistrationFormDAO implements Serializable {
 
-    private final static String GET_TOURNAMENT = "SELECT DISTINCT t.tournamentID, r.location, r.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
-            + "FROM RegistrationForm r\n"
-            + "INNER JOIN Tournament t ON t.tournamentID = r.tournamentID\n"
-            + "ORDER BY t.tournamentID";
+    private static final String INSERT_FORM = "INSERT INTO RegistrationForm([tournamentID],[accountID],[birdID],[formStatus])\n"
+            + "VALUES(?,?,?,?)";
 
-    public List<RegistrationFormDTO> getAllTour() throws Exception {
-        List<RegistrationFormDTO> list = new ArrayList<>();
+    private final static String GET_BIRD_BY_ID = "SELECT b.birdID, b.birdName, b.birdPhoto\n"
+            + "FROM Bird b\n"
+            + "WHERE b.accountID = ? AND b.birdStatus = ?\n"
+            + "ORDER BY b.birdID ASC";
+
+    private final static String GET_TOURNAMENT_DETAIL = "SELECT DISTINCT t.tournamentID,t.image, t.tournamentName, t.tournamentStatus, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime, t.location, t.fee, t.prize, t.minParticipant, t.sponsor\n"
+            + " FROM  Tournament t\n"
+            + "WHERE t.tournamentID =  ?";
+
+    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName, t.location, t.fee, t.dateTime, t.minParticipant, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.phone, a.email, a.name\n"
+            + "FROM Tournament t\n"
+            + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
+            + "JOIN Bird b ON b.birdID = r.birdID\n"
+            + "JOIN Account a ON r.accountID = a.accountID\n"
+            + "WHERE a.accountID = ?";
+
+    private final static String COUNT_TOURNAMENT = "SELECT COUNT(*) AS count, formStatus \n"
+            + "FROM RegistrationForm WHERE accountID = ?\n"
+            + "GROUP BY formStatus";
+
+    public static String NUMBER_CURRENT_REGISTERED = "SELECT COUNT(formID) as numberOfPlayer\n"
+            + "FROM RegistrationForm\n"
+            + "WHERE formStatus = ? AND tournamentID = ?";
+
+    public boolean insertForm(int tournamentID, int accountID, int birdID, int formStatus) throws SQLException {
+        RegistrationFormDTO r = null;
+        boolean check = true;
         Connection con = null;
         PreparedStatement stm = null;
-        ResultSet rs = null;
         try {
             con = DBContext.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(GET_TOURNAMENT);
+                stm = con.prepareStatement(INSERT_FORM);
+                stm.setInt(1, tournamentID);
+                stm.setInt(2, accountID);
+                stm.setInt(3, birdID);
+                stm.setInt(4, formStatus);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
+    public List<RegistrationFormDTO> listBirdByAccountID(int accountID, int birdStatus) throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<RegistrationFormDTO> list = new ArrayList<>();
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BIRD_BY_ID);
+                stm.setInt(1, accountID);
+                stm.setInt(2, birdStatus);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    int tournamentID = rs.getInt("tournamentID");
-                    String location = rs.getString("location");
-                    int fee = rs.getInt("fee");
-                    String tournamentStatus = rs.getString("tournamentStatus");
-                    String image = rs.getString("image");
-                    String tournamentName = rs.getString("tournamentName");
-                    String dateTime = rs.getString("dateTime");
-                    RegistrationFormDTO r = new RegistrationFormDTO(tournamentID, location, fee, tournamentStatus, image, tournamentName, dateTime);
+                    String birdName = rs.getString("birdName");
+                    String birdPhoto = rs.getString("birdPhoto");
+                    BirdDTO b = new BirdDTO(birdName, birdPhoto);
+                    RegistrationFormDTO r = new RegistrationFormDTO(b);
                     list.add(r);
                 }
             }
@@ -63,61 +114,10 @@ public class RegistrationFormDAO {
         return list;
     }
 
-    private final static String GET_TOURNAMENT_BY_STATUS = " SELECT DISTINCT t.tournamentID, r.location, r.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
-            + "FROM RegistrationForm r\n"
-            + "INNER JOIN Tournament t ON t.tournamentID = r.tournamentID\n"
-            + "WHERE t.tournamentStatus = ?\n"
-            + "ORDER BY t.tournamentID";
-
-    public List<RegistrationFormDTO> getTourByStatus(int status) throws Exception {
-        List<RegistrationFormDTO> list = new ArrayList<>();
+    public RegistrationFormDTO getDetailTournament(int ID) throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        try {
-            con = DBContext.getConnection();
-            if (con != null) {
-                stm = con.prepareStatement(GET_TOURNAMENT_BY_STATUS);
-                stm.setInt(1, status);
-                rs = stm.executeQuery();
-                while (rs.next()) {
-                    int tournamentID = rs.getInt("tournamentID");
-                    String location = rs.getString("location");
-                    int fee = rs.getInt("fee");
-                    String tournamentStatus = rs.getString("tournamentStatus");
-                    String image = rs.getString("image");
-                    String tournamentName = rs.getString("tournamentName");
-                    String dateTime = rs.getString("dateTime");
-                    RegistrationFormDTO r = new RegistrationFormDTO(tournamentID, location, fee, tournamentStatus, image, tournamentName, dateTime);
-                    list.add(r);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return list;
-    }
-
-    private final static String GET_TOURNAMENT_DETAIL = "SELECT DISTINCT t.tournamentID,t.image, t.tournamentName, t.tournamentStatus, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime, r.location, r.fee, t.prize, t.numberOfPlayer, t.sponsor\n"
-            + "FROM  Tournament t\n"
-            + "INNER JOIN RegistrationForm r ON r.tournamentID = t.tournamentID\n"
-            + "WHERE t.tournamentID = ?";
-
-    public RegistrationFormDTO getDetailTour(int ID) throws Exception {
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        RegistrationFormDTO tour = null;
         try {
 
             con = DBContext.getConnection();
@@ -129,16 +129,17 @@ public class RegistrationFormDAO {
                 if (rs.next()) {
                     int tournamentID = rs.getInt("tournamentID");
                     String image = rs.getString("image");
-                    String tournament = rs.getString("tournamentName");
-                    String tournamentStatus = rs.getString("tournamentStatus");
+                    String tournamentName = rs.getString("tournamentName");
+                    int tournamentStatus = rs.getInt("tournamentStatus");
                     String dateTime = rs.getString("dateTime");
                     String location = rs.getString("location");
-                    int fee = rs.getInt("fee");
+                    String fee = rs.getString("fee");
                     String prize = rs.getString("prize");
-                    int numberOfPlayer = rs.getInt("numberOfPlayer");
+                    int minParticipant = rs.getInt("minParticipant");
                     String sponsor = rs.getString("sponsor");
-                    tour = new RegistrationFormDTO(tournamentID, image, tournament, tournamentStatus, dateTime, location, fee, prize, numberOfPlayer, sponsor);
-                    return tour;
+                    TournamentDTO t = new TournamentDTO(tournamentID, image, tournamentName, tournamentStatus, dateTime, location, fee, prize, minParticipant, sponsor);
+                    RegistrationFormDTO r = new RegistrationFormDTO(tournamentID, t);
+                    return r;
                 }
             }
         } catch (Exception e) {
@@ -157,29 +158,45 @@ public class RegistrationFormDAO {
         return null;
     }
 
-    private static final String INSERT_FORM = "INSERT INTO RegistrationForm([tournamentID],[accountID],[birdID],[location],[fee],[formStatus])\n"
-            + "VALUES(?,?,?,?,?,?)";
-
-    public boolean insertForm(int tournamentID, int accountID, int birdID, String location, int fee, int formStatus) throws SQLException {
-        RegistrationFormDTO r = null;
-        boolean check = true;
+    public List<RegistrationFormDTO> MyTournament(int accountID) throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<RegistrationFormDTO> list = new ArrayList<>();
         try {
             con = DBContext.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(INSERT_FORM);
-                stm.setInt(1, tournamentID);
-                stm.setInt(2, accountID);
-                stm.setInt(3, birdID);
-                stm.setString(4, location);
-                stm.setInt(5, fee);
-                stm.setInt(6, formStatus);
-                check = stm.executeUpdate() > 0 ? true : false;
+                stm = con.prepareStatement(MY_TOURNAMENT);
+                stm.setInt(1, accountID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int formStatus = rs.getInt("formStatus");
+                    String tournamentName = rs.getString("tournamentName");
+                    String location = rs.getString("location");
+                    String fee = rs.getString("fee");
+                    String dateTime = rs.getString("dateTime");
+                    int minParticipant = rs.getInt("minParticipant");
+                    String birdPhoto = rs.getString("birdPhoto");
+                    String birdName = rs.getString("birdName");
+                    String height = rs.getString("height");
+                    String weight = rs.getString("weight");
+                    String color = rs.getString("color");
+                    int phone = rs.getInt("phone");
+                    String email = rs.getString("email");
+                    String name = rs.getString("name");
+                    TournamentDTO t = new TournamentDTO(tournamentName, location, fee, dateTime, minParticipant);
+                    BirdDTO b = new BirdDTO(birdPhoto, birdName, height, weight, color);
+                    AccountDTO a = new AccountDTO(phone, email, name);
+                    RegistrationFormDTO r = new RegistrationFormDTO(formStatus, t, b, a);
+                    list.add(r);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            if (rs != null) {
+                rs.close();
+            }
             if (stm != null) {
                 stm.close();
             }
@@ -187,8 +204,70 @@ public class RegistrationFormDAO {
                 con.close();
             }
         }
-        return check;
+        return list;
     }
 
+    public int countTournament(int accountID) throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(COUNT_TOURNAMENT);
+                stm.setInt(1, accountID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("count");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
 
+    public int getNumberRegistered(int formStatus, int tournamentID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int num = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(NUMBER_CURRENT_REGISTERED);
+                stm.setInt(1, formStatus);
+                stm.setInt(2, tournamentID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    num = rs.getInt(1);
+                    return num;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return num;
+    }
 }

@@ -28,8 +28,11 @@ public class AccountDAO implements Serializable {
             = "UPDATE Account SET email= ? , password = ? ,name = ?, profilePhoto = ?, role = ?, phone = ?, accountStatus = ? WHERE accountID = ? ";
     private static final String DELETE_ACCOUNT
             = "DETELE FROM Account WHERE accountID = ?";
-    private static final String GET_BY_ID 
+    private static final String GET_ALL_BY_ID
             = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE accountID = ? ";
+
+    private static final String UPDATE_ACCOUNT_NEW
+            = "UPDATE Account SET email= ?, password = ?, name = ?, phone = ?  WHERE accountID = ? ";
 
     public AccountDTO getByID(int accountID) throws SQLException {
         Connection con = null;
@@ -38,7 +41,7 @@ public class AccountDAO implements Serializable {
         try {
             con = DBContext.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(GET_BY_ID);
+                stm = con.prepareStatement(GET_ALL_BY_ID);
                 stm.setInt(1, accountID);
                 rs = stm.executeQuery();
                 if (rs.next()) {
@@ -69,6 +72,7 @@ public class AccountDAO implements Serializable {
         }
         return null;
     }
+
     public List<AccountDTO> getAllAccount() throws SQLException {
         List<AccountDTO> list = new ArrayList<>();
         Connection con = null;
@@ -268,4 +272,33 @@ public class AccountDAO implements Serializable {
         }
         return check;
     }
+
+    public static int updateAccount(String email, String name, int phone, String password, int accountID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(UPDATE_ACCOUNT_NEW);
+                stm.setString(1, email);
+                stm.setString(2, password);
+                stm.setString(3, name);
+                stm.setInt(4, phone);
+                stm.setInt(5, accountID);
+                result = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
 }

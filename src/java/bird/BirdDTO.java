@@ -5,11 +5,14 @@
  */
 package bird;
 
+import achievement.AchievementDTO;
+import java.io.Serializable;
+
 /**
  *
  * @author anh12
  */
-public class BirdDTO {
+public class BirdDTO implements Serializable {
 
     private int birdID;
     private int accountID;
@@ -18,14 +21,12 @@ public class BirdDTO {
     private String height;
     private String weight;
     private String color;
+    private int categoriesID;
+    private String dentification;
     private int birdStatus;
-    private String identity;
-    private String description;
-    private String medals;
-    private int totalScore;
-    private int top;
+    private AchievementDTO achivement;
 
-    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, int birdStatus, String identity, String description, String medals, int totalScore, int top) {
+    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, int birdStatus, String dentification, AchievementDTO achivement) {
         this.birdID = birdID;
         this.accountID = accountID;
         this.birdName = birdName;
@@ -34,14 +35,11 @@ public class BirdDTO {
         this.weight = weight;
         this.color = color;
         this.birdStatus = birdStatus;
-        this.identity = identity;
-        this.description = description;
-        this.medals = medals;
-        this.totalScore = totalScore;
-        this.top = top;
+        this.dentification = dentification;
+        this.achivement = achivement;
     }
 
-    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, String identity, int birdStatus) {
+    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, String dentification, int birdStatus) {
         this.birdID = birdID;
         this.accountID = accountID;
         this.birdName = birdName;
@@ -49,30 +47,71 @@ public class BirdDTO {
         this.height = height;
         this.weight = weight;
         this.color = color;
-        this.identity = identity;
+        this.dentification = dentification;
         this.birdStatus = birdStatus;
+    }
+
+    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, int categoriesID, String dentification, int birdStatus) {
+        this.birdID = birdID;
+        this.accountID = accountID;
+        this.birdName = birdName;
+        this.birdPhoto = birdPhoto;
+        this.height = height;
+        this.weight = weight;
+        this.color = color;
+        this.categoriesID = this.categoriesID;
+        this.dentification = dentification;
+        this.birdStatus = birdStatus;
+    }
+
+    public BirdDTO(String birdName, String height, String weight, String color, int birdStatus, String birdPhoto, AchievementDTO achivement) {
+        this.birdName = birdName;
+        this.height = height;
+        this.weight = weight;
+        this.color = color;
+        this.birdStatus = birdStatus;
+        this.birdPhoto = birdPhoto;
+        this.achivement = achivement;
     }
 
     public BirdDTO(int birdID) {
         this.birdID = birdID;
     }
 
-    public BirdDTO() {
-
+    public BirdDTO(String birdName, String birdPhoto) {
+        this.birdName = birdName;
+        this.birdPhoto = birdPhoto;
     }
 
-    public BirdDTO(String birdName, String height, String weight, String color, int birdStatus, int totalScore, String birdPhoto) {
+    public BirdDTO() {
+    }
+
+    public BirdDTO(String birdName, String height, String weight, String color) {
         this.birdName = birdName;
         this.height = height;
         this.weight = weight;
         this.color = color;
-        this.birdStatus = birdStatus;
-        this.totalScore = totalScore;
-        this.birdPhoto = birdPhoto;
     }
 
-    public BirdDTO(String birdName) {
+    public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, int categoriesID, String dentification, int birdStatus, AchievementDTO achivement) {
+        this.birdID = birdID;
+        this.accountID = accountID;
         this.birdName = birdName;
+        this.birdPhoto = birdPhoto;
+        this.height = height;
+        this.weight = weight;
+        this.color = color;
+        this.categoriesID = categoriesID;
+        this.dentification = dentification;
+        this.birdStatus = birdStatus;
+        this.achivement = achivement;
+    }
+
+    public BirdDTO(String birdPhoto, String birdName, String height, String weight, String color) {
+        this.birdPhoto = birdPhoto;
+        this.height = height;
+        this.weight = weight;
+        this.color = color;
     }
 
     public int getBirdID() {
@@ -131,6 +170,22 @@ public class BirdDTO {
         this.color = color;
     }
 
+    public int getCategories() {
+        return categoriesID;
+    }
+
+    public void setCategories(int categoriesID) {
+        this.categoriesID = categoriesID;
+    }
+
+    public String getDentification() {
+        return dentification;
+    }
+
+    public void setDentification(String dentification) {
+        this.dentification = dentification;
+    }
+
     public int getBirdStatus() {
         return birdStatus;
     }
@@ -139,49 +194,18 @@ public class BirdDTO {
         this.birdStatus = birdStatus;
     }
 
-    public String getIdentity() {
-        return identity;
+    public AchievementDTO getAchivement() {
+        return achivement;
     }
 
-    public void setIdentity(String identity) {
-        this.identity = identity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getMedals() {
-        return medals;
-    }
-
-    public void setMedals(String medals) {
-        this.medals = medals;
-    }
-
-    public int getTotalScore() {
-        return totalScore;
-    }
-
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
-    }
-
-    public int getTop() {
-        return top;
-    }
-
-    public void setTop(int top) {
-        this.top = top;
+    public void setAchivement(AchievementDTO achivement) {
+        this.achivement = achivement;
     }
 
     @Override
     public String toString() {
-        return "BirdDTO{" + "birdID=" + birdID + ", accountID=" + accountID + ", birdName=" + birdName + ", birdPhoto=" + birdPhoto + ", height=" + height + ", weight=" + weight + ", color=" + color + ", birdStatus=" + birdStatus + ", identity=" + identity + ", description=" + description + ", medals=" + medals + ", totalScore=" + totalScore + ", top=" + top + '}';
+        return "BirdDTO{" + "birdID=" + birdID + ", accountID=" + accountID + ", birdName=" + birdName + ", birdPhoto=" + birdPhoto + ", height=" + height + ", weight=" + weight + ", color=" + color + ", categoriesID=" + categoriesID + ", dentification=" + dentification + ", birdStatus=" + birdStatus + ", achivement=" + achivement + '}';
     }
+
 
 }
