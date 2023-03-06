@@ -5,27 +5,24 @@
  */
 package controller;
 
-import candidate.CandidatesDAO;
-import candidate.CandidatesDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import round.RoundDAO;
+import tournament.TournamentDAO;
 
 /**
  *
- * @author anh12
+ * @author thang
  */
-@WebServlet(name = "LoadParticipantController", urlPatterns = {"/LoadParticipantController"})
-public class LoadParticipantController extends HttpServlet {
-
+@WebServlet(name = "UpdateRoundController", urlPatterns = {"/UpdateRoundController"})
+public class UpdateRoundController extends HttpServlet {
     private final String ERROR = "error.jsp";
-    private final String TOUR = "candidateTournamnet.jsp";
-
+    private final String TOURNAMENT_DETAIL = "ManageTournamentDetailController";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,29 +35,45 @@ public class LoadParticipantController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            // String url = ERROR;
-            try {
-                String action = request.getParameter("action");
-                String tournamentID = request.getParameter("tournamentID");
-                String rname = request.getParameter("roundName");
-                String rid = request.getParameter("roundID");
-                String rstatus = request.getParameter("roundStatus");
-                CandidatesDAO dao = new CandidatesDAO();
-                List<CandidatesDTO> cands = dao.getCandidates(-1, Integer.parseInt(tournamentID), -1);
-//                if (cands.size() > 0) {
-//                    url = TOUR;
-//                    request.setAttribute("cands", cands);
-//                } else {
-//                    url = ERROR;
-//                }
-                for (CandidatesDTO cand : cands) {
-                    out.print(cands.toString());
+        String url = ERROR;
+            String tid = request.getParameter("tournamentID");
+            String rid = request.getParameter("roundID");
+            String rname = request.getParameter("roundName");
+            String typeofround = request.getParameter("typeOfRound");
+            String birdattend = request.getParameter("birdAttend");
+            String rstatus = request.getParameter("roundStatus");
+            String birdPass = request.getParameter("birdPass");
+            String action = request.getParameter("action");
+            int roundtatus = -1;
+            if(rstatus.equals("Coming soon")){
+                roundtatus = 0;
+            }else if (rstatus.equals("On Going")){
+                roundtatus = 1;
+            }else if (rstatus.equals("Finish")){
+                roundtatus = 2;
+            }else{
+            }
+        try  {
+           
+            
+            if(action.equals("Update Round")){
+                RoundDAO rdao =new RoundDAO();
+                if(rdao.updateRound(typeofround, Integer.parseInt(birdattend), Integer.parseInt(birdPass),roundtatus,Integer.parseInt(rid))){
+                   url = TOURNAMENT_DETAIL;
+                }else{
+                    url = ERROR;
                 }
-            } catch (Exception e) {
-                log("Error at LoginController: " + e.toString());
-            } finally {
-                //  request.getRequestDispatcher(url).forward(request, response);
+                
+            }
+           
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            if(url==ERROR){
+                request.getRequestDispatcher(url).forward(request, response);
+            }else{
+                url="RoundController?roundID="+rid+"&roundStatus="+roundtatus+"&roundName="+rname+"&tournamentID="+tid;
+                request.getRequestDispatcher(url).forward(request, response);
             }
         }
     }

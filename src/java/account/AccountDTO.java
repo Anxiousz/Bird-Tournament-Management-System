@@ -20,13 +20,13 @@ public class AccountDTO implements Serializable{
 
     public AccountDTO() {
     }
-
+    
     public AccountDTO(int phone, String email, String name) {
         this.phone = phone;
         this.email = email;
         this.name = name;
     }
-
+    
     public AccountDTO(int accountID, String email, String password, String name, String profilePhoto, int role, int phone, int accountStatus) {
         this.accountID = accountID;
         this.email = email;

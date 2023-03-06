@@ -5,7 +5,9 @@
  */
 package bird;
 
+import account.AccountDTO;
 import achievement.AchievementDTO;
+import birdcategories.BirdCategoriesDTO;
 import java.io.Serializable;
 
 /**
@@ -16,6 +18,8 @@ public class BirdDTO implements Serializable {
 
     private int birdID;
     private int accountID;
+    private AccountDTO account;
+    private BirdCategoriesDTO birdCategory;
     private String birdName;
     private String birdPhoto;
     private String height;
@@ -26,6 +30,21 @@ public class BirdDTO implements Serializable {
     private int birdStatus;
     private AchievementDTO achivement;
 
+    public BirdDTO(){
+    }
+    public BirdDTO(int birdID, AccountDTO account, BirdCategoriesDTO birdCategory, String birdName, String birdPhoto, String height, String weight, String color, String dentification, int birdStatus) {
+        this.birdID = birdID;
+        this.account = account;
+        this.birdCategory = birdCategory;
+        this.birdName = birdName;
+        this.birdPhoto = birdPhoto;
+        this.height = height;
+        this.weight = weight;
+        this.color = color;
+        this.dentification = dentification;
+        this.birdStatus = birdStatus;
+    }
+    
     public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, int birdStatus, String dentification, AchievementDTO achivement) {
         this.birdID = birdID;
         this.accountID = accountID;
@@ -83,9 +102,7 @@ public class BirdDTO implements Serializable {
         this.birdPhoto = birdPhoto;
     }
 
-    public BirdDTO() {
-    }
-
+   
     public BirdDTO(String birdName, String height, String weight, String color) {
         this.birdName = birdName;
         this.height = height;
@@ -112,6 +129,30 @@ public class BirdDTO implements Serializable {
         this.height = height;
         this.weight = weight;
         this.color = color;
+    }
+
+    public AccountDTO getAccount() {
+        return account;
+    }
+
+    public void setAccount(AccountDTO account) {
+        this.account = account;
+    }
+
+    public BirdCategoriesDTO getBirdCategory() {
+        return birdCategory;
+    }
+
+    public void setBirdCategory(BirdCategoriesDTO birdCategory) {
+        this.birdCategory = birdCategory;
+    }
+
+    public int getCategoriesID() {
+        return categoriesID;
+    }
+
+    public void setCategoriesID(int categoriesID) {
+        this.categoriesID = categoriesID;
     }
 
     public int getBirdID() {

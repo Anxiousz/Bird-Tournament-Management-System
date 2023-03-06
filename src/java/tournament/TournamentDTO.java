@@ -5,12 +5,14 @@
  */
 package tournament;
 
+import birdcategories.BirdCategoriesDTO;
 import java.io.Serializable;
 
 public class TournamentDTO implements Serializable {
 
     private int tournamentID;
     private String tournamentName;
+    private BirdCategoriesDTO category;
     private int categoriesID;
     private String description;
     private String sponsor;
@@ -23,6 +25,22 @@ public class TournamentDTO implements Serializable {
     private String image;
     private int tournamentStatus;
 
+    
+     public TournamentDTO(int tournamentID, BirdCategoriesDTO category, String tournamentName, String description, String sponsor, String prize, int minParticipant, int maxParticipant, String dateTime, String fee, String location, String image, int tournamentStatus) {
+        this.tournamentID = tournamentID;
+        this.category = category;
+        this.tournamentName = tournamentName;
+        this.description = description;
+        this.sponsor = sponsor;
+        this.prize = prize;
+        this.minParticipant = minParticipant;
+        this.maxParticipant = maxParticipant;
+        this.dateTime = dateTime;
+        this.fee = fee;
+        this.location = location;
+        this.image = image;
+        this.tournamentStatus = tournamentStatus;
+    }
     public TournamentDTO(int tournamentID, String tournamentName, String dateTime, int tournamentStatus, int minParticipant, int maxParticipant, String fee, String prize, String image) {
         this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;
@@ -34,7 +52,7 @@ public class TournamentDTO implements Serializable {
         this.prize = prize;
         this.image = image;
     }
-
+    
     public TournamentDTO(int tournamentID, String image, String tournamentName, int tournamentStatus, String dateTime, String location, String fee, String prize, int minParticipant, String sponsor) {
         this.tournamentID = tournamentID;
         this.image = image;
@@ -101,6 +119,14 @@ public class TournamentDTO implements Serializable {
         this.description = description;
     }
 
+    public BirdCategoriesDTO getCategory() {
+        return category;
+    }
+
+    public void setCategory(BirdCategoriesDTO category) {
+        this.category = category;
+    }
+    
     public int getTournamentID() {
         return tournamentID;
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package candidate;
+package candidates;
 
 import bird.BirdDTO;
 import java.io.Serializable;
