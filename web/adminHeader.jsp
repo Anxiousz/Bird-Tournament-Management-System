@@ -44,9 +44,7 @@
                             <a class="dropdown-item" href="MainController?action=MANAGE_BIRD">BIRD</a>
                             <a class="dropdown-item" href="MainController?action=MANAGE_TOURNAMENT">TOURNAMENT</a>
                             <a class="dropdown-item" href="MainController?action=MANAGE_BLOG">BLOG</a>
-                            <a class="dropdown-item" href="MainController?action=MANAGE_INTRODUCTION">INTRODUCTION</a>
                             <a class="dropdown-item" href="MainController?action=FEEDBACK">FEEDBACK</a>
-                            <a class="dropdown-item" href="MainController?action=STATISTIC">STATISTIC</a>
                         </div>
                     </li>
                 </ul>
