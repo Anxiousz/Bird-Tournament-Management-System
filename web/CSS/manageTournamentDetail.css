@@ -348,3 +348,10 @@ tbody tr td input{
 .right-button input:hover{
     opacity: 0.75;
 }
+
+.custom-font-3{
+    font-family: 'Montserrat';
+    font-size: 20px !important;
+    color: black;
+    text-align: justify;
+}

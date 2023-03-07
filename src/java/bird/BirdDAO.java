@@ -33,8 +33,10 @@ public class BirdDAO implements Serializable {
     private static final String SEARCH_BIRD_ID = "SELECT b.birdID\n"
             + "FROM Bird b\n"
             + "WHERE b.accountID = ? AND b.birdName = ?";
-    private final static String GET_BIRD_BY_ACCOUNT
-            = "SELECT * FROM Bird WHERE accountID=?";
+
+    private final static String GET_BIRD_BY_ACCOUNT = "SELECT  b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color,b.birdStatus ,b.dentification\n"
+            + "FROM Bird b \n"
+            + "WHERE accountID= ?";
 
     private static final String GET_ALL_BIRD = "SELECT b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color, b.categoriesID, b.dentification, b.birdStatus\n"
             + "FROM Bird b ";

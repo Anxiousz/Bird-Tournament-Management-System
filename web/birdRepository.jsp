@@ -33,7 +33,7 @@
         <section>
             <div class="bird-repository container">
                 <div class="bird-repositoryp-main-card container">
-                    <c:forEach var="bird" items="${birdList}">
+                    <c:forEach var="bird" items="${sessionScope.birdList}">
                         <div class="card" style="width: 40rem; height: 60rem;">
                             <div class="img-card-container">
                                 <img class="card-img-top"

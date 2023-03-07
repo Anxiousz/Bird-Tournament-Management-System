@@ -153,8 +153,7 @@
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
-                                    <h1><a>Game is suspended but you can register</h1></a>
-                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${sessionScope.GET_DETAIL.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                    <h1><a>Sorry for this problem. Stay up to date and stay tuned.</h1></a>
                                 </div>
                             </div>
                         </div>

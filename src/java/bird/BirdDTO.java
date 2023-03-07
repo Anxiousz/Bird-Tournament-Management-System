@@ -32,6 +32,8 @@ public class BirdDTO implements Serializable {
 
     public BirdDTO(){
     }
+    
+    
     public BirdDTO(int birdID, AccountDTO account, BirdCategoriesDTO birdCategory, String birdName, String birdPhoto, String height, String weight, String color, String dentification, int birdStatus) {
         this.birdID = birdID;
         this.account = account;
@@ -245,7 +247,7 @@ public class BirdDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "BirdDTO{" + "birdID=" + birdID + ", accountID=" + accountID + ", birdName=" + birdName + ", birdPhoto=" + birdPhoto + ", height=" + height + ", weight=" + weight + ", color=" + color + ", categoriesID=" + categoriesID + ", dentification=" + dentification + ", birdStatus=" + birdStatus + ", achivement=" + achivement + '}';
+        return "BirdDTO{" + "birdID=" + birdID + ", accountID=" + accountID + ", account=" + account + ", birdCategory=" + birdCategory + ", birdName=" + birdName + ", birdPhoto=" + birdPhoto + ", height=" + height + ", weight=" + weight + ", color=" + color + ", categoriesID=" + categoriesID + ", dentification=" + dentification + ", birdStatus=" + birdStatus + ", achivement=" + achivement + '}';
     }
 
 

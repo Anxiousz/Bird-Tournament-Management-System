@@ -47,39 +47,39 @@
                         <h1>${tour.tournamentName}<i class="fa-solid fa-crown"></i></h1>
                         <p>
                             Status: 
-                            
-                                        <c:choose>
-                                                <c:when test="${tour.tournamentStatus == 0}">
-                                                    <select name="tournamentStatus">
-                                                        <option>Coming soon</option>
-                                                        <option>On Going</option>
-                                                    </select>
-                                                </c:when>
-                                                <c:when test="${tour.tournamentStatus == 3}">
-                                                    <select name="tournamentStatus">
-                                                        <option>On Going</option>
-                                                        <option>Pause</option>
-                                                        <option>Finish</option>
-                                                    </select>
-                                                </c:when>
-                                                <c:when test="${tour.tournamentStatus == 4}">
-                                                    <select name="tournamentStatus">
-                                                        <option>Finish</option>
-                                                    </select>
-                                                </c:when>
-                                                <c:when test="${tour.tournamentStatus == 5}">
-                                                    <select name="tournamentStatus">
-                                                         <option>On Going</option>
-                                                    </select>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <select name="tournamentStatus" >
-                                                        <option>Coming soon</option>
-                                                    </select>
-                                                </c:otherwise>
-                                        </c:choose>
-                               
-                            
+
+                            <c:choose>
+                                <c:when test="${tour.tournamentStatus == 0}">
+                                    <select name="tournamentStatus">
+                                        <option>Coming soon</option>
+                                        <option>On Going</option>
+                                    </select>
+                                </c:when>
+                                <c:when test="${tour.tournamentStatus == 3}">
+                                    <select name="tournamentStatus">
+                                        <option>On Going</option>
+                                        <option>Pause</option>
+                                        <option>Finish</option>
+                                    </select>
+                                </c:when>
+                                <c:when test="${tour.tournamentStatus == 4}">
+                                    <select name="tournamentStatus">
+                                        <option>Finish</option>
+                                    </select>
+                                </c:when>
+                                <c:when test="${tour.tournamentStatus == 5}">
+                                    <select name="tournamentStatus">
+                                        <option>On Going</option>
+                                    </select>
+                                </c:when>
+                                <c:otherwise>
+                                    <select name="tournamentStatus" >
+                                        <option>Coming soon</option>
+                                    </select>
+                                </c:otherwise>
+                            </c:choose>
+
+
                         </p>
                     </div>
                     <!-- Section 3 -->
@@ -109,15 +109,15 @@
                                 TournamentDTO tour = (TournamentDTO) request.getAttribute("tour");
                                 String[] prizeArr = null;
                                 String prize = tour.getPrize();
-                                prizeArr = prize.split(",");  
-                                for(String items : prizeArr){
+                                prizeArr = prize.split(",");
+                                for (String items : prizeArr) {
                             %>
-                                    <p><%=items%></p>
+                            <p><%=items%></p>
                             <%
-                                }       
+                                }
                             %>
-                            <p><input type="text" value="${tour.prize}" name="prize"></p>
-                            
+                            <p>Change Prize: <input type="text" value="${tour.prize}" name="prize"></p>
+
                         </div>
                         <div class="player-site">
                             <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player:  </h1>
@@ -125,6 +125,10 @@
                         </div>
                     </div>
                     <!-- div line -->
+                    <div class="sponsor-site" style="margin-top: 10px">
+                        <h1>Description: </h1>
+                        <textarea rows="10" cols="100" class="custom-font-3" ></textarea>
+                    </div>
                     <div class="line-section">
                         <p></p>
                     </div>
@@ -144,61 +148,53 @@
                 <div class="line-section">
                     <p></p>
                 </div>
-                
+
                 <c:choose>
                     <c:when test="${!empty rounds}">
-                    <form action="UpdateRoundController" method="GET">
-                    <div class="tnm-heading mt-5">
-                        <h1>Round</h1>
-                    </div>
-                    <div class="basic-tnm-form">
-                        <c:forEach items="${rounds}" var="r">
-                            <div class="basic-tnm-form-categories">
-                                 <c:choose>
-                                                <c:when test="${round.roundID == r.roundID}">
-                                                   <a style="color:burlywood" id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&tournamentID=${tour.tournamentID}">${r.roundName}</a><br/>
-                                                </c:when>
-                                                
-                                                <c:otherwise>
-                                                   <a id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&tournamentID=${tour.tournamentID}">${r.roundName}</a><br/>
-                                                </c:otherwise>
-                                </c:choose>
-                                <c:choose>
-                                                <c:when test="${r.roundStatus == 0}">
-                                                    <a>Coming soon</a>
-                                                </c:when>
-                                                <c:when test="${r.roundStatus == 1}">
-                                                    <a>On Going</a>
-                                                </c:when>
-                                                <c:when test="${r.roundStatus == 2}">
-                                                    <a>Finish</a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                   <a></a>
-                                                </c:otherwise>
-                                </c:choose>
+                        <form action="UpdateRoundController" method="GET">
+                            <div class="tnm-heading mt-5">
+                                <h1>Round</h1>
                             </div>
-                        </c:forEach>
-                    </div>
-                    <!--<div class="scoring-criteria">
-                        <h1>Scoring Criteria</h1>
-                        <div class="scroll-container">
-                            <div class="scroll-page">
-                                <p><input type="text" value="" name="scoringCriteria"> </p>
+                            <div class="basic-tnm-form">
+                                <c:forEach items="${rounds}" var="r">
+                                    <div class="basic-tnm-form-categories">
+                                        <c:choose>
+                                            <c:when test="${round.roundID == r.roundID}">
+                                                <a style="color:burlywood" id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&tournamentID=${tour.tournamentID}">${r.roundName}</a><br/>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <a id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&tournamentID=${tour.tournamentID}">${r.roundName}</a><br/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:choose>
+                                            <c:when test="${r.roundStatus == 0}">
+                                                <a>Coming soon</a>
+                                            </c:when>
+                                            <c:when test="${r.roundStatus == 1}">
+                                                <a>On Going</a>
+                                            </c:when>
+                                            <c:when test="${r.roundStatus == 2}">
+                                                <a>Finish</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a></a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </c:forEach>
                             </div>
-                        </div>
-                    </div>-->
-                    <div class="line-section">
-                        <p></p>
-                    </div>
-                        <c:if test="${!empty round.roundID}">
-                    <div class="round-detail">
-                        <div class="round-detail-site" style="border-right: 4px solid #A87B24;">
-                            <p>Type of Round: <input type="text" value="${round.typeOfRound}" name="typeOfRound"></p>
-                            <p>Number Bird Attend:   <input type="number" value="${round.birdAttend}" name="birdAttend"></p>
-                            <p>
-                                Status: 
-                                <c:choose>
+                            <div class="line-section">
+                                <p></p>
+                            </div>
+                            <c:if test="${!empty round.roundID}">
+                                <div class="round-detail">
+                                    <div class="round-detail-site" style="border-right: 4px solid #A87B24;">
+                                        <p>Type of Round: <input type="text" value="${round.typeOfRound}" name="typeOfRound"></p>
+                                        <p>Number Bird Attend:   <input type="number" value="${round.birdAttend}" name="birdAttend"></p>
+                                        <p>
+                                            Status: 
+                                            <c:choose>
                                                 <c:when test="${round.roundStatus == 0}">
                                                     <select name="roundStatus">
                                                         <option>Coming soon</option>
@@ -221,100 +217,101 @@
                                                         <option>Coming soon</option>
                                                     </select>
                                                 </c:otherwise>
-                                </c:choose>
-                            </p>
-                        </div>
-                        <div class="player-site">
-                            <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
-                            <input type="text" value="${round.birdPass}" name="birdPass">
-                        </div>
-                    </div>
-                        <div class="right-button">
-                        <input type="hidden" value="${round.roundID}" name="roundID">
-                        <input type="hidden" value="${round.roundName}" name="roundName">
-                        <input type="hidden" value="${tour.tournamentID}" name="tournamentID">
-                        <input type="submit" value="Update Round" name="action">
-                        </div>
-                        </form>
-                    <div>
-                        <h1 class="candidate-heading">Participant</h1>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">CID</th>
-                                    <th scope="col">Bird Name</th>
-                                    <th scope="col">Owner Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Point</th>
-                                    <c:choose>
-                                        <c:when test="${round.roundName == 'Top4'}">
-                                                 <th scope="col">TOP</th>
-                                        </c:when>
-                                                
-                                        <c:otherwise>
-                                                    <th scope="col">Result</th>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <th scope="col">Update</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody>
-                                <c:forEach items="${cands}" var="c">
-                                    <form action="UpdateCandidatesController" method="GET">
-                                    <tr>
-                                        <th scope="row">${c.candidatesID}</th>
-                                        <td>${c.bird.birdName}</td>
-                                        <td>${c.bird.account.name}</td>
-                                        <td>${c.candidatesStatus}</td>
-                                        <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" ></td>
-                                        <c:choose>
-                                        <c:when test="${c.result == 'pass'}">
-                                                 <td style="font-weight: bold; color: green">${c.result}</td>
-                                        </c:when>
-                                                
-                                        <c:otherwise>
-                                                    <td style="font-weight: bold; color: red">${c.result}</td>
-                                        </c:otherwise>
-                                        </c:choose>
-                                        <input type="hidden" value="${round.roundID}" name="roundID"  />
-                                        <input type="hidden" value="${round.roundStatus}" name="roundStatus" />
-                                        <input type="hidden" value="${round.roundName}" name="roundName" />
-                                        <input type="hidden" value="${tour.tournamentID}" name="tournamentID" />
-                                        <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
-                                        <td><input class="custom-button_2" type="submit" value="Update" name="action" /></td>
-                                    </tr>
-                                    </form>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                                                   
+                                            </c:choose>
+                                        </p>
+                                    </div>
+                                    <div class="player-site">
+                                        <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
+                                        <input type="text" value="${round.birdPass}" name="birdPass">
+                                    </div>
+                                </div>
+                                <div class="right-button">
+                                    <input type="hidden" value="${round.roundID}" name="roundID">
+                                    <input type="hidden" value="${round.roundName}" name="roundName">
+                                    <input type="hidden" value="${tour.tournamentID}" name="tournamentID">
+                                    <input type="submit" value="Update Round" name="action">
+                                </div>
+                            </form>
+                            <div>
+                                <h1 class="candidate-heading">Participant</h1>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">CID</th>
+                                            <th scope="col">Bird Name</th>
+                                            <th scope="col">Owner Name</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Point</th>
+                                                <c:choose>
+                                                    <c:when test="${round.roundName == 'Top4'}">
+                                                    <th scope="col">TOP</th>
+                                                    </c:when>
 
-                    </div>
-                    
-                </c:if>
-                
-                </c:when>
-                                                
-                <c:otherwise>
-                                                   
-                </c:otherwise>
+                                                <c:otherwise>
+                                                    <th scope="col">Result</th>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            <th scope="col">Update</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <c:forEach items="${cands}" var="c">
+                                        <form action="UpdateCandidatesController" method="GET">
+                                            <tr>
+                                                <th scope="row">${c.candidatesID}</th>
+                                                <td>${c.bird.birdName}</td>
+                                                <td>${c.bird.account.name}</td>
+                                                <td>${c.candidatesStatus}</td>
+                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" ></td>
+                                                    <c:choose>
+                                                        <c:when test="${c.result == 'pass'}">
+                                                        <td style="font-weight: bold; color: green">${c.result}</td>
+                                                    </c:when>
+
+                                                    <c:otherwise>
+                                                        <td style="font-weight: bold; color: red">${c.result}</td>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            <input type="hidden" value="${round.roundID}" name="roundID"  />
+                                            <input type="hidden" value="${round.roundStatus}" name="roundStatus" />
+                                            <input type="hidden" value="${round.roundName}" name="roundName" />
+                                            <input type="hidden" value="${tour.tournamentID}" name="tournamentID" />
+                                            <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
+                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" /></td>
+                                            </tr>
+                                        </form>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                        </c:if>
+
+                    </c:when>
+
+                    <c:otherwise>
+
+                    </c:otherwise>
                 </c:choose>
-                
+
             </div>
         </div>
         <footer>
             <%@include file="footer.jsp" %>
         </footer>
     </body>
- <script>
-        document.addEventListener("DOMContentLoaded", function(event) { 
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
             var scrollpos = localStorage.getItem('scrollpos');
-            if (scrollpos) window.scrollTo(0, scrollpos);
+            if (scrollpos)
+                window.scrollTo(0, scrollpos);
         });
 
-        window.onbeforeunload = function(e) {
+        window.onbeforeunload = function (e) {
             localStorage.setItem('scrollpos', window.scrollY);
         };
-</script>
+    </script>
 </html>

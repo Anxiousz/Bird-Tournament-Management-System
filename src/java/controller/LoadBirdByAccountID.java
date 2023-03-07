@@ -42,12 +42,12 @@ public class LoadBirdByAccountID extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
+            HttpSession s = request.getSession();
+            BirdDAO bird = new BirdDAO();
             try {
-                HttpSession s = request.getSession();
-                AccountDTO accountID = (AccountDTO) s.getAttribute("acc");
-                BirdDAO bird = new BirdDAO();
-                List<BirdDTO> Blist = bird.getAllBirdByAccountID(accountID.getAccountID());
-                if (Blist.isEmpty()) {
+                int accountID = Integer.valueOf(request.getParameter("accID"));
+                List<BirdDTO> Blist = bird.getAllBirdByAccountID(accountID);
+                if (Blist == null) {
                     url = ERROR;
                 } else {
                     s.setAttribute("birdList", Blist);
@@ -57,7 +57,6 @@ public class LoadBirdByAccountID extends HttpServlet {
                 e.printStackTrace();
             }
             request.getRequestDispatcher(url).forward(request, response);
-
         }
     }
 
