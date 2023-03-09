@@ -22,7 +22,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <title>Tournament Detail</title>
-        <title>JSP Page</title>
     </head>
     <body>  
         <header>
@@ -34,21 +33,22 @@
                 <div class="tnm-picture">
                     <div class="card" style="width: 90rem;">
                         <img class="card-img-top" style="width: 90rem; height: 70rem;"
-                             src="${sessionScope.GET_DETAIL.image}"
+                             src="${requestScope.utour.image}"
                              alt="Card image cap">
                     </div>
                 </div>
                 <!-- section 2  -->
                 <div class="tnm-heading mt-5">
-                    <h1>${sessionScope.GET_DETAIL.tournamentName}<i class="fa-solid fa-crown"></i></h1>
+                    <h1>${requestScope.utour.tournamentName}<i class="fa-solid fa-crown"></i></h1>
                     <p>
                         <c:choose>
-                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 0}">Status: Up Coming</c:when>
-                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 1}">Status: Open Form</c:when>
-                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 2}">Status: Close Form</c:when>
-                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 3}">Status: On Going</c:when>
-                            <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 4}">Status: Finished</c:when>
-                            <c:otherwise>Status: Delay</c:otherwise>
+                            <c:when test="${requestScope.utour.tournamentStatus == 0}">Status: Up Coming</c:when>
+                            <c:when test="${requestScope.utour.tournamentStatus == 1}">Status: Open Form</c:when>
+                            <c:when test="${requestScope.utour.tournamentStatus == 2}">Status: Close Form</c:when>
+                            <c:when test="${requestScope.utour.tournamentStatus == 3}">Status: On Going</c:when>
+                            <c:when test="${requestScope.utour.tournamentStatus == 4}">Status: Finished</c:when>
+                            <c:when test="${requestScope.utour.tournamentStatus == 5}">Status: Delay</c:when>
+                            <c:otherwise>Status: Cancel</c:otherwise>
                         </c:choose>
                     </p>
                 </div>
@@ -56,33 +56,56 @@
                 <div class="basic-tnm-form">
                     <div class="basic-tnm-form-categories">
                         <h1><i class="fa-solid fa-clock"></i>  Date and Time</h1>
-                        <p>${sessionScope.GET_DETAIL.dateTime}</p>
+                        <p>${requestScope.utour.dateTime}</p>
                     </div>
                     <div class="basic-tnm-form-categories"
                          style="border-left: 4px solid #A87B24; border-right: 4px solid #A87B24;">
                         <h1><i class="fa-solid fa-location-dot"></i>  Location</h1>
-                        <p>${sessionScope.GET_DETAIL.location}</p>
+                        <p>${requestScope.utour.location}</p>
                     </div>
                     <div class="basic-tnm-form-categories">
                         <h1><i class="fa-sharp fa-solid fa-money-bill"></i> Fee</h1>
-                        <p>${sessionScope.GET_DETAIL.fee} VND</p>
+                        <p>${requestScope.utour.fee} VND</p>
                     </div>
                 </div>
                 <!-- div line -->
                 <div class="line-section">
                     <p></p>
                 </div>
-                <div class="both-prize-player-site">
-                    <div class="prize-site" style="border-right: 4px solid #A87B24;">
-                        <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
-                        <p>Total Prize: ${sessionScope.GET_DETAIL.prize} VND</p>
-                    </div>
-                    <div class="player-site">
-                        <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player(required):  </h1>
-                        <p>${sessionScope.GET_DETAIL.minParticipant}</p>
-                    </div>
+                <c:choose>
+                    <c:when test="${requestScope.utour.tournamentStatus == 3}">
+                        <div class="both-prize-player-site">
+                            <div class="prize-site" style="border-right: 4px solid #A87B24;">
+                                <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
+                                <p>Total Prize: ${requestScope.utour.prize} VND</p>
+                            </div>
+                            <div class="basic-tnm-form-categories">
+                                <h1><i class="fa-sharp fa-solid fa-person"></i> Num Player:  </h1>
+                                <p>${requestScope.numberPlayer}</p>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="both-prize-player-site">
+                            <div class="prize-site" style="border-right: 4px solid #A87B24;">
+                                <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
+                                <p>Total Prize: ${requestScope.utour.prize} VND</p>
+                            </div>
+                            <div class="basic-tnm-form-categories">
+                                <h1><i class="fa-sharp fa-solid fa-person"></i> Min Player:  </h1>
+                                <p>${requestScope.utour.minParticipant}</p>
+                            </div>
+                            <div class="basic-tnm-form-categories">
+                                <h1><i class="fa-sharp fa-solid fa-person"></i> Max Player:  </h1>
+                                <p>${requestScope.utour.maxParticipant}</p>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                <div class="sponsor-site" style="margin-top: 10px">
+                    <h1>Description: </h1>
+                    <textarea rows="10" cols="100" class="custom-font-3" name="description">${requestScope.utour.description}</textarea>
                 </div>
-                <!-- div line -->
                 <div class="line-section">
                     <p></p>
                 </div>
@@ -90,7 +113,7 @@
                 <div class="sponsor-site">
                     <h1>Main Sponsor <i class="fa-solid fa-hand-holding-heart" style="color: green;"></i></h1>
                     <div class="sponsor-site-picture">
-                        <img src="${sessionScope.GET_DETAIL.sponsor}" alt="Avatar"
+                        <img src="${requestScope.utour.sponsor}" alt="Avatar"
                              class="avatar-sponsor ">
                     </div>
                 </div>
@@ -100,8 +123,214 @@
                     <p></p>
                 </div>
                 <!-- Section 7 -->
+                <div class="tnm-heading mt-5">
+                    <h1>Round</h1>
+                </div>
+                <div class="basic-tnm-form">
+                    <c:forEach items="${requestScope.urounds}" var="r">
+                        <div class="basic-tnm-form-categories">
+                            <c:choose>
+                                <c:when test="${requestScope.round.roundID == r.roundID}">
+                                    <a style="color:burlywood" id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
+                                </c:when>
+                                <c:otherwise>
+                                    <a id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${r.roundStatus == 0}">
+                                    <a>Coming soon</a>
+                                </c:when>
+                                <c:when test="${r.roundStatus == 1}">
+                                    <a>On Going</a>
+                                </c:when>
+                                <c:when test="${r.roundStatus == 2}">
+                                    <a>Finish</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a></a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </c:forEach>
+                </div>
+                <div class="line-section">
+                    <p></p>
+                </div>
+                <c:if test="${!empty requestScope.uround.roundID}">
+                    <div class="round-detail">
+                        <div class="round-detail-site" style="border-right: 4px solid #A87B24;">
+                            <p>Type of Round: ${requestScope.uround.typeOfRound}</p>
+                            <p>Number Bird Attend:   ${requestScope.uround.birdAttend}</p>
+                            <p>
+                                Status: 
+                                <c:choose>
+                                    <c:when test="${requestScope.uround.roundStatus == 0}">
+                                        <a>Coming soon</a>
+                                    </c:when>
+                                    <c:when test="${requestScope.uround.roundStatus == 1}">
+                                        <a>On Going</a>
+                                    </c:when>
+                                    <c:when test="${requestScope.uround.roundStatus == 2}">
+                                        <a>Finish</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a></a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </p>
+                        </div>
+                        <div class="player-site">
+                            <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
+                            <p>${requestScope.uround.birdPass}</p>
+                        </div>
+                    </div>
+                    </form>
+                    <c:if test="${requestScope.uround.roundStatus == 1 || requestScope.uround.roundStatus == 2}">
+                        <c:choose>
+                            <c:when test="${requestScope.uplstatus eq 'true'}">
+                                <div>
+                                    <h1 class="candidate-heading">Winner</h1>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">CID</th>
+                                                <th scope="col">Bird Name</th>
+                                                <th scope="col">Owner Name</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Point</th>
+                                                    <c:choose>
+                                                        <c:when test="${requestScope.uround.roundName eq 'Top4'}">
+                                                        <th scope="col">TOP</th>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <th scope="col">Result</th>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${requestScope.ucands}" var="c">
+                                                <c:if test="${c.result ne 'fail'}">
+                                                <form action="UpdateCandidatesController" method="GET">
+                                                    <tr>
+                                                        <th scope="row">${c.candidatesID}</th>
+                                                        <td>${c.bird.birdName}</td>
+                                                        <td>${c.bird.account.name}</td>
+                                                        <td>${c.candidatesStatus}</td>
+                                                        <td>${c.score}</td>
+                                                        <c:choose>
+                                                            <c:when test="${c.result eq 'pass'}">
+                                                                <td style="font-weight: bold; color: green">${c.result}</td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <td style="font-weight: bold; color: red">${c.result}</td>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </tr>
+                                                </form>
+                                            </c:if>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <h1 class="candidate-heading">Failed</h1>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">CID</th>
+                                                <th scope="col">Bird Name</th>
+                                                <th scope="col">Owner Name</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Point</th>
+                                                <th scope="col">Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${requestScope.ucands}" var="c">
+                                                <c:if test="${c.result eq 'fail'}">
+                                                <form action="UpdateCandidatesController" method="GET">
+                                                    <tr>
+                                                        <th scope="row">${c.candidatesID}</th>
+                                                        <td>${c.bird.birdName}</td>
+                                                        <td>${c.bird.account.name}</td>
+                                                        <td>${c.candidatesStatus}</td>
+                                                        <td>${c.score}</td>
+                                                        <c:choose>
+                                                            <c:when test="${c.result eq 'pass'}">
+                                                                <td style="font-weight: bold; color: green">${c.result}</td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <td style="font-weight: bold; color: red">${c.result}</td>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </tr>
+                                                </form>
+                                            </c:if>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div>
+                                    <c:choose>
+                                        <c:when test="${requestScope.uround.roundStatus == 2 && requestScope.uround.roundName eq 'Top4'}">
+                                            <h1 class="candidate-heading">Winner</h1>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <h1 class="candidate-heading">Participant</h1>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">CID</th>
+                                                <th scope="col">Bird Name</th>
+                                                <th scope="col">Owner Name</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Point</th>
+                                                    <c:choose>
+                                                        <c:when test="${requestScope.uround.roundName eq 'Top4'}">
+                                                        <th scope="col">TOP</th>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <th scope="col">Result</th>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${requestScope.ucands}" var="c">
+                                            <form action="UpdateCandidatesController" method="GET">
+                                                <tr>
+                                                    <th scope="row">${c.candidatesID}</th>
+                                                    <td>${c.bird.birdName}</td>
+                                                    <td>${c.bird.account.name}</td>
+                                                    <td>${c.candidatesStatus}</td>
+                                                    <td>${c.score}</td>
+                                                    <c:choose>
+                                                        <c:when test="${c.result eq 'pass'}">
+                                                            <td style="font-weight: bold; color: green">${c.result}</td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td style="font-weight: bold; color: red">${c.result}</td>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </tr>
+                                            </form>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
+                </c:if>
                 <c:choose>
-                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 0}">
+                    <c:when test="${requestScope.utour.tournamentStatus == 0}">
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
@@ -110,19 +339,18 @@
                             </div>
                         </div>
                     </c:when>
-                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 1}">
+                    <c:when test="${requestScope.utour.tournamentStatus == 1}">
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
                                     <h1><a>PLAY WITH US NOW</h1>
-                                    <p>Gift, Achivement waiting you</p>
-                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${sessionScope.GET_DETAIL.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                    <p>Gift, Achievement waiting you</p>
+                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${requestScope.utour.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
                                 </div>
-
                             </div>
                         </div>
                     </c:when>
-                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 2}">
+                    <c:when test="${requestScope.utour.tournamentStatus == 2}">
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
@@ -131,7 +359,7 @@
                             </div>
                         </div>
                     </c:when>
-                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 3}">
+                    <c:when test="${requestScope.utour.tournamentStatus == 3}">
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
@@ -140,11 +368,20 @@
                             </div>
                         </div>
                     </c:when>
-                    <c:when test="${sessionScope.GET_DETAIL.tournamentStatus == 4}">
+                    <c:when test="${requestScope.utour.tournamentStatus == 4}">
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
-                                    <h1><a>Oh Sorry :( The Tournament finshed.</h1></a>
+                                    <h1><a>Oh Sorry :( The Tournament finished.</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${requestScope.utour.tournamentStatus == 5}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Sorry for this problem. Tournament is pausing</h1></a>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +390,7 @@
                         <div class="regis-site container">
                             <div class="regis-both-site">
                                 <div class="regis-left-site">
-                                    <h1><a>Sorry for this problem. Stay up to date and stay tuned.</h1></a>
+                                    <h1><a>Sorry for this problem. Tournament canceled.</h1></a>
                                 </div>
                             </div>
                         </div>
@@ -161,8 +398,9 @@
                 </c:choose>
             </div>
         </div>
-        <footer>
-            <%@ include file="footer.jsp" %>
-        </footer>
-    </body>
+    </div>
+    <footer>
+        <%@ include file="footer.jsp" %>
+    </footer>
+</body>
 </html>

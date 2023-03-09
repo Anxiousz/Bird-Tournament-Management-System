@@ -11,7 +11,7 @@ body{
     margin: 40px 0px;
     height: auto;
     width: 100%;
-    border: 1px solid red;
+/*    margin: 30px 0px;*/
 }
 .main-body-bird{
         width: 100%;
@@ -61,4 +61,31 @@ body{
     flex-direction: column;
     align-items: flex-end;
     flex-wrap: nowrap;
+}
+.btn-update-bird{
+    display: flex;
+    margin: 20px;
+    justify-content: flex-end;
+}
+.btn-update-bird button{
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+}
+.btn-update-bird button:hover{
+    opacity: 0.6;
+}
+.bird-add-site{
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    font-size: 20px;
+}
+.bird-add-site a {
+    text-decoration: none !important;
+    color: green;
+}
+.btn-update-bird a{
+    padding: 10px 20px;
+    font-size: 20px;
 }

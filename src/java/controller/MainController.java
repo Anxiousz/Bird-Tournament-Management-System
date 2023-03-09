@@ -39,6 +39,9 @@ public class MainController extends HttpServlet {
     private static final String LOAD_ACCOUNT = "ProfileLoad";
     private static final String UPDATE_ACCOUNT = "Update_Account";
     private static final String SEARCH_TOURNAMENT = "SEARCH_TOURNAMENT";
+    private static final String ADD_BIRD = "addBird";
+    private static final String GET_BIRD_UPDATE_USER = "getBirdUpdate";
+    private static final String UPDATE_BIRD = "updateBird";
 
     //value of action of Admin
     private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
@@ -48,6 +51,9 @@ public class MainController extends HttpServlet {
     private static final String CREATE_TOURNAMENT = "CREATE_TOURNAMENT";
     private static final String MANAGE_PARTICIPANT = "MANAGE_PARTICIPANT";
     private static final String REMOVE_TOURNAMENT = "REMOVE_TOURNAMENT";
+    private static final String LOAD_PARTICIPANT = "LOAD_PARTICIPANT";
+    private static final String DENY_PARTICIPANT = "DENY_PARTICIPANT";
+    private static final String APPROVE_PARTICIPANT = "APPROVE_PARTICIPANT";
 
     //link to servlet of User
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -66,6 +72,9 @@ public class MainController extends HttpServlet {
     private static final String LOAD_ACCOUNT_DETAIL_CONTROLLER = "LoadProfileController";
     private static final String UPDATE_ACCOUNT_CONTROLLER = "UpdateAccountController";
     private static final String SEARCH_TOURNAMENT_CONTROLLER = "SearchTournamentController";
+    private static final String ADD_BIRD_CONTROLLER = "AddBirdController";
+    private static final String GET_BIRD_UPDATE_CONTROLLER = "LoadBirdUpdateController";
+    private static final String UPDATE_BIRD_CONTROLLER = "UpdateBirdController";
 
     // link to servlet of Admin
     private static final String MANAGE_ACCOUNT_CONTROLLER = "ManageAccountController";
@@ -74,13 +83,14 @@ public class MainController extends HttpServlet {
     private static final String MANAGE_TOURNAMENT_CONTROLLER = "LoadTournamentController";
     private static final String LOAD_BIRD_CATEGORY_CONTROLLER = "LoadBirdCategoryController";
     private static final String CREATE_TOURNAMENT_CONTROLLER = "CreateTournamentController";
-    private static final String MANAGE_PARTICIPANT_CONTROLLER = "LoadParticipantController";
+    private static final String MANAGE_PARTICIPANT_CONTROLLER = "ManageParticipantController";
     private static final String REMOVE_TOURNAMENT_CONTROLLER = "RemoveTournamentController";
+    private static final String LOAD_PARTICIPANT_CONTROLLER = "LoadParticipantController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = null;
+        String url = LOAD_HOME_PAGE;
         try {
             String action = request.getParameter("action");
             if (action == null) {
@@ -161,6 +171,24 @@ public class MainController extends HttpServlet {
                         break;
                     case SEARCH_TOURNAMENT:
                         url = SEARCH_TOURNAMENT_CONTROLLER;
+                        break;
+                    case LOAD_PARTICIPANT:
+                        url = LOAD_PARTICIPANT_CONTROLLER;
+                        break;
+                    case DENY_PARTICIPANT:
+                        url = MANAGE_PARTICIPANT_CONTROLLER;
+                        break;
+                    case APPROVE_PARTICIPANT:
+                        url = MANAGE_PARTICIPANT_CONTROLLER;
+                        break;
+                    case ADD_BIRD:
+                        url = ADD_BIRD_CONTROLLER;
+                        break;
+                    case GET_BIRD_UPDATE_USER:
+                        url = GET_BIRD_UPDATE_CONTROLLER;
+                        break;
+                    case UPDATE_BIRD:
+                        url = UPDATE_BIRD_CONTROLLER;
                         break;
                 }
             }

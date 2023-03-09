@@ -21,8 +21,10 @@ import round.RoundDAO;
  */
 @WebServlet(name = "UpdateCandidatesController", urlPatterns = {"/UpdateCandidatesController"})
 public class UpdateCandidatesController extends HttpServlet {
+
     private final String ERROR = "error.jsp";
-    private final String TOURNAMENT_DETAIL = "ManageTournamentDetailController";
+    private final String SUCCESS = "ManageRoundController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,36 +38,30 @@ public class UpdateCandidatesController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-            String tid = request.getParameter("tournamentID");
-            String rid = request.getParameter("roundID");
-            String cid = request.getParameter("candidatesID");
-            String rname = request.getParameter("roundName");
-            String rstatus = request.getParameter("roundStatus");
-            String score = request.getParameter("score");
-            String action = request.getParameter("action");
-        try  {
-            if(action.equals("Update")){
-                CandidatesDAO cdao =new CandidatesDAO();
-                if(score == null){
-                    score="0";
+        String tid = request.getParameter("tournamentID");
+        String rid = request.getParameter("roundID");
+        String cid = request.getParameter("candidatesID");
+        String rname = request.getParameter("roundName");
+        String rstatus = request.getParameter("roundStatus");
+        String score = request.getParameter("score");
+        String action = request.getParameter("action");
+        try {
+            if (action.equals("Update")) {
+                CandidatesDAO cdao = new CandidatesDAO();
+                if (score == null) {
+                    score = "0";
                 }
-                if(cdao.updateScore(Integer.parseInt(score), Integer.parseInt(cid))){
-                   url = TOURNAMENT_DETAIL;
-                }else{
+                if (cdao.updateScore(Integer.parseInt(score), Integer.parseInt(cid))) {
+                    url = SUCCESS;
+                } else {
                     url = ERROR;
                 }
-                
             }
-           
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(url==ERROR){
-                request.getRequestDispatcher(url).forward(request, response);
-            }else{
-                url="RoundController?roundID="+rid+"&roundStatus="+rstatus+"&roundName="+rname+"&tournamentID="+tid;
-                request.getRequestDispatcher("RoundController").forward(request, response);
-            }
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -24,17 +24,17 @@ public class RegistrationFormDTO implements Serializable {
     private BirdDTO bird;
     private TournamentDTO tour;
     private AccountDTO acc;
-    
-    
+
     public RegistrationFormDTO() {
     }
-    
+
     public RegistrationFormDTO(int formStatus, TournamentDTO tour, BirdDTO bird, AccountDTO acc) {
         this.formStatus = formStatus;
         this.tour = tour;
         this.bird = bird;
         this.acc = acc;
     }
+
     public RegistrationFormDTO(int registrationFormID, TournamentDTO tour, AccountDTO acc, BirdDTO bird, int formStatus) {
         this.registrationFormID = registrationFormID;
         this.tour = tour;
@@ -42,7 +42,7 @@ public class RegistrationFormDTO implements Serializable {
         this.bird = bird;
         this.formStatus = formStatus;
     }
-    
+
     public RegistrationFormDTO(int tournamentID, TournamentDTO tour) {
         this.tournamentID = tournamentID;
         this.tour = tour;
@@ -50,6 +50,14 @@ public class RegistrationFormDTO implements Serializable {
 
     public RegistrationFormDTO(BirdDTO bird) {
         this.bird = bird;
+    }
+
+    public RegistrationFormDTO(int registrationFormID, int tournamentID, AccountDTO acc, BirdDTO bird, int formStatus) {
+        this.registrationFormID = registrationFormID;
+        this.tournamentID = tournamentID;
+        this.acc = acc;
+        this.bird = bird;
+        this.formStatus = formStatus;
     }
 
     public int getRegistrationFormID() {

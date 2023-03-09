@@ -5,66 +5,55 @@
  */
 package controller;
 
+import account.AccountDTO;
+import bird.BirdDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
-import round.RoundDAO;
-import round.RoundDTO;
-import tournament.TournamentDAO;
-import tournament.TournamentDTO;
 
-@WebServlet(name = "TournamentDetailController", urlPatterns = {"/TournamentDetailController"})
-public class TournamentDetailController extends HttpServlet {
+/**
+ *
+ * @author Admin
+ */
+@WebServlet(name = "AddBirdController", urlPatterns = {"/AddBirdController"})
+public class AddBirdController extends HttpServlet {
 
-    private final static String SUCCESS = "tournamentDetail.jsp";
-    private final static String ERROR = "error.jsp";
+    private final String SUCCESS = "LoadBirdByAccountID";
+    private final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String url = ERROR;
+            HttpSession s = request.getSession();
+            String url = null;
+            int accID = Integer.valueOf(request.getParameter("accID"));
             try {
-                TournamentDTO tour = null;
-                String rid = request.getParameter("roundID");
-                String rname = request.getParameter("roundName");
-                String rstatus = request.getParameter("roundStatus");
-                String tournamentID = request.getParameter("ID");
-                TournamentDAO tdao = new TournamentDAO();
-                tour = tdao.getDetail(Integer.parseInt(tournamentID));
-                if (tour != null) {
-                    RoundDAO roudao = new RoundDAO();
-                    request.setAttribute("utour", tour);
-                    RegistrationFormDAO rdao = new RegistrationFormDAO();
-                    int num = rdao.getNumberRegistered(1, Integer.parseInt(tournamentID));
-                    if (num == 0) {
-                        num = rdao.getNumberRegistered(2, Integer.parseInt(tournamentID));
-                    }
-                    request.setAttribute("numberPlayer", num);
-                    if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
-                        url = SUCCESS;
-                    } else if (tour.getTournamentStatus() == 5 || tour.getTournamentStatus() == 4 || tour.getTournamentStatus() == 3) {
-                        List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
-                        request.setAttribute("urounds", rounds);
-                        url = SUCCESS;
-                    }
+                String name = request.getParameter("bName");
+                String height = request.getParameter("bHeight");
+                String weight = request.getParameter("bWeight");
+                String color = request.getParameter("bColor");
+                String bCate = request.getParameter("bCate");
+                String denfitication = request.getParameter("denfitication");
+                String image = "image/" + request.getParameter("image");
+                AccountDTO accountID = (AccountDTO) s.getAttribute("acc");
+                BirdDAO bDAO = new BirdDAO();
+                int result = bDAO.addBird(accountID.getAccountID(), name, Integer.parseInt(height), Integer.parseInt(weight), color, Integer.parseInt(bCate), denfitication, image, 1);
+                if (result != 0) {
+                    url = SUCCESS;
                 } else {
                     url = ERROR;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                request.getRequestDispatcher(url).forward(request, response);
             }
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

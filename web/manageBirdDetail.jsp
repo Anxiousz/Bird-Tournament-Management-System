@@ -27,7 +27,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <title>Bird Repository</title>
+        <title>Bird Detail</title>
     </head>
     <body>
         <header>
@@ -35,47 +35,42 @@
         </header>
         <section>
             <div class="bird-repository container">
-                <div class="bird-add-site">
-                    <a href="addBirdForm.jsp"><i class="fa-solid fa-plus"></i> Add Bird</a>
-                </div>
                 <div class="bird-repositoryp-main-card container">
-                    <c:forEach var="bird" items="${birdList}">
-                        <form action="MainController" method="POST">
-                            <div class="card" style="width: 40rem; height: auto;">
-                                <div class="img-card-container">
-                                    <img class="card-img-top" style="width: 40rem; height: 30rem;" name="bphoto"
-                                         src="${bird.birdPhoto}"
-                                         alt="Card image cap">  
-                                    <p>
-                                        <c:choose>
-                                            <c:when test="${bird.birdStatus == 0}">Status: Dead</c:when>
-                                            <c:when test="${bird.birdStatus == 1}">Status: Alive</c:when>
-                                            <c:when test="${bird.birdStatus == 2}">Status: Unvailable</c:when>
-                                        </c:choose>
-                                    </p>
-                                </div>
+                    <div class="card" style="width: 40rem; height: auto;">
+                        <div class="img-card-container">
+                            <img class="card-img-top"
+                                 src="${bird.birdPhoto}"
+                                 alt="Card image cap">  
+                            <p>
+                                <c:choose>
+                                    <c:when test="${bird.birdStatus == 0}">Status: Dead</c:when>
+                                    <c:when test="${bird.birdStatus == 1}">Status: Alive</c:when>
+                                    <c:when test="${bird.birdStatus == 2}">Status: Unvailable</c:when>
+                                </c:choose>
+                            </p>
+                        </div>
 
-                                <div class="card-body main-body-bird">
-                                    <div class="left-main-site">
-                                        <li>Bird Name</li>
-                                        <li>Height</li>
-                                        <li>Weight</li>
-                                        <li>Color</li>
-                                    </div>
-                                    <div class="right-main-site">
-                                        <li>${bird.getBirdName()}</li>
-                                        <li>${bird.getHeight()}</li>
-                                        <li>${bird.getWeight()}</li>
-                                        <li>${bird.getColor()}</li>
-                                    </div>
-                                </div>
-                                <div class="btn-update-bird">
-                                    <a href="MainController?action=getBirdUpdate&birdID=${bird.birdID}" class="btn btn-success">Update Bird</a>
-                                </div>     
+                        <div class="card-body main-body-bird">
+                            <div class="left-main-site">
+                                <li>Account ID</li>
+                                <li>Bird ID</li>
+                                <li>Bird Name</li>
+                                <li>Height</li>
+                                <li>Weight</li>
+                                <li>Color</li>
+                                <li>Dentification</li>
                             </div>
-                        </c:forEach>
-                    </form> 
-
+                            <div class="right-main-site">
+                                <li>${bird.getAccountID()}</li>
+                                <li>${bird.getBirdID()}</li>
+                                <li>${bird.getBirdName()}</li>
+                                <li>${bird.getHeight()}</li>
+                                <li>${bird.getWeight()}</li>
+                                <li>${bird.getColor()}</li>
+                                <li>${bird.getDentification()}</li>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -20,7 +20,7 @@
     </head>
     <body>
         <div class="footer-site"> 
-            <p class="footer-heading">@Copyrigh2023</p>
+            <p class="footer-heading">@Copyright2023</p>
             <div class="wrapper">
                 <a href=""><div class="icon facebook">
                         <i class="fab fa-facebook-f"></i>

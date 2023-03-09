@@ -17,10 +17,6 @@ import java.util.List;
 import tournament.TournamentDTO;
 import utils.DBContext;
 
-/**
- *
- * @author anh12
- */
 public class RegistrationFormDAO implements Serializable {
 
     private static final String INSERT_FORM = "INSERT INTO RegistrationForm([tournamentID],[accountID],[birdID],[formStatus])\n"
@@ -35,7 +31,7 @@ public class RegistrationFormDAO implements Serializable {
             + " FROM  Tournament t\n"
             + "WHERE t.tournamentID =  ?";
 
-    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName, t.location, t.fee, t.dateTime, t.minParticipant, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.phone, a.email, a.name\n"
+    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.phone, a.email, a.name\n"
             + "FROM Tournament t\n"
             + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
             + "JOIN Bird b ON b.birdID = r.birdID\n"
@@ -49,6 +45,40 @@ public class RegistrationFormDAO implements Serializable {
     public static String NUMBER_CURRENT_REGISTERED = "SELECT COUNT(formID) as numberOfPlayer\n"
             + "FROM RegistrationForm\n"
             + "WHERE formStatus = ? AND tournamentID = ?";
+    private final static String GET_FORM_BY_TOURNAMENTID = "SELECT r.formID,r.tournamentID,a.name, b.birdName, r.formStatus\n"
+            + "FROM RegistrationForm r \n"
+            + "JOIN Account a ON r.accountID = a.accountID \n"
+            + "JOIN Bird b ON r.birdID = b.birdID\n"
+            + "WHERE r.tournamentID = ?";
+    private final static String MANAGE_FORM_BY_ID = "UPDATE RegistrationForm \n"
+            + "SET formStatus = ?\n"
+            + "WHERE formID = ?";
+
+    public boolean manageForm(int formStatus, int formID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(MANAGE_FORM_BY_ID);
+                stm.setInt(1, formStatus);
+                stm.setInt(2, formID);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
 
     public boolean insertForm(int tournamentID, int accountID, int birdID, int formStatus) throws SQLException {
         RegistrationFormDTO r = null;
@@ -172,6 +202,7 @@ public class RegistrationFormDAO implements Serializable {
                 while (rs.next()) {
                     int formStatus = rs.getInt("formStatus");
                     String tournamentName = rs.getString("tournamentName");
+                    int tournamentID = rs.getInt("tournamentID");
                     String location = rs.getString("location");
                     String fee = rs.getString("fee");
                     String dateTime = rs.getString("dateTime");
@@ -184,7 +215,7 @@ public class RegistrationFormDAO implements Serializable {
                     int phone = rs.getInt("phone");
                     String email = rs.getString("email");
                     String name = rs.getString("name");
-                    TournamentDTO t = new TournamentDTO(tournamentName, location, fee, dateTime, minParticipant);
+                    TournamentDTO t = new TournamentDTO(tournamentID, tournamentName, location, fee, dateTime, minParticipant);
                     BirdDTO b = new BirdDTO(birdPhoto, birdName, height, weight, color);
                     AccountDTO a = new AccountDTO(phone, email, name);
                     RegistrationFormDTO r = new RegistrationFormDTO(formStatus, t, b, a);
@@ -269,5 +300,44 @@ public class RegistrationFormDAO implements Serializable {
             }
         }
         return num;
+    }
+
+    public List<RegistrationFormDTO> loadFormByTournamentID(int tournamentID) throws SQLException {
+        List<RegistrationFormDTO> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_FORM_BY_TOURNAMENTID);
+                stm.setInt(1, tournamentID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int formID = rs.getInt("formID");
+                    int ntournamentID = rs.getInt("tournamentID");
+                    String accName = rs.getString("name");
+                    String birdName = rs.getString("birdName");
+                    int formStatus = rs.getInt("formStatus");
+                    AccountDTO acc = new AccountDTO(accName);
+                    BirdDTO bird = new BirdDTO(birdName);
+                    RegistrationFormDTO form = new RegistrationFormDTO(formID, tournamentID, acc, bird, formStatus);
+                    list.add(form);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
     }
 }

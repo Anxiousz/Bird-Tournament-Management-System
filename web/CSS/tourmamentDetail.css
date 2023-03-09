@@ -87,6 +87,18 @@ body{
     font-family: 'Baloo';font-size: 22px;
     color: #A87B24;
 }
+.basic-tnm-form-categories a{
+    padding-bottom: 20px;
+    font-family: 'Baloo';
+    font-size: 22px;
+    color: #A87B24;
+}
+.basic-tnm-form-categories a:hover{
+    padding-bottom: 20px;
+    font-family: 'Baloo';
+    font-size: 22px;
+    color: #A87B24;
+}
 .prize-site{
     width: 50%;
     height: auto;
@@ -116,7 +128,7 @@ body{
 .both-prize-player-site{
     width: 100%;
     display: flex;
-    
+
 }
 /* Section 4 */
 .avatar-sponsor {
@@ -234,4 +246,59 @@ body{
 .btn-regis:hover{
     opacity: 0.5;
 }
-    
+.round-detail{
+    width: 100%;
+    display: flex;
+}
+.round-detail-site{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+}
+.round-detail-site p{
+    font-family: 'Baloo';
+    font-size: 20px;
+    color: #A87B24;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+.round-detail-site p input{
+    font-size: 20px;
+    padding-left: 10px;
+}
+table{
+    align-content: center;
+    text-align: center;
+}
+thead tr th{
+    font-size: 17.5px;
+    color: #A87B24 !important;
+    font-weight: bold;
+}
+tbody tr{
+    font-size: 15px;
+}
+tbody tr td input{
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+.candidate-heading{
+    font-family: 'Baloo';
+    font-size: 20px;
+    color: #A87B24;
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+

@@ -57,7 +57,6 @@
                                     <li><i class="fa-sharp fa-solid fa-signature"></i>   ${list.acc.name}</li>
                                     <li><i class="fa-solid fa-envelope"></i>   ${list.acc.email}</li>
                                 </div>
-
                             </div>
                             <div class="tnm-right-match-notification">
                                 <div class="tnm-right-match-top-info-tournament">
@@ -124,7 +123,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
+                                <div class="right-button">
+                                    <a class="custom-button_3" href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tour.tournamentID}">My tournament</a>
+                                </div> 
                             </div>
                         </div>
                     </div>

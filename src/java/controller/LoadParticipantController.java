@@ -7,61 +7,36 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import tournament.TournamentDAO;
+import javax.servlet.http.HttpSession;
+import registrationform.RegistrationFormDAO;
+import registrationform.RegistrationFormDTO;
 
-@WebServlet(name = "UpdateTournamentController", urlPatterns = {"/UpdateTournamentController"})
-public class UpdateTournamentController extends HttpServlet {
+@WebServlet(name = "LoadParticipantController", urlPatterns = {"/LoadParticipantController"})
+public class LoadParticipantController extends HttpServlet {
 
     private final String ERROR = "error.jsp";
-    private final String TOURNAMENT_DETAIL = "ManageTournamentDetailController";
+    private final String SUCCESS = "tournamentParticipant.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String url = ERROR;
+            String url = null;
             try {
-                String tid = request.getParameter("tournamentID");
-                String tstatus = request.getParameter("tournamentStatus");
-                String dateTime = request.getParameter("dateTime");
-                String location = request.getParameter("location");
-                String fee = request.getParameter("fee");
-                String prize = request.getParameter("prize");
-                String action = request.getParameter("action");
-                String desc = request.getParameter("description");
-                String minp = request.getParameter("minp");
-                String maxp = request.getParameter("maxp");
-                int tourstatus = -1;
-                if (tstatus.equals("Coming soon")) {
-                    tourstatus = 0;
-                } else if (tstatus.equals("On Going")) {
-                    tourstatus = 3;
-                } else if (tstatus.equals("Finish")) {
-                    tourstatus = 4;
-                } else if (tstatus.equals("Close form")) {
-                    tourstatus = 2;
-                } else if (tstatus.equals("Open form")) {
-                    tourstatus = 1;
-                } else if (tstatus.equals("Cancel")) {
-                    tourstatus = 6;
+                int tournamentID = Integer.valueOf(request.getParameter("tournamentID"));
+                RegistrationFormDAO dao = new RegistrationFormDAO();
+                List<RegistrationFormDTO> participant = dao.loadFormByTournamentID(tournamentID);
+                if (participant != null) {
+                    request.setAttribute("participant", participant);
+                    url = SUCCESS;
                 } else {
-                }
-                String last3 = fee.substring(fee.length() - 3);
-                if (last3.equals("VND")) {
-                    fee = fee.substring(0, fee.length() - 3);
-                }
-                if (action.equals("Update Tournament")) {
-                    TournamentDAO tdao = new TournamentDAO();
-                    if (tdao.updateTournament(tourstatus, dateTime, Integer.parseInt(minp), Integer.parseInt(maxp), desc, location, fee, prize, Integer.parseInt(tid))) {
-                        url = TOURNAMENT_DETAIL;
-                    } else {
-                        url = ERROR;
-                    }
+                    url = ERROR;
                 }
             } catch (Exception e) {
                 e.printStackTrace();

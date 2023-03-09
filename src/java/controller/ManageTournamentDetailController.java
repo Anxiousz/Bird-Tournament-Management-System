@@ -35,17 +35,7 @@ public class ManageTournamentDetailController extends HttpServlet {
     private final String ERROR = "error.jsp";
     private final String SUCCESS = "LoadTournamentController";
     private final String TOURNAMENT_DETAIL = "manageTournamentDetail.jsp";
-    
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -56,7 +46,6 @@ public class ManageTournamentDetailController extends HttpServlet {
         String rstatus = request.getParameter("roundStatus");
         String tournamentID = request.getParameter("tournamentID");
         try {
-            
             TournamentDAO tdao = new TournamentDAO();
             tour = tdao.getDetail(Integer.parseInt(tournamentID));
             if (tour != null) {
@@ -64,11 +53,18 @@ public class ManageTournamentDetailController extends HttpServlet {
                 request.setAttribute("tour", tour);
                 RegistrationFormDAO rdao = new RegistrationFormDAO();
                 int num = rdao.getNumberRegistered(1, Integer.parseInt(tournamentID));
-                    if(num == 0){
-                        num = rdao.getNumberRegistered(2, Integer.parseInt(tournamentID));
-                    }
-                    request.setAttribute("numberPlayer", num);
+                if (num == 0) {
+                    num = rdao.getNumberRegistered(2, Integer.parseInt(tournamentID));
+                }
+                request.setAttribute("confirmedForm", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
+                request.setAttribute("numberPlayer", num);
                 if (tour.getTournamentStatus() == 0) {
+                    url = TOURNAMENT_DETAIL;
+                } else if (tour.getTournamentStatus() == 1) {
+                    url = TOURNAMENT_DETAIL;
+                } else if (tour.getTournamentStatus() == 2) {
+                    url = TOURNAMENT_DETAIL;
+                } else if (tour.getTournamentStatus() == 6) {
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 5) {
                     List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
@@ -116,7 +112,6 @@ public class ManageTournamentDetailController extends HttpServlet {
                                 roud.setRoundStatus(0);
                                 roudao.insertRound(roud);
                             }
-                            
                         } else if (numberOfPlayer >= 10) {
                             String[] names = {"Qualified", "Top4"};
                             for (String name : names) {
@@ -139,17 +134,14 @@ public class ManageTournamentDetailController extends HttpServlet {
                         url = TOURNAMENT_DETAIL;
                     }
                 }
-
             } else {
                 url = ERROR;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-                request.getRequestDispatcher(url).forward(request, response);
-            
-            
+            request.getRequestDispatcher(url).forward(request, response);
+
         }
     }
 

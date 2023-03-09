@@ -25,8 +25,7 @@ public class TournamentDTO implements Serializable {
     private String image;
     private int tournamentStatus;
 
-    
-     public TournamentDTO(int tournamentID, BirdCategoriesDTO category, String tournamentName, String description, String sponsor, String prize, int minParticipant, int maxParticipant, String dateTime, String fee, String location, String image, int tournamentStatus) {
+    public TournamentDTO(int tournamentID, BirdCategoriesDTO category, String tournamentName, String description, String sponsor, String prize, int minParticipant, int maxParticipant, String dateTime, String fee, String location, String image, int tournamentStatus) {
         this.tournamentID = tournamentID;
         this.category = category;
         this.tournamentName = tournamentName;
@@ -41,6 +40,7 @@ public class TournamentDTO implements Serializable {
         this.image = image;
         this.tournamentStatus = tournamentStatus;
     }
+
     public TournamentDTO(int tournamentID, String tournamentName, String dateTime, int tournamentStatus, int minParticipant, int maxParticipant, String fee, String prize, String image) {
         this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;
@@ -52,7 +52,7 @@ public class TournamentDTO implements Serializable {
         this.prize = prize;
         this.image = image;
     }
-    
+
     public TournamentDTO(int tournamentID, String image, String tournamentName, int tournamentStatus, String dateTime, String location, String fee, String prize, int minParticipant, String sponsor) {
         this.tournamentID = tournamentID;
         this.image = image;
@@ -96,7 +96,8 @@ public class TournamentDTO implements Serializable {
         this.tournamentStatus = tournamentStatus;
     }
 
-    public TournamentDTO(String tournamentName, String location, String fee, String dateTime, int minParticipant) {
+    public TournamentDTO(int tournamentID, String tournamentName, String location, String fee, String dateTime, int minParticipant) {
+        this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;
         this.location = location;
         this.fee = fee;
@@ -126,7 +127,7 @@ public class TournamentDTO implements Serializable {
     public void setCategory(BirdCategoriesDTO category) {
         this.category = category;
     }
-    
+
     public int getTournamentID() {
         return tournamentID;
     }

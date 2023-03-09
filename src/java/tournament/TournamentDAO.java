@@ -50,15 +50,15 @@ public class TournamentDAO implements Serializable {
             + "WHERE t.tournamentName LIKE ?\n"
             + "ORDER BY t.tournamentID;";
 
-    private final static String TOURNAMENT_DETAIL = "SELECT tournamentID, image, tournamentName, tournamentStatus, FORMAT(Tournament.dateTime,'dd/MM/yyyy HH:mm') AS dateTime, location, fee, prize, sponsor\n"
+    private final static String TOURNAMENT_DETAIL = "SELECT tournamentID, image, tournamentName, description, tournamentStatus, minParticipant ,maxParticipant, FORMAT(Tournament.dateTime,'dd/MM/yyyy HH:mm') AS dateTime, location, fee, prize, sponsor\n"
             + "FROM Tournament\n"
             + "WHERE tournamentID = ?";
 
     private final static String UPDATE_TOURNAMENT = "UPDATE Tournament\n"
-            + "SET  tournamentStatus = ? , dateTime = TRY_CONVERT(datetime,?,103) , location = ?, fee = ?, prize = ?\n"
+            + "SET  tournamentStatus = ? , dateTime = TRY_CONVERT(datetime,?,103), minParticipant = ? , maxParticipant = ? , description = ?, location = ?, fee = ?, prize = ?\n"
             + "WHERE tournamentID = ?";
 
-    public boolean updateTournament(int tstatus, String dateTime, String location, String fee, String prize, int TID) throws SQLException {
+    public boolean updateTournament(int tstatus, String dateTime, int minp, int maxp, String desc, String location, String fee, String prize, int TID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -68,10 +68,13 @@ public class TournamentDAO implements Serializable {
                 stm = con.prepareStatement(UPDATE_TOURNAMENT);
                 stm.setInt(1, tstatus);
                 stm.setString(2, dateTime);
-                stm.setString(3, location);
-                stm.setString(4, fee);
-                stm.setString(5, prize);
-                stm.setInt(6, TID);
+                stm.setInt(3, minp);
+                stm.setInt(4, maxp);
+                stm.setString(5, desc);
+                stm.setString(6, location);
+                stm.setString(7, fee);
+                stm.setString(8, prize);
+                stm.setInt(9, TID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
 
@@ -405,12 +408,15 @@ public class TournamentDAO implements Serializable {
                     tour.setTournamentID(rs.getInt(1));
                     tour.setImage(rs.getString(2));
                     tour.setTournamentName(rs.getString(3));
-                    tour.setTournamentStatus(rs.getInt(4));
-                    tour.setDateTime(rs.getString(5));
-                    tour.setLocation(rs.getString(6));
-                    tour.setFee(rs.getString(7));
-                    tour.setPrize(rs.getString(8));
-                    tour.setSponsor(rs.getString(9));
+                    tour.setDescription(rs.getString(4));
+                    tour.setTournamentStatus(rs.getInt(5));
+                    tour.setMinParticipant(rs.getInt(6));
+                    tour.setMaxParticipant(rs.getInt(7));
+                    tour.setDateTime(rs.getString(8));
+                    tour.setLocation(rs.getString(9));
+                    tour.setFee(rs.getString(10));
+                    tour.setPrize(rs.getString(11));
+                    tour.setSponsor(rs.getString(12));
                     return tour;
                 }
             }

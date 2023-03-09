@@ -30,10 +30,13 @@ public class BirdDTO implements Serializable {
     private int birdStatus;
     private AchievementDTO achivement;
 
-    public BirdDTO(){
+    public BirdDTO() {
     }
-    
-    
+
+    public BirdDTO(String birdName) {
+        this.birdName = birdName;
+    }
+
     public BirdDTO(int birdID, AccountDTO account, BirdCategoriesDTO birdCategory, String birdName, String birdPhoto, String height, String weight, String color, String dentification, int birdStatus) {
         this.birdID = birdID;
         this.account = account;
@@ -46,7 +49,7 @@ public class BirdDTO implements Serializable {
         this.dentification = dentification;
         this.birdStatus = birdStatus;
     }
-    
+
     public BirdDTO(int birdID, int accountID, String birdName, String birdPhoto, String height, String weight, String color, int birdStatus, String dentification, AchievementDTO achivement) {
         this.birdID = birdID;
         this.accountID = accountID;
@@ -104,7 +107,6 @@ public class BirdDTO implements Serializable {
         this.birdPhoto = birdPhoto;
     }
 
-   
     public BirdDTO(String birdName, String height, String weight, String color) {
         this.birdName = birdName;
         this.height = height;
@@ -249,6 +251,5 @@ public class BirdDTO implements Serializable {
     public String toString() {
         return "BirdDTO{" + "birdID=" + birdID + ", accountID=" + accountID + ", account=" + account + ", birdCategory=" + birdCategory + ", birdName=" + birdName + ", birdPhoto=" + birdPhoto + ", height=" + height + ", weight=" + weight + ", color=" + color + ", categoriesID=" + categoriesID + ", dentification=" + dentification + ", birdStatus=" + birdStatus + ", achivement=" + achivement + '}';
     }
-
 
 }

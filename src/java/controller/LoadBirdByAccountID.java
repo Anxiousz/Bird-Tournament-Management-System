@@ -8,6 +8,8 @@ package controller;
 import account.AccountDTO;
 import bird.BirdDAO;
 import bird.BirdDTO;
+import birdcategories.BirdCategoriesDAO;
+import birdcategories.BirdCategoriesDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -44,13 +46,16 @@ public class LoadBirdByAccountID extends HttpServlet {
             String url = ERROR;
             HttpSession s = request.getSession();
             BirdDAO bird = new BirdDAO();
+            BirdCategoriesDAO cate = new BirdCategoriesDAO();
             try {
                 int accountID = Integer.valueOf(request.getParameter("accID"));
                 List<BirdDTO> Blist = bird.getAllBirdByAccountID(accountID);
-                if (Blist == null) {
+                List<BirdCategoriesDTO> list_cate = cate.LoadBirdCate();
+                if (Blist == null || list_cate == null) {
                     url = ERROR;
                 } else {
                     s.setAttribute("birdList", Blist);
+                    s.setAttribute("BIRD_CATE", list_cate);
                     url = SUCCESS;
                 }
             } catch (Exception e) {

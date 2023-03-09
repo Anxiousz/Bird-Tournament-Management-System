@@ -51,6 +51,79 @@ public class BirdDAO implements Serializable {
 
     private static final String DELETE_BIRD = "DElETE FROM Bird WHERE birdID = ? ";
 
+    private static final String ADD_BIRD = "INSERT INTO Bird(accountID,categoriesID,birdName,birdPhoto,height,weight,color,dentification,birdStatus)\n"
+            + "VALUES(?,?,?,?,?,?,?,?,?)";
+
+    private static final String UPDATE_BIRD_BY_ACCOUNT_ID = "UPDATE Bird\n"
+            + "SET categoriesID = ?, birdName=?, birdPhoto=?,height = ?, weight = ?, color = ?, dentification =?, birdStatus =?\n"
+            + "WHERE birdID = ? AND accountID = ?;";
+
+    public boolean updateBirdByAccountID(int categoriesID, String birdName, String birdPhoto, int height, int weight, String color, String dentification, int birdStatus, int birdID, int accountID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(UPDATE_BIRD_BY_ACCOUNT_ID);
+                stm.setInt(1, categoriesID);
+                stm.setString(2, birdName);
+                stm.setString(3, birdPhoto);
+                stm.setInt(4, height);
+                stm.setInt(5, weight);
+                stm.setString(6, color);
+                stm.setString(7, dentification);
+                stm.setInt(8, birdStatus);
+                stm.setInt(9, birdID);
+                stm.setInt(10, accountID);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
+    public static int addBird(int accountID, String name, int height, int weight, String color, int categoriesID, String denfitication, String image, int birdStatus) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(ADD_BIRD);
+                stm.setInt(1, accountID);
+                stm.setInt(2, categoriesID);
+                stm.setString(3, name);
+                stm.setString(4, image);
+                stm.setInt(5, height);
+                stm.setInt(6, weight);
+                stm.setString(7, color);
+                stm.setString(8, denfitication);
+                stm.setInt(9, birdStatus);
+                result = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
     public BirdDTO getBirdFormByID(int birdID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -197,6 +270,46 @@ public class BirdDAO implements Serializable {
             }
         }
         return list;
+    }
+
+    public BirdDTO getBirdByAccountID(int accountID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BIRD_BY_ACCOUNT);
+                stm.setInt(1, accountID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    BirdDTO bird = new BirdDTO();
+                    bird.setBirdID(rs.getInt(1));
+                    bird.setAccountID(rs.getInt(2));
+                    bird.setBirdName(rs.getString(3));
+                    bird.setBirdPhoto(rs.getString(4));
+                    bird.setHeight(rs.getString(5));
+                    bird.setWeight(rs.getString(6));
+                    bird.setColor(rs.getString(7));
+                    bird.setBirdStatus(rs.getInt(8));
+                    bird.setDentification(rs.getString(9));
+                    return bird;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
     }
 
     public List<BirdDTO> manageBird() throws SQLException {

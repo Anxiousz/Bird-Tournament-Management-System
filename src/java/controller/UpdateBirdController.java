@@ -5,25 +5,29 @@
  */
 package controller;
 
-import candidates.CandidatesDAO;
+import account.AccountDTO;
+import bird.BirdDAO;
+import bird.BirdDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import round.RoundDAO;
-import tournament.TournamentDAO;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author thang
+ * @author anh12
  */
-@WebServlet(name = "UpdateRoundController", urlPatterns = {"/UpdateRoundController"})
-public class UpdateRoundController extends HttpServlet {
+@WebServlet(name = "UpdateBirdController", urlPatterns = {"/UpdateBirdController"})
+public class UpdateBirdController extends HttpServlet {
+
+    private final String SUCCESS = "LoadBirdByAccountID";
     private final String ERROR = "error.jsp";
-    private final String SUCCESS = "ManageRoundController";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,53 +40,35 @@ public class UpdateRoundController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-            String tid = request.getParameter("tournamentID");
-            String rid = request.getParameter("roundID");
-            String rname = request.getParameter("roundName");
-            String typeofround = request.getParameter("typeOfRound");
-            String birdattend = request.getParameter("birdAttend");
-            String rstatus = request.getParameter("roundStatus");
-            String birdPass = request.getParameter("birdPass");
-            String action = request.getParameter("action");
-            int roundtatus = -1;
-            if(rstatus.equals("Coming soon")){
-                roundtatus = 0;
-            }else if (rstatus.equals("On Going")){
-                roundtatus = 1;
-            }else if (rstatus.equals("Finish")){
-                roundtatus = 2;
-            }else{
-            }
-        try  {
-            if(action.equals("Update Round")){
-                RoundDAO rdao =new RoundDAO();
-                CandidatesDAO cdao = new CandidatesDAO();
-                if(cdao.getNumberScored(Integer.parseInt(rid)) == 0 && rstatus.equals("Finish")){
-                    request.setAttribute("error", "please update score");
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession s = request.getSession();
+            String url = null;
+            int accID = Integer.valueOf(request.getParameter("accID"));
+            int birdID = Integer.valueOf(request.getParameter("birdID"));
+            try {
+                String name = request.getParameter("bName");
+                String bCate = request.getParameter("bCate");
+                String height = request.getParameter("bHeight");
+                String weight = request.getParameter("bWeight");
+                String color = request.getParameter("bColor");
+                String denfitication = request.getParameter("denfitication");
+                String image = "image/" + request.getParameter("image");
+                String bStatus = request.getParameter("bStatus");
+                BirdDAO bDAO = new BirdDAO();
+                boolean result = bDAO.updateBirdByAccountID(Integer.valueOf(bCate), name, image, Integer.valueOf(height), Integer.valueOf(weight), color, denfitication, Integer.valueOf(bStatus), birdID, accID);
+                if (result == true) {
                     url = SUCCESS;
-                }else {
-                if(rdao.updateRound(typeofround, Integer.parseInt(birdattend), Integer.parseInt(birdPass),roundtatus,Integer.parseInt(rid))){
-                   url = SUCCESS;
-                }else{
+                } else {
                     url = ERROR;
                 }
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-           
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally{
-            if(url==ERROR){
-                request.getRequestDispatcher(url).forward(request, response);
-            }else{
-                url="ManageRoundController?roundID="+rid+"&roundStatus="+roundtatus+"&roundName="+rname+"&tournamentID="+tid;
-                request.getRequestDispatcher(url).forward(request, response);
-            }
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

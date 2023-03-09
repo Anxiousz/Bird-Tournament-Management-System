@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -82,6 +83,14 @@ public class ManageBirdController extends HttpServlet {
                     }
                 }
                 if (action.equals("Detail")) {
+                    BirdDAO dao = new BirdDAO();
+                    bird = dao.getByID(Integer.parseInt(birdID));
+                    if (bird != null) {
+                        request.setAttribute("bird", bird);
+                        url = "manageBirdDetail.jsp";
+                    } else {
+                        url = ERROR;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

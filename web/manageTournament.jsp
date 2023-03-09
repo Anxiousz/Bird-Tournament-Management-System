@@ -50,7 +50,7 @@
                                     </c:choose>
                                 </td>
                                 <td>
-                                    <a class="custom-button_2" href="MainController?action=MANAGE_PARTICIPANT&tournamentID=${t.tournamentID}">View</a>
+                                    <a class="custom-button_2" href="MainController?action=LOAD_PARTICIPANT&tournamentID=${t.tournamentID}">View</a>
                                 </td>
                                 <td>
                                     <a class="custom-button_2" href="MainController?action=REMOVE_TOURNAMENT&tournamentID=${t.tournamentID}">Remove</a>

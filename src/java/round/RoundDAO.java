@@ -17,26 +17,120 @@ import utils.DBContext;
 
 public class RoundDAO implements Serializable {
 
-    private static String ADD_ROUND =    
-            "INSERT INTO Round(tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus) VALUES(?,?,?,?,?,?)";
-    
-    private static String GET_ALL_BY_TID = 
-            "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus\n" +
-            "FROM Round\n" +
-            "WHERE tournamentID = ? ";
-    
-    private static String GET_ROUND_BY_RID= 
-            "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus FROM Round WHERE roundID = ? ";
-    
+    private static String ADD_ROUND
+            = "INSERT INTO Round(tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus) VALUES(?,?,?,?,?,?)";
+
+    private static String GET_ALL_BY_TID
+            = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus\n"
+            + "FROM Round\n"
+            + "WHERE tournamentID = ? ";
+
+    private static String GET_ROUND_BY_RID
+            = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus FROM Round WHERE roundID = ? ";
+
     public static String UPDATE_ATTEND_PASS_CANDIDATES
             = "UPDATE Round \n"
             + "SET     birdAttend = ?, birdPass = ? \n"
             + "WHERE  roundID = ? ";
-    private final static String UPDATE_ROUND = 
-            "UPDATE Round\n"
+    private final static String UPDATE_ROUND
+            = "UPDATE Round\n"
             + "SET  typeOfRound = ? , birdAttend = ? , birdPass = ? , roundStatus = ?\n"
             + "WHERE roundID = ? ";
-    
+
+    public static String GET_NUMBER_OF_ROUND
+            = "SELECT COUNT(roundID) as numberOfRound\n"
+            + "FROM Round\n"
+            + "WHERE tournamentID = ? ";
+    public static String DELETE_ROUND_BY_NAME
+            = "DELETE FROM Round WHERE tournamentID = ? AND roundName = ? ";
+    private final static String UPDATE_ROUND_NAME
+            = "UPDATE Round\n"
+            + "SET  roundName = ? \n"
+            + "WHERE roundID = ? ";
+
+    public boolean updateRoundName(String rname, int RID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(UPDATE_ROUND_NAME);
+                stm.setString(1, rname);
+                stm.setInt(2, RID);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean deleteByName(int TID, String RN) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(DELETE_ROUND_BY_NAME);
+                stm.setInt(1, TID);
+                stm.setString(2, RN);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
+
+    public int getNumberOfRound(int TID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_NUMBER_OF_ROUND);
+                stm.setInt(1, TID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int num = rs.getInt(1);
+                    return num;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
+
     public boolean updateRound(String type, int birdA, int birdP, int rstatus, int RID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -65,7 +159,8 @@ public class RoundDAO implements Serializable {
         }
         return check;
     }
- public boolean insertRound(RoundDTO round) throws SQLException {
+
+    public boolean insertRound(RoundDTO round) throws SQLException {
         boolean check = true;
         Connection con = null;
         PreparedStatement stm = null;
@@ -76,7 +171,7 @@ public class RoundDAO implements Serializable {
                 stm.setInt(1, round.getTournament().getTournamentID());
                 stm.setString(2, round.getRoundName());
                 stm.setString(3, round.getTypeOfRound());
-                stm.setInt(4,round.getBirdPass());
+                stm.setInt(4, round.getBirdPass());
                 stm.setInt(5, round.getBirdAttend());
                 stm.setInt(6, round.getRoundStatus());
                 check = stm.executeUpdate() > 0 ? true : false;
@@ -93,7 +188,8 @@ public class RoundDAO implements Serializable {
         }
         return check;
     }
- public List<RoundDTO> getAllByTID(int tournamentID) throws SQLException {
+
+    public List<RoundDTO> getAllByTID(int tournamentID) throws SQLException {
         List<RoundDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
@@ -133,6 +229,7 @@ public class RoundDAO implements Serializable {
         }
         return list;
     }
+
     public boolean updateAttendPassCandidates(int attend, int pass, int RID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -159,6 +256,7 @@ public class RoundDAO implements Serializable {
         }
         return check;
     }
+
     public RoundDTO getRoundByID(int roundID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
