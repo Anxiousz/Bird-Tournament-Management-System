@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
@@ -121,9 +122,9 @@ public class CandidatesDAO implements Serializable {
             = "UPDATE Candidates \n"
             + "SET     result = ? \n"
             + "WHERE  candidatesID = ? ";
-    public static String UPDATE_SCORE
+    public static String UPDATE_SCORE_RESULT
             = "UPDATE Candidates \n"
-            + "SET     score = ? \n"
+            + "SET     score = ?, result = ?, candidatesStatus = ? \n"
             + "WHERE  candidatesID = ? ";
 
     public static final String INSERT_CANDIDATES = "INSERT INTO Candidates(formID, tournamentID,candidatesStatus)\n"
@@ -200,16 +201,22 @@ public class CandidatesDAO implements Serializable {
         return 0;
     }
 
-    public boolean updateScore(int score, int CID) throws SQLException {
+    public boolean updateScoreResult(int score,String rs,int cstatus, int CID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
         try {
             con = DBContext.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(UPDATE_SCORE);
+                stm = con.prepareStatement(UPDATE_SCORE_RESULT);
                 stm.setInt(1, score);
-                stm.setInt(2, CID);
+                if(rs==null){
+                    stm.setNull(2, Types.NVARCHAR);
+                }else{
+                    stm.setString(2, rs);
+                }
+                stm.setInt(3, cstatus);
+                stm.setInt(4, CID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
 

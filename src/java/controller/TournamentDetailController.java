@@ -45,11 +45,11 @@ public class TournamentDetailController extends HttpServlet {
                     RoundDAO roudao = new RoundDAO();
                     request.setAttribute("utour", tour);
                     RegistrationFormDAO rdao = new RegistrationFormDAO();
-                    int num = rdao.getNumberRegistered(1, Integer.parseInt(tournamentID));
-                    if (num == 0) {
-                        num = rdao.getNumberRegistered(2, Integer.parseInt(tournamentID));
+                    if(tour.getTournamentStatus() == 1 && tour.getTournamentStatus() == 0){
+                        request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
+                    }else{
+                        request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     }
-                    request.setAttribute("numberPlayer", num);
                     if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
                         url = SUCCESS;
                     } else if (tour.getTournamentStatus() == 5 || tour.getTournamentStatus() == 4 || tour.getTournamentStatus() == 3) {

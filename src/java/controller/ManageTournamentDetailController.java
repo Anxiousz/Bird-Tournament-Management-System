@@ -52,29 +52,30 @@ public class ManageTournamentDetailController extends HttpServlet {
                 RoundDAO roudao = new RoundDAO();
                 request.setAttribute("tour", tour);
                 RegistrationFormDAO rdao = new RegistrationFormDAO();
-                int num = rdao.getNumberRegistered(1, Integer.parseInt(tournamentID));
-                if (num == 0) {
-                    num = rdao.getNumberRegistered(2, Integer.parseInt(tournamentID));
-                }
                 request.setAttribute("confirmedForm", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
-                request.setAttribute("numberPlayer", num);
                 if (tour.getTournamentStatus() == 0) {
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 1) {
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 2) {
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 6) {
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 5) {
                     List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     request.setAttribute("rounds", rounds);
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 4) {
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
                     request.setAttribute("rounds", rounds);
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 3) {
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
                     if (rounds.isEmpty()) {
                         RoundDTO roud = null;

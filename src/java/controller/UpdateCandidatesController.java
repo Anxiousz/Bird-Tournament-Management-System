@@ -45,13 +45,23 @@ public class UpdateCandidatesController extends HttpServlet {
         String rstatus = request.getParameter("roundStatus");
         String score = request.getParameter("score");
         String action = request.getParameter("action");
+        String result = request.getParameter("result");
+        int cstatus = 0;
+        if(result.equals("fail")){
+            cstatus = 2;
+        }else if (result.equals("")){
+            cstatus = 1;
+            result = null;
+        }else{
+            cstatus = 1;
+        }
         try {
             if (action.equals("Update")) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 if (score == null) {
                     score = "0";
                 }
-                if (cdao.updateScore(Integer.parseInt(score), Integer.parseInt(cid))) {
+                if (cdao.updateScoreResult(Integer.parseInt(score), result,cstatus, Integer.parseInt(cid))) {
                     url = SUCCESS;
                 } else {
                     url = ERROR;

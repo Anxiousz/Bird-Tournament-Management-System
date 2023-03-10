@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,10 +78,12 @@
                         <div class="both-prize-player-site">
                             <div class="prize-site" style="border-right: 4px solid #A87B24;">
                                 <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
-                                <p>Total Prize: ${requestScope.utour.prize} VND</p>
+                                <c:forEach items="${fn:split(requestScope.utour.prize,';')}" var="prizes">
+                                    <p>${prizes}</p>
+                                </c:forEach>
                             </div>
                             <div class="basic-tnm-form-categories">
-                                <h1><i class="fa-sharp fa-solid fa-person"></i> Num Player:  </h1>
+                                <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player:  </h1>
                                 <p>${requestScope.numberPlayer}</p>
                             </div>
                         </div>
@@ -89,7 +92,9 @@
                         <div class="both-prize-player-site">
                             <div class="prize-site" style="border-right: 4px solid #A87B24;">
                                 <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
-                                <p>Total Prize: ${requestScope.utour.prize} VND</p>
+                                <c:forEach items="${fn:split(requestScope.utour.prize,';')}" var="prizes">
+                                    <p>${prizes}</p>
+                                </c:forEach>
                             </div>
                             <div class="basic-tnm-form-categories">
                                 <h1><i class="fa-sharp fa-solid fa-person"></i> Min Player:  </h1>
@@ -123,6 +128,7 @@
                     <p></p>
                 </div>
                 <!-- Section 7 -->
+                <c:if test="${!empty requestScope.urounds}">
                 <div class="tnm-heading mt-5">
                     <h1>Round</h1>
                 </div>
@@ -197,7 +203,7 @@
                                                 <th scope="col">CID</th>
                                                 <th scope="col">Bird Name</th>
                                                 <th scope="col">Owner Name</th>
-                                                <th scope="col">Status</th>
+                                                
                                                 <th scope="col">Point</th>
                                                     <c:choose>
                                                         <c:when test="${requestScope.uround.roundName eq 'Top4'}">
@@ -217,7 +223,7 @@
                                                         <th scope="row">${c.candidatesID}</th>
                                                         <td>${c.bird.birdName}</td>
                                                         <td>${c.bird.account.name}</td>
-                                                        <td>${c.candidatesStatus}</td>
+                                                      
                                                         <td>${c.score}</td>
                                                         <c:choose>
                                                             <c:when test="${c.result eq 'pass'}">
@@ -242,7 +248,7 @@
                                                 <th scope="col">CID</th>
                                                 <th scope="col">Bird Name</th>
                                                 <th scope="col">Owner Name</th>
-                                                <th scope="col">Status</th>
+                                              
                                                 <th scope="col">Point</th>
                                                 <th scope="col">Result</th>
                                             </tr>
@@ -255,7 +261,7 @@
                                                         <th scope="row">${c.candidatesID}</th>
                                                         <td>${c.bird.birdName}</td>
                                                         <td>${c.bird.account.name}</td>
-                                                        <td>${c.candidatesStatus}</td>
+                                                    
                                                         <td>${c.score}</td>
                                                         <c:choose>
                                                             <c:when test="${c.result eq 'pass'}">
@@ -290,7 +296,7 @@
                                                 <th scope="col">CID</th>
                                                 <th scope="col">Bird Name</th>
                                                 <th scope="col">Owner Name</th>
-                                                <th scope="col">Status</th>
+                                                
                                                 <th scope="col">Point</th>
                                                     <c:choose>
                                                         <c:when test="${requestScope.uround.roundName eq 'Top4'}">
@@ -309,7 +315,7 @@
                                                     <th scope="row">${c.candidatesID}</th>
                                                     <td>${c.bird.birdName}</td>
                                                     <td>${c.bird.account.name}</td>
-                                                    <td>${c.candidatesStatus}</td>
+                                                   
                                                     <td>${c.score}</td>
                                                     <c:choose>
                                                         <c:when test="${c.result eq 'pass'}">
@@ -329,6 +335,8 @@
                         </c:choose>
                     </c:if>
                 </c:if>
+                    </c:if>
+                    <c:if test="${empty requestScope.urounds}">
                 <c:choose>
                     <c:when test="${requestScope.utour.tournamentStatus == 0}">
                         <div class="regis-site container">
@@ -396,9 +404,10 @@
                         </div>
                     </c:otherwise>
                 </c:choose>
+                    </c:if>
             </div>
         </div>
-    </div>
+    
     <footer>
         <%@ include file="footer.jsp" %>
     </footer>
