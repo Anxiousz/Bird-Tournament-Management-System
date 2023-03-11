@@ -29,43 +29,9 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         </head>
         <body>
-            <!-- nav-site -->
-            <nav class="navbar navbar-expand-lg navbar-light ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="MainController?action=HOME_USER">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="MainController?action=TOURNAMENT">TOURNAMENT<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">BLOG</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">INTRODUCTION</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="MainController?action=BIRD">BIRD</a>
-                        </li>
-                    </ul>
-                    <div class="right-site-form my-2 my-lg-0">
-                        <div class="dropdown show drop-nav">
-                            <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
-                            </a>
-                            <div class="dropdown-menu drop-down-menu-list" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="MainController?action=ProfileLoad"><i class="fa-solid fa-gear"></i> Account Setting </a>
-                                <a class="dropdown-item" href="MainController?action=Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout </a>
-                            </div>
-                        </div>
-                        <h5>Welcome ${sessionScope.acc.getName()}</h5>
-                    </div>
-                </div>
-            </nav>
+        <head>
+            <%@include file="userHeader.jsp" %>
+        </head>
             <!-- Pircture heading -->
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
