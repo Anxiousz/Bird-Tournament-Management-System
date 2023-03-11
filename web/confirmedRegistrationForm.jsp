@@ -53,7 +53,7 @@
                                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.DETAIL_TOUR.tour.tournamentName}" readonly="">
                                 </div>
                                 <div class="mb-3"  style="padding-right: 300px;">
-                                    <label for="exampleInputPassword1" class="form-label">Staus</label>
+                                    <label for="exampleInputPassword1" class="form-label">Status</label>
                                     <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.DETAIL_TOUR.tour.tournamentStatus == 0 ? 'Up Coming' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 1 ? 'Open Form' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 2 ? 'Close Form' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 3 ? 'On Going' : (sessionScope.DETAIL_TOUR.tour.tournamentStatus == 4 ? 'Finished' : 'Delay'))))}" readonly="">
 
                                 </div>
@@ -100,6 +100,7 @@
                                                 </div>
                                                 </div>
                                                 </form>
+                                                </div>
                                                 <footer>
                                                     <%@include file="footer.jsp" %>
                                                 </footer>

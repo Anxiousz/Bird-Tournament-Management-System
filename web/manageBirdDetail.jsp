@@ -1,9 +1,3 @@
-<%-- 
-    Document   : birdRepository
-    Created on : Feb 24, 2023, 4:06:23 PM
-    Author     : Admin
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,23 +27,22 @@
         <header>
             <%@include file="userHeader.jsp"%>
         </header>
-        <section>
+        <section style="margin-top: 85px;">
             <div class="bird-repository container">
-                <div class="bird-repositoryp-main-card container">
-                    <div class="card" style="width: 40rem; height: auto;">
+                <div class="bird-repositoryp-main-card">
+                    <div class="bird-repositoryp-left-card">
                         <div class="img-card-container">
-                            <img class="card-img-top"
-                                 src="${bird.birdPhoto}"
-                                 alt="Card image cap">  
+                            <img class="card-img-top" style="width: 40rem; height: 30rem;" src="${bird.birdPhoto}" alt="Card image cap">  
                             <p>
                                 <c:choose>
                                     <c:when test="${bird.birdStatus == 0}">Status: Dead</c:when>
                                     <c:when test="${bird.birdStatus == 1}">Status: Alive</c:when>
-                                    <c:when test="${bird.birdStatus == 2}">Status: Unvailable</c:when>
+                                    <c:when test="${bird.birdStatus == 2}">Status: Unavailable</c:when>
                                 </c:choose>
                             </p>
                         </div>
-
+                    </div>
+                    <div class="bird-repositoryp-right-card">
                         <div class="card-body main-body-bird">
                             <div class="left-main-site">
                                 <li>Account ID</li>
@@ -70,6 +63,20 @@
                                 <li>${bird.getDentification()}</li>
                             </div>
                         </div>
+                        <form>
+                            <div class="card-body main-body-bird">
+                                <div class="left-achivement-site">
+                                    <li>Top 1 Tournament A</li>
+                                    <li>Top 2 Tournament B</li>
+                                    <li>Top 3 Tournament C</li>
+                                    <li>Top 4 Tournament D</li>
+                                    <li>Top <input class="top" type="number" min="1" max="4"> Tournament <input class="tname" type="text"></li>
+                                </div>
+                            </div>
+                            <div class="btn-update-bird">
+                                <a href="MainController?action=&birdID=${bird.birdID}" class="btn btn-success">Update Achievement</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

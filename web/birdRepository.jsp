@@ -1,9 +1,3 @@
-<%-- 
-    Document   : birdRepository
-    Created on : Feb 24, 2023, 4:06:23 PM
-    Author     : Admin
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -38,23 +32,22 @@
                 <div class="bird-add-site">
                     <a href="addBirdForm.jsp"><i class="fa-solid fa-plus"></i> Add Bird</a>
                 </div>
-                <div class="bird-repositoryp-main-card container">
+                <form action="MainController" method="POST">
                     <c:forEach var="bird" items="${birdList}">
-                        <form action="MainController" method="POST">
-                            <div class="card" style="width: 40rem; height: auto;">
+                        <div class="bird-repositoryp-main-card">
+                            <div class="bird-repositoryp-left-card">
                                 <div class="img-card-container">
-                                    <img class="card-img-top" style="width: 40rem; height: 30rem;" name="bphoto"
-                                         src="${bird.birdPhoto}"
-                                         alt="Card image cap">  
+                                    <img class="card-img-top" style="width: 40rem; height: 30rem;" name="bphoto" src="${bird.birdPhoto}" alt="Card image cap">  
                                     <p>
                                         <c:choose>
                                             <c:when test="${bird.birdStatus == 0}">Status: Dead</c:when>
                                             <c:when test="${bird.birdStatus == 1}">Status: Alive</c:when>
-                                            <c:when test="${bird.birdStatus == 2}">Status: Unvailable</c:when>
+                                            <c:when test="${bird.birdStatus == 2}">Status: Unavailable</c:when>
                                         </c:choose>
                                     </p>
                                 </div>
-
+                            </div>
+                            <div class="bird-repositoryp-right-card">
                                 <div class="card-body main-body-bird">
                                     <div class="left-main-site">
                                         <li>Bird Name</li>
@@ -69,14 +62,21 @@
                                         <li>${bird.getColor()}</li>
                                     </div>
                                 </div>
+                                <div class="card-body main-body-bird">
+                                    <div class="left-achivement-site">
+                                        <li>Top 1 Tournament A</li>
+                                        <li>Top 2 Tournament B</li>
+                                        <li>Top 3 Tournament C</li>
+                                        <li>Top 4 Tournament D</li>
+                                    </div>
+                                </div>
                                 <div class="btn-update-bird">
                                     <a href="MainController?action=getBirdUpdate&birdID=${bird.birdID}" class="btn btn-success">Update Bird</a>
-                                </div>     
+                                </div>
                             </div>
-                        </c:forEach>
-                    </form> 
-
-                </div>
+                        </div>
+                    </c:forEach>
+                </form> 
             </div>
         </section>
         <footer>

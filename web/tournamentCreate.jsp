@@ -116,8 +116,10 @@
                         <div class="right-button">
                             <button type="submit" name="action" value="CREATE_TOURNAMENT">CREATE</button>
                         </div>
+                    </div>
                 </form>
             </div>
+        </div>
     </section>
     <footer>
         <%@include file="footer.jsp" %>
