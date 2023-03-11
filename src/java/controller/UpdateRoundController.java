@@ -58,27 +58,20 @@ public class UpdateRoundController extends HttpServlet {
             if(action.equals("Update Round")){
                 RoundDAO rdao =new RoundDAO();
                 CandidatesDAO cdao = new CandidatesDAO();
-                if(cdao.getNumberScored(Integer.parseInt(rid)) == 0 && rstatus.equals("Finish")){
-                    request.setAttribute("error", "please update score");
-                    url = SUCCESS;
-                }else {
                 if(rdao.updateRound(typeofround, Integer.parseInt(birdattend), Integer.parseInt(birdPass),roundtatus,Integer.parseInt(rid))){
                    url = SUCCESS;
                 }else{
                     url = ERROR;
-                }
                 }
             }
            
         }catch (Exception e){
             e.printStackTrace();
         }finally{
-            if(url==ERROR){
+           
                 request.getRequestDispatcher(url).forward(request, response);
-            }else{
-                url="ManageRoundController?roundID="+rid+"&roundStatus="+roundtatus+"&roundName="+rname+"&tournamentID="+tid;
-                request.getRequestDispatcher(url).forward(request, response);
-            }
+            
+            
         }
     }
 

@@ -454,7 +454,7 @@
                                                                 </c:when>
                                                                     
                                                                 <c:otherwise>
-                                                                <td><select style="${c.result eq 'pass' ? "font-weight: bold; color: green" : "font-weight: bold; color: red"}" value="${c.result}" name="result">
+                                                                <td><select style="${c.result eq 'pass' ? "font-weight: bold; color: green" : (c.result eq 'fail' ? "font-weight: bold; color: red" : "font-weight: bold; color: black" )}" name="result">
                                                                                 <c:if test="${requestScope.round.roundStatus == 1}">
                                                                                 <option value="" ${c.result eq '' ? "selected" : ""}></option>
                                                                                 </c:if>
