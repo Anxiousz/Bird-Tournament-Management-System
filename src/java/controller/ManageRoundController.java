@@ -41,6 +41,15 @@ public class ManageRoundController extends HttpServlet {
                 if (round == null) {
                     url = ERROR;
                 }
+                    if(!rname.equals("Qualified")){
+                        if(rdao.getPreviousRStatus(Integer.parseInt(tournamentID), Integer.parseInt(rid))==2){
+                            request.setAttribute("prerfinish", "true");
+                        }else{
+                            request.setAttribute("prerfinish", "false");
+                        }
+                    }else{
+                        request.setAttribute("prerfinish", "true");
+                    }
                 request.setAttribute("round", round);
                 url = TOURNAMENT_DETAIL;
             } else if (rstatus.equals("1")) {
@@ -66,6 +75,11 @@ public class ManageRoundController extends HttpServlet {
                     if (Rcands.isEmpty()) {
                         request.setAttribute("error", "there is not any bird in this round");
                     }
+                    if(cdao.getNumberScored(Integer.parseInt(rid)) == 0){
+                        request.setAttribute("emptyscored", "true");
+                    }else{
+                        request.setAttribute("emptyscored", "false");
+                    }
                     request.setAttribute("round", round);
                     request.setAttribute("cands", Rcands);
                     url = TOURNAMENT_DETAIL;
@@ -81,7 +95,7 @@ public class ManageRoundController extends HttpServlet {
                     if (Fcands.isEmpty()) {
                         if (round.getBirdPass() == 0) {
                             if (cdao.getNumberScored(Integer.parseInt(rid)) == 0) {
-
+                                
                             } else if (cdao.getNumberScored(Integer.parseInt(rid)) >= 40) {
                                 cdao.updateResultByTop(30, Integer.parseInt(rid), "pass");
                                 cdao.updateFailedCandidates("fail", 2, Integer.parseInt(rid));

@@ -136,7 +136,7 @@
                     <c:forEach items="${requestScope.urounds}" var="r">
                         <div class="basic-tnm-form-categories">
                             <c:choose>
-                                <c:when test="${requestScope.round.roundID == r.roundID}">
+                                <c:when test="${requestScope.uround.roundID == r.roundID}">
                                     <a style="color:burlywood" id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
                                 </c:when>
                                 <c:otherwise>
