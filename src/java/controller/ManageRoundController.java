@@ -34,6 +34,14 @@ public class ManageRoundController extends HttpServlet {
             String rname = request.getParameter("roundName");
             String rid = request.getParameter("roundID");
             String rstatus = request.getParameter("roundStatus");
+            if(rstatus.equals("Coming soon")){
+                rstatus = "0";
+            }else if (rstatus.equals("On Going")){
+                rstatus = "1";
+            }else if (rstatus.equals("Finish")){
+                rstatus = "2";
+            }else{
+            }
             RoundDTO round = null;
             if (rstatus.equals("0")) {
                 RoundDAO rdao = new RoundDAO();
@@ -122,7 +130,7 @@ public class ManageRoundController extends HttpServlet {
                                 cdao.updateResultByTop(10, Integer.parseInt(rid), "pass");
                                 cdao.updateFailedCandidates("fail", 2, Integer.parseInt(rid));
                                 rdao.updateAttendPassCandidates(cdao.numberCAttend(Integer.parseInt(rid)), cdao.numberCPass(Integer.parseInt(rid)), Integer.parseInt(rid));
-                            } else if (cdao.getNumberScored(Integer.parseInt(rid)) >= 10 || cdao.getNumberScored(Integer.parseInt(rid)) >= 4 && cdao.numberCAttend(Integer.parseInt(rid))>=10) {
+                            } else if (cdao.getNumberScored(Integer.parseInt(rid)) >= 10 || cdao.getNumberScored(Integer.parseInt(rid)) >= 2 && cdao.numberCAttend(Integer.parseInt(rid))>=10) {
                                 if (rdao.getNumberOfRound(Integer.parseInt(tournamentID)) > 2) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top30");
@@ -138,33 +146,42 @@ public class ManageRoundController extends HttpServlet {
                                 cdao.updateResultByTop(4, Integer.parseInt(rid), "pass");
                                 cdao.updateFailedCandidates("fail", 2, Integer.parseInt(rid));
                                 rdao.updateAttendPassCandidates(cdao.numberCAttend(Integer.parseInt(rid)), cdao.numberCPass(Integer.parseInt(rid)), Integer.parseInt(rid));
-                            } else if (cdao.getNumberScored(Integer.parseInt(rid)) < 4 ) {
-                                if (rdao.getNumberOfRound(Integer.parseInt(tournamentID)) > 2) {
+                            } else if (cdao.getNumberScored(Integer.parseInt(rid)) <= 4) {
+                                if(cdao.getNumberScored(Integer.parseInt(rid))==1){
+                                    if(cdao.numberCAttend(Integer.parseInt(rid))>=10){
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top30");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top20");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top10");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
+                                        request.removeAttribute("roundName");
+                                        request.setAttribute("roundName", "Top4");
                                     } else if (rname.equals("Top30")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top20");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top10");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
+                                        request.removeAttribute("roundName");
+                                        request.setAttribute("roundName", "Top4");
                                     } else if (rname.equals("Top20")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top10");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
+                                        request.removeAttribute("roundName");
+                                        request.setAttribute("roundName", "Top4");
                                     } else if (rname.equals("Top10")) {
-                                        cdao.updateResultByTop(4, Integer.parseInt(rid), "pass");
-                                    }
-
-                                }if(!rname.equals("Top10")){
+                                        rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
+                                        rdao.updateRoundName("Top4", Integer.parseInt(rid));
+                                        request.removeAttribute("roundName");
+                                        request.setAttribute("roundName", "Top4");
+                                    } 
+                                }
+                                }
                                 List<CandidatesDTO> top4 = cdao.getIDListByTop(cdao.getNumberScored(Integer.parseInt(rid)), Integer.parseInt(rid));
-                                for (int i = 1; i <= top4.size(); i++) {
-                                    cdao.updateResultByID(Integer.toString(i), top4.get(i - 1).getCandidatesID());
-                                }
-                                }
+                                        for (int i = 1; i <= top4.size(); i++) {
+                                                cdao.updateResultByID(Integer.toString(i), top4.get(i - 1).getCandidatesID());
+                                        }
                                 cdao.updateFailedCandidates("fail", 2, Integer.parseInt(rid));
                                 rdao.updateAttendPassCandidates(cdao.numberCAttend(Integer.parseInt(rid)), cdao.numberCPass(Integer.parseInt(rid)), Integer.parseInt(rid));
                             }
@@ -178,7 +195,7 @@ public class ManageRoundController extends HttpServlet {
                     }
                     if (rdao.getNumberOfRound(Integer.parseInt(tournamentID)) == 1) {
                         request.setAttribute("plstatus", "true");
-                    } else if (rname.equals("Top4") && cdao.getNumberFailed(Integer.parseInt(rid)) > 0) {
+                    } else if (cdao.numberCPass(Integer.parseInt(rid)) == 1 && cdao.getNumberFailed(Integer.parseInt(rid)) > 0) {
                         request.setAttribute("plstatus", "true");
                     }
                     if (round.getRoundName().equals("Top4") && round.getRoundStatus() == 2) {
