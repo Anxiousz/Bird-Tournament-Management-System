@@ -83,8 +83,8 @@
         </c:forEach>
 
         <!-- footer section -->
-    <foote>
+    <footer>
         <%@include file="footer.jsp" %>
-    </foote>
+    </footer>
 </body>
 </html>

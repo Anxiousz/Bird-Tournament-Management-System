@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +24,6 @@
         <header>
             <%@include file="userHeader.jsp" %>
         </header>
-        <main>
             <div class="container py-4">
                 <div class="p-5 mb-4 bg-light rounded-3 box">
                     <div class="container-fluid py-5">
@@ -39,7 +38,6 @@
                     </div>
                 </div>
             </div>
-        </main>
         <footer>
             <%@include file="footer.jsp" %>
         </footer>
