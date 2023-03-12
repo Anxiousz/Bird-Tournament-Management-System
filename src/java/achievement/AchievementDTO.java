@@ -5,6 +5,7 @@
  */
 package achievement;
 
+import bird.BirdDTO;
 import java.io.Serializable;
 
 /**
@@ -13,12 +14,27 @@ import java.io.Serializable;
  */
 public class AchievementDTO implements Serializable {
 
+    private int achievementID;
     private int birdID;
+    private BirdDTO bird;
     private String description;
     private String medals;
     private int totalScore;
     private int top;
 
+    public AchievementDTO(){
+        
+    }
+    public AchievementDTO(int achievementID, int birdID, BirdDTO bird, String description, String medals, int totalScore, int top) {
+        this.achievementID = achievementID;
+        this.birdID = birdID;
+        this.bird = bird;
+        this.description = description;
+        this.medals = medals;
+        this.totalScore = totalScore;
+        this.top = top;
+    }
+    
     public AchievementDTO(int birdID, String description, String medals, int totalScore, int top) {
         this.birdID = birdID;
         this.description = description;
@@ -27,6 +43,22 @@ public class AchievementDTO implements Serializable {
         this.top = top;
     }
 
+    public int getAchievementID() {
+        return achievementID;
+    }
+
+    public void setAchievementID(int achievementID) {
+        this.achievementID = achievementID;
+    }
+
+    public BirdDTO getBird() {
+        return bird;
+    }
+
+    public void setBird(BirdDTO bird) {
+        this.bird = bird;
+    }
+    
     public AchievementDTO(int totalScore) {
         this.totalScore = totalScore;
     }

@@ -5,11 +5,15 @@
  */
 package controller;
 
+import achievement.AchievementDAO;
+import achievement.AchievementDTO;
 import candidates.CandidatesDAO;
 import candidates.CandidatesDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -69,13 +73,10 @@ public class ManageRoundController extends HttpServlet {
                 } else {
                     List<CandidatesDTO> Rcands = cdao.getCandidatesByRID(1, Integer.parseInt(rid));
                     if (Rcands.isEmpty()) {
-                        List<CandidatesDTO> Acands = cdao.getApprovedCandidates(1, Integer.parseInt(tournamentID));
-                        for (CandidatesDTO candi : Acands) {
-                            cdao.updateRoundCandidates(Integer.parseInt(rid), candi.getCandidatesID());
+                            cdao.updateRoundCandidates(Integer.parseInt(rid), Integer.parseInt(tournamentID), 1);
                             if (!rname.equals("Qualified")) {
-                                cdao.resetResultCandidates(Integer.parseInt(rid));
+                                cdao.resetResultCandidates(Integer.parseInt(rid), Integer.parseInt(tournamentID), 1);
                             }
-                        }
                         rdao.updateAttendPassCandidates(cdao.numberCAttend(Integer.parseInt(rid)), cdao.numberCPass(Integer.parseInt(rid)), Integer.parseInt(rid));
                         Rcands = cdao.getCandidatesByRID(1, Integer.parseInt(rid));
                         round = rdao.getRoundByID(Integer.parseInt(rid));
@@ -181,21 +182,66 @@ public class ManageRoundController extends HttpServlet {
                                 List<CandidatesDTO> top4 = cdao.getIDListByTop(cdao.getNumberScored(Integer.parseInt(rid)), Integer.parseInt(rid));
                                         for (int i = 1; i <= top4.size(); i++) {
                                                 cdao.updateResultByID(Integer.toString(i), top4.get(i - 1).getCandidatesID());
+                                                AchievementDAO adao = new AchievementDAO();
+                                                int birdid = cdao.getBirdId(top4.get(i - 1).getCandidatesID());
+                                                String medals = adao.getMedalsByBid(birdid);
+                                                String[] topValues = medals.split(";");
+                                                if(medals != null){
+                                                        String[] parts = topValues[i-1].split(":");
+                                                        String top = parts[0];
+                                                        int value = Integer.parseInt(parts[1]); 
+                                    switch (i) {
+                                        case 1:
+                                             if (top.equals("Top1")) {
+                                                value++;
+                                             }
+                                            break;
+                                        case 2:
+                                            if (top.equals("Top2")) {
+                                                value++;
+                                               
+                                             }
+                                            break;
+                                        case 3:
+                                            if (top.equals("Top3")) {
+                                                value++;
+                                               
+                                             }
+                                            break;
+                                        case 4:
+                                           if (top.equals("Top4")) {
+                                                value++;
+                                                
+                                             }
+                                            break;
+                                    }
+                                    topValues[i-1] = top + ":" + value;
+                                   
+                                    
+                                                medals = String.join(";", topValues);
+                                                adao.updateMedals(medals, birdid);
+                                                         
+                                                }     
                                         }
                                 cdao.updateFailedCandidates("fail", 2, Integer.parseInt(rid));
                                 rdao.updateAttendPassCandidates(cdao.numberCAttend(Integer.parseInt(rid)), cdao.numberCPass(Integer.parseInt(rid)), Integer.parseInt(rid));
                             }
+                            
                             Fcands = cdao.getFinishCandidates(Integer.parseInt(rid));
                             round = rdao.getRoundByID(Integer.parseInt(rid));
                         }
 
                     }
+                    
                     if (Fcands.isEmpty()) {
                         request.setAttribute("error", "result have not set");
+                    }else{
+                        
                     }
+                    
                     if (rdao.getNumberOfRound(Integer.parseInt(tournamentID)) == 1) {
                         request.setAttribute("plstatus", "true");
-                    } else if (cdao.numberCPass(Integer.parseInt(rid)) == 1 && cdao.getNumberFailed(Integer.parseInt(rid)) > 0) {
+                    } else if (cdao.numberCPass(Integer.parseInt(rid)) == 1 && cdao.getNumberFailed(Integer.parseInt(rid)) > 0 || round.getRoundName().equals("Top4") && cdao.getNumberFailed(Integer.parseInt(rid)) > 0) {
                         request.setAttribute("plstatus", "true");
                     }
                     if (round.getRoundName().equals("Top4") && round.getRoundStatus() == 2) {

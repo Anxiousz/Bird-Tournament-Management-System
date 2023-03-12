@@ -57,7 +57,11 @@ public class BirdDAO implements Serializable {
     private static final String UPDATE_BIRD_BY_ACCOUNT_ID = "UPDATE Bird\n"
             + "SET categoriesID = ?, birdName=?, birdPhoto=?,height = ?, weight = ?, color = ?, dentification =?, birdStatus =?\n"
             + "WHERE birdID = ? AND accountID = ?;";
-
+    
+    private final static String GET_BIRD_BY_ACCOUNT_DENDIFICATION = "SELECT  b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color,b.birdStatus ,b.dentification\n"
+            + "FROM Bird b \n"
+            + "WHERE accountID= ?";
+    
     public boolean updateBirdByAccountID(int categoriesID, String birdName, String birdPhoto, int height, int weight, String color, String dentification, int birdStatus, int birdID, int accountID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

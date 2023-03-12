@@ -6,6 +6,8 @@
 package controller;
 
 import account.AccountDTO;
+import achievement.AchievementDAO;
+import achievement.AchievementDTO;
 import bird.BirdDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,8 +46,10 @@ public class AddBirdController extends HttpServlet {
                 String image = "image/" + request.getParameter("image");
                 AccountDTO accountID = (AccountDTO) s.getAttribute("acc");
                 BirdDAO bDAO = new BirdDAO();
+                AchievementDAO adao = new AchievementDAO();
                 int result = bDAO.addBird(accountID.getAccountID(), name, Integer.parseInt(height), Integer.parseInt(weight), color, Integer.parseInt(bCate), denfitication, image, 1);
                 if (result != 0) {
+                    adao.addAchievementByAid(accountID.getAccountID());
                     url = SUCCESS;
                 } else {
                     url = ERROR;

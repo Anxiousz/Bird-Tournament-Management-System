@@ -61,8 +61,9 @@ public class CandidatesDAO implements Serializable {
             + "ORDER BY score desc";
 
     public static String UPDATE_ROUND_CANDIDATES
-            = "UPDATE  Candidates SET roundID = ? \n"
-            + "WHERE candidatesID = ?";
+            = "UPDATE  Candidates \n"
+            + "SET roundID = ? \n"
+            + "WHERE tournamentID = ? AND candidatesStatus = ?";
 
     public static String UPDATE_RESULT_BY_TOP
             = "WITH C AS(\n"
@@ -81,7 +82,7 @@ public class CandidatesDAO implements Serializable {
     public static String NUMBER_CANDIDATES_PASS
             = "SELECT COUNT(candidatesID) as birdPass\n"
             + "FROM Candidates\n"
-            + "WHERE roundID = ? AND result ='pass' OR result != 'fail' AND result IS NOT NULL";
+            + "WHERE roundID = ? AND result != 'fail' AND result IS NOT NULL";
 
     public static String GET_FINISH_CANDIDATES
             = "SELECT Candidates.candidatesID,\n"
@@ -108,9 +109,9 @@ public class CandidatesDAO implements Serializable {
             + "WHERE roundID = ? AND result IS NULL";
 
     public static String RESET_RESULT_CANDIDATES
-            = "UPDATE Candidates \n"
+            = "UPDATE Candidates\n"
             + "SET     result = NULL, score = NULL\n"
-            + "WHERE  roundID = ? ";
+            + "WHERE  roundID = ? AND tournamentID = ? AND candidatesStatus = ?";
 
     public static String GET_ID_LIST_BY_TOP
             = "SELECT TOP(?) candidatesID\n"
@@ -133,12 +134,49 @@ public class CandidatesDAO implements Serializable {
     public static String GET_NUMBER_SCORED
             = "SELECT COUNT(candidatesID) as birdScored\n"
             + "FROM Candidates\n"
-            + "WHERE roundID = ? AND score IS NOT NULL ";
+            + "WHERE roundID = ? AND score IS NOT NULL AND score != 0 ";
     public static String GET_NUMBER_FAILED
             = "SELECT COUNT(candidatesID) as failed\n"
             + "FROM Candidates\n"
             + "WHERE roundID = ? AND result = 'fail'";
-
+    public static String GET_BIRD_ID
+            = "SELECT RegistrationForm.birdID\n"
+            + "FROM Candidates\n"
+            + "  INNER JOIN RegistrationForm\n"
+            + "    ON RegistrationForm.formID =\n"
+            + "    Candidates.formID\n"
+            + "WHERE candidatesID = ?";
+    
+    public int getBirdId(int CID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BIRD_ID);
+                stm.setInt(1, CID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int num = rs.getInt(1);
+                    return num;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
     public int getNumberFailed(int RID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -294,7 +332,7 @@ public class CandidatesDAO implements Serializable {
         return list;
     }
 
-    public boolean resetResultCandidates(int RID) throws SQLException {
+    public boolean resetResultCandidates(int RID, int TID, int cstatus) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -303,6 +341,8 @@ public class CandidatesDAO implements Serializable {
             if (con != null) {
                 stm = con.prepareStatement(RESET_RESULT_CANDIDATES);
                 stm.setInt(1, RID);
+                stm.setInt(2, TID);
+                stm.setInt(3, cstatus);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
 
@@ -524,7 +564,7 @@ public class CandidatesDAO implements Serializable {
         return list;
     }
 
-    public boolean updateRoundCandidates(int RID, int CID) throws SQLException {
+    public boolean updateRoundCandidates(int RID, int TID,int cstatus) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -533,7 +573,8 @@ public class CandidatesDAO implements Serializable {
             if (con != null) {
                 stm = con.prepareStatement(UPDATE_ROUND_CANDIDATES);
                 stm.setInt(1, RID);
-                stm.setInt(2, CID);
+                stm.setInt(2, TID);
+                stm.setInt(3, cstatus);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
 
