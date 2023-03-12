@@ -5,8 +5,6 @@
  */
 package controller;
 
-import bird.BirdDAO;
-import bird.BirdDTO;
 import blog.BlogDAO;
 import blog.BlogDTO;
 import java.io.IOException;
@@ -18,32 +16,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import tournament.TournamentDAO;
-import tournament.TournamentDTO;
 
-@WebServlet(name = "LoadHomePageController", urlPatterns = {"/LoadHomePageController"})
-public class LoadHomePageController extends HttpServlet {
+/**
+ *
+ * @author anh12
+ */
+@WebServlet(name = "LoadBlogDetailController", urlPatterns = {"/LoadBlogDetailController"})
+public class LoadBlogDetailController extends HttpServlet {
 
-    private final static String SUCCESS = "homePage.jsp";
-    private final static String ERROR = "error.jsp";
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "blogsDetail.jsp";
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession s = request.getSession();
+            BlogDAO b = new BlogDAO();
             String url = null;
-            HttpSession s = request.getSession(false);
-            TournamentDAO tour = new TournamentDAO();
-            BirdDAO bird = new BirdDAO();
-            BlogDAO blog = new BlogDAO();
             try {
-                List<TournamentDTO> t = tour.viewTournament();
-                List<BirdDTO> b = bird.getAllBird();
-                List<BlogDTO> bl = blog.viewBlog();
-                if (tour != null && bird != null) {
-                    s.setAttribute("GET_TOURNAMENT", t);
-                    s.setAttribute("GET_BIRD", b);
-                    s.setAttribute("GET_BLOG", bl);
+                String blogID = request.getParameter("blogID");
+                BlogDTO blog_detail = b.getBlogbyID(Integer.valueOf(blogID));
+                List<BlogDTO> another_detail = b.listAnotherBlog(Integer.valueOf(blogID));
+                if (blog_detail != null) {
+                    s.setAttribute("BLOG_DETAIL", blog_detail);
+                    s.setAttribute("ANOTHER_BLOG", another_detail);
                     url = SUCCESS;
                 } else {
                     url = ERROR;
@@ -53,9 +59,10 @@ public class LoadHomePageController extends HttpServlet {
             }
             request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

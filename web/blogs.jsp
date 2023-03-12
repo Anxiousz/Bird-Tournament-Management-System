@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,198 +50,38 @@
                         <div class="title-blogs-site">
                             <h1><i class="fa-solid fa-star"></i>  Popular Blogs</h1>
                         </div>
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100"
-                                         src="https://i.pinimg.com/474x/69/4c/79/694c79141f3480c8a1afca00d89e8396.jpg"
-                                         alt="First slide" style="width: 100%; height: 800px;">
-                                    <!-- time site -->
-                                    <div class="created-time-blog-site">
-                                        <p>12:23:30AM 30/02/20XX</p>
-                                    </div>
-                                    <!-- ---------- -->
-                                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, ullam? Aut, nemo
-                                        esse
-                                        deserunt odit quos tempore alias nam ad distinctio necessitatibus sed inventore
-                                        voluptates. Minus quas eveniet illum asperiores.</h1>
-                                    <div class="link-read-button">
-                                        <a href="">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100"
-                                         src="https://i.pinimg.com/474x/75/06/44/75064457c0456477d57b5563054d2b76.jpg"
-                                         alt="Second slide" style="width: 100%; height: 800px;">
-                                    <!-- time site -->
-                                    <div class="created-time-blog-site">
-                                        <p>12:23:30AM 30/02/20XX</p>
-
-                                    </div>
-                                    <!-- ---------- -->
-                                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, ullam? Aut, nemo
-                                        esse
-                                        deserunt odit quos tempore alias nam ad distinctio necessitatibus sed inventore
-                                        voluptates. Minus quas eveniet illum asperiores.</h1>
-                                    <div class="link-read-button">
-                                        <a href="">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100"
-                                         src="https://i.pinimg.com/474x/e4/09/b3/e409b3a273eb756ab2d7d4659bfffc8d.jpg"
-                                         alt="Third slide" style="width: 100%; height: 800px;">
-                                    <!-- time site -->
-                                    <div class="created-time-blog-site">
-                                        <p>12:23:30AM 30/02/20XX</p>
-                                    </div>
-                                    <!-- ---------- -->
-                                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, ullam? Aut, nemo
-                                        esse
-                                        deserunt odit quos tempore alias nam ad distinctio necessitatibus sed inventore
-                                        voluptates. Minus quas eveniet illum asperiores.</h1>
-                                    <div class="link-read-button">
-                                        <a href="">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                               data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                               data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
-                <!-- other-blog-site-small -->
-                <div class="small-categories-blogs-site container">
-                    <!--title site--> 
-                    <div class="container-site-logo-heading">
-                        <div class="cover-site-logo-heading">
-                            <p><i class="fa-solid fa-star"></i>  Maybe you want to read</p>
-                        </div>
-                    </div>
-                    <!-- each card blog site -->
-                    <div class="small-categories-blogs-main-body-site">
-                        <div class="card card-categories" style="width: 100%;">
-                            <div class="card-categories-img-left-site">
-                                <img class="card-img-top"
-                                     src="https://i.pinimg.com/474x/65/d8/35/65d8352f5c36cb9237d34bae1900a72e.jpg"
-                                     alt="Card image cap">
-                            </div>
-                            <div class="card-body time-heading-site">
+            </div>
+        </div>
 
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam commodi error
-                                    doloremque magni sit eveniet ex quibusdam voluptates aspernatur, sequi inventore aliquam
-                                    possimus quidem harum suscipit! Vitae fugit totam voluptatibus.</h5>
-                                <p>00:00:00AM 30/02/20xx</p>
-                                <div class="link-read-button">
-                                    <a href="">Read more</a>
-                                </div>
-                            </div>
-                        </div>
+        <c:forEach var="b" items="${sessionScope.LIST_BLOG}">
+            <div class="small-categories-blogs-site container">
+                <!--title site--> 
+                <div class="container-site-logo-heading">
+                    <div class="cover-site-logo-heading">
                     </div>
                 </div>
-                <div class="small-categories-blogs-site container">
-                    <!-- each card blog site -->
-                    <div class="small-categories-blogs-main-body-site">
-                        <div class="card card-categories" style="width: 100%;">
-                            <div class="card-categories-img-left-site">
-                                <img class="card-img-top"
-                                     src="https://i.pinimg.com/474x/65/d8/35/65d8352f5c36cb9237d34bae1900a72e.jpg"
-                                     alt="Card image cap">
-                            </div>
-                            <div class="card-body time-heading-site">
-
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam commodi error
-                                    doloremque magni sit eveniet ex quibusdam voluptates aspernatur, sequi inventore aliquam
-                                    possimus quidem harum suscipit! Vitae fugit totam voluptatibus.</h5>
-                                <p>00:00:00AM 30/02/20xx</p>
-                                <div class="link-read-button">
-                                    <a href="">Read more</a>
-                                </div>
-                            </div>
+                <div class="small-categories-blogs-main-body-site">
+                    <div class="card card-categories" style="width: 100%;">
+                        <div class="card-categories-img-left-site">
+                            <img class="card-img-top"
+                                 src="${b.getMedia()}"
+                                 alt="Card image cap">
                         </div>
-                    </div>
-                </div>
-                <div class="small-categories-blogs-site container">
-                    <!-- each card blog site -->
-                    <div class="small-categories-blogs-main-body-site">
-                        <div class="card card-categories" style="width: 100%;">
-                            <div class="card-categories-img-left-site">
-                                <img class="card-img-top"
-                                     src="https://i.pinimg.com/474x/65/d8/35/65d8352f5c36cb9237d34bae1900a72e.jpg"
-                                     alt="Card image cap">
-                            </div>
-                            <div class="card-body time-heading-site">
+                        <div class="card-body time-heading-site">
 
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam commodi error
-                                    doloremque magni sit eveniet ex quibusdam voluptates aspernatur, sequi inventore aliquam
-                                    possimus quidem harum suscipit! Vitae fugit totam voluptatibus.</h5>
-                                <p>00:00:00AM 30/02/20xx</p>
-                                <div class="link-read-button">
-                                    <a href="">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="small-categories-blogs-site container">
-                    <!-- each card blog site -->
-                    <div class="small-categories-blogs-main-body-site">
-                        <div class="card card-categories" style="width: 100%;">
-                            <div class="card-categories-img-left-site">
-                                <img class="card-img-top"
-                                     src="https://i.pinimg.com/474x/65/d8/35/65d8352f5c36cb9237d34bae1900a72e.jpg"
-                                     alt="Card image cap">
-                            </div>
-                            <div class="card-body time-heading-site">
-
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam commodi error
-                                    doloremque magni sit eveniet ex quibusdam voluptates aspernatur, sequi inventore aliquam
-                                    possimus quidem harum suscipit! Vitae fugit totam voluptatibus.</h5>
-                                <p>00:00:00AM 30/02/20xx</p>
-                                <div class="link-read-button">
-                                    <a href="">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="small-categories-blogs-site container">
-                    <!-- each card blog site -->
-                    <div class="small-categories-blogs-main-body-site">
-                        <div class="card card-categories" style="width: 100%;">
-                            <div class="card-categories-img-left-site">
-                                <img class="card-img-top"
-                                     src="https://i.pinimg.com/474x/65/d8/35/65d8352f5c36cb9237d34bae1900a72e.jpg"
-                                     alt="Card image cap">
-                            </div>
-                            <div class="card-body time-heading-site">
-
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam commodi error
-                                    doloremque magni sit eveniet ex quibusdam voluptates aspernatur, sequi inventore aliquam
-                                    possimus quidem harum suscipit! Vitae fugit totam voluptatibus.</h5>
-                                <p>00:00:00AM 30/02/20xx</p>
-                                <div class="link-read-button">
-                                    <a href="">Read more</a>
-                                </div>
+                            <h5>${b.getTitle()}</h5>
+                            <p>${b.getCreateTime()}</p>
+                            <div class="link-read-button">
+                                <a href="MainController?action=BlogDetail&blogID=${b.getBlogID()}">Read more</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
+
         <!-- footer section -->
     <foote>
         <%@include file="footer.jsp" %>

@@ -43,6 +43,7 @@ public class MainController extends HttpServlet {
     private static final String GET_BIRD_UPDATE_USER = "getBirdUpdate";
     private static final String UPDATE_BIRD = "updateBird";
     private static final String LOAD_BLOG = "BLOG";
+    private static final String LOAD_BLOG_DETAIL = "BlogDetail";
 
     //value of action of Admin
     private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
@@ -77,6 +78,7 @@ public class MainController extends HttpServlet {
     private static final String GET_BIRD_UPDATE_CONTROLLER = "LoadBirdUpdateController";
     private static final String UPDATE_BIRD_CONTROLLER = "UpdateBirdController";
     private static final String LOAD_BLOG_CONTROLLER = "LoadBlogController";
+    private static final String LOAD_BLOG_DETAIL_CONTROLLER = "LoadBlogDetailController";
 
     // link to servlet of Admin
     private static final String MANAGE_ACCOUNT_CONTROLLER = "ManageAccountController";
@@ -194,6 +196,9 @@ public class MainController extends HttpServlet {
                         break;
                     case LOAD_BLOG:
                         url = LOAD_BLOG_CONTROLLER;
+                        break;
+                    case LOAD_BLOG_DETAIL:
+                        url = LOAD_BLOG_DETAIL_CONTROLLER;
                         break;
                 }
             }

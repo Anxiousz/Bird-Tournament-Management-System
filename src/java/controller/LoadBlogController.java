@@ -5,13 +5,17 @@
  */
 package controller;
 
+import blog.BlogDAO;
+import blog.BlogDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,7 +26,7 @@ public class LoadBlogController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "blogs.jsp";
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,9 +40,21 @@ public class LoadBlogController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-           String url = SUCCESS;
-           request.getRequestDispatcher(url).forward(request, response);
+            HttpSession s = request.getSession();
+            BlogDAO b = new BlogDAO();
+            String url = null;
+            try {
+                List<BlogDTO> list = b.listBlog();
+                if (list != null) {
+                    s.setAttribute("LIST_BLOG", list);
+                    url = SUCCESS;
+                } else {
+                    url = ERROR;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
