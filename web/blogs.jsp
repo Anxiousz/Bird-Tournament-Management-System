@@ -1,6 +1,6 @@
 <%-- 
-    Document   : blogs
-    Created on : Mar 10, 2023, 10:17:33 PM
+    Document   : blogsDetail
+    Created on : Mar 11, 2023, 12:59:08 PM
     Author     : Admin
 --%>
 
@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -24,67 +25,53 @@
         <link href="./CSS/blogs.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <title>Blogs</title>
+        <title> Blogs</title>
     </head>
     <body>
         <!--header section-->
         <header>
             <%@include file="userHeader.jsp" %>
         </header>
+
         <!-- body section -->
         <div class="blogs-container-section">
             <div class="blogs-main-site">
                 <div class="introduction-blogs-site">
-                    <div class="both-container">
-                        <div class="sub-title">
-                            <h4>TOURNAMENT AND BIRD </h4>
-                        </div>
-                        <div class="main-title">
-                            <h1>BLOGS</h1>
-                        </div>
+                    <div class=" card-top" style="width: 100%;">
+                        <h5>TOURNMANT AND BIRD</h5>
+                        <h1>BLOGS</h1>
                     </div>
                 </div>
-                <!-- blogs-carouse-site -->
-                <div class="blogs-carouse-main-site container">
-                    <div class="blogs-carouse-body-site">
-                        <div class="title-blogs-site">
-                            <h1><i class="fa-solid fa-star"></i>  Popular Blogs</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <c:forEach var="b" items="${sessionScope.LIST_BLOG}">
-            <div class="small-categories-blogs-site container">
-                <!--title site--> 
-                <div class="container-site-logo-heading">
-                    <div class="cover-site-logo-heading">
-                    </div>
-                </div>
-                <div class="small-categories-blogs-main-body-site">
-                    <div class="card card-categories" style="width: 100%;">
-                        <div class="card-categories-img-left-site">
-                            <img class="card-img-top"
-                                 src="${b.getMedia()}"
-                                 alt="Card image cap">
-                        </div>
-                        <div class="card-body time-heading-site">
-
-                            <h5>${b.getTitle()}</h5>
-                            <p>${b.getCreateTime()}</p>
-                            <div class="link-read-button">
-                                <a href="MainController?action=BlogDetail&blogID=${b.getBlogID()}">Read more</a>
+                <!------------------------------->
+                <!-- other-blog-site-small -->
+                <c:forEach var = "a" items="${sessionScope.LIST_BLOG}">
+                    <div class="small-categories-blogs-site container">
+                        <!-- each card blog site -->
+                        <div class="small-categories-blogs-main-body-site">
+                            <div class=" card-categories">
+                                <div class="card-categories-img-left-site">
+                                    <img class="card-img-top"
+                                         src="${a.getMedia()}"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body time-heading-site">
+                                    <h5>${a.getTitle()}</h5>
+                                    <p>${a.getCreateTime()}</p>
+                                    <div class="link-read-button">
+                                        <a href="MainController?action=BlogDetail&blogID=${a.getBlogID()}">Read more</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </c:forEach>
+                </c:forEach>
 
+
+            </div>
+        </div>
         <!-- footer section -->
-    <footer>
-        <%@include file="footer.jsp" %>
-    </footer>
-</body>
+        <footer>
+            <%@include file="footer.jsp" %>
+        </footer>
+    </body>
 </html>

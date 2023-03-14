@@ -19,6 +19,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
         <title>Welcome</title>
     </head>
     <body>
@@ -100,33 +101,22 @@
             <!-- Blog site -->
             <div class=" container blog-site">
                 <div class="blog-site-heading d-flex justify-content-center align-item-center mt-4">
-                    <p class="m-5">TOURNAMENT BLOGS  <i class='fas fa-certificate' style='font-size:24px;color: orange ;'></i></p>
+                    <p class="m-5">TOURNAMENT BLOGS<i class='fas fa-certificate' style='font-size:24px;color: orange ;'></i></p>
                 </div>
                 <div class="blog-content-both-site">
-                    <div class="blog-left-site">
-                        <div class="card card-left-blog" style="width: 55rem; height: 550px;">
-                            <img class="card-img-top" style="width: 65rem;height: 600px;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Card image cap">
-                            <div class="card-body card-blog" style="width: 65rem;">
-                                <p class="card-text">Prepare for Tournament 2023 </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-right-site">
-                        <div class="blog-right-both-site">
-                            <div class="card card-left-blog mb-5" style="width: 40rem; height: 240px;">
-                                <img class="card-img-top" style="width: 40rem;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Card image cap">
-                                <div class="card-body card-blog" style="width: 40rem;height: 100px;">
-                                    <p class="card-text card-right-p">Food for crested birds before competition</p>
-                                </div>
-                            </div>
-                            <div class="card card-left-blog " style="width: 40rem; height: 240px;">
-                                <img class="card-img-top" style="width: 40rem;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Card image cap">
-                                <div class="card-body card-blog" style="width: 20rem;">
-                                    <p class="card-text cart-right-p"></p>
+                    <c:forEach var="a" items="${sessionScope.GET_BLOG}">
+                        <div class="card" style="width: 35rem; height: 60rem; ">
+                            <img src="${a.getMedia()}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: flex-end"><p style="font-size: 15px; color: green">${a.getCreateTime()}</p></div>
+                                <h1 class="card-text">${a.getTitle()}</h1>
+                                <div style="display: flex; justify-content: flex-end; padding: 0px 30px; margin-top: 150px;" >
+                                    <a href="MainController?action=BlogDetail&blogID=${a.getBlogID()}">Read more</a>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </c:forEach>
+
                 </div>   
             </div>
             <!-- bird site -->

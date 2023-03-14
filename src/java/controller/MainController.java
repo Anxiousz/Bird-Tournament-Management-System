@@ -56,6 +56,8 @@ public class MainController extends HttpServlet {
     private static final String LOAD_PARTICIPANT = "LOAD_PARTICIPANT";
     private static final String DENY_PARTICIPANT = "DENY_PARTICIPANT";
     private static final String APPROVE_PARTICIPANT = "APPROVE_PARTICIPANT";
+    private static final String LOAD_BLOGS_MANGEMENT = "MANAGE_BLOG";
+    private static final String DELETE_BLOGS = "DELETE_BLOGS";
 
     //link to servlet of User
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -90,6 +92,8 @@ public class MainController extends HttpServlet {
     private static final String MANAGE_PARTICIPANT_CONTROLLER = "ManageParticipantController";
     private static final String REMOVE_TOURNAMENT_CONTROLLER = "RemoveTournamentController";
     private static final String LOAD_PARTICIPANT_CONTROLLER = "LoadParticipantController";
+    private static final String LOAD_BLOGS_MANGEMENT_CONTROLLER = "LoadBlogControllerManageController";
+    private static final String DELETE_BLOGS_CONTROLLER = "DeleteBlogsController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -199,6 +203,12 @@ public class MainController extends HttpServlet {
                         break;
                     case LOAD_BLOG_DETAIL:
                         url = LOAD_BLOG_DETAIL_CONTROLLER;
+                        break;
+                    case LOAD_BLOGS_MANGEMENT:
+                        url = LOAD_BLOGS_MANGEMENT_CONTROLLER;
+                        break;
+                    case DELETE_BLOGS:
+                        url = DELETE_BLOGS_CONTROLLER;
                         break;
                 }
             }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : blogsDetail
-    Created on : Mar 11, 2023, 12:59:08 PM
+    Document   : blogs
+    Created on : Mar 10, 2023, 10:17:33 PM
     Author     : Admin
 --%>
 
@@ -10,7 +10,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -25,7 +24,7 @@
         <link href="./CSS/blogs.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-        <title>Main Blogs</title>
+        <title>Blogs</title>
     </head>
     <body>
         <!--header section-->
@@ -36,13 +35,9 @@
         <div class="blogs-container-section">
             <div class="blogs-main-site">
                 <div class="introduction-blogs-site">
-                    <div class="both-container">
-                        <div class="sub-title">
-                            <h4>TOURNAMENT AND BIRD </h4>
-                        </div>
-                        <div class="main-title">
-                            <h1>BLOGS</h1>
-                        </div>
+                    <div class="card-top" style="width: 100%;">
+                        <h5>TOURNMANT AND BIRD</h5>
+                        <h1>BLOGS</h1>
                     </div>
                 </div>
                 <!-- blogs-carouse-site -->
@@ -50,7 +45,7 @@
                     <div class="blogs-carouse-body-site">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="body-main-site">
+                                <div class="main-blogs-detail">
                                     <img class="d-block w-100"
                                          src="${sessionScope.BLOG_DETAIL.getMedia()}"
                                          alt="First slide" style="width: 100%; height: 800px;">
@@ -59,19 +54,23 @@
                                         <p>${sessionScope.BLOG_DETAIL.getCreateTime()}</p>
                                     </div>
                                     <!-- ---------- -->
-                                    <h1>${sessionScope.BLOG_DETAIL.getTitle()}</h1>
+                                    <h3>${sessionScope.BLOG_DETAIL.getTitle()}</h3>
                                     <div class="card-body">
-                                        <p>${sessionScope.BLOG_DETAIL.getBody()}</p>
+                                        <p>
+                                            ${sessionScope.BLOG_DETAIL.getBody()}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- other-blog-site-small -->
                 <div class="small-categories-blogs-site container">
                     <!-- heading 3d site -->
                     <div class="container-site-logo-heading">
                         <div class="cover-site-logo-heading">
+                            <p><i class="fa-solid fa-star"></i>  Maybe you want to read</p>
                         </div>
                     </div>
                     <!-- each card blog site -->
@@ -97,11 +96,9 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- footer section -->
-<footer>
-    <%@include file="footer.jsp" %>
-</footer>
-</body>
+        <!-- footer section -->
+        <footer>
+            <%@include file="footer.jsp" %>
+        </footer>
+    </body>
 </html>

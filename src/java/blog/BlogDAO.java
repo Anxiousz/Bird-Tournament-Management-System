@@ -19,7 +19,7 @@ import utils.DBContext;
  */
 public class BlogDAO implements Serializable {
 
-    private final static String VIEW_TOURNAMENT = "SELECT TOP 3 *\n"
+    private final static String VIEW_BLOG = "SELECT TOP 3 *\n"
             + "FROM (\n"
             + "SELECT b.blogID, b.accountID, b.Body, b.Title, b.Media, FORMAT(CAST(b.createTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS createTime\n"
             + "FROM Blog b\n"
@@ -37,6 +37,36 @@ public class BlogDAO implements Serializable {
     private final static String ANOTHER_DETAIL = "SELECT b.blogID, b.accountID, b.Body, b.Title, b.Media, FORMAT(CAST(b.createTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS createTime\n"
             + "FROM Blog b\n"
             + "WHERE blogID NOT IN (SELECT blogID FROM Blog WHERE blogID = ?);";
+
+    private final static String DELETE_BLOG = "DELETE FROM Blog  \n"
+            + "WHERE blogID = ? ";
+
+    public boolean deleteBlog(int blogID) throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(DELETE_BLOG);
+                stm.setInt(1, blogID);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
 
     public List<BlogDTO> listAnotherBlog(int blogID) throws Exception {
         List<BlogDTO> list = new ArrayList<>();
@@ -158,7 +188,7 @@ public class BlogDAO implements Serializable {
         try {
             con = DBContext.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(VIEW_TOURNAMENT);
+                stm = con.prepareStatement(VIEW_BLOG);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int blogID = rs.getInt("blogID");
