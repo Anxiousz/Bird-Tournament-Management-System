@@ -5,23 +5,22 @@
  */
 package controller;
 
+import feedback.FeedbackDAO;
+import feedback.FeedbackDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
 
-@WebServlet(name = "MyTournamentController", urlPatterns = {"/MyTournamentController"})
-public class MyTournamentController extends HttpServlet {
+@WebServlet(name = "SubmitFeedbackController", urlPatterns = {"/SubmitFeedbackController"})
+public class SubmitFeedbackController extends HttpServlet {
 
     private final static String ERROR = "error.jsp";
-    private final static String SUCCESS = "myTournament.jsp";
+    private final static String SUCCESS = "MyTournamentController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,10 +30,12 @@ public class MyTournamentController extends HttpServlet {
             HttpSession s = request.getSession();
             try {
                 int accountID = Integer.valueOf(request.getParameter("accID"));
-                RegistrationFormDAO r = new RegistrationFormDAO();
-                List<RegistrationFormDTO> list = r.MyTournament(accountID);
-                if (list != null) {
-                    s.setAttribute("list", list);
+                int tournamentID = Integer.valueOf(request.getParameter("tournamentID"));
+                String body = request.getParameter("body");
+                FeedbackDTO feedback = new FeedbackDTO(accountID, tournamentID, body);
+                FeedbackDAO dao = new FeedbackDAO();
+                boolean checkSubmit = dao.createFeedback(feedback);
+                if (checkSubmit) {
                     url = SUCCESS;
                 } else {
                     url = ERROR;

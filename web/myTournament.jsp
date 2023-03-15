@@ -62,10 +62,12 @@
                                 </div>-->
                                 <div class="orther-info-container">
                                     <p>Feedback</p>
-                                    <form>
-                                        <textarea cols="50" rows="5"></textarea>
+                                    <form action="MainController" method="POST">
+                                        <textarea name="body" cols="50" rows="5"></textarea>
                                         <br>
-                                        <input class="custom-button_3" type="submit" value="Submit Feedback">
+                                        <input class="custom-button_3" type="submit" name="action" value="Submit Feedback">
+                                        <input type="hidden" name="accID" value="${list.acc.accountID}">
+                                        <input type="hidden" name="tournamentID" value="${list.tour.tournamentID}">
                                     </form>
                                 </div>
                             </div>

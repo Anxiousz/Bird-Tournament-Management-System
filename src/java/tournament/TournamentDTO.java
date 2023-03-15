@@ -80,6 +80,10 @@ public class TournamentDTO implements Serializable {
     public TournamentDTO() {
     }
 
+    public TournamentDTO(String tournamentName) {
+        this.tournamentName = tournamentName;
+    }
+
     public TournamentDTO(int tournamentID, String tournamentName, int categoriesID, String description, String sponsor, String prize, int minParticipant, int maxParticipant, String dateTime, String fee, String image, String location, int tournamentStatus) {
         this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;

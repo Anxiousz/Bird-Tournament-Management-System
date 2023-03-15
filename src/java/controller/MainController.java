@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -44,6 +39,7 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_BIRD = "updateBird";
     private static final String LOAD_BLOG = "BLOG";
     private static final String LOAD_BLOG_DETAIL = "BlogDetail";
+    private static final String SUBMIT_FEEDBACK = "Submit Feedback";
 
     //value of action of Admin
     private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
@@ -61,6 +57,7 @@ public class MainController extends HttpServlet {
     private static final String ADD_BLOGS = "AddNewBlog";
     private static final String UPDATE_BLOGS = "UPDATE_BLOGS";
     private static final String UPDATE = "UPDATE";
+    private static final String LOAD_FEEDBACK = "LOAD_FEEDBACK";
 
     //link to servlet of User
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -84,6 +81,7 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_BIRD_CONTROLLER = "UpdateBirdController";
     private static final String LOAD_BLOG_CONTROLLER = "LoadBlogController";
     private static final String LOAD_BLOG_DETAIL_CONTROLLER = "LoadBlogDetailController";
+    private static final String SUBMIT_FEEDBACK_CONTROLLER = "SubmitFeedbackController";
 
     // link to servlet of Admin
     private static final String MANAGE_ACCOUNT_CONTROLLER = "ManageAccountController";
@@ -100,6 +98,7 @@ public class MainController extends HttpServlet {
     private static final String ADD_BLOGS_CONTROLLER = "AddBlogsController";
     private static final String LOAD_UPDATE_BLOGS_CONTROLLER = "LoadUpdateBlogsController";
     private static final String UPDATE_BLOGS_CONTROLLER = "UpdateBlogsController";
+    private static final String LOAD_FEEDBACK_CONTROLLER = "LoadFeedbackController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -224,6 +223,12 @@ public class MainController extends HttpServlet {
                         break;
                     case UPDATE:
                         url = UPDATE_BLOGS_CONTROLLER;
+                        break;
+                    case SUBMIT_FEEDBACK:
+                        url = SUBMIT_FEEDBACK_CONTROLLER;
+                        break;
+                    case LOAD_FEEDBACK:
+                        url = LOAD_FEEDBACK_CONTROLLER;
                         break;
                 }
             }

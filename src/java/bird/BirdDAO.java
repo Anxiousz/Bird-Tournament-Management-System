@@ -38,8 +38,8 @@ public class BirdDAO implements Serializable {
             + "FROM Bird b \n"
             + "WHERE accountID= ?";
 
-    private final static String GET_BIRD_ACHIEVEMENT_BY_ACCOUNT 
-            ="SELECT Bird.birdID,\n"
+    private final static String GET_BIRD_ACHIEVEMENT_BY_ACCOUNT
+            = "SELECT Bird.birdID,\n"
             + " Bird.accountID,\n"
             + "   Bird.birdName,\n"
             + "   Bird.birdPhoto,\n"
@@ -56,8 +56,8 @@ public class BirdDAO implements Serializable {
             + "  INNER JOIN  Achievement ON  Bird.birdID =\n"
             + "     Achievement.birdID\n"
             + "WHERE Bird.accountID = ?";
-    private final static String GET_BIRD_ACHIEVEMENT_BY_ID 
-            ="SELECT Bird.birdID,\n"
+    private final static String GET_BIRD_ACHIEVEMENT_BY_ID
+            = "SELECT Bird.birdID,\n"
             + " Bird.accountID,\n"
             + "   Bird.birdName,\n"
             + "   Bird.birdPhoto,\n"
@@ -74,8 +74,7 @@ public class BirdDAO implements Serializable {
             + "  INNER JOIN  Achievement ON  Bird.birdID =\n"
             + "     Achievement.birdID\n"
             + "WHERE Bird.birdID = ?";
-            
-    
+
     private static final String GET_ALL_BIRD = "SELECT b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color, b.categoriesID, b.dentification, b.birdStatus\n"
             + "FROM Bird b ";
 
@@ -95,12 +94,11 @@ public class BirdDAO implements Serializable {
     private static final String UPDATE_BIRD_BY_ACCOUNT_ID = "UPDATE Bird\n"
             + "SET categoriesID = ?, birdName=?, birdPhoto=?,height = ?, weight = ?, color = ?, dentification =?, birdStatus =?\n"
             + "WHERE birdID = ? AND accountID = ?;";
-    
+
     private final static String GET_BIRD_BY_ACCOUNT_DENDIFICATION = "SELECT  b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color,b.birdStatus ,b.dentification\n"
             + "FROM Bird b \n"
             + "WHERE accountID= ?";
-    
-    
+
     public BirdDTO getBirdAchievement(int birdID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -146,6 +144,7 @@ public class BirdDAO implements Serializable {
         }
         return null;
     }
+
     public List<BirdDTO> getAllBirdAchievement(int accountID) throws SQLException {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
@@ -192,6 +191,7 @@ public class BirdDAO implements Serializable {
         }
         return list;
     }
+
     public boolean updateBirdByAccountID(int categoriesID, String birdName, String birdPhoto, int height, int weight, String color, String dentification, int birdStatus, int birdID, int accountID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

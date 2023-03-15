@@ -5,6 +5,8 @@
  */
 package controller;
 
+import feedback.FeedbackDAO;
+import feedback.FeedbackDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,28 +15,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
 
-@WebServlet(name = "MyTournamentController", urlPatterns = {"/MyTournamentController"})
-public class MyTournamentController extends HttpServlet {
+@WebServlet(name = "LoadFeedbackController", urlPatterns = {"/LoadFeedbackController"})
+public class LoadFeedbackController extends HttpServlet {
 
-    private final static String ERROR = "error.jsp";
-    private final static String SUCCESS = "myTournament.jsp";
+    private final String ERROR = "error.jsp";
+    private final String SUCCESS = "loadFeedback.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
-            HttpSession s = request.getSession();
             try {
-                int accountID = Integer.valueOf(request.getParameter("accID"));
-                RegistrationFormDAO r = new RegistrationFormDAO();
-                List<RegistrationFormDTO> list = r.MyTournament(accountID);
-                if (list != null) {
-                    s.setAttribute("list", list);
+                FeedbackDAO dao = new FeedbackDAO();
+                List<FeedbackDTO> feedback = dao.loadAllFeedback();
+                if (feedback != null) {
+                    request.setAttribute("feedback", feedback);
                     url = SUCCESS;
                 } else {
                     url = ERROR;
