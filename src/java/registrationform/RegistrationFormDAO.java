@@ -31,7 +31,7 @@ public class RegistrationFormDAO implements Serializable {
             + " FROM  Tournament t\n"
             + "WHERE t.tournamentID =  ?";
 
-    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.phone, a.email, a.name\n"
+    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.accountID ,a.phone, a.email, a.name\n"
             + "FROM Tournament t\n"
             + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
             + "JOIN Bird b ON b.birdID = r.birdID\n"
@@ -217,7 +217,7 @@ public class RegistrationFormDAO implements Serializable {
                     String name = rs.getString("name");
                     TournamentDTO t = new TournamentDTO(tournamentID, tournamentName, location, fee, dateTime, minParticipant);
                     BirdDTO b = new BirdDTO(birdPhoto, birdName, height, weight, color);
-                    AccountDTO a = new AccountDTO(phone, email, name);
+                    AccountDTO a = new AccountDTO(accountID ,phone, email, name);
                     RegistrationFormDTO r = new RegistrationFormDTO(formStatus, t, b, a);
                     list.add(r);
                 }

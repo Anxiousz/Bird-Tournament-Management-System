@@ -25,7 +25,8 @@ public class AccountDTO implements Serializable {
         this.name = name;
     }
 
-    public AccountDTO(int phone, String email, String name) {
+    public AccountDTO(int accountID, int phone, String email, String name) {
+        this.accountID = accountID;
         this.phone = phone;
         this.email = email;
         this.name = name;
