@@ -38,6 +38,8 @@ public class AchievementDAO implements Serializable{
             ="SELECT medals from Achievement WHERE birdID = ?";
      private static final String UPDATE_MEDALS
             ="UPDATE Achievement SET medals = ? WHERE birdID = ?";
+     private static final String UPDATE_ACHIEVEMENT_BY_BID
+            ="UPDATE Achievement SET description = ?, medals = ?, rank = ?, totalScore = ? WHERE birdID = ?";
      private static final String UPDATE_TOTALSCORE
             ="UPDATE Achievement SET totalScore= 0 WHERE totalScore IS NULL\n"
              +"UPDATE Achievement SET totalScore = totalScore + ? WHERE birdID = ?";
@@ -46,6 +48,34 @@ public class AchievementDAO implements Serializable{
             + "SET rank = (SELECT COUNT(*) FROM Achievement WHERE totalScore > s.totalScore AND totalScore IS NOT NULL) + 1\n"
             + "FROM Achievement AS s\n"
             + "WHERE s.totalScore IS NOT NULL";
+      public boolean updateAchievementByBID(AchievementDTO ach) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean check = false;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(UPDATE_ACHIEVEMENT_BY_BID);
+                stm.setString(1, ach.getDescription());
+                stm.setString(2, ach.getMedals());
+                stm.setInt(3, ach.getTop());
+                stm.setInt(4, ach.getTotalScore());
+                stm.setInt(5, ach.getBirdID());
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
      public boolean updateRanking() throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

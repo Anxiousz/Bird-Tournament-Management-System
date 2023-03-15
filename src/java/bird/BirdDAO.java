@@ -55,7 +55,25 @@ public class BirdDAO implements Serializable {
             + "FROM  Bird\n"
             + "  INNER JOIN  Achievement ON  Bird.birdID =\n"
             + "     Achievement.birdID\n"
-            + "WHERE accountID = ?";
+            + "WHERE Bird.accountID = ?";
+    private final static String GET_BIRD_ACHIEVEMENT_BY_ID 
+            ="SELECT Bird.birdID,\n"
+            + " Bird.accountID,\n"
+            + "   Bird.birdName,\n"
+            + "   Bird.birdPhoto,\n"
+            + "   Bird.height,\n"
+            + "   Bird.weight,\n"
+            + "   Bird.color,\n"
+            + "   Bird.birdStatus,\n"
+            + "   Bird.dentification,\n"
+            + "   Achievement.rank,\n"
+            + "   Achievement.description,\n"
+            + "   Achievement.medals,\n"
+            + "   Achievement.totalScore\n"
+            + "FROM  Bird\n"
+            + "  INNER JOIN  Achievement ON  Bird.birdID =\n"
+            + "     Achievement.birdID\n"
+            + "WHERE Bird.birdID = ?";
             
     
     private static final String GET_ALL_BIRD = "SELECT b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color, b.categoriesID, b.dentification, b.birdStatus\n"
@@ -82,6 +100,52 @@ public class BirdDAO implements Serializable {
             + "FROM Bird b \n"
             + "WHERE accountID= ?";
     
+    
+    public BirdDTO getBirdAchievement(int birdID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_BIRD_ACHIEVEMENT_BY_ID);
+                stm.setInt(1, birdID);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    BirdDTO bird = new BirdDTO();
+                    bird.setBirdID(rs.getInt(1));
+                    bird.setAccountID(rs.getInt(2));
+                    bird.setBirdName(rs.getString(3));
+                    bird.setBirdPhoto(rs.getString(4));
+                    bird.setHeight(rs.getString(5));
+                    bird.setWeight(rs.getString(6));
+                    bird.setColor(rs.getString(7));
+                    bird.setBirdStatus(rs.getInt(8));
+                    bird.setDentification(rs.getString(9));
+                    AchievementDTO ach = new AchievementDTO();
+                    ach.setTop(rs.getInt(10));
+                    ach.setDescription(rs.getString(11));
+                    ach.setMedals(rs.getString(12));
+                    ach.setTotalScore(rs.getInt(13));
+                    bird.setAchivement(ach);
+                    return bird;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
     public List<BirdDTO> getAllBirdAchievement(int accountID) throws SQLException {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
