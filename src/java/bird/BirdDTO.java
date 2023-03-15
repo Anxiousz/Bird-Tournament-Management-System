@@ -130,6 +130,7 @@ public class BirdDTO implements Serializable {
 
     public BirdDTO(String birdPhoto, String birdName, String height, String weight, String color) {
         this.birdPhoto = birdPhoto;
+        this.birdName = birdName;
         this.height = height;
         this.weight = weight;
         this.color = color;
