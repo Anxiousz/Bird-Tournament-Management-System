@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -64,10 +65,20 @@
                                 </div>
                                 <div class="card-body main-body-bird">
                                     <div class="left-achivement-site">
-                                        <li>Top 1 Tournament A</li>
-                                        <li>Top 2 Tournament B</li>
-                                        <li>Top 3 Tournament C</li>
-                                        <li>Top 4 Tournament D</li>
+                                        <li>Achievement:</li>
+                                        <c:choose>
+                                            <c:when test="${bird.achivement.totalScore==0}">
+                                                <li>this bird have not won any tournament</li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li>Description: ${bird.achivement.description}</li>
+                                                    <c:forEach items="${fn:split(bird.achivement.medals,';')}" var="medals">
+                                                    <li>${medals} times</li>
+                                                    </c:forEach>
+                                                <li>Total score: ${bird.achivement.totalScore} and at Rank: ${bird.achivement.top}</li> 
+                                                </c:otherwise>
+                                            </c:choose>
+
                                     </div>
                                 </div>
                                 <div class="btn-update-bird">

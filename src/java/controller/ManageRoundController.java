@@ -179,50 +179,28 @@ public class ManageRoundController extends HttpServlet {
                                     } 
                                 }
                                 }
+                                AchievementDAO adao = new AchievementDAO();
                                 List<CandidatesDTO> top4 = cdao.getIDListByTop(cdao.getNumberScored(Integer.parseInt(rid)), Integer.parseInt(rid));
-                                        for (int i = 1; i <= top4.size(); i++) {
-                                                cdao.updateResultByID(Integer.toString(i), top4.get(i - 1).getCandidatesID());
-                                                AchievementDAO adao = new AchievementDAO();
-                                                int birdid = cdao.getBirdId(top4.get(i - 1).getCandidatesID());
-                                                String medals = adao.getMedalsByBid(birdid);
-                                                String[] topValues = medals.split(";");
-                                                if(medals != null){
-                                                        String[] parts = topValues[i-1].split(":");
-                                                        String top = parts[0];
-                                                        int value = Integer.parseInt(parts[1]); 
-                                    switch (i) {
-                                        case 1:
-                                             if (top.equals("Top1")) {
-                                                value++;
-                                             }
-                                            break;
-                                        case 2:
-                                            if (top.equals("Top2")) {
-                                                value++;
-                                               
-                                             }
-                                            break;
-                                        case 3:
-                                            if (top.equals("Top3")) {
-                                                value++;
-                                               
-                                             }
-                                            break;
-                                        case 4:
-                                           if (top.equals("Top4")) {
-                                                value++;
-                                                
-                                             }
-                                            break;
+                                for (int i = 1; i <= top4.size(); i++) {
+                                    cdao.updateResultByID(Integer.toString(i), top4.get(i - 1).getCandidatesID());
+                                    int birdid = cdao.getBirdId(top4.get(i - 1).getCandidatesID());
+                                    String medals = adao.getMedalsByBid(birdid);
+                                    if (medals == null) {
+                                        adao.updateMedals("Top1:0;Top2:0;Top3:0;Top4:0", birdid);
+                                        medals = adao.getMedalsByBid(birdid);
+                                    }if(medals != null){
+                                        String[] topValues = medals.split(";");
+                                        String[] parts = topValues[i - 1].split(":");
+                                        String top = parts[0];
+                                        int value = Integer.parseInt(parts[1]);
+                                        value++;
+                                        topValues[i - 1] = top + ":" + value;
+                                        medals = String.join(";", topValues);
+                                        adao.updateMedals(medals, birdid);
+                                        adao.updateTotalScore(i, birdid);
                                     }
-                                    topValues[i-1] = top + ":" + value;
-                                   
-                                    
-                                                medals = String.join(";", topValues);
-                                                adao.updateMedals(medals, birdid);
-                                                         
-                                                }     
-                                        }
+                                }
+                                adao.updateRanking();
                                 cdao.updateFailedCandidates("fail", 2, Integer.parseInt(rid));
                                 rdao.updateAttendPassCandidates(cdao.numberCAttend(Integer.parseInt(rid)), cdao.numberCPass(Integer.parseInt(rid)), Integer.parseInt(rid));
                             }

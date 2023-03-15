@@ -49,7 +49,7 @@ public class LoadBirdByAccountID extends HttpServlet {
             BirdCategoriesDAO cate = new BirdCategoriesDAO();
             try {
                 int accountID = Integer.valueOf(request.getParameter("accID"));
-                List<BirdDTO> Blist = bird.getAllBirdByAccountID(accountID);
+                List<BirdDTO> Blist = bird.getAllBirdAchievement(accountID);
                 List<BirdCategoriesDTO> list_cate = cate.LoadBirdCate();
                 if (Blist == null || list_cate == null) {
                     url = ERROR;
