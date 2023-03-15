@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
@@ -40,6 +41,67 @@ public class BlogDAO implements Serializable {
 
     private final static String DELETE_BLOG = "DELETE FROM Blog  \n"
             + "WHERE blogID = ? ";
+
+    private final static String ADD_BLOG = "INSERT INTO BLOG([accountID],[Body],[Title],[Media],[createTime])\n"
+            + "VALUES(?,?,?,?,GETDATE());";
+
+    private final static String UPDATE_BLOG = "UPDATE Blog\n"
+            + "SET Body = ?, Title =?, Media =?, createTime = GETDATE()\n"
+            + "WHERE blogID = ?";
+
+    public static int updateBlog(String Body, String Title, String Media, int blogID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(UPDATE_BLOG);
+                stm.setString(1, Body);
+                stm.setString(2, Title);
+                stm.setString(3, Media);
+                stm.setInt(4, blogID);
+                result = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
+    public static int addBlog(int accountID, String Body, String Title, String Media) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(ADD_BLOG);
+                stm.setInt(1, accountID);
+                stm.setString(2, Body);
+                stm.setString(3, Title);
+                stm.setString(4, Media);
+                result = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 
     public boolean deleteBlog(int blogID) throws Exception {
         Connection con = null;

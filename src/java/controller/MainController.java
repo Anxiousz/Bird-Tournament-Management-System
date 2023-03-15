@@ -58,6 +58,9 @@ public class MainController extends HttpServlet {
     private static final String APPROVE_PARTICIPANT = "APPROVE_PARTICIPANT";
     private static final String LOAD_BLOGS_MANGEMENT = "MANAGE_BLOG";
     private static final String DELETE_BLOGS = "DELETE_BLOGS";
+    private static final String ADD_BLOGS = "AddNewBlog";
+    private static final String UPDATE_BLOGS = "UPDATE_BLOGS";
+    private static final String UPDATE = "UPDATE";
 
     //link to servlet of User
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -94,6 +97,9 @@ public class MainController extends HttpServlet {
     private static final String LOAD_PARTICIPANT_CONTROLLER = "LoadParticipantController";
     private static final String LOAD_BLOGS_MANGEMENT_CONTROLLER = "LoadBlogControllerManageController";
     private static final String DELETE_BLOGS_CONTROLLER = "DeleteBlogsController";
+    private static final String ADD_BLOGS_CONTROLLER = "AddBlogsController";
+    private static final String LOAD_UPDATE_BLOGS_CONTROLLER = "LoadUpdateBlogsController";
+    private static final String UPDATE_BLOGS_CONTROLLER = "UpdateBlogsController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -209,6 +215,15 @@ public class MainController extends HttpServlet {
                         break;
                     case DELETE_BLOGS:
                         url = DELETE_BLOGS_CONTROLLER;
+                        break;
+                    case ADD_BLOGS:
+                        url = ADD_BLOGS_CONTROLLER;
+                        break;
+                    case UPDATE_BLOGS:
+                        url = LOAD_UPDATE_BLOGS_CONTROLLER;
+                        break;
+                    case UPDATE:
+                        url = UPDATE_BLOGS_CONTROLLER;
                         break;
                 }
             }

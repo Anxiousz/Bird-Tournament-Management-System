@@ -33,6 +33,7 @@ public class BlogDTO implements Serializable {
         this.createTime = createTime;
     }
 
+
     public int getBlogID() {
         return blogID;
     }

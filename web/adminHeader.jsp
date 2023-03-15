@@ -42,7 +42,7 @@
                         <a class="nav-link" href="MainController?action=BLOG">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="adminIntroductionPage.jsp">INTRODUCTION</a>
+                        <a class="nav-link" href="introduction.jsp">INTRODUCTION</a>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MANAGE</a>

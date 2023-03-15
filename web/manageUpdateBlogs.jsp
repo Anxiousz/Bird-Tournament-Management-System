@@ -28,31 +28,49 @@
         <div class="add-blog-admin-main-site container">
             <div class="add-blog-form">
                 <div class="blog-heading-add">
-                    <h1>Update BLOG FORM</h1>
+                    <h1>UPDATE BLOG FORM</h1>
                 </div>
-                <form>    
+                <form action="MainController" method="post">    
+                    <input type="hidden" name="blogID" value="${sessionScope.blogID}">
                     <div class="card car-blogs-add" style="width: 100%;">
                         <label for="">Blogs Image</label>
-                        <img src="" class="card-img-top" alt="...">
-                        <div class="card-body">
+                        <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
+                        <div>
+                            <label for="input-img2" class="preview">
+                                <img class="tournament-img" id="previewImg2" src="">
+                            </label>
+                            <input type="file" hidden id="input-img2" name="Media"/>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Blogs Title</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Blog Body</label>
-                        <textarea name="" id="" rows="20" style="width: 100%;"></textarea>
-                    </div>
-                    <div class="button-add-site">
-                        <button type="submit" class="btn btn-primary">ADD NEW BLOG</button>
-                    </div> 
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Blogs Title</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Blog Body</label>
+                                <textarea name="Body" id="" rows="20" style="width: 100%;"></textarea>
+                            </div>
+                            <div class="button-add-site">
+                                <button type="submit" class="btn btn-primary" value="UPDATE" name="action">UPDATE BLOG</button>
+                            </div> 
+                        </div>
                 </form>
             </div>
         </div>
-        <header>
+        <footer>
             <%@include file="footer.jsp" %>
-        </header>
+        </footer>
+        <script> const fileInput2 = document.getElementById('input-img2');
+            const previewImg2 = document.getElementById('previewImg2');
+            fileInput2.addEventListener('change', function () {
+                if (fileInput2.files && fileInput2.files[0]) {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', function (e) {
+                        previewImg2.src = e.target.result;
+                    });
+                    reader.readAsDataURL(fileInput2.files[0]);
+                }
+            });
+        </script>
     </body>
 </html>

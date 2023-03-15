@@ -32,13 +32,14 @@
                 </div>
                 <form action="MainController" method="post">    
                     <div class="card car-blogs-add" style="width: 100%;">
+                        <input type="hidden" name="accountID" value="${sessionScope.acc.accountID}">
                         <label for="">Blogs Image</label>
                         <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
                         <div>
                             <label for="input-img2" class="preview">
                                 <img class="tournament-img" id="previewImg2" src="">
                             </label>
-                            <input type="file" hidden id="input-img2" name="image"/>
+                            <input type="file" hidden id="input-img2" name="Media"/>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -50,7 +51,7 @@
                                 <textarea name="Body" id="" rows="20" style="width: 100%;"></textarea>
                             </div>
                             <div class="button-add-site">
-                                <button type="submit" class="btn btn-primary" value="AddNewBlog">ADD NEW BLOG</button>
+                                <button type="submit" class="btn btn-primary" value="AddNewBlog" name="action">ADD NEW BLOG</button>
                             </div> 
                         </div>
                 </form>

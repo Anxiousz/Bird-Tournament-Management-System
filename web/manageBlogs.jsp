@@ -47,7 +47,7 @@
                                 <h5 class=" card-title">${a.getTitle()}</h5>
                                 <p class="card-blog-body">${a.getBody()}</p>
                                 <div class="blogs-card-button">
-                                    <button class="btn btn-update btn-priamry">Update</button>
+                                    <button class="btn btn-update btn-priamry"><a href="MainController?action=UPDATE_BLOGS&blogID=${a.getBlogID()}">Update</a></button>
                                     <button class="btn btn-delete btn-danger"><a href="MainController?action=DELETE_BLOGS&blogID=${a.getBlogID()}" style="color: white">Delete</a></button>
                                 </div>
                             </div>
