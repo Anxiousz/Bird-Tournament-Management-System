@@ -42,7 +42,7 @@
                         <a class="nav-link" href="MainController?action=BLOG">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="userIntroductionPage.jsp">INTRODUCTION</a>
+                        <a class="nav-link" href="introduction.jsp">INTRODUCTION</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="MainController?action=BIRD&accID=${sessionScope.acc.accountID}">BIRD</a>

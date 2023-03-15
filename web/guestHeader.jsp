@@ -35,7 +35,7 @@
                         <a class="nav-link" href="MainController?action=BLOG">BLOG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="guestIntroductionPage.jsp">INTRODUCTION</a>
+                        <a class="nav-link" href="introduction.jsp">INTRODUCTION</a>
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
