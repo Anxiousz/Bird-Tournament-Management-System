@@ -33,7 +33,7 @@
         <div class="blog-admin-site-page container">
             <div class="blog-admin-site-categories w-100">
                 <div class="blogs-add-button d-flex">
-                    <button class="btn btn-success "><a href="?" style="color: white">Add New Blogs</a></button>
+                    <button class="btn btn-success "><a href="manageAddBlogs.jsp" style="color: white">Add New Blogs</a></button>
                 </div>
                 <div class="one-blog-admin-site-categories">
                     <c:forEach var="a" items="${sessionScope.LIST_BLOG}">

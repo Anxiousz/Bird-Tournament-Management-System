@@ -31,63 +31,63 @@
         <%@include file="userHeader.jsp"%>
         <!-- body -->
         <section>
-               <div class="add-bird-form container">
-            <div class="add-bird-form-main container">
-                <div class="add-bird-form-heading">
-                    <h1>BIRD REGISTRATION FORM</h1>
-                </div>
-                <form action="MainController" method="POST">
-                    <input type="hidden" name="accID" value="${sessionScope.acc.accountID}"/>
-                    <div class="form-group">
-                        <label>Bird Name</label>
-                        <input type="input" class="form-control" name="bName">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="add-bird-form container">
+                <div class="add-bird-form-main container">
+                    <div class="add-bird-form-heading">
+                        <h1>BIRD REGISTRATION FORM</h1>
                     </div>
-                    <div class="form-group">
-                        <label>Bird Height</label>
-                        <input type="input" class="form-control" name="bHeight">
-                    </div>
-                    <div class="form-group">
-                        <label>Bird Weight</label>
-                        <input type="input" class="form-control" name="bWeight">
-                    </div>
-
-                    <div class="form-group">
-                        Select categories: 
-                        <select name="bCate">
-                            <c:forEach var="b" items="${sessionScope.BIRD_CATE}">
-                                <option value="${b.categoriesID}">${b.categoriesName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Bird Color</label>
-                        <input type="input" class="form-control" name="bColor">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Dentification</label>
-                        <input type="input" class="form-control" name="denfitication">
-                    </div>
-
-                    <div class="form-group">
-                        <label >Tournament Image:</label>
-                        <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
-                        <div>
-                            <label for="input-img2" class="preview">
-                                <img class="tournament-img" id="previewImg2" src="">
-                            </label>
-                            <input type="file" hidden id="input-img2" name="image"/>
+                    <form action="MainController" method="POST">
+                        <input type="hidden" name="accID" value="${sessionScope.acc.accountID}"/>
+                        <div class="form-group">
+                            <label>Bird Name</label>
+                            <input type="input" class="form-control" name="bName">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
-                    </div>
-                    <div class="btn-add-bird">
-                         <button type="submit" class="btn btn-primary" name="action" value="addBird">Add</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label>Bird Height</label>
+                            <input type="input" class="form-control" name="bHeight">
+                        </div>
+                        <div class="form-group">
+                            <label>Bird Weight</label>
+                            <input type="input" class="form-control" name="bWeight">
+                        </div>
 
+                        <div class="form-group">
+                            Select categories: 
+                            <select name="bCate">
+                                <c:forEach var="b" items="${sessionScope.BIRD_CATE}">
+                                    <option value="${b.categoriesID}">${b.categoriesName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bird Color</label>
+                            <input type="input" class="form-control" name="bColor">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Dentification</label>
+                            <input type="input" class="form-control" name="denfitication">
+                        </div>
+
+                        <div class="form-group">
+                            <label >Tournament Image:</label>
+                            <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
+                            <div>
+                                <label for="input-img2" class="preview">
+                                    <img class="tournament-img" id="previewImg2" src="">
+                                </label>
+                                <input type="file" hidden id="input-img2" name="image"/>
+                            </div>
+                        </div>
+                        <div class="btn-add-bird">
+                            <button type="submit" class="btn btn-primary" name="action" value="addBird">Add</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-        </div>
         </section>
         <%@include file="footer.jsp"%>
         <script> const fileInput2 = document.getElementById('input-img2');
