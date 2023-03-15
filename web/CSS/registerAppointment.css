@@ -48,6 +48,11 @@ body{
     font-size: 20px;
     color: #A87B24;
 }
+.orther-info-container form textarea{
+    font-family: 'Baloo';
+    font-size: 15px;
+    border: 3px solid #A87B24;
+}
 .tnm-all-list-notification{
     width: 100%;
     height: auto;
