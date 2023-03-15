@@ -1,9 +1,3 @@
-<%-- 
-    Document   : confirmedForm
-    Created on : Feb 26, 2023, 9:35:10 PM
-    Author     : Admin
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,20 +31,18 @@
         </header>
         <section>
             <div class="tnm-list-notification container">
-                <div class="tnm-list-notification-heading">
-                    <h1></h1>
-                </div>
                 <div class="tnm-all-list-notification">
                     <div class="tnm-one-match-notification">
                         <div class="tnm-left-match-notification">
-                            <div class="img-personal">
-                                <img src="https://i.pinimg.com/474x/20/5a/c8/205ac833d83d23c76ccb74f591cb6000.jpg" alt="Avatar" class="avatar">
+                            <div class="person-info-container">
+                                <div class="img-personal">
+                                    <img src="https://i.pinimg.com/474x/20/5a/c8/205ac833d83d23c76ccb74f591cb6000.jpg" alt="Avatar" class="avatar">
+                                </div>
+                                <div class="other-info-personal">
+                                    <li><i class="fa-sharp fa-solid fa-signature"></i>   ${sessionScope.acc.name}</li>
+                                    <li><i class="fa-solid fa-envelope"></i>   ${sessionScope.acc.email}</li>
+                                </div>
                             </div>
-                            <div class="other-info-personal">
-                                <li><i class="fa-sharp fa-solid fa-signature"></i>   ${sessionScope.acc.name}</li>
-                                <li><i class="fa-solid fa-envelope"></i>   ${sessionScope.acc.email}</li>
-                            </div>
-
                         </div>
                         <div class="tnm-right-match-notification">
                             <div class="tnm-right-match-top-info-tournament">
@@ -81,16 +73,14 @@
                                             <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.minParticipant}">
                                         </div>
                                     </div>
-                                </form>  
+                                </form>   
                                 <div class="guide-notification">
-                                    <h1>****Plese when you go to tournament bring personal identity card you have something do not understand or some thing wrong, let us know througt:</h1>
-                                    <a href="#"><img src="https://i.pinimg.com/736x/0d/df/65/0ddf65257444599962afb8828800eebd.jpg"class="avatar-logo-guide"></a>
-                                    <a href="#"><img src="https://i.pinimg.com/236x/e8/f6/ee/e8f6eec580bfd2d1d7bd4c4d11a21c7e.jpg" class="avatar-logo-guide"></a>
+                                    <h1>***Please when you go to tournament bring personal identity card you have.</h1>
+                                    <h1>***Something do not understand or some thing wrong, let us know through: <a href="#"><img src="https://i.pinimg.com/736x/0d/df/65/0ddf65257444599962afb8828800eebd.jpg"class="avatar-logo-guide"></a> <a href="#"><img src="https://i.pinimg.com/236x/e8/f6/ee/e8f6eec580bfd2d1d7bd4c4d11a21c7e.jpg" class="avatar-logo-guide"></a></h1>
                                 </div>
                             </div>
                             <!-- notification div  -->
                             <div class="notification-wrong">
-
                             </div>
                             <!-- div line  -->
                             <div class="line-normal">
@@ -117,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </div>
