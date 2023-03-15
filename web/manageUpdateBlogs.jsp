@@ -57,20 +57,21 @@
                 </form>
             </div>
         </div>
-        <footer>
-            <%@include file="footer.jsp" %>
-        </footer>
-        <script> const fileInput2 = document.getElementById('input-img2');
-            const previewImg2 = document.getElementById('previewImg2');
-            fileInput2.addEventListener('change', function () {
-                if (fileInput2.files && fileInput2.files[0]) {
-                    const reader = new FileReader();
-                    reader.addEventListener('load', function (e) {
-                        previewImg2.src = e.target.result;
-                    });
-                    reader.readAsDataURL(fileInput2.files[0]);
-                }
-            });
-        </script>
-    </body>
+    </div>
+    <footer>
+        <%@include file="footer.jsp" %>
+    </footer>
+    <script> const fileInput2 = document.getElementById('input-img2');
+        const previewImg2 = document.getElementById('previewImg2');
+        fileInput2.addEventListener('change', function () {
+            if (fileInput2.files && fileInput2.files[0]) {
+                const reader = new FileReader();
+                reader.addEventListener('load', function (e) {
+                    previewImg2.src = e.target.result;
+                });
+                reader.readAsDataURL(fileInput2.files[0]);
+            }
+        });
+    </script>
+</body>
 </html>

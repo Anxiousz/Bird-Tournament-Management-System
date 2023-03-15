@@ -51,15 +51,6 @@
                                     </div>
                                 </div>
                                 <div class="orther-info-container">
-                                    <p>Result</p>
-                                    <div class="result-info">
-                                        <li>Qualified: Pass</li>
-                                        <li>Top 30: Pass</li>
-                                        <li>Top 20: Pass</li>
-                                        <li>Top 10: Pass</li>
-                                        <li>Top 4: Top 1</li>
-                                    </div>
-                                </div><div class="orther-info-container">
                                     <p>Feedback</p>
                                     <form>
                                         <textarea cols="90" rows="5"></textarea>
