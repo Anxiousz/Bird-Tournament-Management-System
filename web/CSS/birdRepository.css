@@ -48,7 +48,8 @@ body{
 }
 .img-card-container p {
     padding: 10px;
-    font-family: 'Baloo';font-size: 18px;
+    font-family: 'Baloo';
+    font-size: 18px;
     color: green;
 }
 .card{
