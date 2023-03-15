@@ -100,13 +100,14 @@ public class TournamentDTO implements Serializable {
         this.tournamentStatus = tournamentStatus;
     }
 
-    public TournamentDTO(int tournamentID, String tournamentName, String location, String fee, String dateTime, int minParticipant) {
+    public TournamentDTO(int tournamentID, String tournamentName, String location, String fee, String dateTime, int minParticipant, int tournamentStatus) {
         this.tournamentID = tournamentID;
         this.tournamentName = tournamentName;
         this.location = location;
         this.fee = fee;
         this.dateTime = dateTime;
         this.minParticipant = minParticipant;
+        this.tournamentStatus = tournamentStatus;
     }
 
     public TournamentDTO(String tournamentName, int minParticipant, int maxParticipant, String dateTime, String location, String fee, String sponsor, String prize, int categoriesID, String image, int tournamentStatus, String description) {

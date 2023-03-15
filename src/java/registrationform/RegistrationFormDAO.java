@@ -31,12 +31,12 @@ public class RegistrationFormDAO implements Serializable {
             + " FROM  Tournament t\n"
             + "WHERE t.tournamentID =  ?";
 
-    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.accountID ,a.phone, a.email, a.name\n"
+    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant,t.tournamentStatus, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.accountID ,a.phone, a.email, a.name\n"
             + "FROM Tournament t\n"
             + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
             + "JOIN Bird b ON b.birdID = r.birdID\n"
             + "JOIN Account a ON r.accountID = a.accountID\n"
-            + "WHERE a.accountID = ?";
+            + " WHERE a.accountID = ?";
 
     private final static String COUNT_TOURNAMENT = "SELECT COUNT(*) AS count, formStatus \n"
             + "FROM RegistrationForm WHERE accountID = ?\n"
@@ -207,6 +207,7 @@ public class RegistrationFormDAO implements Serializable {
                     String fee = rs.getString("fee");
                     String dateTime = rs.getString("dateTime");
                     int minParticipant = rs.getInt("minParticipant");
+                    int tournamentStatus = rs.getInt("tournamentStatus");
                     String birdPhoto = rs.getString("birdPhoto");
                     String birdName = rs.getString("birdName");
                     String height = rs.getString("height");
@@ -215,9 +216,9 @@ public class RegistrationFormDAO implements Serializable {
                     int phone = rs.getInt("phone");
                     String email = rs.getString("email");
                     String name = rs.getString("name");
-                    TournamentDTO t = new TournamentDTO(tournamentID, tournamentName, location, fee, dateTime, minParticipant);
+                    TournamentDTO t = new TournamentDTO(tournamentID, tournamentName, location, fee, dateTime, minParticipant, tournamentStatus);
                     BirdDTO b = new BirdDTO(birdPhoto, birdName, height, weight, color);
-                    AccountDTO a = new AccountDTO(accountID ,phone, email, name);
+                    AccountDTO a = new AccountDTO(accountID, phone, email, name);
                     RegistrationFormDTO r = new RegistrationFormDTO(formStatus, t, b, a);
                     list.add(r);
                 }
