@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,18 +64,20 @@
                                 <li>${bird.getDentification()}</li>
                             </div>
                         </div>
-                        <form>
+                            <form action="ManageBirdDetailController" method="GET">
                             <div class="card-body main-body-bird">
                                 <div class="left-achivement-site">
-                                    <li>Top 1 Tournament A</li>
-                                    <li>Top 2 Tournament B</li>
-                                    <li>Top 3 Tournament C</li>
-                                    <li>Top 4 Tournament D</li>
-                                    <li>Top <input class="top" type="number" min="1" max="4"> Tournament <input class="tname" type="text"></li>
+                                    <li>Description: <input type="text" value="${bird.achivement.description}" name="description"></li>
+                                    <c:forEach items="${fn:split(bird.achivement.medals,';')}" var="medals">
+                                        <li>${medals} times</li>
+                                    </c:forEach>
+                                    <li>Medals: <input type="text" value="${bird.achivement.medals}" name="medals"></li>
+                                    <li>Total score: <input type="number" class="top" value="${bird.achivement.totalScore}" name="totalScore"> and at Rank: <input  class="top" type="number" value="${bird.achivement.top}" name="top"></li> 
                                 </div>
                             </div>
                             <div class="btn-update-bird">
-                                <a href="MainController?action=&birdID=${bird.birdID}" class="btn btn-success">Update Achievement</a>
+                                <input type="hidden" value="${bird.birdID}" name="birdID" />
+                                <input class="btn btn-success" type="submit" value="Update Achievement" name="action" />
                             </div>
                         </form>
                     </div>

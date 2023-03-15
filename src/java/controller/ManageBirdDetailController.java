@@ -5,31 +5,25 @@
  */
 package controller;
 
-import account.AccountDTO;
-import bird.BirdDAO;
+import achievement.AchievementDAO;
+import achievement.AchievementDTO;
 import bird.BirdDTO;
-import birdcategories.BirdCategoriesDAO;
-import birdcategories.BirdCategoriesDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author anh12
+ * @author thang
  */
-@WebServlet(name = "LoadBirdByAccountID", urlPatterns = {"/LoadBirdByAccountID"})
-public class LoadBirdByAccountID extends HttpServlet {
-
-    private final String SUCCESS = "birdRepository.jsp";
+@WebServlet(name = "ManageBirdDetailController", urlPatterns = {"/ManageBirdDetailController"})
+public class ManageBirdDetailController extends HttpServlet {
     private final String ERROR = "error.jsp";
-
+    private final String SUCCES = "manageBirdDetail.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,30 +36,41 @@ public class LoadBirdByAccountID extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String url = ERROR;
-            HttpSession s = request.getSession();
-            BirdDAO bird = new BirdDAO();
-            BirdCategoriesDAO cate = new BirdCategoriesDAO();
-            try {
-                int accountID = Integer.valueOf(request.getParameter("accID"));
-                List<BirdDTO> Blist = bird.getAllBirdAchievement(accountID);
-                List<BirdCategoriesDTO> list_cate = cate.LoadBirdCate();
-                if (Blist == null || list_cate == null) {
-                    url = ERROR;
-                } else {
-                    s.setAttribute("birdList", Blist);
-                    s.setAttribute("BIRD_CATE", list_cate);
-                    url = SUCCESS;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        String url = ERROR;
+        String action = request.getParameter("action");
+        String birdID = request.getParameter("birdID");
+        String desc = request.getParameter("description");
+        String medals = request.getParameter("medals");
+        String totalScore = request.getParameter("totalScore");
+        String top = request.getParameter("top");
+        try {
+           if(action.equals("Update Achievement")){
+               AchievementDAO adao = new AchievementDAO();
+               AchievementDTO adto = new AchievementDTO();
+               adto.setBirdID(Integer.parseInt(birdID));
+               adto.setDescription(desc);
+               adto.setMedals(medals);
+               adto.setTop(Integer.parseInt(top));
+               adto.setTotalScore(Integer.parseInt(totalScore));
+               if(adao.updateAchievementByBID(adto)){
+                   url=SUCCES;
+               }else{
+                   url=ERROR;
+               }
+           }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if(url==SUCCES){
+                url="ManageBirdController?action=Detail&birdID="+Integer.parseInt(birdID);
+                request.getRequestDispatcher(url).forward(request, response);
+            }else{
+                request.getRequestDispatcher(url).forward(request, response);
             }
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

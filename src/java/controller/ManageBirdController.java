@@ -84,7 +84,7 @@ public class ManageBirdController extends HttpServlet {
                 }
                 if (action.equals("Detail")) {
                     BirdDAO dao = new BirdDAO();
-                    bird = dao.getByID(Integer.parseInt(birdID));
+                    bird = dao.getBirdAchievement(Integer.parseInt(birdID));
                     if (bird != null) {
                         request.setAttribute("bird", bird);
                         url = "manageBirdDetail.jsp";
