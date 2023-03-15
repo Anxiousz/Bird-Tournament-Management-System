@@ -62,7 +62,11 @@ public class UpdateCandidatesController extends HttpServlet {
                     score = "0";
                 }
                 if(score.equals("0")){
-                    url = SUCCESS;
+                    if(cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))){
+                        url = SUCCESS;
+                    }else{
+                        url = ERROR;
+                    }
                 }else{
                     if(cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))){
                         request.setAttribute("duplicateScore", "true");

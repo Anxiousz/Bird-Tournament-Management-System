@@ -155,7 +155,7 @@
                     <!-- div line -->
                     <div class="sponsor-site" style="margin-top: 10px">
                         <h1>Description: </h1>
-                        <textarea rows="10" cols="100" class="custom-font-3" ></textarea>
+                        <textarea rows="10" cols="100" class="custom-font-3" name="description">${requestScope.tour.description}</textarea>
                     </div>
                     <div class="line-section">
                         <p></p>
@@ -315,7 +315,7 @@
                                                                 <td>${c.bird.birdName}</td>
                                                                 <td>${c.bird.account.name}</td>
                                                                 
-                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" >
+                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score">
                                                                 <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
                                                                         <p style="color:red;">score cannot duplicate</p>
                                                                     </c:if>
@@ -342,7 +342,7 @@
                                                             <input type="hidden" value="${requestScope.tour.tournamentID}" name="tournamentID" />
                                                             <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
 
-                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" /></td>
+                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update" /></td>
 
                                                             </tr>
                                                         </form>
@@ -397,7 +397,7 @@
                                                             <input type="hidden" value="${requestScope.tour.tournamentID}" name="tournamentID" />
                                                             <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
                                                             
-                                                                <td><input class="custom-button_2" type="submit" value="Update" name="action" /></td>
+                                                                <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update"/></td>
                                                               
                                                             </tr>
                                                         </form>
@@ -447,7 +447,7 @@
                                                             <td>${c.bird.birdName}</td>
                                                             <td>${c.bird.account.name}</td>
                                                         
-                                                            <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" >
+                                                            <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score">
                                                                 <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
                                                                         <p style="color:red;">score cannot duplicate</p>
                                                                     </c:if>
@@ -483,7 +483,7 @@
                                                         <input type="hidden" value="${requestScope.tour.tournamentID}" name="tournamentID" />
                                                         <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
                                                        
-                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" /></td>
+                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update"/></td>
                                                            
                                                         </tr>
                                                     </form>
