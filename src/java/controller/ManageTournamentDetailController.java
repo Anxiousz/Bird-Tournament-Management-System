@@ -56,7 +56,7 @@ public class ManageTournamentDetailController extends HttpServlet {
                 if (tour.getTournamentStatus() == 0) {
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 1) {
-                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID))+rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 2) {
                     request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));

@@ -156,25 +156,21 @@ public class ManageRoundController extends HttpServlet {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top10");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
-                                        request.removeAttribute("roundName");
                                         request.setAttribute("roundName", "Top4");
                                     } else if (rname.equals("Top30")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top20");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top10");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
-                                        request.removeAttribute("roundName");
                                         request.setAttribute("roundName", "Top4");
                                     } else if (rname.equals("Top20")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top10");
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
-                                        request.removeAttribute("roundName");
                                         request.setAttribute("roundName", "Top4");
                                     } else if (rname.equals("Top10")) {
                                         rdao.deleteByName(Integer.parseInt(tournamentID), "Top4");
                                         rdao.updateRoundName("Top4", Integer.parseInt(rid));
-                                        request.removeAttribute("roundName");
                                         request.setAttribute("roundName", "Top4");
                                     } 
                                 }

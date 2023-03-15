@@ -315,7 +315,12 @@
                                                                 <td>${c.bird.birdName}</td>
                                                                 <td>${c.bird.account.name}</td>
                                                                 
-                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" ></td>
+                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" >
+                                                                <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
+                                                                        <p style="color:red;">score cannot duplicate</p>
+                                                                    </c:if>
+                                                                </td>
+                                                                    
                                                                 
                                                                 <td><select style="font-weight: bold; color: red" name="result">
                                                                         <c:if test="${requestScope.round.roundStatus == 1}">
@@ -371,7 +376,11 @@
                                                                 <td>${c.bird.birdName}</td>
                                                                 <td>${c.bird.account.name}</td>
                                                               
-                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" ></td>
+                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" >
+                                                                <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
+                                                                        <p style="color:red;">score cannot duplicate</p>
+                                                                    </c:if>
+                                                                </td>
                                                                 <td><select style="font-weight: bold; color: red" name="result">
                                                                         <c:if test="${requestScope.round.roundStatus == 1}">
                                                                                 <option style="font-weight: bold; color: red" value="" ></option>
@@ -438,7 +447,11 @@
                                                             <td>${c.bird.birdName}</td>
                                                             <td>${c.bird.account.name}</td>
                                                         
-                                                            <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" ></td>
+                                                            <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" >
+                                                                <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
+                                                                        <p style="color:red;">score cannot duplicate</p>
+                                                                    </c:if>
+                                                            </td>
                                                                 <c:choose>
                                                                 <c:when test="${requestScope.round.roundName eq 'Top4'}">
                                                                 <td><select style="font-weight: bold; color: red" name="result">

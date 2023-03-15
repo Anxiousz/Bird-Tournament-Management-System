@@ -146,7 +146,39 @@ public class CandidatesDAO implements Serializable {
             + "    ON RegistrationForm.formID =\n"
             + "    Candidates.formID\n"
             + "WHERE candidatesID = ?";
-    
+    private static final String CHECK_DUPLICATE_SCORE
+            = "SELECT score FROM Candidates WHERE score = ? AND roundID = ?";
+    public boolean checkDuplicateScore(int score, int rid) throws SQLException {
+        boolean check = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(CHECK_DUPLICATE_SCORE);
+                stm.setInt(1, score);
+                stm.setInt(2, rid);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
     public int getBirdId(int CID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

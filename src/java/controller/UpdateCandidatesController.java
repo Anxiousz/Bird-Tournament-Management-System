@@ -61,11 +61,23 @@ public class UpdateCandidatesController extends HttpServlet {
                 if (score == null) {
                     score = "0";
                 }
-                if (cdao.updateScoreResult(Integer.parseInt(score), result,cstatus, Integer.parseInt(cid))) {
+                if(score.equals("0")){
                     url = SUCCESS;
-                } else {
-                    url = ERROR;
+                }else{
+                    if(cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))){
+                        request.setAttribute("duplicateScore", "true");
+                        request.setAttribute("cid", cid);
+                        url = SUCCESS;
+                    }else{
+                        if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
+                            request.setAttribute("duplicateScore", "fase");
+                            url = SUCCESS;
+                        } else {
+                            url = ERROR;
+                        }
+                    }
                 }
+                
             }
 
         } catch (Exception e) {
