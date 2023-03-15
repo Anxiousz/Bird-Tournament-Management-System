@@ -50,26 +50,28 @@
                                         <li><i class="fa-solid fa-envelope"></i>   ${list.acc.email}</li>
                                     </div>
                                 </div>
-<!--                                <div class="orther-info-container">
-                                    <p>Result</p>
-                                    <div class="result-info">
-                                        <li>Qualified: Pass</li>
-                                        <li>Top 30: Pass</li>
-                                        <li>Top 20: Pass</li>
-                                        <li>Top 10: Pass</li>
-                                        <li>Top 4: Top 1</li>
+                                <!--                                <div class="orther-info-container">
+                                                                    <p>Result</p>
+                                                                    <div class="result-info">
+                                                                        <li>Qualified: Pass</li>
+                                                                        <li>Top 30: Pass</li>
+                                                                        <li>Top 20: Pass</li>
+                                                                        <li>Top 10: Pass</li>
+                                                                        <li>Top 4: Top 1</li>
+                                                                    </div>
+                                                                </div>-->
+                                <c:if test="${list.tour.tournamentStatus == 4}">
+                                    <div class="orther-info-container">
+                                        <p>Feedback</p>
+                                        <form action="MainController" method="POST">
+                                            <textarea name="body" cols="50" rows="5"></textarea>
+                                            <br>
+                                            <input class="custom-button_3" type="submit" name="action" value="Submit Feedback">
+                                            <input type="hidden" name="accID" value="${list.acc.accountID}">
+                                            <input type="hidden" name="tournamentID" value="${list.tour.tournamentID}">
+                                        </form>
                                     </div>
-                                </div>-->
-                                <div class="orther-info-container">
-                                    <p>Feedback</p>
-                                    <form action="MainController" method="POST">
-                                        <textarea name="body" cols="50" rows="5"></textarea>
-                                        <br>
-                                        <input class="custom-button_3" type="submit" name="action" value="Submit Feedback">
-                                        <input type="hidden" name="accID" value="${list.acc.accountID}">
-                                        <input type="hidden" name="tournamentID" value="${list.tour.tournamentID}">
-                                    </form>
-                                </div>
+                                </c:if>
                             </div>
                             <div class="tnm-right-match-notification">
                                 <div class="tnm-right-match-top-info-tournament">
