@@ -27,8 +27,6 @@ body{
     flex-direction: row;
 }
 .tnm-card-right-site{
-
-    display: flex;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -45,7 +43,6 @@ body{
     justify-content: flex-end;
     flex-direction: row;
     flex-wrap: nowrap;
-
 }
 .card-end a{
     color: #A87B24;
@@ -54,7 +51,6 @@ body{
     margin-right: 20px;
     padding: 20px 10px;
     text-decoration: none !important;
-
 }
 .card-end a:hover{
     color: #A87B24;
@@ -102,7 +98,6 @@ body{
     padding-bottom:5px ;
     font-size: 1.75rem;
 }
-
 /* Advertisment site */
 .adv-site{
     opacity: 0.7;
@@ -250,15 +245,12 @@ body{
     font-family: 'Baloo';
     font-size: 25px;
 }
-
-
 /* Support site */
 .sp-site{
     background-color: #9b6b0b;
     margin-top: 30px;
     width: 100%;
     height: 400px;
-
 }
 .sp-both-site{
     width: 100%;
@@ -268,7 +260,6 @@ body{
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
-
 }
 .sp-left-site{
     margin: 70px 0px 0px 30px ;
@@ -307,7 +298,6 @@ body{
     width: 100%;
     height: 200px;
     display: flex;
-    display: flex;
     align-items: flex-start;
     justify-content: space-around;
     flex-direction: row;
@@ -338,7 +328,6 @@ body{
     color: #fff;
     padding-bottom: 30px;
     font-size: 15px;
-
 }
 .footer-site{
     display: flex;
@@ -350,7 +339,6 @@ body{
     justify-content: center;
     flex-wrap: nowrap;
 }
-
 .wrapper {
     display: flex;
 }
@@ -358,13 +346,11 @@ body{
     color: #A87B24  ;
     text-decoration: none;
 }
-
 .icon {
     margin: 0 20px;
     cursor: pointer;
     position: relative;
 }
-
 .icon i {
     height: 60px;
     width: 60px;
@@ -376,7 +362,6 @@ body{
     align-items: center;
     justify-content: center;
 }
-
 .icon .tooltip {
     position: absolute;
     top: 0;
@@ -391,7 +376,6 @@ body{
     pointer-events: none;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
 }
-
 .icon .tooltip:before {
     position: absolute;
     content: '';
@@ -401,21 +385,17 @@ body{
     bottom: -6px;
     transform: translateX(-50%) rotate(45deg);
 }
-
 .tooltip,.icon i {
     transition: 0.3s;
 }
-
 .icon:hover .tooltip {
     opacity: 1;
     pointer-events: auto;
     top: -70px;
 }
-
 .icon:hover i {
     color: white;
 }
-
 p{
     margin-top: 0;
     margin-bottom: 1rem;

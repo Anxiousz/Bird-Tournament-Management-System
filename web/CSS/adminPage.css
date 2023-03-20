@@ -27,8 +27,6 @@ body{
     flex-direction: row;
 }
 .tnm-card-right-site{
-
-    display: flex;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
@@ -45,7 +43,6 @@ body{
     justify-content: flex-end;
     flex-direction: row;
     flex-wrap: nowrap;
-
 }
 .card-end a{
     color: #A87B24;
@@ -54,7 +51,6 @@ body{
     margin-right: 20px;
     padding: 20px 10px;
     text-decoration: none !important;
-
 }
 .card-end a:hover{
     color: red;
@@ -217,15 +213,12 @@ body{
     font-family: 'Baloo';
     font-size: 25px;
 }
-
-
 /* Support site */
 .sp-site{
     background-color: #9b6b0b;
     margin-top: 30px;
     width: 100%;
     height: 400px;
-
 }
 .sp-both-site{
     width: 100%;
@@ -235,7 +228,6 @@ body{
     flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
-
 }
 .sp-left-site{
     margin: 70px 0px 0px 30px ;
@@ -300,7 +292,6 @@ body{
     flex-direction: column;
     justify-content: center;
 }
-
 .admin-card{
     margin-left: 0px;
     margin-right: 0px;

@@ -48,7 +48,7 @@
                         <a class="nav-link" href="MainController?action=BIRD&accID=${sessionScope.acc.accountID}">BIRD</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MainController?action=MY_TOURNAMENT&accID=${sessionScope.acc.accountID}"><i class="fa-solid fa-bell" style="color: yellow"></i>  My Tournament<sup class="sup-number">${sessionScope.count}</sup></a>
+                        <a class="nav-link" href="MainController?action=MY_TOURNAMENT&accID=${sessionScope.acc.accountID}"><i class="fa-solid fa-bell" style="color: yellow"></i>     My Tournament     <sup class="sup-number">${sessionScope.count}</sup></a>
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">

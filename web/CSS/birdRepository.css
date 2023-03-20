@@ -70,7 +70,8 @@ body{
 }
 .left-main-site li{
     padding: 10px;
-    font-family: 'Baloo';font-size: 22px;
+    font-family: 'Baloo';
+    font-size: 22px;
 }
 .left-achivement-site li{
     list-style: none;

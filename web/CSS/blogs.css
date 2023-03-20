@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 .blogs-main-site {
     position: relative;
     top:20px;
@@ -11,17 +10,16 @@
     height: auto;
     margin-bottom: 30px;
 }
-
 .card-top img {
     display: block;
     max-width: 100%;
     object-fit: cover !important;
 }
 .created-time-blog-site{
-     display: flex;
-     justify-content: flex-end;
-     padding: 20px 10px;
-     color: grey;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 10px;
+    color: grey;
 }
 .blogs-carouse-body-site{
     width: 100%;
@@ -30,7 +28,6 @@
     padding-bottom: 50px !important;
     border-bottom: 4px solid #A87B24 ;
 }
-
 .card-categories{
     width: 100%;
     display: flex;
@@ -42,7 +39,6 @@
     width: 40%;
     height: 300px;
     display: flex !important;
-
 }
 .card-categories-img-left-site img{
     object-fit:cover
@@ -63,9 +59,9 @@
     font-size: 80px;
 }
 .card-img-top{
-        height: inherit;
-        width: 100%;
-        object-fit: cover;
+    height: inherit;
+    width: 100%;
+    object-fit: cover;
 }
 .small-categories-blogs-main-body-site {
     width: 100%;
@@ -84,9 +80,10 @@
     justify-content: flex-end;
 }
 .link-read-button a{
-        font-size: 20px;
-        text-decoration: underline;
-        color: #A87B24;
+    font-size: 20px;
+    text-decoration: underline;
+    color: #A87B24;
+    font-weight: bold;
 }
 .link-read-button a:hover{
     color: red;
@@ -108,8 +105,8 @@
     color: #A87B24;
 }
 .small-categories-blogs-site{
-    border : 1px soild grey;
+    border : 1px solid grey;
 }
- h3{
+h3{
     font-size: 30px !important;
 }
