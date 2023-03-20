@@ -73,15 +73,15 @@ public class ManageAccountController extends HttpServlet {
                         url = ERROR;
                     }
                 }
-                if (action.equals("Remove")) {
+                if (action.equals("Detail")) {
                     AccountDAO dao = new AccountDAO();
-                    if (dao.deleteAccount(Integer.parseInt(accountID))) {
-                        url = SUCCESS;
-                    } else {
+                    acc = dao.getByID(Integer.parseInt(accountID));
+                    if(acc != null){
+                        request.setAttribute("account_detail", acc);
+                        url = "manageAccountDetail.jsp";
+                    } else{
                         url = ERROR;
                     }
-                }
-                if (action.equals("Detail")) {
                 }
             } catch (Exception e) {
                 e.printStackTrace();

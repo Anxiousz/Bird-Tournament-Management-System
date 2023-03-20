@@ -24,7 +24,6 @@
                         <th scope="col">Status</th>
                         <th scope="col">Block</th>
                         <th scope="col">Unblock</th>
-                        <th scope="col">Remove</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
@@ -50,9 +49,6 @@
                             </td>
                             <td>
                                 <a class="custom-button_2" href="ManageAccountController?action=Unblock&accountID=${a.accountID}">Unblock</a>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="ManageAccountController?action=Remove&accountID=${a.accountID}">Remove</a>
                             </td>
                             <td>
                                 <a class="custom-button_2" href="ManageAccountController?action=Detail&accountID=${a.accountID}">Detail</a>
