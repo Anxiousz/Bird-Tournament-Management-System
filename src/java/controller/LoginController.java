@@ -22,6 +22,7 @@ public class LoginController extends HttpServlet {
 
     private static final String ERROR = "login.jsp";
     private static final String SUCCESS = "homePage.jsp";
+    private static final String ADMIN = "dashboard.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,6 +49,11 @@ public class LoginController extends HttpServlet {
                         session.setAttribute("mess", "Your account blocked. Please contact Admin !!!!");
                         url = ERROR;
                     }
+                } else if (a.getRole() == 1) {
+                    session.setAttribute("acc", a);
+                    int count = r.countTournament(a.getAccountID());
+                    session.setAttribute("count", count);
+                    url = ADMIN;
                 } else {
                     session.setAttribute("acc", a);
                     url = SUCCESS;

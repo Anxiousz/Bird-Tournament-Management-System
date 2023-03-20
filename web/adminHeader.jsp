@@ -33,16 +33,7 @@
             <div class="collapse navbar-collapse nav-container" id="navbarTogglerDemo01">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="MainController?action=HOME_GUEST">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="MainController?action=TOURNAMENT">TOURNAMENT</a><span class="sr-only">(current)</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="MainController?action=BLOG">BLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="introduction.jsp">INTRODUCTION</a>
+                        <a class="nav-link" href="MainController?action=HOME_GUEST">DASHBOARD</a>
                     </li>
                     <li class="nav-item dropdown show">
                         <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MANAGE</a>
