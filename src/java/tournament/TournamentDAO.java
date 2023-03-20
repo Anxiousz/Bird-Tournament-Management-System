@@ -58,6 +58,39 @@ public class TournamentDAO implements Serializable {
             + "SET  tournamentStatus = ? , dateTime = TRY_CONVERT(datetime,?,103), minParticipant = ? , maxParticipant = ? , description = ?, location = ?, fee = ?, prize = ?\n"
             + "WHERE tournamentID = ?";
 
+    private final static String DASHBOARD = "SELECT COUNT(TournamentID) as TournamentID\n"
+            + "FROM Tournament";
+
+    public int countTournament() throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(DASHBOARD);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("TournamentID");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
+
     public boolean updateTournament(int tstatus, String dateTime, int minp, int maxp, String desc, String location, String fee, String prize, int TID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

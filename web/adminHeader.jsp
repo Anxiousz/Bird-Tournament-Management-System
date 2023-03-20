@@ -42,7 +42,7 @@
                             <a class="dropdown-item" href="MainController?action=MANAGE_BIRD">BIRD</a>
                             <a class="dropdown-item" href="MainController?action=MANAGE_TOURNAMENT">TOURNAMENT</a>
                             <a class="dropdown-item" href="MainController?action=MANAGE_BLOG">BLOG</a>
-                            <a class="dropdown-item" href="dashboard.jsp">DASHBOARD</a>
+                            <a class="dropdown-item" href="MainController?action=DASHBOARD">DASHBOARD</a>
                             <a class="dropdown-item" href="MainController?action=LOAD_FEEDBACK">FEEDBACK</a>
                         </div>
                     </li>
@@ -51,7 +51,7 @@
                     <!--<input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">-->
                     <div class="dropdown show drop-nav">
                         <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
+                            <img src="${sessionScope.acc.profilePhoto}" alt="Avatar" class="avatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="MainController?action=ProfileLoad" > <i class="fa-solid fa-gear"></i>  Account Setting</a> 
