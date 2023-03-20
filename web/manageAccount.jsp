@@ -41,14 +41,28 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${a.accountStatus == 1}">Active</c:when>
-                                    <c:otherwise>UnActive</c:otherwise>
+                                    <c:otherwise>Inactive</c:otherwise>
                                 </c:choose>
                             </td>
                             <td>
-                                <a class="custom-button_2" href="ManageAccountController?action=Block&accountID=${a.accountID}">Block</a>
+                                <c:choose>
+                                    <c:when test="${a.accountStatus == 0 && a.role == 0}">Block</c:when>
+                                    <c:when test="${a.accountStatus == 0 && a.role == 1}"></c:when>
+                                    <c:when test="${a.accountStatus == 1 && a.role == 1}"></c:when>
+                                    <c:otherwise>
+                                        <a class="custom-button_2" href="ManageAccountController?action=Block&accountID=${a.accountID}">Block</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
-                                <a class="custom-button_2" href="ManageAccountController?action=Unblock&accountID=${a.accountID}">Unblock</a>
+                                <c:choose>
+                                    <c:when test="${a.accountStatus == 1 && a.role == 0}">Unblock</c:when>
+                                    <c:when test="${a.accountStatus == 1 && a.role == 1}"></c:when>
+                                    <c:when test="${a.accountStatus == 0 && a.role == 1}"></c:when>
+                                    <c:otherwise>
+                                        <a class="custom-button_2" href="ManageAccountController?action=Unblock&accountID=${a.accountID}">Unblock</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
                                 <a class="custom-button_2" href="ManageAccountController?action=Detail&accountID=${a.accountID}">Detail</a>

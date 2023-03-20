@@ -35,15 +35,25 @@
                             <td>${b.birdName}</td>
                             <td>${b.accountID}</td>
                             <td>
-                                 <c:choose>
+                                <c:choose>
                                     <c:when test="${b.birdStatus == 1}">Active</c:when>
-                                    <c:otherwise>UnActive</c:otherwise>
+                                    <c:otherwise>Inactive</c:otherwise>
                                 </c:choose>
                             <td>
-                                <a class="custom-button_2" href="ManageBirdController?action=Block&birdID=${b.birdID}">Block</a>
+                                <c:choose>
+                                    <c:when test="${b.birdStatus == 0}">Block</c:when>
+                                    <c:otherwise>
+                                        <a class="custom-button_2" href="ManageBirdController?action=Block&birdID=${b.birdID}">Block</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
-                                <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
+                                <c:choose>
+                                    <c:when test="${b.birdStatus == 1}">Unblock</c:when>
+                                    <c:otherwise>
+                                        <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
                                 <a class="custom-button_2" href="ManageBirdController?action=Remove&birdID=${b.birdID}">Remove</a>
