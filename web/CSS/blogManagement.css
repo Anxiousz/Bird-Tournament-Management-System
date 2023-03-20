@@ -5,8 +5,7 @@
 }
 
 .blog-admin-site-page {
-    margin: 50px 0px;
-    margin-bottom: 100px !important;
+    margin-bottom: 85px !important;
     position: relative;
     top: 70px;
     width: 100%;
@@ -53,8 +52,26 @@
 }
 
 .blogs-add-button {
-    margin: 20px 0px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-end;
+    font-size: 20px;
+}
+.blogs-add-button a {
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: #A87B24;
+    background-color: #A87B24;
+}
+.blogs-add-button a:hover {
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: #A87B24;
+    background-color: #A87B24;
+    opacity: 0.75;
+    text-decoration: none;
 }

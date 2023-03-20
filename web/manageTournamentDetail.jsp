@@ -26,6 +26,7 @@
         <title>Manage Tournament Detail</title>
     </head>
     <body>  
+        <!--2LAI 1 DÒNG THÊM CLASS="highlight-row" NGAY DÒNG ĐÓ-->
         <header>
             <%@include file="adminHeader.jsp" %>
         </header>

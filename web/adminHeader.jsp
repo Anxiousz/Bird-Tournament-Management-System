@@ -48,17 +48,14 @@
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
-                    <!--<input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">-->
                     <div class="dropdown show drop-nav">
-                        <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="MainController?action=ProfileLoad" > <i class="fa-solid fa-gear"></i>  Account Setting</a> 
-                            <a class="dropdown-item" href="MainController?action=Logout"> <i class="fa-solid fa-right-from-bracket"></i>  Logout</a>
+                        <a class="nav-link dropdown-toggle custom-font" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome ${sessionScope.acc.getName()}</a>
+                        <div class="dropdown-menu custom-font" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item custom-font" href="MainController?action=ProfileLoad"><i class="fa-solid fa-gear"></i>     Account Setting</a> 
+                            <a class="dropdown-item custom-font" href="MainController?action=Logout"><i class="fa-solid fa-right-from-bracket"></i>     Logout</a>
                         </div>
                     </div>
-                    <h5 class="custom-font">Welcome ${sessionScope.acc.getName()}</h5>
+                    <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
                 </div>
             </div>
         </nav>

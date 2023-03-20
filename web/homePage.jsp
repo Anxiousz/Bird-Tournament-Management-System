@@ -36,7 +36,7 @@
                 </c:otherwise>
             </c:choose>
         </header>
-        <section>
+        <section style="margin-bottom: 50px;">
             <!-- Tnm-site -->
             <div class="container tnm-site">
                 <div class="tnm-heading-content d-flex justify-content-center align-item-center mt-4">
@@ -101,7 +101,7 @@
             <!-- Blog site -->
             <div class=" container blog-site">
                 <div class="blog-site-heading d-flex justify-content-center align-item-center mt-4">
-                    <p class="m-5">TOURNAMENT BLOGS<i class='fas fa-certificate' style='font-size:24px;color: orange ;'></i></p>
+                    <p class="m-5">BLOGS<i class='fas fa-certificate' style='font-size:24px;color: orange ;'></i></p>
                 </div>
                 <div class="blog-content-both-site">
                     <c:forEach var="a" items="${sessionScope.GET_BLOG}">
@@ -110,7 +110,7 @@
                             <div class="card-body">
                                 <div style="display: flex; justify-content: flex-end"><p style="font-size: 15px; color: green">${a.getCreateTime()}</p></div>
                                 <h1 class="card-text">${a.getTitle()}</h1>
-                                <div style="display: flex; justify-content: flex-end; padding: 0px 30px; margin-top: 150px;" >
+                                <div class="card-end-2" style="display: flex; justify-content: flex-end; padding: 0px 30px; margin-top: 150px;" >
                                     <a href="MainController?action=BlogDetail&blogID=${a.getBlogID()}">Read more</a>
                                 </div>
                             </div>
@@ -160,65 +160,67 @@
                     </c:forEach>
                 </div>
             </div>
-            <!-- Support-site -->
-            <div class=" container sp-site">
-                <div class="sp-both-site">
-                    <div class="sp-left-site">
-                        <div class="card" style="width: 50rem;">
-                            <img class="card-img-top" src="https://i.pinimg.com/236x/f6/62/af/f662af3b9a1cd3cf54d5ce49295bb25c.jpg" alt="Card image cap">
+            <c:if test="${sessionScope.acc.role != 1}">
+                <!-- Support-site -->
+                <div class=" container sp-site">
+                    <div class="sp-both-site">
+                        <div class="sp-left-site">
+                            <div class="card" style="width: 50rem;">
+                                <img class="card-img-top" src="https://i.pinimg.com/236x/f6/62/af/f662af3b9a1cd3cf54d5ce49295bb25c.jpg" alt="Card image cap">
+                            </div>
+                        </div>
+                        <div class="sp-right-site">
+                            <p class="sp-right-site-heading">We Are Professional Support Team<br>
+                            <p class="sp-right-site-sub">Let us know when you have problems</p>
+                            <p><a href=""><i class="fa fa-facebook-f" style="font-size:24px"></i>     An Le</a></p>
+                            <p><a href=""><i class="fa fa-envelope" style="font-size:24px"></i>     ledinhduyan@gmail.com</a></p>
+                            <p><a href=""><i class="fa fa-phone" style="font-size:24px"></i>     (78)454-33-432</a></p>
                         </div>
                     </div>
-                    <div class="sp-right-site">
-                        <p class="sp-right-site-heading">We Are Professional Support Team<br>
-                        <p class="sp-right-site-sub">Let us know when you have problems</p>
-                        <p><a href=""><i class="fa fa-facebook-f" style="font-size:24px"></i>An Le</a></p>
-                        <p><a href=""><i class="fa fa-envelope" style="font-size:24px"></i>ledingduyan@gmail.com</a></p>
-                        <p><a href=""><i class="fa fa-phone" style="font-size:24px"></i>(78) 454-33-432</a></p>
+                </div>
+                <!-- Sub site -->
+                <div class="sub-site container">
+                    <div class="sub-box-site">
+                        <div class="sub-box-left-site">
+                            <img src="https://www.saigontourist.net/images/promotion.png" alt="">
+                        </div>
+                        <div class="sub-box-right-site">
+                            <h4>FREE CONSULTATION</h4>
+                            <P>Free online consultation support</P>
+                        </div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="sub-box-site">
+                        <div class="sub-box-left-site">
+                            <img src="https://www.saigontourist.net/images/star.png" alt="">
+                        </div>
+                        <div class="sub-box-right-site">
+                            <h4>PRESTIGE WEBSITE</h4>
+                            <P>Top reputable website in Vietnam</P>
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="sub-box-site">
+                        <div class="sub-box-left-site">
+                            <img src="https://www.saigontourist.net/images/price.png" alt="">
+                        </div>
+                        <div class="sub-box-right-site">
+                            <h4>GUI Friendly</h4>
+                            <P>Quick and simple operation</P>
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="sub-box-site">
+                        <div class="sub-box-left-site">
+                            <img src="https://www.saigontourist.net/images/star.png" alt="">
+                        </div>
+                        <div class="sub-box-right-site">
+                            <h4>PROFESSIONAL ENVIRONMENT</h4>
+                            <P>Trustworthy and legit</P>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Sub site -->
-            <div class="sub-site container">
-                <div class="sub-box-site">
-                    <div class="sub-box-left-site">
-                        <img src="https://www.saigontourist.net/images/promotion.png" alt="">
-                    </div>
-                    <div class="sub-box-right-site">
-                        <h4>FREE CONSULTATION</h4>
-                        <P>Free online consultation support</P>
-                    </div>
-                </div>
-                <!-- 2 -->
-                <div class="sub-box-site">
-                    <div class="sub-box-left-site">
-                        <img src="https://www.saigontourist.net/images/star.png" alt="">
-                    </div>
-                    <div class="sub-box-right-site">
-                        <h4>PRESTIGE WEBSITE</h4>
-                        <P>Top reputable website in Vietnam</P>
-                    </div>
-                </div>
-                <!-- 3 -->
-                <div class="sub-box-site">
-                    <div class="sub-box-left-site">
-                        <img src="https://www.saigontourist.net/images/price.png" alt="">
-                    </div>
-                    <div class="sub-box-right-site">
-                        <h4>GUI Friendly</h4>
-                        <P>Quick and simple operation</P>
-                    </div>
-                </div>
-                <!-- 4 -->
-                <div class="sub-box-site">
-                    <div class="sub-box-left-site">
-                        <img src="https://www.saigontourist.net/images/star.png" alt="">
-                    </div>
-                    <div class="sub-box-right-site">
-                        <h4>PROFESSIONAL ENVIRONMENT</h4>
-                        <P>Trustworthy and legit</P>
-                    </div>
-                </div>
-            </div>
+            </c:if>
         </section>
         <footer>
             <%@include file="footer.jsp" %>

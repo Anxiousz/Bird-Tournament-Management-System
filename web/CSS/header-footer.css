@@ -48,6 +48,20 @@
     border-radius: 5px;
     background-color: #fff;
     padding: 10px 30px;
+    font-size: 20px !important;
+    font-weight: bold;
+    color: #A87B24;
+}
+.right-site-form p:hover{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px 30px;
+    font-size: 20px !important;
+    font-weight: bold;
+    color: #A87B24;
+    opacity: 0.75;
 }
 .search-nav{
     margin-right: 50px;

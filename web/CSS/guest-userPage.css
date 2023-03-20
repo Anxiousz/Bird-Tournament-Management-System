@@ -36,7 +36,7 @@ body{
     align-items: flex-end;
 }
 .tnm-card-right-site p{
-        margin:0px 0px 15px 0px ;
+    margin:0px 0px 15px 0px ;
 }
 .card-end{
     margin-left: 100px;
@@ -57,7 +57,31 @@ body{
 
 }
 .card-end a:hover{
-    color: red;
+    color: #A87B24;
+    font-weight: bolder;
+    font-size: 15px;
+    margin-right: 20px;
+    padding: 20px 10px;
+    text-decoration: none !important;
+    opacity: 0.75;
+}
+.card-end-2 a{
+    color: #A87B24;
+    font-weight: bolder;
+    font-size: 15px;
+    padding: 20px 10px;
+    text-decoration: none !important;
+}
+.card-end-2 a:hover{
+    color: #A87B24;
+    font-weight: bolder;
+    font-size: 15px;
+    padding: 20px 10px;
+    text-decoration: none !important;
+    opacity: 0.75;
+}
+.card-body{
+    height: auto;
 }
 .tnm-card-body{
     display: flex;

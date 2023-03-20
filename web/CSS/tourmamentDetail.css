@@ -307,4 +307,7 @@ tbody tr td input{
     color: black;
     text-align: justify;
 }
+.highlight-row{
+    background: orange;
+}
 
