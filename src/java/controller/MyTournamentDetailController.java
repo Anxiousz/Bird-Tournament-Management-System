@@ -1,51 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
-import blog.BlogDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import registrationform.RegistrationFormDAO;
+import registrationform.RegistrationFormDTO;
 
-/**
- *
- * @author anh12
- */
-@WebServlet(name = "AddBlogsController", urlPatterns = {"/AddBlogsController"})
-public class AddBlogsController extends HttpServlet {
+@WebServlet(name = "MyTournamentDetailController", urlPatterns = {"/MyTournamentDetailController"})
+public class MyTournamentDetailController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadBlogControllerManageController";
+    private final static String ERROR = "error.jsp";
+    private final static String SUCCESS = "myTournamentDetail.jsp";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String url = null;
-            BlogDAO b = new BlogDAO();
+            String url = ERROR;
+            HttpSession s = request.getSession();
             try {
-                int accountID = Integer.valueOf(request.getParameter("accountID"));
-                String Body = request.getParameter("Body");
-                String Title = request.getParameter("Title");
-                String Media = request.getParameter("Media");
-                int addBlog = b.addBlog(accountID, Body, Title, "image/" + Media);
-                if (addBlog != 0) {
+                int formID = Integer.valueOf(request.getParameter("formID"));
+                int tournamentID = Integer.valueOf(request.getParameter("tournamentID"));
+                RegistrationFormDAO r = new RegistrationFormDAO();
+                RegistrationFormDTO form = r.getFromDetailByID(formID, tournamentID);
+                if (form != null) {
+                    s.setAttribute("form", form);
                     url = SUCCESS;
                 } else {
                     url = ERROR;

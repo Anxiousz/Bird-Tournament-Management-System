@@ -16,7 +16,7 @@
         </header>
         <section>
             <div>
-                <a class="custom-button_3" href="MainController?action=LOAD_BIRD_CATEGORY">Add Tournament</a> <!--                tournamentCreate.jsp-->
+                <a class="custom-button_3" href="MainController?action=LOAD_BIRD_CATEGORY">Add Tournament</a>
             </div>
             <div>
                 <table class="table table-striped">

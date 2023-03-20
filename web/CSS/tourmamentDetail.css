@@ -301,4 +301,10 @@ tbody tr td input{
     align-content: center;
     flex-wrap: nowrap;
 }
+.custom-font-3{
+    font-family: 'Montserrat';
+    font-size: 20px !important;
+    color: black;
+    text-align: justify;
+}
 

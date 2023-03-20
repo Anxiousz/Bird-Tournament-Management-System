@@ -36,18 +36,28 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${p.formStatus == 1}">Pending</c:when>
-                                    <c:when test="${p.formStatus == 2}">Accept</c:when>
-                                    <c:otherwise>Deny</c:otherwise>
+                                    <c:when test="${p.formStatus == 2}">Approved</c:when>
+                                    <c:otherwise>Denied</c:otherwise>
                                 </c:choose>
                             </td>
                             <td>
-                                <a class="custom-button_2" href="MainController?action=APPROVE_PARTICIPANT&participantID=${p.registrationFormID}&tournamentID=${p.tournamentID}">Approve</a>
+                                <c:choose>
+                                    <c:when test="${p.formStatus == 2}">Approve</c:when>
+                                    <c:otherwise>
+                                        <a class="custom-button_2" href="MainController?action=APPROVE_PARTICIPANT&participantID=${p.registrationFormID}&tournamentID=${p.tournamentID}">Approve</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
-                                <a class="custom-button_2" href="MainController?action=DENY_PARTICIPANT&participantID=${p.registrationFormID}&tournamentID=${p.tournamentID}">Deny</a>
+                                <c:choose>
+                                    <c:when test="${p.formStatus == 3}">Deny</c:when>
+                                    <c:otherwise>
+                                        <a class="custom-button_2" href="MainController?action=DENY_PARTICIPANT&participantID=${p.registrationFormID}&tournamentID=${p.tournamentID}">Deny</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
-                                <a class="custom-button_2" href="MainController?action=Bird_Detail">Detail</a>
+                                <a class="custom-button_2" href="MainController?action=LOAD_FORM_DETAIL&formID=${p.registrationFormID}&tournamentID=${p.tournamentID}">Detail</a>
                             </td>
                         </tr>
                     </c:forEach>

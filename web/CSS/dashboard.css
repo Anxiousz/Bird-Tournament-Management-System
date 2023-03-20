@@ -1,0 +1,12 @@
+section{
+    margin-top: 85px;
+    margin-bottom: 50px;
+}
+p{
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 20px !important;
+    color: #A87B24;
+    padding-top: 20px;
+    font-weight: bold;
+}

@@ -27,125 +27,43 @@
             <%@include file="userHeader.jsp" %>
         </header>
         <section>
-            <c:forEach var="list" items="${sessionScope.list}">
-                <div class="tnm-list-notification container">
-                    <div class="tnm-all-list-notification">
-                        <div class="tnm-one-match-notification">
-                            <div class="tnm-left-match-notification">
-                                <div class="tnm-list-notification-heading">
-                                    <p>
-                                        <c:choose>
-                                            <c:when test="${list.formStatus == 1}">Form Status: Processing</c:when>
-                                            <c:when test="${list.formStatus == 2}">Form Status: Accept</c:when>
-                                            <c:otherwise>Reject</c:otherwise>
-                                        </c:choose>
-                                    </p>
-                                </div>
-                                <div class="person-info-container">
-                                    <div class="img-personal">
-                                        <img src="https://i.pinimg.com/474x/20/5a/c8/205ac833d83d23c76ccb74f591cb6000.jpg" alt="Avatar" class="avatar">
-                                    </div>
-                                    <div class="other-info-personal">
-                                        <li><i class="fa-sharp fa-solid fa-signature"></i>   ${list.acc.name}</li>
-                                        <li><i class="fa-solid fa-envelope"></i>   ${list.acc.email}</li>
-                                    </div>
-                                </div>
-                                <!--                                <div class="orther-info-container">
-                                                                    <p>Result</p>
-                                                                    <div class="result-info">
-                                                                        <li>Qualified: Pass</li>
-                                                                        <li>Top 30: Pass</li>
-                                                                        <li>Top 20: Pass</li>
-                                                                        <li>Top 10: Pass</li>
-                                                                        <li>Top 4: Top 1</li>
-                                                                    </div>
-                                                                </div>-->
-                                <c:if test="${list.tour.tournamentStatus == 4}">
-                                    <div class="orther-info-container">
-                                        <p>Feedback</p>
-                                        <form action="MainController" method="POST">
-                                            <textarea name="body" cols="50" rows="5"></textarea>
-                                            <br>
-                                            <input class="custom-button_3" type="submit" name="action" value="Submit Feedback">
-                                            <input type="hidden" name="accID" value="${list.acc.accountID}">
-                                            <input type="hidden" name="tournamentID" value="${list.tour.tournamentID}">
-                                        </form>
-                                    </div>
-                                </c:if>
-                            </div>
-                            <div class="tnm-right-match-notification">
-                                <div class="tnm-right-match-top-info-tournament">
-                                    <form action="">
-                                        <div class="form-group top-right">
-                                            <label >Tournament name</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${list.tour.tournamentName}" readonly="">
-                                        </div>
-                                        <div class="form-group top-right">
-                                            <label >Location</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${list.tour.location}" readonly="">
-                                        </div>
-                                        <div class="form-group top-right">
-                                            <label > Present Telephone</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${list.acc.phone}" readonly="">
-                                        </div>
-                                        <div class="tnm-right-match-top-small-info">
-                                            <div class="form-group top-right">
-                                                <label >Fee</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" value="${list.tour.fee}" readonly="">
-                                            </div>
-                                            <div class="Date Time top-right">
-                                                <label >Date Time</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" value="${list.tour.dateTime}" readonly="">
-                                            </div>
-                                            <div class="form-group top-right">
-                                                <label >Player</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" value="${list.tour.minParticipant}" readonly="">
-                                            </div>
-                                        </div>
-                                    </form>  
-                                    <div class="guide-notification">
-                                        <h1>***Please when you go to tournament bring personal identity card you have.</h1>
-                                        <h1>***Something do not understand or some thing wrong, let us know through: <a href="#"><img src="https://i.pinimg.com/736x/0d/df/65/0ddf65257444599962afb8828800eebd.jpg"class="avatar-logo-guide"></a> <a href="#"><img src="https://i.pinimg.com/236x/e8/f6/ee/e8f6eec580bfd2d1d7bd4c4d11a21c7e.jpg" class="avatar-logo-guide"></a></h1>
-                                    </div>
-                                </div>
-                                <!-- notification div  -->
-                                <div class="notification-wrong">
-
-                                </div>
-                                <!-- div line  -->
-                                <div class="line-normal">
-                                    <p></p>
-                                </div>
-                                <!-- bird -->
-                                <div class="tnm-eight-bird-bottom-info-tnm">
-                                    <div class=" card-bird" style="width: 100%;">
-                                        <div class="bird-img" style="width: 20rem; height:20rem;">
-                                            <img class="card-img-top" src="${list.bird.birdPhoto}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="card-bird-left-body">
-                                                <li>Bird Name</li>
-                                                <li>Height</li>
-                                                <li>Weight</li>
-                                                <li>Color</li>
-                                            </div>
-                                            <div class="card-bird-right-body">
-                                                <li>${list.bird.birdName}</li>
-                                                <li>${list.bird.height}</li>
-                                                <li>${list.bird.weight}</li>
-                                                <li>${list.bird.color}</li>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="right-button">
-                                    <a class="custom-button_3" href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tour.tournamentID}">Tournament Detail</a>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Tournament Name</th>
+                        <th scope="col">Tournament Status</th>
+                        <th scope="col">Form Status</th>
+                        <th scope="col">Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="list" items="${sessionScope.list}">
+                        <tr>
+                            <td>${list.tour.tournamentName}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${list.tour.tournamentStatus == 1}">Open Form</c:when>
+                                    <c:when test="${list.tour.tournamentStatus == 2}">Close Form</c:when>
+                                    <c:when test="${list.tour.tournamentStatus == 3}">On Going</c:when>
+                                    <c:when test="${list.tour.tournamentStatus == 4}">Finished</c:when>
+                                    <c:when test="${list.tour.tournamentStatus == 5}">Delay</c:when>
+                                    <c:otherwise>Status: Cancel</c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${list.formStatus == 1}">Pending</c:when>
+                                    <c:when test="${list.formStatus == 2}">Approved</c:when>
+                                    <c:otherwise>Denied</c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <a class="custom-button_2" href="MainController?action=MY_TOURNAMENT_DETAIL&formID=${list.registrationFormID}&tournamentID=${list.tour.tournamentID}">Detail</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </section>
         <footer>
             <%@include file="footer.jsp" %>

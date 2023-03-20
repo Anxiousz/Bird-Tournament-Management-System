@@ -31,6 +31,7 @@ public class MainController extends HttpServlet {
     private static final String LOAD_BIRD_BY_ID = "LoadBirdByAccountID";
     private static final String FINAL_FORM = "FinalForm";
     private static final String MY_TOURNAMENT = "MY_TOURNAMENT";
+    private static final String MY_TOURNAMENT_DETAIL = "MY_TOURNAMENT_DETAIL";
     private static final String LOAD_ACCOUNT = "ProfileLoad";
     private static final String UPDATE_ACCOUNT = "Update_Account";
     private static final String SEARCH_TOURNAMENT = "SEARCH_TOURNAMENT";
@@ -52,6 +53,7 @@ public class MainController extends HttpServlet {
     private static final String LOAD_PARTICIPANT = "LOAD_PARTICIPANT";
     private static final String DENY_PARTICIPANT = "DENY_PARTICIPANT";
     private static final String APPROVE_PARTICIPANT = "APPROVE_PARTICIPANT";
+    private static final String LOAD_FORM_DETAIL = "LOAD_FORM_DETAIL";
     private static final String LOAD_BLOGS_MANGEMENT = "MANAGE_BLOG";
     private static final String DELETE_BLOGS = "DELETE_BLOGS";
     private static final String ADD_BLOGS = "AddNewBlog";
@@ -73,6 +75,7 @@ public class MainController extends HttpServlet {
     private static final String CONFIRM_FORM_CONTROLLER = "ConfirmFormController";
     private static final String FINAL_FORM_CONTROLLER = "FinalConfirmFormController";
     private static final String MY_TOURNAMENT_CONTROLLER = "MyTournamentController";
+    private static final String MY_TOURNAMENT_DETAIL_CONTROLLER = "MyTournamentDetailController";
     private static final String LOAD_ACCOUNT_DETAIL_CONTROLLER = "LoadProfileController";
     private static final String UPDATE_ACCOUNT_CONTROLLER = "UpdateAccountController";
     private static final String SEARCH_TOURNAMENT_CONTROLLER = "SearchTournamentController";
@@ -91,6 +94,7 @@ public class MainController extends HttpServlet {
     private static final String LOAD_BIRD_CATEGORY_CONTROLLER = "LoadBirdCategoryController";
     private static final String CREATE_TOURNAMENT_CONTROLLER = "CreateTournamentController";
     private static final String MANAGE_PARTICIPANT_CONTROLLER = "ManageParticipantController";
+    private static final String LOAD_FORM_DETAIL_CONTROLLER = "LoadFormDetailController";
     private static final String REMOVE_TOURNAMENT_CONTROLLER = "RemoveTournamentController";
     private static final String LOAD_PARTICIPANT_CONTROLLER = "LoadParticipantController";
     private static final String LOAD_BLOGS_MANGEMENT_CONTROLLER = "LoadBlogControllerManageController";
@@ -229,6 +233,12 @@ public class MainController extends HttpServlet {
                         break;
                     case LOAD_FEEDBACK:
                         url = LOAD_FEEDBACK_CONTROLLER;
+                        break;
+                    case MY_TOURNAMENT_DETAIL:
+                        url = MY_TOURNAMENT_DETAIL_CONTROLLER;
+                        break;
+                    case LOAD_FORM_DETAIL:
+                        url = LOAD_FORM_DETAIL_CONTROLLER;
                         break;
                 }
             }

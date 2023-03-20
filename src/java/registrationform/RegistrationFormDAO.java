@@ -31,7 +31,7 @@ public class RegistrationFormDAO implements Serializable {
             + " FROM  Tournament t\n"
             + "WHERE t.tournamentID =  ?";
 
-    private final static String MY_TOURNAMENT = "SELECT r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant,t.tournamentStatus, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.accountID ,a.phone, a.email, a.name\n"
+    private final static String MY_TOURNAMENT = "SELECT r.formID, r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant,t.tournamentStatus, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.accountID ,a.phone, a.email, a.name\n"
             + "FROM Tournament t\n"
             + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
             + "JOIN Bird b ON b.birdID = r.birdID\n"
@@ -45,7 +45,7 @@ public class RegistrationFormDAO implements Serializable {
     public static String NUMBER_CURRENT_REGISTERED = "SELECT COUNT(formID) as numberOfPlayer\n"
             + "FROM RegistrationForm\n"
             + "WHERE formStatus = ? AND tournamentID = ?";
-    private final static String GET_FORM_BY_TOURNAMENTID = "SELECT r.formID,r.tournamentID,a.name, b.birdName, r.formStatus\n"
+    private final static String GET_FORM_BY_TOURNAMENTID = "SELECT r.formID, r.tournamentID, a.name, b.birdName, r.formStatus\n"
             + "FROM RegistrationForm r \n"
             + "JOIN Account a ON r.accountID = a.accountID \n"
             + "JOIN Bird b ON r.birdID = b.birdID\n"
@@ -53,6 +53,13 @@ public class RegistrationFormDAO implements Serializable {
     private final static String MANAGE_FORM_BY_ID = "UPDATE RegistrationForm \n"
             + "SET formStatus = ?\n"
             + "WHERE formID = ?";
+    private final static String FORM_DETAIL_BY_ID = "SELECT r.accountID, r.formID, r.formStatus,t.tournamentName,r.tournamentID, t.location, t.fee, t.dateTime, t.minParticipant,t.tournamentStatus, b.birdPhoto, b.birdName, b.height, b.weight, b.color, a.accountID ,a.phone, a.email, a.name\n"
+            + "FROM Tournament t\n"
+            + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
+            + "JOIN Bird b ON b.birdID = r.birdID\n"
+            + "JOIN Account a ON r.accountID = a.accountID\n"
+            + "WHERE r.formID = ?\n"
+            + "AND t.tournamentID = ?";
 
     public boolean manageForm(int formStatus, int formID) throws SQLException {
         Connection con = null;
@@ -200,6 +207,7 @@ public class RegistrationFormDAO implements Serializable {
                 stm.setInt(1, accountID);
                 rs = stm.executeQuery();
                 while (rs.next()) {
+                    int formID = rs.getInt("formID");
                     int formStatus = rs.getInt("formStatus");
                     String tournamentName = rs.getString("tournamentName");
                     int tournamentID = rs.getInt("tournamentID");
@@ -219,7 +227,7 @@ public class RegistrationFormDAO implements Serializable {
                     TournamentDTO t = new TournamentDTO(tournamentID, tournamentName, location, fee, dateTime, minParticipant, tournamentStatus);
                     BirdDTO b = new BirdDTO(birdPhoto, birdName, height, weight, color);
                     AccountDTO a = new AccountDTO(accountID, phone, email, name);
-                    RegistrationFormDTO r = new RegistrationFormDTO(formStatus, t, b, a);
+                    RegistrationFormDTO r = new RegistrationFormDTO(formID, formStatus, t, b, a);
                     list.add(r);
                 }
             }
@@ -340,5 +348,58 @@ public class RegistrationFormDAO implements Serializable {
             }
         }
         return list;
+    }
+
+    public RegistrationFormDTO getFromDetailByID(int formID, int tournamentID) throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(FORM_DETAIL_BY_ID);
+                stm.setInt(1, formID);
+                stm.setInt(2, tournamentID);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    formID = rs.getInt("formID");
+                    int formStatus = rs.getInt("formStatus");
+                    String tournamentName = rs.getString("tournamentName");
+                    tournamentID = rs.getInt("tournamentID");
+                    String location = rs.getString("location");
+                    String fee = rs.getString("fee");
+                    String dateTime = rs.getString("dateTime");
+                    int minParticipant = rs.getInt("minParticipant");
+                    int tournamentStatus = rs.getInt("tournamentStatus");
+                    String birdPhoto = rs.getString("birdPhoto");
+                    String birdName = rs.getString("birdName");
+                    String height = rs.getString("height");
+                    String weight = rs.getString("weight");
+                    String color = rs.getString("color");
+                    int accountID = rs.getInt("accountID");
+                    int phone = rs.getInt("phone");
+                    String email = rs.getString("email");
+                    String name = rs.getString("name");
+                    TournamentDTO t = new TournamentDTO(tournamentID, tournamentName, location, fee, dateTime, minParticipant, tournamentStatus);
+                    BirdDTO b = new BirdDTO(birdPhoto, birdName, height, weight, color);
+                    AccountDTO a = new AccountDTO(accountID, phone, email, name);
+                    RegistrationFormDTO r = new RegistrationFormDTO(formID, formStatus, t, b, a);
+                    return r;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
     }
 }
