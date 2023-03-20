@@ -41,7 +41,7 @@
                         labels: ['User', 'Bird', 'Tournament'],
                         datasets: [{
                                 label: 'Amount',
-                                data: [12, 19, 3],
+                                data: [${requestScope.count_account}, ${requestScope.count_bird}, ${requestScope.count_tournament}],
                                 borderWidth: 1,
                                 borderColor: '#BD8B28',
                                 backgroundColor: '#BD8B28',

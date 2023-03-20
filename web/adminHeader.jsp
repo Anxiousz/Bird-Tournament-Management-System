@@ -42,7 +42,7 @@
                             <a class="dropdown-item" href="MainController?action=MANAGE_BIRD">BIRD</a>
                             <a class="dropdown-item" href="MainController?action=MANAGE_TOURNAMENT">TOURNAMENT</a>
                             <a class="dropdown-item" href="MainController?action=MANAGE_BLOG">BLOG</a>
-                            <a class="dropdown-item" href="dashboard.jsp">DASHBOARD</a>
+                            <a class="dropdown-item" href="MainController?action=DASHBOARD">DASHBOARD</a>
                             <a class="dropdown-item" href="MainController?action=LOAD_FEEDBACK">FEEDBACK</a>
                         </div>
                     </li>
@@ -55,7 +55,7 @@
                             <a class="dropdown-item custom-font" href="MainController?action=Logout"><i class="fa-solid fa-right-from-bracket"></i>     Logout</a>
                         </div>
                     </div>
-                    <img src="https://i.pinimg.com/236x/b5/33/b5/b533b536208b06480c4804e20d2b204e.jpg" alt="Avatar" class="avatar">
+                    <img src="${sessionScope.acc.profilePhoto}" alt="Avatar" class="avatar">
                 </div>
             </div>
         </nav>

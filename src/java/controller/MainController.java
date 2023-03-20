@@ -60,6 +60,7 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_BLOGS = "UPDATE_BLOGS";
     private static final String UPDATE = "UPDATE";
     private static final String LOAD_FEEDBACK = "LOAD_FEEDBACK";
+    private static final String DASHBOARD = "DASHBOARD";
 
     //link to servlet of User
     private static final String LOAD_HOME_PAGE = "LoadHomePageController";
@@ -103,6 +104,7 @@ public class MainController extends HttpServlet {
     private static final String LOAD_UPDATE_BLOGS_CONTROLLER = "LoadUpdateBlogsController";
     private static final String UPDATE_BLOGS_CONTROLLER = "UpdateBlogsController";
     private static final String LOAD_FEEDBACK_CONTROLLER = "LoadFeedbackController";
+    private static final String LOAD_DASHBOARD_CONTROLLER = "LoadDashboardController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -239,6 +241,9 @@ public class MainController extends HttpServlet {
                         break;
                     case LOAD_FORM_DETAIL:
                         url = LOAD_FORM_DETAIL_CONTROLLER;
+                        break;
+                    case DASHBOARD:
+                        url = LOAD_DASHBOARD_CONTROLLER;
                         break;
                 }
             }

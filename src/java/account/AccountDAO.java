@@ -34,7 +34,38 @@ public class AccountDAO implements Serializable {
     private static final String UPDATE_ACCOUNT_NEW
             = "UPDATE Account SET email= ?, password = ?, name = ?, phone = ?  WHERE accountID = ? ";
 
+    private static final String DASHBOARD = "SELECT COUNT(AccountID) as AccountID\n"
+            + "FROM Bird";
 
+    public int countAccount() throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(DASHBOARD);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("AccountID");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
 
     public AccountDTO getByID(int accountID) throws SQLException {
         Connection con = null;

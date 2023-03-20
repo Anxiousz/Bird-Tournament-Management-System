@@ -78,7 +78,7 @@ public class BirdDAO implements Serializable {
     private static final String GET_ALL_BIRD = "SELECT b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color, b.categoriesID, b.dentification, b.birdStatus\n"
             + "FROM Bird b ";
 
-    private final static String GET_BY_ID = "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, dentification\n"
+    private static final String GET_BY_ID = "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, dentification\n"
             + "FROM Bird \n"
             + "WHERE birdID = ? ";
 
@@ -95,9 +95,42 @@ public class BirdDAO implements Serializable {
             + "SET categoriesID = ?, birdName=?, birdPhoto=?,height = ?, weight = ?, color = ?, dentification =?, birdStatus =?\n"
             + "WHERE birdID = ? AND accountID = ?;";
 
-    private final static String GET_BIRD_BY_ACCOUNT_DENDIFICATION = "SELECT  b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color,b.birdStatus ,b.dentification\n"
+    private static final String GET_BIRD_BY_ACCOUNT_DENDIFICATION = "SELECT  b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color,b.birdStatus ,b.dentification\n"
             + "FROM Bird b \n"
             + "WHERE accountID= ?";
+
+    private static final String DASHBOARD = "SELECT COUNT(BirdID) as BirdID\n"
+            + "FROM Bird";
+    
+     public int countBird() throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(DASHBOARD);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("BirdID");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
 
     public BirdDTO getBirdAchievement(int birdID) throws SQLException {
         Connection con = null;
