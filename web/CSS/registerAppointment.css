@@ -6,6 +6,9 @@
 body{
     height: 100vh;
 }
+section{
+    margin-top: 50px;
+}
 .tnm-list-notification {
     margin: 100px 0px;
     width: 100%;

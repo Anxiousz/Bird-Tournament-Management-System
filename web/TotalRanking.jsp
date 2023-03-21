@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
-             <%@include file="userHeader.jsp" %>
+            <%@include file="userHeader.jsp" %>
         </header>
         <section>
             <table class="table table-striped">

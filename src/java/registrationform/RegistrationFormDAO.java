@@ -31,7 +31,8 @@ public class RegistrationFormDAO implements Serializable {
             + "JOIN RegistrationForm r ON t.tournamentID = r.tournamentID\n"
             + "JOIN Bird b ON b.birdID = r.birdID\n"
             + "JOIN Account a ON r.accountID = a.accountID\n"
-            + " WHERE a.accountID = ?";
+            + " WHERE a.accountID = ?"
+            + " ORDER BY t.dateTime DESC";
 
     private final static String COUNT_TOURNAMENT = "SELECT COUNT(*) AS count, formStatus \n"
             + "FROM RegistrationForm WHERE accountID = ?\n"

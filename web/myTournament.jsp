@@ -31,6 +31,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Tournament Name</th>
+                        <th scope="col">Date and Time</th>
                         <th scope="col">Tournament Status</th>
                         <th scope="col">Form Status</th>
                         <th scope="col">Detail</th>
@@ -39,7 +40,8 @@
                 <tbody>
                     <c:forEach var="list" items="${sessionScope.list}">
                         <tr>
-                            <td>${list.tour.tournamentName}</td>
+                            <th scope="row">${list.tour.tournamentName}</th>
+                            <td>${list.tour.dateTime}</td>
                             <td>
                                 <c:choose>
                                     <c:when test="${list.tour.tournamentStatus == 1}">Open Form</c:when>
