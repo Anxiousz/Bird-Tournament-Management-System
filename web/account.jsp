@@ -21,7 +21,17 @@
     </head>
     <body>
         <!-- nav-site -->
-        <%@include file="userHeader.jsp" %>
+        <header>
+            <c:choose>
+                <c:when test="${sessionScope.acc.role == 0}">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:when test="${sessionScope.acc.role == 1}">
+                    <%@include file="adminHeader.jsp" %>
+                </c:when>
+            </c:choose>
+        </header>
+                
         <!-- Both account site -->
         <div class="both-site-account">
             <!-- left account site -->
