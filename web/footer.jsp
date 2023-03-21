@@ -22,28 +22,36 @@
         <div class="footer-site"> 
             <p class="footer-heading">@Copyright2023</p>
             <div class="wrapper">
-                <a href=""><div class="icon facebook">
+                <a href="">
+                    <div class="icon facebook">
                         <i class="fab fa-facebook-f"></i>
                         <span class="tooltip">Facebook</span>
-                    </div></a>
-                <a href=""><div class="icon github">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="icon github">
                         <i class="fab fa-github"></i>
                         <span class="tooltip">Github</span>
-                    </div></a>
-                <a href=""><div class="icon twitter">
+                    </div>
+                </a>
+                <a href="">
+                    <div class="icon twitter">
                         <i class="fab fa-twitter"></i>
                         <span class="tooltip">Twitter</span>
-                    </div></a>
+                    </div>
+                </a>
                 <a href="">
                     <div class="icon instagram">
                         <i class="fab fa-instagram"></i>
                         <span class="tooltip">Instagram</span>
                     </div>
                 </a>
-                <a href=""><div class="icon youtube">
+                <a href="">
+                    <div class="icon youtube">
                         <i class="fab fa-youtube"></i>
                         <span class="tooltip">Youtube</span>
-                    </div></a>
+                    </div>
+                </a>
             </div>
         </div>
     </body>

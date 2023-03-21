@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import account.AccountDAO;
@@ -22,8 +17,7 @@ public class LoginController extends HttpServlet {
     private static final String ERROR = "login.jsp";
     private static final String SUCCESS = "homePage.jsp";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = null;
         HttpSession session = request.getSession();

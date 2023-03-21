@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import account.AccountDTO;
 import achievement.AchievementDAO;
-import achievement.AchievementDTO;
 import bird.BirdDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,19 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Admin
- */
 @WebServlet(name = "AddBirdController", urlPatterns = {"/AddBirdController"})
 public class AddBirdController extends HttpServlet {
 
     private final String SUCCESS = "LoadBirdByAccountID";
     private final String ERROR = "error.jsp";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();

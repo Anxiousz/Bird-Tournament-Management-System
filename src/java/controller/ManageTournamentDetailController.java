@@ -1,34 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
-import account.AccountDAO;
-import account.AccountDTO;
-import candidates.CandidatesDAO;
-import candidates.CandidatesDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
 import round.RoundDAO;
 import round.RoundDTO;
 import tournament.TournamentDAO;
 import tournament.TournamentDTO;
 
-/**
- *
- * @author thang
- */
 @WebServlet(name = "ManageTournamentDetailController", urlPatterns = {"/ManageTournamentDetailController"})
 public class ManageTournamentDetailController extends HttpServlet {
 
@@ -36,8 +20,7 @@ public class ManageTournamentDetailController extends HttpServlet {
     private final String SUCCESS = "LoadTournamentController";
     private final String TOURNAMENT_DETAIL = "manageTournamentDetail.jsp";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         TournamentDTO tour = null;
@@ -56,7 +39,7 @@ public class ManageTournamentDetailController extends HttpServlet {
                 if (tour.getTournamentStatus() == 0) {
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 1) {
-                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID))+rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)) + rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 2) {
                     request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));

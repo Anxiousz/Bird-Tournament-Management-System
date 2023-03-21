@@ -1,17 +1,7 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : Feb 7, 2023, 8:32:08 PM
-    Author     : anh12
-*/
-
 body,html {
     height: 100%;
     margin: 0%;
 }
-
 .login-container{
     background-image: linear-gradient( 120deg, #FEE9E1,#AA7B20);
     height: 100%;
@@ -33,7 +23,6 @@ body,html {
 .login-form{
     height: inherit;
     align-items: center;
-    
 }
 .login-left-site{
     width: 50%;
@@ -41,7 +30,6 @@ body,html {
     background-color: #C09540;
     display: block;
     border-radius: 20px 0px 0px 20px;
-    
 }
 .left-content {
     font-family: 'Baloo';font-size: 22px;
@@ -50,7 +38,6 @@ body,html {
     height: auto;
     align-items: center;
     display: inline;
-    
 }
 .left-btn a{
     text-decoration: none; 
@@ -74,7 +61,6 @@ body,html {
     padding: 10px;
     background-color:#FEE9E1 ;
     border-radius: 15px;
-
 }
 .left-btn{
     color: #C09540;
@@ -133,7 +119,6 @@ body,html {
     padding-bottom: 10px;
     text-decoration: none;
     position: relative;
-
 }
 .form-group input{
     padding: 10px 5px;

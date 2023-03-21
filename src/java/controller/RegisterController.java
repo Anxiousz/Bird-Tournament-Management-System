@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import account.AccountDAO;
 import account.AccountDTO;
 import account.AccountError;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +17,7 @@ public class RegisterController extends HttpServlet {
     private static final String ERROR = "register.jsp";
     private static final String SUCCESS = "login.jsp";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         AccountDTO acc = null;
@@ -66,11 +59,9 @@ public class RegisterController extends HttpServlet {
                 } else {
                     request.setAttribute("mess", "ERROR!");
                 }
-
             } else {
                 request.setAttribute("ERROR", error);
             }
-
         } catch (Exception e) {
             log("Error at CreateControler: " + e.toString());
         } finally {

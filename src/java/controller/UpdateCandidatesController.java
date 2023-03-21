@@ -1,41 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import candidates.CandidatesDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import round.RoundDAO;
 
-/**
- *
- * @author thang
- */
 @WebServlet(name = "UpdateCandidatesController", urlPatterns = {"/UpdateCandidatesController"})
 public class UpdateCandidatesController extends HttpServlet {
 
     private final String ERROR = "error.jsp";
     private final String SUCCESS = "ManageRoundController";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String tid = request.getParameter("tournamentID");
@@ -47,12 +26,12 @@ public class UpdateCandidatesController extends HttpServlet {
         String action = request.getParameter("action");
         String result = request.getParameter("result");
         int cstatus = 0;
-        if(result.equals("fail")){
+        if (result.equals("fail")) {
             cstatus = 2;
-        }else if (result.equals("")){
+        } else if (result.equals("")) {
             cstatus = 1;
             result = null;
-        }else{
+        } else {
             cstatus = 1;
         }
         try {
@@ -61,18 +40,18 @@ public class UpdateCandidatesController extends HttpServlet {
                 if (score == null) {
                     score = "0";
                 }
-                if(score.equals("0")){
-                    if(cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))){
+                if (score.equals("0")) {
+                    if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
                         url = SUCCESS;
-                    }else{
+                    } else {
                         url = ERROR;
                     }
-                }else{
-                    if(cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))){
+                } else {
+                    if (cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))) {
                         request.setAttribute("duplicateScore", "true");
                         request.setAttribute("cid", cid);
                         url = SUCCESS;
-                    }else{
+                    } else {
                         if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
                             request.setAttribute("duplicateScore", "fase");
                             url = SUCCESS;
@@ -81,9 +60,7 @@ public class UpdateCandidatesController extends HttpServlet {
                         }
                     }
                 }
-                
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

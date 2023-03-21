@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blog;
 
 import java.io.Serializable;
 
-/**
- *
- * @author anh12
- */
 public class BlogDTO implements Serializable {
 
     private int blogID;
@@ -21,7 +12,6 @@ public class BlogDTO implements Serializable {
     private String createTime;
 
     public BlogDTO() {
-
     }
 
     public BlogDTO(int blogID, int accountID, String Body, String Title, String Media, String createTime) {
@@ -32,7 +22,6 @@ public class BlogDTO implements Serializable {
         this.Media = Media;
         this.createTime = createTime;
     }
-
 
     public int getBlogID() {
         return blogID;

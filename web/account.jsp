@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -104,14 +103,14 @@
                                     <button class="btn btn-update btn-success" value="Update_Account" type="submit" name="action"><p>Update</p></button>
                                 </form>
                             </div>
-                        </div>   
+                        </div>  
+                    </div>
                 </form>
             </div>
         </div>
-    </div>
-    <!-- footer -->
-    <footer>
-        <%@include file="footer.jsp"%>
-    </footer>
-</body>
+        <!-- footer -->
+        <footer>
+            <%@include file="footer.jsp"%>
+        </footer>
+    </body>
 </html>

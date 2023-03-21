@@ -19,11 +19,8 @@
 }
 .update-bird-form-main{
     padding: 30px 30px; 
-    border: 1px solid grey;
+    border: 2px solid grey;
     border-radius: 20px;
-}
-.input-form{
-    
 }
 .form-group label{
     color: #A87B24;

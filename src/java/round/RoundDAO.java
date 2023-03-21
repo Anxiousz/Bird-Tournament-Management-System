@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package round;
 
 import java.io.Serializable;
@@ -17,41 +12,30 @@ import utils.DBContext;
 
 public class RoundDAO implements Serializable {
 
-    private static String ADD_ROUND
-            = "INSERT INTO Round(tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus) VALUES(?,?,?,?,?,?)";
-
-    private static String GET_ALL_BY_TID
-            = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus\n"
+    private static String ADD_ROUND = "INSERT INTO Round(tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus) VALUES(?,?,?,?,?,?)";
+    private static String GET_ALL_BY_TID = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus\n"
             + "FROM Round\n"
             + "WHERE tournamentID = ? ";
 
-    private static String GET_ROUND_BY_RID
-            = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus FROM Round WHERE roundID = ? ";
-
-    public static String UPDATE_ATTEND_PASS_CANDIDATES
-            = "UPDATE Round \n"
+    private static String GET_ROUND_BY_RID = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus FROM Round WHERE roundID = ? ";
+    public static String UPDATE_ATTEND_PASS_CANDIDATES = "UPDATE Round \n"
             + "SET     birdAttend = ?, birdPass = ? \n"
             + "WHERE  roundID = ? ";
-    private final static String UPDATE_ROUND
-            = "UPDATE Round\n"
+    private final static String UPDATE_ROUND = "UPDATE Round\n"
             + "SET  typeOfRound = ? , birdAttend = ? , birdPass = ? , roundStatus = ?\n"
             + "WHERE roundID = ? ";
-
-    public static String GET_NUMBER_OF_ROUND
-            = "SELECT COUNT(roundID) as numberOfRound\n"
+    public static String GET_NUMBER_OF_ROUND = "SELECT COUNT(roundID) as numberOfRound\n"
             + "FROM Round\n"
             + "WHERE tournamentID = ? ";
-    public static String DELETE_ROUND_BY_NAME
-            = "DELETE FROM Round WHERE tournamentID = ? AND roundName = ? ";
-    private final static String UPDATE_ROUND_NAME
-            = "UPDATE Round\n"
+    public static String DELETE_ROUND_BY_NAME = "DELETE FROM Round WHERE tournamentID = ? AND roundName = ? ";
+    private final static String UPDATE_ROUND_NAME = "UPDATE Round\n"
             + "SET  roundName = ? \n"
             + "WHERE roundID = ? ";
-     public static String GET_PREVIOUS_ROUND_STATUS
-            = "SELECT TOP(1) roundStatus\n"
+    public static String GET_PREVIOUS_ROUND_STATUS = "SELECT TOP(1) roundStatus\n"
             + " from Round\n"
             + " where tournamentID = ? AND roundID < ? \n"
             + " order by roundID desc";
+
     public int getPreviousRStatus(int tid, int rid) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -83,6 +67,7 @@ public class RoundDAO implements Serializable {
         }
         return 0;
     }
+
     public boolean updateRoundName(String rname, int RID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -121,7 +106,6 @@ public class RoundDAO implements Serializable {
                 stm.setString(2, RN);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -181,7 +165,6 @@ public class RoundDAO implements Serializable {
                 stm.setInt(5, RID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -278,7 +261,6 @@ public class RoundDAO implements Serializable {
                 stm.setInt(3, RID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

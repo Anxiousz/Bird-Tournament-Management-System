@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package birdcategories;
 
 import java.io.Serializable;
@@ -13,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
 
-/**
- *
- * @author anh12
- */
 public class BirdCategoriesDAO implements Serializable {
 
     private static final String LOAD_BIRD_CATEGORY = "SELECT b.categoriesID , b.categoriesName\n"
@@ -36,7 +27,7 @@ public class BirdCategoriesDAO implements Serializable {
                     int categoriesID = rs.getInt("categoriesID");
                     String categoriesName = rs.getString("categoriesName");
                     BirdCategoriesDTO b = new BirdCategoriesDTO(categoriesID, categoriesName);
-                        list.add(b);
+                    list.add(b);
                 }
             }
         } catch (Exception e) {

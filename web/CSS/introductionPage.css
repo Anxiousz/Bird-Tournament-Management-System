@@ -8,7 +8,6 @@
     top: 20px;
     margin-bottom: 30px;
 }
-
 .introduction-main-site-container{
     width: 100%;
     height: auto;
@@ -50,8 +49,8 @@
     font-family: 'Baloo';
 }
 .one-section-categories-introduction-site ul h4{
-        font-family: 'Montserrat';
-        color: #A87B24;
+    font-family: 'Montserrat';
+    color: #A87B24;
 }
 li{
     list-style: none;

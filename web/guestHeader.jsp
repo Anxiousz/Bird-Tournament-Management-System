@@ -39,7 +39,6 @@
                     </li>
                 </ul>
                 <div class="right-site-form my-2 my-lg-0">
-                    <!--<input class="form-control mr-sm-2 search-nav" type="search" placeholder="Search" aria-label="Search">-->
                     <p><a href="login.jsp">Login</a>
                 </div>
             </div>

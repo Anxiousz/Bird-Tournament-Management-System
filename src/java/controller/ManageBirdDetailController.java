@@ -1,40 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import achievement.AchievementDAO;
 import achievement.AchievementDTO;
-import bird.BirdDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author thang
- */
 @WebServlet(name = "ManageBirdDetailController", urlPatterns = {"/ManageBirdDetailController"})
 public class ManageBirdDetailController extends HttpServlet {
+
     private final String ERROR = "error.jsp";
     private final String SUCCES = "manageBirdDetail.jsp";
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String action = request.getParameter("action");
@@ -44,27 +25,27 @@ public class ManageBirdDetailController extends HttpServlet {
         String totalScore = request.getParameter("totalScore");
         String top = request.getParameter("top");
         try {
-           if(action.equals("Update Achievement")){
-               AchievementDAO adao = new AchievementDAO();
-               AchievementDTO adto = new AchievementDTO();
-               adto.setBirdID(Integer.parseInt(birdID));
-               adto.setDescription(desc);
-               adto.setMedals(medals);
-               adto.setTop(Integer.parseInt(top));
-               adto.setTotalScore(Integer.parseInt(totalScore));
-               if(adao.updateAchievementByBID(adto)){
-                   url=SUCCES;
-               }else{
-                   url=ERROR;
-               }
-           }
-        }catch(Exception e){
+            if (action.equals("Update Achievement")) {
+                AchievementDAO adao = new AchievementDAO();
+                AchievementDTO adto = new AchievementDTO();
+                adto.setBirdID(Integer.parseInt(birdID));
+                adto.setDescription(desc);
+                adto.setMedals(medals);
+                adto.setTop(Integer.parseInt(top));
+                adto.setTotalScore(Integer.parseInt(totalScore));
+                if (adao.updateAchievementByBID(adto)) {
+                    url = SUCCES;
+                } else {
+                    url = ERROR;
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(url==SUCCES){
-                url="ManageBirdController?action=Detail&birdID="+Integer.parseInt(birdID);
+        } finally {
+            if (url == SUCCES) {
+                url = "ManageBirdController?action=Detail&birdID=" + Integer.parseInt(birdID);
                 request.getRequestDispatcher(url).forward(request, response);
-            }else{
+            } else {
                 request.getRequestDispatcher(url).forward(request, response);
             }
         }

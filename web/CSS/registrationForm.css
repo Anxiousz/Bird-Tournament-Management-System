@@ -22,7 +22,6 @@ body{
     margin-bottom: 50px;
     width: 100%;
     height: auto;
-
 }
 .registration-main-form{
     margin-top:50px;
@@ -71,7 +70,8 @@ body{
     margin-right: 10px;
 }
 .large-categories label, .small-categories label{
-    font-family: 'Montserrat';font-size: 18px;
+    font-family: 'Montserrat';
+    font-size: 18px;
     color: aliceblue;
     margin-bottom: 15px;
 }
@@ -80,15 +80,14 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-  }
-  .img-sponsor{
+}
+.img-sponsor{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
 }
-
 /* RIGHT SITE */
 .registration-right-site{
     width: 50%;
@@ -96,15 +95,15 @@ body{
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-
 }
 .registration-right-form{
     padding-left: 35px ;
     border-left: 3px solid grey ;
 }
 .registration-right-heading h1{
-    font-family: 'Baloo';font-size: 38px;
-    color: #ffff ;
+    font-family: 'Baloo';
+    font-size: 38px;
+    color: #fff ;
 }
 .registration-right-heading {
     width: 100%;
@@ -118,36 +117,36 @@ body{
     padding: 10px 80px;
 }
 /* image section */
-
 .preview {
     padding: 0px 40px;
     margin: 0 auto;
-	border: 2px dashed #fff;
-	width: 100%;
-	height: 250px;
-	color: white;
-	font-size: 22px;
-	position: relative;
-	border-radius: 6px;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	cursor: pointer;
+    border: 2px dashed #fff;
+    width: 100%;
+    height: 250px;
+    color: white;
+    font-size: 22px;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
 }
 
 .preview i {
-	font-size: 60px;
-	margin-bottom: 20px;
+    font-size: 60px;
+    margin-bottom: 20px;
 }
 .bird-identify-container{
     margin-top: 10px;
     padding: 0 40px;
 }
 .lable-right{
-    font-family: 'Montserrat';font-size: 15px;
-    color: #ffff;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    color: #fff;
 }
 .right-small-site{
     margin-top: 30px;
@@ -165,8 +164,9 @@ body{
     background-color: #fff;
     padding: 15px 50px;
     color: #A87B24;
-    font-family: 'Baloo';font-size: 22px;
+    font-family: 'Baloo';
+    font-size: 22px;
 }
 .right-button button:hover{
-    opacity: 0.7;
+    opacity: 0.75;
 }

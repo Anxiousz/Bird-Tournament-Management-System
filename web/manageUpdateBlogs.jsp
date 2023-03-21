@@ -1,21 +1,12 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Baloo' rel='stylesheet'>
         <link rel="stylesheet" href="./CSS/addBlogManagement.css">
@@ -54,24 +45,24 @@
                                 <button type="submit" class="btn btn-primary" value="UPDATE" name="action">UPDATE BLOG</button>
                             </div> 
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
-    </div>
-    <footer>
-        <%@include file="footer.jsp" %>
-    </footer>
-    <script> const fileInput2 = document.getElementById('input-img2');
-        const previewImg2 = document.getElementById('previewImg2');
-        fileInput2.addEventListener('change', function () {
-            if (fileInput2.files && fileInput2.files[0]) {
-                const reader = new FileReader();
-                reader.addEventListener('load', function (e) {
-                    previewImg2.src = e.target.result;
-                });
-                reader.readAsDataURL(fileInput2.files[0]);
-            }
-        });
-    </script>
-</body>
+        <footer>
+            <%@include file="footer.jsp" %>
+        </footer>
+        <script> const fileInput2 = document.getElementById('input-img2');
+            const previewImg2 = document.getElementById('previewImg2');
+            fileInput2.addEventListener('change', function () {
+                if (fileInput2.files && fileInput2.files[0]) {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', function (e) {
+                        previewImg2.src = e.target.result;
+                    });
+                    reader.readAsDataURL(fileInput2.files[0]);
+                }
+            });
+        </script>
+    </body>
 </html>

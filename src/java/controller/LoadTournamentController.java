@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -16,27 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import tournament.TournamentDAO;
 import tournament.TournamentDTO;
 
-/**
- *
- * @author anh12
- */
 @WebServlet(name = "LoadTournamentController", urlPatterns = {"/LoadTournamentController"})
 public class LoadTournamentController extends HttpServlet {
 
     private final String ERROR = "error.jsp";
     private final String SUCCESS = "manageTournament.jsp";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
@@ -53,7 +34,6 @@ public class LoadTournamentController extends HttpServlet {
                 e.printStackTrace();
             } finally {
                 request.getRequestDispatcher(url).forward(request, response);
-
             }
         }
     }

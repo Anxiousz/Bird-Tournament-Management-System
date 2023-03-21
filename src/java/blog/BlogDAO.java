@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blog;
 
 import java.io.Serializable;
@@ -14,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
 
-/**
- *
- * @author anh12
- */
 public class BlogDAO implements Serializable {
 
     private final static String VIEW_BLOG = "SELECT TOP 3 *\n"
@@ -27,24 +18,18 @@ public class BlogDAO implements Serializable {
             + "WHERE createTime >= CURRENT_TIMESTAMP \n"
             + "     ) AS subquery\n"
             + "ORDER BY subquery.createTime ASC";
-
     private final static String LIST_BLOG = "SELECT b.blogID, b.accountID, b.Body, b.Title, b.Media, FORMAT(CAST(b.createTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS createTime\n"
             + "FROM Blog b";
-
     private final static String BLOG_DETAIL = "SELECT b.blogID, b.accountID, b.Body, b.Title, b.Media, FORMAT(CAST(b.createTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS createTime\n"
             + "FROM Blog  b\n"
             + "WHERE b.blogID = ?";
-
     private final static String ANOTHER_DETAIL = "SELECT b.blogID, b.accountID, b.Body, b.Title, b.Media, FORMAT(CAST(b.createTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS createTime\n"
             + "FROM Blog b\n"
             + "WHERE blogID NOT IN (SELECT blogID FROM Blog WHERE blogID = ?);";
-
     private final static String DELETE_BLOG = "DELETE FROM Blog  \n"
             + "WHERE blogID = ? ";
-
     private final static String ADD_BLOG = "INSERT INTO BLOG([accountID],[Body],[Title],[Media],[createTime])\n"
             + "VALUES(?,?,?,?,GETDATE());";
-
     private final static String UPDATE_BLOG = "UPDATE Blog\n"
             + "SET Body = ?, Title =?, Media =?, createTime = GETDATE()\n"
             + "WHERE blogID = ?";

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package account;
 
 import java.io.Serializable;
@@ -16,24 +11,14 @@ import utils.DBContext;
 
 public class AccountDAO implements Serializable {
 
-    private static final String GET_ALL
-            = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE role != 2";
-    private static final String REGISTER
-            = "INSERT INTO Account(email, password, name, profilePhoto, role, phone, accountStatus) VALUES(?,?,?,?,?,?,?)";
-    private static final String LOGIN
-            = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE email = ? COLLATE SQL_Latin1_General_CP1_CS_AS AND password = ? ";
-    private static final String CHECK_DUPLICATE
-            = "SELECT email FROM ACCOUNT WHERE email = ? COLLATE SQL_Latin1_General_CP1_CS_AS";
-    private static final String UPDATE_ACCOUNT
-            = "UPDATE Account SET email= ? , password = ? ,name = ?, profilePhoto = ?, role = ?, phone = ?, accountStatus = ? WHERE accountID = ? ";
-    private static final String DELETE_ACCOUNT
-            = "DETELE FROM Account WHERE accountID = ?";
-    private static final String GET_ALL_BY_ID
-            = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE accountID = ? ";
-
-    private static final String UPDATE_ACCOUNT_NEW
-            = "UPDATE Account SET email= ?, password = ?, name = ?, phone = ?  WHERE accountID = ? ";
-
+    private static final String GET_ALL = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE role != 2";
+    private static final String REGISTER = "INSERT INTO Account(email, password, name, profilePhoto, role, phone, accountStatus) VALUES(?,?,?,?,?,?,?)";
+    private static final String LOGIN = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE email = ? COLLATE SQL_Latin1_General_CP1_CS_AS AND password = ? ";
+    private static final String CHECK_DUPLICATE = "SELECT email FROM ACCOUNT WHERE email = ? COLLATE SQL_Latin1_General_CP1_CS_AS";
+    private static final String UPDATE_ACCOUNT = "UPDATE Account SET email= ? , password = ? ,name = ?, profilePhoto = ?, role = ?, phone = ?, accountStatus = ? WHERE accountID = ? ";
+    private static final String DELETE_ACCOUNT = "DETELE FROM Account WHERE accountID = ?";
+    private static final String GET_ALL_BY_ID = "SELECT accountID, email, password, name, profilePhoto, role, phone, accountStatus FROM Account WHERE accountID = ? ";
+    private static final String UPDATE_ACCOUNT_NEW = "UPDATE Account SET email= ?, password = ?, name = ?, phone = ?  WHERE accountID = ? ";
     private static final String DASHBOARD = "SELECT COUNT(AccountID) as AccountID\n"
             + "FROM Bird";
 
@@ -151,14 +136,12 @@ public class AccountDAO implements Serializable {
         ResultSet rs = null;
         AccountDTO acc = null;
         try {
-
             con = DBContext.getConnection();
             if (con != null) {
                 stm = con.prepareStatement(LOGIN);
                 stm.setString(1, email);
                 stm.setString(2, password);
                 rs = stm.executeQuery();
-
                 if (rs.next()) {
                     int accountID = rs.getInt("accountID");
                     String nemail = rs.getString("email");
@@ -186,7 +169,6 @@ public class AccountDAO implements Serializable {
             }
         }
         return null;
-
     }
 
     public boolean insertAccount(AccountDTO acc) throws SQLException {

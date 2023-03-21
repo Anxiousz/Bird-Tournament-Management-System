@@ -96,10 +96,10 @@ body{
     list-style: none;
     font-family: 'Montserrat';
     font-size: 25px;
-    color: #ffff;
+    color: #fff;
 }
 .other-info-personal li i{
-    color: #ffff;
+    color: #fff;
     padding-right: 10px;
 }
 .result-info{
@@ -139,7 +139,6 @@ body{
     padding: 0px 60px;
 }
 .line-normal p{
-
     border: 2px solid #A87B24;
 }
 /* bird */

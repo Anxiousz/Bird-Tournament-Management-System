@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package achievement;
 
 import bird.BirdDTO;
 import java.io.Serializable;
 
-/**
- *
- * @author anh12
- */
 public class AchievementDTO implements Serializable {
 
     private int achievementID;

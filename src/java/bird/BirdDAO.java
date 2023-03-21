@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bird;
 
 import achievement.AchievementDTO;
@@ -11,15 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import utils.DBContext;
 
-/**
- *
- * @author anh12
- */
 public class BirdDAO implements Serializable {
 
     private static final String GET_INFORMATION_BIRD = "SELECT b.birdName, b.height, b.weight,b.color,b.birdStatus\n"
@@ -38,8 +28,7 @@ public class BirdDAO implements Serializable {
             + "FROM Bird b \n"
             + "WHERE accountID= ?";
 
-    private final static String GET_BIRD_ACHIEVEMENT_BY_ACCOUNT
-            = "SELECT Bird.birdID,\n"
+    private final static String GET_BIRD_ACHIEVEMENT_BY_ACCOUNT = "SELECT Bird.birdID,\n"
             + " Bird.accountID,\n"
             + "   Bird.birdName,\n"
             + "   Bird.birdPhoto,\n"
@@ -56,8 +45,7 @@ public class BirdDAO implements Serializable {
             + "  INNER JOIN  Achievement ON  Bird.birdID =\n"
             + "     Achievement.birdID\n"
             + "WHERE Bird.accountID = ?";
-    private final static String GET_BIRD_ACHIEVEMENT_BY_ID
-            = "SELECT Bird.birdID,\n"
+    private final static String GET_BIRD_ACHIEVEMENT_BY_ID = "SELECT Bird.birdID,\n"
             + " Bird.accountID,\n"
             + "   Bird.birdName,\n"
             + "   Bird.birdPhoto,\n"
@@ -74,35 +62,27 @@ public class BirdDAO implements Serializable {
             + "  INNER JOIN  Achievement ON  Bird.birdID =\n"
             + "     Achievement.birdID\n"
             + "WHERE Bird.birdID = ?";
-
     private static final String GET_ALL_BIRD = "SELECT b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color, b.categoriesID, b.dentification, b.birdStatus\n"
             + "FROM Bird b ";
-
     private static final String GET_BY_ID = "SELECT birdID, accountID, birdName, birdPhoto, height, weight, color, birdStatus, dentification\n"
             + "FROM Bird \n"
             + "WHERE birdID = ? ";
-
     private static final String UPDATE_BIRD = "UPDATE Bird \n"
             + "SET accountID = ? , birdName = ? , birdPhoto = ? , height = ? , weight = ? , color = ? , birdStatus = ? , dentification = ?\n"
             + "WHERE birdID = ? ";
-
     private static final String DELETE_BIRD = "DElETE FROM Bird WHERE birdID = ? ";
-
     private static final String ADD_BIRD = "INSERT INTO Bird(accountID,categoriesID,birdName,birdPhoto,height,weight,color,dentification,birdStatus)\n"
             + "VALUES(?,?,?,?,?,?,?,?,?)";
-
     private static final String UPDATE_BIRD_BY_ACCOUNT_ID = "UPDATE Bird\n"
             + "SET categoriesID = ?, birdName=?, birdPhoto=?,height = ?, weight = ?, color = ?, dentification =?, birdStatus =?\n"
             + "WHERE birdID = ? AND accountID = ?;";
-
     private static final String GET_BIRD_BY_ACCOUNT_DENDIFICATION = "SELECT  b.birdID, b.accountID, b.birdName, b.birdPhoto, b.height, b.weight, b.color,b.birdStatus ,b.dentification\n"
             + "FROM Bird b \n"
             + "WHERE accountID= ?";
-
     private static final String DASHBOARD = "SELECT COUNT(BirdID) as BirdID\n"
             + "FROM Bird";
-    
-     public int countBird() throws Exception {
+
+    public int countBird() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;

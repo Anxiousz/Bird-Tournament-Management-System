@@ -24,9 +24,7 @@
                 <div class="one-blog-admin-site-categories">
                     <c:forEach var="a" items="${sessionScope.LIST_BLOG}">
                         <div class="card-blog">
-                            <img class="card-img-top"
-                                 src="${a.getMedia()}"
-                                 alt="Card image cap">
+                            <img class="card-img-top" src="${a.getMedia()}" alt="Card image cap">
                             <div class="card-body">
                                 <div class="id-blog-site">#${a.getBlogID()}</div>
                                 <p style="font-size: 15px;">${a.getCreateTime()}</p>

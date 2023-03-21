@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tournament;
 
 import java.io.Serializable;
@@ -23,41 +18,31 @@ public class TournamentDAO implements Serializable {
             + "WHERE t.dateTime >= CURRENT_TIMESTAMP AND t.tournamentStatus = 1\n"
             + "       ) AS subquery\n"
             + "  ORDER BY subquery.dateTime ASC;";
-
     private final static String LIST_TOURNAMENT = "SELECT DISTINCT t.tournamentID, t.location, t.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
             + "FROM Tournament t\n"
             + "ORDER BY t.tournamentID";
-
     private final static String LIST_TOURNAMENT_BY_STATUS = " SELECT DISTINCT t.tournamentID, t.location, t.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
             + "FROM Tournament t\n"
             + "WHERE t.tournamentStatus = ?\n"
             + "ORDER BY t.tournamentID";
-
     private final static String GET_TOURNAMENT_DETAIL = "SELECT DISTINCT t.tournamentID,t.image, t.tournamentName, t.tournamentStatus, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime, t.location, t.fee, t.prize, t.minParticipant, t.sponsor\n"
             + " FROM  Tournament t\n"
             + "WHERE t.tournamentID =  ?";
-
     private final static String GET_ALL_TOURNAMENT = "SELECT tournamentID, tournamentName, sponsor, prize,minParticipant,maxParticipant, FORMAT(dateTime,'dd/MM/yyyy HH:mm') AS dateTime, tournamentStatus \n"
             + "FROM Tournament";
-
     private final static String CREATE_TOURNAMENT = "INSERT INTO [dbo].[Tournament]([tournamentName], [minParticipant],[maxParticipant],[dateTime],[location],[fee],[sponsor],[prize],[categoriesID],[image],[tournamentStatus],[description])\n"
             + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
-
     private final static String REMOVE_TOURNAMENT = "DELETE FROM Tournament WHERE tournamentID = ?;";
-
     private final static String SEARCH_TOURNAMENT = "SELECT DISTINCT t.tournamentID, t.location, t.fee, t.tournamentStatus, t.image, t.tournamentName, FORMAT(CAST(t.dateTime AS datetime),'dd/MM/yyyy HH:mm:ss') AS dateTime\n"
             + "FROM Tournament t\n"
             + "WHERE t.tournamentName LIKE ?\n"
             + "ORDER BY t.tournamentID;";
-
     private final static String TOURNAMENT_DETAIL = "SELECT tournamentID, image, tournamentName, description, tournamentStatus, minParticipant ,maxParticipant, FORMAT(Tournament.dateTime,'dd/MM/yyyy HH:mm') AS dateTime, location, fee, prize, sponsor\n"
             + "FROM Tournament\n"
             + "WHERE tournamentID = ?";
-
     private final static String UPDATE_TOURNAMENT = "UPDATE Tournament\n"
             + "SET  tournamentStatus = ? , dateTime = TRY_CONVERT(datetime,?,103), minParticipant = ? , maxParticipant = ? , description = ?, location = ?, fee = ?, prize = ?\n"
             + "WHERE tournamentID = ?";
-
     private final static String DASHBOARD = "SELECT COUNT(TournamentID) as TournamentID\n"
             + "FROM Tournament";
 
@@ -110,7 +95,6 @@ public class TournamentDAO implements Serializable {
                 stm.setInt(9, TID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -246,7 +230,6 @@ public class TournamentDAO implements Serializable {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-
             con = DBContext.getConnection();
             if (con != null) {
                 stm = con.prepareStatement(GET_TOURNAMENT_DETAIL);

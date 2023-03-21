@@ -1,9 +1,3 @@
-<%-- 
-    Document   : addBirdForm
-    Created on : Mar 6, 2023, 8:27:23 AM
-    Author     : Admin
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,7 +54,6 @@
                                 </c:forEach>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label>Bird Color</label>
                             <input type="input" class="form-control" name="bColor">
@@ -70,7 +63,6 @@
                             <label>Dentification</label>
                             <input type="input" class="form-control" name="denfitication">
                         </div>
-
                         <div class="form-group">
                             <label >Tournament Image:</label>
                             <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
@@ -85,7 +77,6 @@
                             <button type="submit" class="btn btn-primary" name="action" value="addBird">Add</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </section>
