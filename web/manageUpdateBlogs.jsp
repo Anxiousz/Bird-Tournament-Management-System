@@ -22,10 +22,15 @@
                     <h1>UPDATE BLOG FORM</h1>
                 </div>
                 <form action="MainController" method="post">    
-                    <input type="hidden" name="blogID" value="${sessionScope.blogID}">
+                    <input type="hidden" name="blogID" value="${requestScope.updateblog.blogID}">
                     <div class="card car-blogs-add" style="width: 100%;">
                         <label for="">Blogs Image</label>
                         <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
+                        <div>
+                            <label for="input-img2" class="preview">
+                                <img class="tournament-img" id="previewImg2" src="${requestScope.updateblog.getMedia()}">
+                            </label>
+                        </div>
                         <div>
                             <label for="input-img2" class="preview">
                                 <img class="tournament-img" id="previewImg2" src="">
@@ -35,11 +40,11 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Blogs Title</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Title">
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Title" value="${requestScope.updateblog.getTitle()}">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Blog Body</label>
-                                <textarea name="Body" id="" rows="20" style="width: 100%;"></textarea>
+                                <textarea name="Body" id="" rows="20" style="width: 100%;">${requestScope.updateblog.getBody()}</textarea>
                             </div>
                             <div class="button-add-site">
                                 <button type="submit" class="btn btn-primary" value="UPDATE" name="action">UPDATE BLOG</button>

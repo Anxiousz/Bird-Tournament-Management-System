@@ -104,9 +104,8 @@
             <!-- aside  -->
             <aside id="sidebar">
                 <div class="side-avatar">
-                    <img src="https://i.pinimg.com/474x/01/c7/51/01c751482ef7c4f5e93f3539efd27f6f.jpg" alt="Avatar"
-                         class="avatar-side">
-                    <p>An Le</p>
+                    <img src="${sessionScope.acc.profilePhoto}" alt="Avatar" class="avatar-side">
+                    <p>${sessionScope.acc.name}</p>
                 </div>
                 <div class="side-menu" style="margin-top: 40px !important ;">
                     <ul>
@@ -243,7 +242,7 @@
                                                 <c:when test="${list.tournamentStatus == 5}"><td><h3 class="text-secondary">Delay</h3></td></c:when>
                                                 <c:otherwise>Delay</c:otherwise>
                                             </c:choose>
-                                            
+
                                         </tr>
                                     </tbody>
                                 </c:forEach>

@@ -1,5 +1,7 @@
 package controller;
 
+import blog.BlogDAO;
+import blog.BlogDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -7,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "LoadUpdateBlogsController", urlPatterns = {"/LoadUpdateBlogsController"})
 public class LoadUpdateBlogsController extends HttpServlet {
@@ -19,10 +20,12 @@ public class LoadUpdateBlogsController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = SUCCESS;
-            HttpSession s = request.getSession();
+            BlogDAO b = new BlogDAO();
             try {
                 int blogID = Integer.valueOf(request.getParameter("blogID"));
-                s.setAttribute("blogID", blogID);
+                BlogDTO updateBlog = b.getBlogbyID(blogID);
+                request.setAttribute("updateblog", updateBlog);
+                out.print(updateBlog);
             } catch (Exception e) {
                 e.printStackTrace();
             }
