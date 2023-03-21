@@ -134,23 +134,25 @@ body{
 }
 /* Categpries heading  */
 .tnm-categories-heading{
-    margin-top: 80px;
+    margin-top: 25px;
     height: 100px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
     flex-direction: row;
 }
 .tnm-categories-heading a{
+    font-size: 2rem !important;
     font-family: 'Montserrat';
-    font-size: 22px;
     color: #A87B24;
     display: block;
     text-decoration: none;
+    font-weight: bold;
 }
 .tnm-categories-heading a:hover{
     color: red;
+    text-decoration: none;
 }
 /* Tournament site list */
 .tnm-site-all{
@@ -172,12 +174,16 @@ body{
     align-items: center;
     flex-wrap: nowrap;
     flex-direction: row;
-
+}
+.status-heading h3{
+    font-weight: bold;
+    font-family: 'Montserrat';
+    font-size: 2rem;
 }
 .status-heading p{
     font-weight: bold;
     font-family: 'Montserrat';
-    font-size: 12px;
+    font-size: 15px;
     color: green;
 }
 .each-other-inf-tnm{
@@ -189,8 +195,12 @@ body{
 }
 .each-other-inf-tnm h5{
     font-family: 'Baloo';
-    font-size: 18px;
+    font-size: 20px;
     color: #c9ae16;
+}
+.each-other-inf-tnm p{
+    font-family: 'Baloo';
+    font-size: 15px;
 }
 .btn-card-tnm {
     display: flex;
@@ -205,12 +215,18 @@ body{
     padding: 10px 20px;
     font-size: 20px;
     color: #A87B24;
+    font-weight: bold;
+}
+.btn-card-tnm a:hover{
+    color: red;
 }
 .card-tnm{
     display: block;
 }
 .tnm-card-site-ptr{
     margin: 30px auto;
+    border: 2px solid #A87B24;
+    border-radius: 5px;
 }
 /* footer site */
 .sp-site{
@@ -363,5 +379,8 @@ body{
 }
 .icon:hover i {
     color: white;
+}
+.card-img-top{
+    height: 30rem;
 }
 

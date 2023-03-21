@@ -24,7 +24,14 @@
     </head>
     <body>
         <header>
-            <%@include file="userHeader.jsp"%>
+            <c:choose>
+                <c:when test="${sessionScope.acc.role == 0}">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:otherwise>
+                    <%@include file="adminHeader.jsp"%>
+                </c:otherwise>
+            </c:choose>
         </header>
         <section style="margin-top: 85px;">
             <div class="bird-repository container">
@@ -35,7 +42,7 @@
                             <p>
                                 <c:choose>
                                     <c:when test="${requestScope.account_detail.accountStatus == 1}">Status: Active</c:when>
-                                    <c:when test="${requestScope.account_detail.accountStatus == 0}">Status: Unactive</c:when>
+                                    <c:when test="${requestScope.account_detail.accountStatus == 0}">Status: Inactive</c:when>
                                 </c:choose>
                             </p>
                         </div>

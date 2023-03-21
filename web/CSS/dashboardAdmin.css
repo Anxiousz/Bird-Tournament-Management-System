@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
 body{
-        padding: 0;
-        margin: 0;
+    padding: 0;
+    margin: 0;
 }
 .grid-container{
     display: grid;
     grid-template-columns: 300px 1fr 1fr 1fr ;
     grid-template-rows:  0.5fr 4fr;
     grid-template-areas: "sidebar header header header"
-                        " sidebar main main main";
+        " sidebar main main main";
     height: 100vh;
 }
 a{
@@ -32,10 +32,6 @@ a{
     font-size: 42px;
 }
 /* ----------END HEADER------- */
-
-
-
-
 /* ----------SIDE BAR -------- */
 #sidebar{
     grid-area: sidebar;
@@ -86,16 +82,7 @@ a{
     font-family: 'Ubuntu', sans-serif;
 }
 /* -----------END SIDEBAR------- */
-
-
-
 /* ----------MAIN BODY---------- */
-.main-body{
-    grid-area: main;
-    background-color: #ebebeb;
-    height: 100vh;
-    overflow: scroll;
-}
 .main-body-total-categories{
     width: 100%;
     height: 250px;
@@ -103,11 +90,10 @@ a{
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    margin-top: 30px;
 }
 .each-total-categories-site{
-    
     border-radius: 20px;
+    border: 2px solid #A87B24;
     box-shadow: 1px solid #333232;
     height: auto;
     width: 22%;
@@ -126,7 +112,7 @@ a{
     align-items: center;
     flex-wrap: nowrap;
     font-family: 'Ubuntu', sans-serif;
-    color: grey;
+    color: #A87B24;
 }
 .each-total-categories-site-right {
     border-radius: 15px;
@@ -135,7 +121,6 @@ a{
     padding: 20px;
     font-size: 40px !important;
 }
-
 .each-total-categories-site-right i {
     border-radius: 15px;
     background-color: aqua;
@@ -148,14 +133,10 @@ a{
 }
 /* --Chart site--- */
 .chart-container-site{
-    margin-top: 60px !important ;
-    margin: 20px 70px;
-}
-.chart-container-site{
-    display: flex;
+    margin: 20px 0px;
 }
 .pie-chart{
-    margin-left: 60px !important;
+    align-content: center;
 }
 /* List style */
 .list-tournament-bird-site{
@@ -170,10 +151,12 @@ a{
     border-radius: 10px;
     width:90%;
     height: auto;
-    background-color: #ffff;
+    background-color: #fff;
 }
 .list-tournament-heading-site, .tournament-table {
     padding: 30px 30px;
 }
-
 /* ------------ END MAIN BODY--------- */
+.main-body-total-categories{
+    margin-top: 40px;
+}

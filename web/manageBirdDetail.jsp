@@ -24,7 +24,14 @@
     </head>
     <body>
         <header>
-            <%@include file="userHeader.jsp"%>
+            <c:choose>
+                <c:when test="${sessionScope.acc.role == 0}">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:otherwise>
+                    <%@include file="adminHeader.jsp"%>
+                </c:otherwise>
+            </c:choose>
         </header>
         <section style="margin-top: 85px;">
             <div class="bird-repository container">

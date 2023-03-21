@@ -7,7 +7,6 @@ import blog.BlogDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +35,9 @@ public class LoadDashboardController extends HttpServlet {
                 int count_account = accdao.countAccount();
                 int count_tournament = tourdao.countTournament();
                 int count_tournament_onGoing = tourdao.countTournamentOnGoing();
-                int count_tournament_finised= tourdao.countTournamentFinised();
-                int count_tournament_delay= tourdao.countTournamentDelay();
-                int count_blog  = blogdao.countBlog();
+                int count_tournament_finised = tourdao.countTournamentFinised();
+                int count_tournament_delay = tourdao.countTournamentDelay();
+                int count_blog = blogdao.countBlog();
                 ArrayList<AccountDTO> a_list = (ArrayList) accdao.getAllAccount();
                 ArrayList<TournamentDTO> t_list = (ArrayList) tourdao.listTournament();
                 HttpSession s = request.getSession();
@@ -50,8 +49,8 @@ public class LoadDashboardController extends HttpServlet {
                     request.setAttribute("count_tournament_onGoing", count_tournament_onGoing);
                     request.setAttribute("count_tournament_finised", count_tournament_finised);
                     request.setAttribute("count_tournament_delay", count_tournament_delay);
-                    s.setAttribute("t_list",t_list);
-                    s.setAttribute("a_list",a_list);
+                    s.setAttribute("t_list", t_list);
+                    s.setAttribute("a_list", a_list);
                     url = SUCCESS;
                 } else {
                     url = ERROR;

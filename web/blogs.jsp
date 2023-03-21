@@ -16,7 +16,14 @@
     <body>
         <!--header section-->
         <header>
-            <%@include file="userHeader.jsp" %>
+            <c:choose>
+                <c:when test="${sessionScope.acc.role == 0}">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:otherwise>
+                    <%@include file="guestHeader.jsp"%>
+                </c:otherwise>
+            </c:choose>
         </header>
         <!-- body section -->
         <div class="blogs-container-section">
