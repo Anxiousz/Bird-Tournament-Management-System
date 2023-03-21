@@ -36,13 +36,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" style="height: 800px;" src="https://scontent.fhan4-1.fna.fbcdn.net/v/t1.6435-9/120244547_181839916770252_7737017247524544281_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=PF1sXFl2oHsAX8AwXzL&_nc_ht=scontent.fhan4-1.fna&oh=00_AfCA14tKPHXIttJSN6pO3YQ5wzyRdgTGYC8GfcCJ6Pjm5A&oe=6416C5C0" alt="First slide">
+                    <img class="d-block w-100" style="height: 800px;" src="./image/intro2.jfif" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" style="height: 800px;" src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.6435-9/100323510_144014140552830_4161607449062670336_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=-azFYExJaA8AX-6uNBh&_nc_ht=scontent.fhan3-4.fna&oh=00_AfACLg1J0HnlQ4LNrRPkailW8nP6FBYI00nCApmQLm70eA&oe=6416D8B4" alt="Second slide">
+                    <img class="d-block w-100" style="height: 800px;" src="./image/intro3.jfif" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100"  style="height: 800px;" src="https://media.quangninh.gov.vn/1c7fa8bc-3c38-43e7-8558-4097bbe36b74/Libraries/hinhanhbaiviet/2021/long/t1/thi%20chim%20chao%20mao/hd%201080.01_36_12_07.still936.png" alt="Third slide">
+                    <img class="d-block w-100"  style="height: 800px;" src="./image/intro4.jfif" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
