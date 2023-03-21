@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,104 +21,102 @@
         <title>Profile</title>
     </head>
     <body>
-        <!-- nav-site -->
         <header>
             <c:choose>
                 <c:when test="${sessionScope.acc.role == 0}">
                     <%@include file="userHeader.jsp" %>
                 </c:when>
-                <c:when test="${sessionScope.acc.role == 1}">
-                    <%@include file="adminHeader.jsp" %>
-                </c:when>
+                <c:otherwise><%@include file="adminHeader.jsp" %></c:otherwise>
             </c:choose>
         </header>
-                
-        <!-- Both account site -->
-        <div class="both-site-account">
-            <!-- left account site -->
-            <div class="left-site-account">
-                <div class="left-top-site-account">
-                    <img src="${sessionScope.acc.profilePhoto}" alt="Avatar" class="avatar1">
-                    <a href=""><i class='fas fa-edit' style='font-size:24px'></i></a>
-                    <p>${sessionScope.acc.name}</p>
-                </div>
-                <div class="left-bottom-site-account">
-                    <p><i class="fa fa-phone" style="font-size:20px"></i>${sessionScope.acc.phone}</p>
-                    <p><i class="fa fa-envelope" style="font-size:20px"></i>${sessionScope.acc.email}</p>
-                </div>
-            </div>
-            <!-- right account site -->
-            <div class="right-site-account">
-                <div class="private-inf-account">
-                    <div class="header-inf">
-                        <p>ACCOUNT INFORMATION</p>
+        <section>
+            <!-- Both account site -->
+            <div class="both-site-account">
+                <!-- left account site -->
+                <div class="left-site-account">
+                    <div class="left-top-site-account">
+                        <img src="${sessionScope.acc.profilePhoto}" alt="Avatar" class="avatar1">
+                        <a href=""><i class='fas fa-edit' style='font-size:24px'></i></a>
+                        <p>${sessionScope.acc.name}</p>
                     </div>
-                    <form class="form-inf-account">
-                        <div class="icon-update">
-                            <a href=""> <i class='fas fa-pen' style='font-size:25px'></i></a>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.acc.email}" readonly="">
-                            <small id="emailHelp" class="form-text text-muted">You never share your email with anyone else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Telephone number</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.phone}" readonly="">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Full Name</label>
-                            <input type="tel" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.name}" readonly="">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.password}" readonly="">
-                        </div>
-                    </form>
+                    <div class="left-bottom-site-account">
+                        <p><i class="fa fa-phone" style="font-size:20px"></i>${sessionScope.acc.phone}</p>
+                        <p><i class="fa fa-envelope" style="font-size:20px"></i>${sessionScope.acc.email}</p>
+                    </div>
                 </div>
-                <!-- Update account information form -->
-                <form action="">
+                <!-- right account site -->
+                <div class="right-site-account">
                     <div class="private-inf-account">
                         <div class="header-inf">
-                            <p>ACCOUNT UPDATE FORM</p>
+                            <p>ACCOUNT INFORMATION</p>
                         </div>
-                        <div class="form-inf-account">
+                        <form class="form-inf-account">
+                            <div class="icon-update">
+                                <a href=""> <i class='fas fa-pen' style='font-size:25px'></i></a>
+                            </div>
                             <div class="form-group">
-                                <div class="icon-update">
-                                    <a href=""> <i class='fas fa-pen' style='font-size:20px'></i></a>
-                                </div>
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${requestScope.Profile_Form.getEmail()}" placeholder="Enter email" name="email-update">
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.acc.email}" readonly="">
                                 <small id="emailHelp" class="form-text text-muted">You never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Telephone number</label>
-                                <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Telephone" value="${requestScope.Profile_Form.getPhone()}" name="phone-update">
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.phone}" readonly="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Full Name</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" value="${requestScope.Profile_Form.getName()}" name="name-update">
+                                <input type="tel" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.name}" readonly="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="password-update">
+                                <input type="password" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.password}" readonly="">
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Re-Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="repass-update">
-                            </div>
-                            <div class="btn-update-acc">
-                                <a class="btn btn-danger btn-close" href="homePage.jsp"><p>Close</p></a>
-                                <form action="MainController" method="POST">
-                                    <input type="hidden" name="accID" value="${sessionScope.acc.accountID}"/>
-                                    <button class="btn btn-update btn-success" value="Update_Account" type="submit" name="action"><p>Update</p></button>
-                                </form>
-                            </div>
-                        </div>  
+                        </form>
                     </div>
-                </form>
+                    <!-- Update account information form -->
+                    <form action="">
+                        <div class="private-inf-account">
+                            <div class="header-inf">
+                                <p>ACCOUNT UPDATE FORM</p>
+                            </div>
+                            <div class="form-inf-account">
+                                <div class="form-group">
+                                    <div class="icon-update">
+                                        <a href=""> <i class='fas fa-pen' style='font-size:20px'></i></a>
+                                    </div>
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${requestScope.Profile_Form.getEmail()}" placeholder="Enter email" name="email-update">
+                                    <small id="emailHelp" class="form-text text-muted">You never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Telephone number</label>
+                                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Telephone" value="${requestScope.Profile_Form.getPhone()}" name="phone-update">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Full Name</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" value="${requestScope.Profile_Form.getName()}" name="name-update">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="password-update">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Re-Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="repass-update">
+                                </div>
+                                <div class="btn-update-acc">
+                                    <a class="btn btn-danger btn-close" href="homePage.jsp"><p>Close</p></a>
+                                    <form action="MainController" method="POST">
+                                        <input type="hidden" name="accID" value="${sessionScope.acc.accountID}"/>
+                                        <button class="btn btn-update btn-success" value="Update_Account" type="submit" name="action"><p>Update</p></button>
+                                    </form>
+                                </div>
+                            </div>  
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </section>
         <!-- footer -->
         <footer>
             <%@include file="footer.jsp"%>

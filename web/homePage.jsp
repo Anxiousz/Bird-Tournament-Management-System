@@ -159,6 +159,7 @@
                     </c:forEach>
                 </div>
             </div>
+            <a class="custom-button_2" href="LoadTotalRankingController?action=load">Ranking</a>
             <c:if test="${sessionScope.acc.role != 1}">
                 <!-- Support-site -->
                 <div class=" container sp-site">

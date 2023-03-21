@@ -1,14 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import candidates.CandidatesDAO;
 import candidates.CandidatesDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import round.RoundDAO;
 import round.RoundDTO;
 
@@ -18,18 +25,19 @@ public class RoundController extends HttpServlet {
     private final String ERROR = "error.jsp";
     private final String TOURNAMENT_DETAIL = "TournamentDetailController";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String tournamentID = request.getParameter("ID");
+            int tournamentID = Integer.parseInt(request.getParameter("ID"));
             String rname = request.getParameter("roundName");
-            String rid = request.getParameter("roundID");
+            int rid = Integer.parseInt(request.getParameter("roundID"));
             String rstatus = request.getParameter("roundStatus");
             RoundDTO round = null;
             if (rstatus.equals("0")) {
                 RoundDAO rdao = new RoundDAO();
-                round = rdao.getRoundByID(Integer.parseInt(rid));
+                round = rdao.getRoundByID(rid);
                 if (round == null) {
                     url = ERROR;
                 }
@@ -38,11 +46,11 @@ public class RoundController extends HttpServlet {
             } else if (rstatus.equals("1")) {
                 RoundDAO rdao = new RoundDAO();
                 CandidatesDAO cdao = new CandidatesDAO();
-                round = rdao.getRoundByID(Integer.parseInt(rid));
+                round = rdao.getRoundByID(rid);
                 if (round == null) {
                     url = ERROR;
                 } else {
-                    List<CandidatesDTO> Rcands = cdao.getCandidatesByRID(1, Integer.parseInt(rid));
+                    List<CandidatesDTO> Rcands = cdao.getCandidatesByRID(1, rid);
                     if (Rcands.isEmpty()) {
                         request.setAttribute("error", "there is not any bird in this round");
                     }
@@ -53,18 +61,23 @@ public class RoundController extends HttpServlet {
             } else if (rstatus.equals("2")) {
                 RoundDAO rdao = new RoundDAO();
                 CandidatesDAO cdao = new CandidatesDAO();
-                round = rdao.getRoundByID(Integer.parseInt(rid));
+                round = rdao.getRoundByID(rid);
                 if (round == null) {
                     url = ERROR;
                 } else {
-                    List<CandidatesDTO> Fcands = cdao.getFinishCandidates(Integer.parseInt(rid));
+                    List<CandidatesDTO> Fcands = cdao.getFinishCandidates(rid);
                     if (Fcands.isEmpty()) {
                         request.setAttribute("error", "result have not set");
-                    }
-                    if (rdao.getNumberOfRound(Integer.parseInt(tournamentID)) == 1) {
-                        request.setAttribute("uplstatus", "true");
-                    } else if (rname.equals("Top4") && cdao.getNumberFailed(Integer.parseInt(rid)) > 0) {
-                        request.setAttribute("uplstatus", "true");
+                    }else {
+                        if (rdao.getNextRStatus(tournamentID, rid) == 1 || rdao.getNextRStatus(tournamentID, rid) == 2) {
+                            List<CandidatesDTO> fpcands = cdao.getFinishPassedCandidates(rid);
+                            Fcands.addAll(0,cdao.getFinishPassedCandidates(rid));
+                            request.setAttribute("unexton", "true");
+
+                        } else if (rdao.getNextRStatus(tournamentID, rid) == 0) {
+                            request.setAttribute("unexton", "false");
+                        }
+                        request.setAttribute("ucands", Fcands);
                     }
                     if (round.getRoundName().equals("Top4") && round.getRoundStatus() == 2) {
                         request.setAttribute("ufinishTournament", "true");
@@ -72,7 +85,7 @@ public class RoundController extends HttpServlet {
                         request.setAttribute("ufinishTournament", "false");
                     }
                     request.setAttribute("uround", round);
-                    request.setAttribute("ucands", Fcands);
+
                     url = TOURNAMENT_DETAIL;
                 }
             }

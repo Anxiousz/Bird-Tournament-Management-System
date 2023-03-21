@@ -12,9 +12,11 @@
         <link href='https://fonts.googleapis.com/css?family=Baloo' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <link rel="stylesheet" href="CSS/tourmamentDetail.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+              integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="./CSS/tourmamentDetail.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -22,8 +24,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <title>Tournament Detail</title>
     </head>
-    <body>
-        <!--2LAI 1 DÒNG THÊM CLASS="highlight-row" NGAY DÒNG ĐÓ-->
+    <body>  
         <header>
             <%@include file="userHeader.jsp" %>
         </header>
@@ -32,7 +33,9 @@
             <div class="tnm-basic-info">
                 <div class="tnm-picture">
                     <div class="card" style="width: 90rem;">
-                        <img class="card-img-top" style="width: 90rem; height: 70rem;" src="${requestScope.utour.image}" alt="Card image cap">
+                        <img class="card-img-top" style="width: 90rem; height: 70rem;"
+                             src="${requestScope.utour.image}"
+                             alt="Card image cap">
                     </div>
                 </div>
                 <!-- section 2  -->
@@ -53,11 +56,12 @@
                 <!-- Section 3 -->
                 <div class="basic-tnm-form">
                     <div class="basic-tnm-form-categories">
-                        <h1><i class="fa-solid fa-clock"></i>     Date and Time</h1>
+                        <h1><i class="fa-solid fa-clock"></i>  Date and Time</h1>
                         <p>${requestScope.utour.dateTime}</p>
                     </div>
-                    <div class="basic-tnm-form-categories" style="border-left: 4px solid #A87B24; border-right: 4px solid #A87B24;">
-                        <h1><i class="fa-solid fa-location-dot"></i>     Location</h1>
+                    <div class="basic-tnm-form-categories"
+                         style="border-left: 4px solid #A87B24; border-right: 4px solid #A87B24;">
+                        <h1><i class="fa-solid fa-location-dot"></i>  Location</h1>
                         <p>${requestScope.utour.location}</p>
                     </div>
                     <div class="basic-tnm-form-categories">
@@ -118,285 +122,227 @@
                              class="avatar-sponsor ">
                     </div>
                 </div>
+                     <a class="custom-button_2" href="LoadTournamentRankingController?action=load&tournamentID=${requestScope.utour.tournamentID}">Ranking</a>
                 <!-- div-site -->
                 <div class="line-section">
                     <p></p>
                 </div>
                 <!-- Section 7 -->
                 <c:if test="${!empty requestScope.urounds}">
-                    <div class="tnm-heading mt-5">
-                        <h1>Round</h1>
-                    </div>
-                    <div class="basic-tnm-form">
-                        <c:forEach items="${requestScope.urounds}" var="r">
-                            <div class="basic-tnm-form-categories">
+                <div class="tnm-heading mt-5">
+                    <h1>Round</h1>
+                </div>
+                <div class="basic-tnm-form">
+                    <c:forEach items="${requestScope.urounds}" var="r">
+                        <div class="basic-tnm-form-categories">
+                            <c:choose>
+                                <c:when test="${requestScope.uround.roundID == r.roundID}">
+                                    <a style="color:burlywood" id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
+                                </c:when>
+                                <c:otherwise>
+                                    <a id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${r.roundStatus == 0}">
+                                    <a>Coming soon</a>
+                                </c:when>
+                                <c:when test="${r.roundStatus == 1}">
+                                    <a>On Going</a>
+                                </c:when>
+                                <c:when test="${r.roundStatus == 2}">
+                                    <a>Finish</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a></a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </c:forEach>
+                </div>
+                <div class="line-section">
+                    <p></p>
+                </div>
+                <c:if test="${!empty requestScope.uround.roundID}">
+                    <div class="round-detail">
+                        <div class="round-detail-site" style="border-right: 4px solid #A87B24;">
+                            <p>Type of Round: ${requestScope.uround.typeOfRound}</p>
+                            <p>Number Bird Attend:   ${requestScope.uround.birdAttend}</p>
+                            <p>
+                                Status: 
                                 <c:choose>
-                                    <c:when test="${requestScope.uround.roundID == r.roundID}">
-                                        <a style="color:burlywood" id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a id="roud-id" href="RoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&ID=${utour.tournamentID}">${r.roundName}</a><br/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${r.roundStatus == 0}">
+                                    <c:when test="${requestScope.uround.roundStatus == 0}">
                                         <a>Coming soon</a>
                                     </c:when>
-                                    <c:when test="${r.roundStatus == 1}">
+                                    <c:when test="${requestScope.uround.roundStatus == 1}">
                                         <a>On Going</a>
                                     </c:when>
-                                    <c:when test="${r.roundStatus == 2}">
+                                    <c:when test="${requestScope.uround.roundStatus == 2}">
                                         <a>Finish</a>
                                     </c:when>
                                     <c:otherwise>
                                         <a></a>
                                     </c:otherwise>
                                 </c:choose>
-                            </div>
-                        </c:forEach>
+                            </p>
+                        </div>
+                        <div class="player-site">
+                            <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
+                            <p>${requestScope.uround.birdPass}</p>
+                        </div>
                     </div>
-                    <div class="line-section">
-                        <p></p>
-                    </div>
-                    <c:if test="${!empty requestScope.uround.roundID}">
-                        <div class="round-detail">
-                            <div class="round-detail-site" style="border-right: 4px solid #A87B24;">
-                                <p>Type of Round: ${requestScope.uround.typeOfRound}</p>
-                                <p>Number Bird Attend:   ${requestScope.uround.birdAttend}</p>
-                                <p>
-                                    Status: 
+                    </form>
+                    
+                            
+                            
+                                <div>
                                     <c:choose>
-                                        <c:when test="${requestScope.uround.roundStatus == 0}">
-                                            <a>Coming soon</a>
+                                        <c:when test="${requestScope.uround.roundStatus == 2 && requestScope.uround.roundName eq 'Top4'}">
+                                            <h1 class="candidate-heading">Winner</h1>
                                         </c:when>
-                                        <c:when test="${requestScope.uround.roundStatus == 1}">
-                                            <a>On Going</a>
-                                        </c:when>
-                                        <c:when test="${requestScope.uround.roundStatus == 2}">
-                                            <a>Finish</a>
-                                        </c:when>
+
                                         <c:otherwise>
-                                            <a></a>
+                                            <h1 class="candidate-heading">Participant</h1>
                                         </c:otherwise>
                                     </c:choose>
-                                </p>
-                            </div>
-                            <div class="player-site">
-                                <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
-                                <p>${requestScope.uround.birdPass}</p>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">CID</th>
+                                                <th scope="col">Bird Name</th>
+                                                <th scope="col">Owner Name</th>
+                                                
+                                                <th scope="col">Point</th>
+                                                    <c:choose>
+                                                        <c:when test="${requestScope.uround.roundName eq 'Top4'}">
+                                                        <th scope="col">TOP</th>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <th scope="col">Result</th>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${requestScope.ucands}" var="c">
+                                            <form action="UpdateCandidatesController" method="GET">
+                                                <tr>
+                                                    <th scope="row">${c.candidatesID}</th>
+                                                    <td>${c.bird.birdName}</td>
+                                                    <td>${c.bird.account.name}</td>
+                                                   
+                                                    
+                                                    
+                                                    <c:choose>
+                                                                    <c:when test="${requestScope.unexton eq 'true' && requestScope.uround.roundID ne c.round.roundID}">
+                                                                        <td></td>
+                                                                    </c:when>
+                                                                    <c:when test="${requestScope.unexton eq 'true' && requestScope.uround.roundID eq c.round.roundID}">
+                                                                      <td>${c.score}</td>
+                                                                    </c:when>
+                                                                    <c:when test="${requestScope.unexton eq 'false'}">
+                                                                      <td>${c.score}</td>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                            <td>${c.score}</td>
+                                                                    </c:otherwise>
+                                                     </c:choose>   
+                                                    <c:choose>
+                                                        <c:when test="${c.result eq 'pass' && requestScope.uround.roundID eq c.round.roundID}">
+                                                            <td style="font-weight: bold; color: green">${c.result}</td>
+                                                        </c:when>
+                                                        <c:when test="${c.result eq 'fail' && requestScope.uround.roundID eq c.round.roundID}">
+                                                            <td style="font-weight: bold; color: red">${c.result}</td>
+                                                        </c:when>
+                                                        <c:when test="${requestScope.unexton eq 'true' && requestScope.uround.roundID ne c.round.roundID}">
+                                                            <td style="font-weight: bold; color: green">pass</td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                                <td style="font-weight: bold; color: red">${c.result}</td>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </tr>
+                                            </form>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div> 
+                </c:if>
+                    </c:if>
+                    <c:if test="${empty requestScope.urounds}">
+                <c:choose>
+                    <c:when test="${requestScope.utour.tournamentStatus == 0}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Please wait until the date of the registration form</h1></a>
+                                </div>
                             </div>
                         </div>
-                        </form>
-                        <c:if test="${requestScope.uround.roundStatus == 1 || requestScope.uround.roundStatus == 2}">
-                            <c:choose>
-                                <c:when test="${requestScope.uplstatus eq 'true'}">
-                                    <div>
-                                        <h1 class="candidate-heading">Winner</h1>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">CID</th>
-                                                    <th scope="col">Bird Name</th>
-                                                    <th scope="col">Owner Name</th>
-                                                    <th scope="col">Point</th>
-                                                        <c:choose>
-                                                            <c:when test="${requestScope.uround.roundName eq 'Top4'}">
-                                                            <th scope="col">TOP</th>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                            <th scope="col">Result</th>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${requestScope.ucands}" var="c">
-                                                    <c:if test="${c.result ne 'fail'}">
-                                                    <form action="UpdateCandidatesController" method="GET">
-                                                        <tr>
-                                                            <th scope="row">${c.candidatesID}</th>
-                                                            <td>${c.bird.birdName}</td>
-                                                            <td>${c.bird.account.name}</td>
-                                                            <td>${c.score}</td>
-                                                            <c:choose>
-                                                                <c:when test="${c.result eq 'pass'}">
-                                                                    <td style="font-weight: bold; color: green">${c.result}</td>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <td style="font-weight: bold; color: red">${c.result}</td>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </tr>
-                                                    </form>
-                                                </c:if>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div>
-                                        <h1 class="candidate-heading">Failed</h1>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">CID</th>
-                                                    <th scope="col">Bird Name</th>
-                                                    <th scope="col">Owner Name</th>
-                                                    <th scope="col">Point</th>
-                                                    <th scope="col">Result</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${requestScope.ucands}" var="c">
-                                                    <c:if test="${c.result eq 'fail'}">
-                                                    <form action="UpdateCandidatesController" method="GET">
-                                                        <tr>
-                                                            <th scope="row">${c.candidatesID}</th>
-                                                            <td>${c.bird.birdName}</td>
-                                                            <td>${c.bird.account.name}</td>
-                                                            <td>${c.score}</td>
-                                                            <c:choose>
-                                                                <c:when test="${c.result eq 'pass'}">
-                                                                    <td style="font-weight: bold; color: green">${c.result}</td>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <td style="font-weight: bold; color: red">${c.result}</td>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </tr>
-                                                    </form>
-                                                </c:if>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div>
-                                        <c:choose>
-                                            <c:when test="${requestScope.uround.roundStatus == 2 && requestScope.uround.roundName eq 'Top4'}">
-                                                <h1 class="candidate-heading">Winner</h1>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <h1 class="candidate-heading">Participant</h1>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">CID</th>
-                                                    <th scope="col">Bird Name</th>
-                                                    <th scope="col">Owner Name</th>
-                                                    <th scope="col">Point</th>
-                                                        <c:choose>
-                                                            <c:when test="${requestScope.uround.roundName eq 'Top4'}">
-                                                            <th scope="col">TOP</th>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                            <th scope="col">Result</th>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${requestScope.ucands}" var="c">
-                                                <form action="UpdateCandidatesController" method="GET">
-                                                    <tr>
-                                                        <th scope="row">${c.candidatesID}</th>
-                                                        <td>${c.bird.birdName}</td>
-                                                        <td>${c.bird.account.name}</td>
-                                                        <td>${c.score}</td>
-                                                        <c:choose>
-                                                            <c:when test="${c.result eq 'pass'}">
-                                                                <td style="font-weight: bold; color: green">${c.result}</td>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <td style="font-weight: bold; color: red">${c.result}</td>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </tr>
-                                                </form>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:if>
+                    </c:when>
+                    <c:when test="${requestScope.utour.tournamentStatus == 1}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>PLAY WITH US NOW</h1>
+                                    <p>Gift, Achievement waiting you</p>
+                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${requestScope.utour.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${requestScope.utour.tournamentStatus == 2}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Oh Sorry :( The form has been closed. Please choose another tournament</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${requestScope.utour.tournamentStatus == 3}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>The match is in progress so can't register</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${requestScope.utour.tournamentStatus == 4}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Oh Sorry :( The Tournament finished.</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${requestScope.utour.tournamentStatus == 5}">
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Sorry for this problem. Tournament is pausing</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="regis-site container">
+                            <div class="regis-both-site">
+                                <div class="regis-left-site">
+                                    <h1><a>Sorry for this problem. Tournament canceled.</h1></a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
                     </c:if>
-                </c:if>
-                <c:if test="${empty requestScope.urounds}">
-                    <c:choose>
-                        <c:when test="${requestScope.utour.tournamentStatus == 0}">
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>Please wait until the date of the registration form</h1></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:when test="${requestScope.utour.tournamentStatus == 1}">
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>PLAY WITH US NOW</h1>
-                                        <p>Gift, Achievement waiting you</p>
-                                        <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${requestScope.utour.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:when test="${requestScope.utour.tournamentStatus == 2}">
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>Oh Sorry :( The form has been closed. Please choose another tournament</h1></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:when test="${requestScope.utour.tournamentStatus == 3}">
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>The match is in progress so can't register</h1></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:when test="${requestScope.utour.tournamentStatus == 4}">
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>Oh Sorry :( The Tournament finished.</h1></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:when test="${requestScope.utour.tournamentStatus == 5}">
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>Sorry for this problem. Tournament is pausing</h1></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <div class="regis-site container">
-                                <div class="regis-both-site">
-                                    <div class="regis-left-site">
-                                        <h1><a>Sorry for this problem. Tournament canceled.</h1></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
-                </c:if>
             </div>
         </div>
-        <footer>
-            <%@ include file="footer.jsp" %>
-        </footer>
-    </body>
+    
+    <footer>
+        <%@ include file="footer.jsp" %>
+    </footer>
+</body>
 </html>

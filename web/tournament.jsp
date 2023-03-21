@@ -25,7 +25,14 @@
     </head>
     <body>
         <header>
-            <%@include file="userHeader.jsp" %>
+            <c:choose>
+                <c:when test="${sessionScope.acc.role == 0}">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:otherwise>
+                    <%@include file="guestHeader.jsp"%>
+                </c:otherwise>
+            </c:choose>
         </header>>
         <!-- Pircture heading -->
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -65,10 +72,10 @@
         </div>
         <!-- tnm categories heading  -->
         <div class=" container tnm-categories-heading">
-            <a href="MainController?action=TOURNAMENT"><p> All Tournaments<i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
+            <a href="MainController?action=TOURNAMENT"><p>All Tournaments     <i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
             <a href="MainController?action=ON_GOING_TOURNAMENT"><p>On Going Tournaments</p></a>
             <a href="MainController?action=OLD_TOURNAMENT"><p>Old Tournaments</p></a>
-            <a href="MainController?action=DELAY_TOURNAMENT"><p>Delay Tournament<i class='fas fa-hourglass-end' style='font-size:24px;color: green;'></i></p></a>
+            <a href="MainController?action=DELAY_TOURNAMENT"><p>Delay Tournament     <i class='fas fa-hourglass-end' style='font-size:24px;color: green;'></i></p></a>
         </div>
         <!-- tnm-list -->
         <div class="tnm-site-all container">
@@ -77,11 +84,13 @@
                 <c:forEach var="list" items="${sessionScope.GET_LIST}">
                     <div class="tnm-card-site-ptr">     
                         <div class="card" style="width: 45rem;">
-                            <img class="card-img-top" style="height: 30rem;" src="${list.image}" alt="Card image cap">
+                            <img class="card-img-top" src="${list.image}" alt="Card image cap">
                             <div class="card-body" style="height:20rem;">
                                 <!-- status -->
                                 <div class="status-heading d-flex justify-content-center" style="font-weight: bold;">
                                     <h3>${list.tournamentName}</h3>
+                                </div>
+                                <div class="status-heading d-flex justify-content-center" style="font-weight: bold;">
                                     <p>
                                         <c:choose>
                                             <c:when test="${list.tournamentStatus == 0}">Up Coming</c:when>

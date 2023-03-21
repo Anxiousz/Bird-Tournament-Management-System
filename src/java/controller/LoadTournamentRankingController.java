@@ -6,25 +6,24 @@
 package controller;
 
 import candidates.CandidatesDAO;
+import candidates.CandidatesDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import round.RoundDAO;
 
 /**
  *
  * @author thang
  */
-@WebServlet(name = "UpdateCandidatesController", urlPatterns = {"/UpdateCandidatesController"})
-public class UpdateCandidatesController extends HttpServlet {
-
+@WebServlet(name = "LoadTournamentRankingController", urlPatterns = {"/LoadTournamentRankingController"})
+public class LoadTournamentRankingController extends HttpServlet {
     private final String ERROR = "error.jsp";
-    private final String SUCCESS = "ManageRoundController";
-
+    private final String SUCCESS = "TournamentRanking.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,64 +37,24 @@ public class UpdateCandidatesController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        String tid = request.getParameter("tournamentID");
-        String rid = request.getParameter("roundID");
-        String cid = request.getParameter("candidatesID");
-        String rname = request.getParameter("roundName");
-        String rstatus = request.getParameter("roundStatus");
-        String score = request.getParameter("score");
-        String action = request.getParameter("action");
-        String result = request.getParameter("result");
-        int cstatus = 0;
-        if(result.equals("fail")){
-            cstatus = 2;
-        }else if (result.equals("")){
-            cstatus = 1;
-            result = null;
-        }else{
-            cstatus = 1;
-        }
-        try {
-            if (action.equals("Update")) {
+        try  {
+            int tid = Integer.parseInt(request.getParameter("tournamentID"));
+            String action = request.getParameter("action");
+            if(action.equals("load")){
                 CandidatesDAO cdao = new CandidatesDAO();
-                if (score == null) {
-                    score = "0";
-                }
-                if(score.equals("0")){
-                    if(cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))){
-                        url = SUCCESS;
-                    }else{
-                        url = ERROR;
-                    }
+                List<CandidatesDTO> rcands = cdao.getListTopCandidates(tid);
+                if(!rcands.isEmpty()){
+                    request.setAttribute("rcands", rcands);
+                    url=SUCCESS;
                 }else{
-                    if(rname.equals("Top4")){
-                    if(cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))){
-                        request.setAttribute("duplicateScore", "true");
-                        request.setAttribute("cid", cid);
-                        url = SUCCESS;
-                    }else{
-                        if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
-                            request.setAttribute("duplicateScore", "fase");
-                            url = SUCCESS;
-                        } else {
-                            url = ERROR;
-                        }
-                    }
-                    }else{
-                        if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
-                            request.setAttribute("duplicateScore", "fase");
-                            url = SUCCESS;
-                        } else {
-                            url = ERROR;
-                        }
-                    }
+                    url=ERROR;
                 }
-                
             }
-
-        } catch (Exception e) {
+            
+            
+        }catch(Exception e){
             e.printStackTrace();
-        } finally {
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
