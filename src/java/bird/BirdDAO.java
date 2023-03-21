@@ -1,5 +1,6 @@
 package bird;
 
+import account.AccountDTO;
 import achievement.AchievementDTO;
 import java.io.Serializable;
 import java.sql.Connection;
@@ -81,7 +82,57 @@ public class BirdDAO implements Serializable {
             + "WHERE accountID= ?";
     private static final String DASHBOARD = "SELECT COUNT(BirdID) as BirdID\n"
             + "FROM Bird";
+private static final String TOTAL_RANKING
+             = "SELECT Bird.birdName,\n"
+            + "  Account.name,\n"
+            + "  Achievement.totalScore,\n"
+            + "  Achievement.rank\n"
+            + "FROM Bird\n"
+            + "  INNER JOIN Account ON Account.accountID\n"
+            + "    = Bird.accountID\n"
+            + "  INNER JOIN Achievement ON Bird.birdID =\n"
+            + "    Achievement.birdID\n"
+            + "	where totalScore != 0 and totalScore is not null\n"
+            + "order by rank asc";
+     public List<BirdDTO> getTotalRanking() throws SQLException {
+        List<BirdDTO> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(TOTAL_RANKING);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    BirdDTO bird = new BirdDTO();
+                    bird.setBirdName(rs.getString(1));
+                    AccountDTO acc = new AccountDTO();
+                    acc.setName(rs.getString(2));
+                    bird.setAccount(acc);
+                    AchievementDTO ach = new AchievementDTO();
+                    ach.setTotalScore(rs.getInt(3));
+                    ach.setTop(rs.getInt(4));
+                    bird.setAchivement(ach);
+                    list.add(bird);
+                }
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
     public int countBird() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;

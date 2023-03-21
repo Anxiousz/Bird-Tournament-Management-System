@@ -13,9 +13,11 @@
         <link href='https://fonts.googleapis.com/css?family=Baloo' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+              integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="CSS/manageTournamentDetail.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -24,7 +26,6 @@
         <title>Manage Tournament Detail</title>
     </head>
     <body>  
-        <!--2LAI 1 DÒNG THÊM CLASS="highlight-row" NGAY DÒNG ĐÓ-->
         <header>
             <%@include file="adminHeader.jsp" %>
         </header>
@@ -134,7 +135,7 @@
                         <div class="basic-tnm-form-categories" style="border-right: 4px solid #A87B24;">
                             <h1><i class="fa-sharp fa-solid fa-trophy"></i> Prize:  </h1>
                             <c:forEach items="${fn:split(requestScope.tour.prize,';')}" var="prizes">
-                                <p>${prizes}</p>
+                                    <p>${prizes}</p>
                             </c:forEach>
                             <p>Change Prize: <input type="text" value="${requestScope.tour.prize}" name="prize"></p>
                         </div>
@@ -172,6 +173,7 @@
                         <input type="submit" value="Update Tournament" name="action">
                     </div>  
                 </form>
+                        <a class="custom-button_2" href="LoadTournamentRankingController?action=load&tournamentID=${requestScope.tour.tournamentID}">Ranking</a>
                 <div class="line-section">
                     <p></p>
                 </div>
@@ -184,6 +186,8 @@
                             <div class="basic-tnm-form">
                                 <c:forEach items="${requestScope.rounds}" var="r" varStatus="status">
                                     <div class="basic-tnm-form-categories">
+                                         
+                                       
                                         <c:choose>
                                             <c:when test="${requestScope.round.roundID == r.roundID}">
                                                 <a style="color:burlywood" id="roud-id" href="ManageRoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&tournamentID=${tour.tournamentID}">${r.roundName}</a><br/>
@@ -228,21 +232,23 @@
                                                                 <option>On Going</option>
                                                             </select>
                                                         </c:when>
-                                                        <c:otherwise>
-                                                            <select name="roundStatus">
-                                                                <option>Coming soon</option>
-                                                            </select>
+                                                    <c:otherwise>
+                                                        <select name="roundStatus">
+                                                               <option>Coming soon</option>
+                                                        </select>
                                                         <p style="color:red;">Finish previous round to on going this round</p>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:when>
-                                            <c:when test="${requestScope.round.roundStatus == 1}">
-                                                <c:choose>
+                                                    
+                                                    
+                                                </c:when>
+                                                <c:when test="${requestScope.round.roundStatus == 1}">
+                                                    <c:choose>
                                                     <c:when test="${requestScope.emptyscored eq 'true'}">
-                                                        <select name="roundStatus">
-                                                            <option>On Going</option>
-                                                        </select>
-                                                        <p style="color:red;">Update score to finish</p>
+                                                            <select name="roundStatus">
+                                                                <option>On Going</option>
+                                                            </select>
+                                                        <p style="color:red;">Update more score to finish</p>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <select name="roundStatus">
@@ -257,12 +263,12 @@
                                                     <option>Finish</option>
                                                 </select>
                                             </c:when>
-                                            <c:otherwise>
-                                                <select name="roundStatus" >
-                                                    <option>Coming soon</option>
-                                                </select>
-                                            </c:otherwise>
-                                        </c:choose>
+                                                <c:otherwise>
+                                                    <select name="roundStatus" >
+                                                        <option>Coming soon</option>
+                                                    </select>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </p>
                                     </div>
                                     <div class="player-site">
@@ -277,131 +283,6 @@
                                     <input type="submit" value="Update Round" name="action">
                                 </div>
                             </form>
-                            <c:if test="${requestScope.round.roundStatus == 1 || requestScope.round.roundStatus == 2}">
-                                <c:choose>
-                                    <c:when test="${requestScope.plstatus eq 'true'}">
-                                        <div>
-                                            <h1 class="candidate-heading">Winner</h1>
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">CID</th>
-                                                        <th scope="col">Bird Name</th>
-                                                        <th scope="col">Owner Name</th>
-                                                        <th scope="col">Point</th>
-                                                            <c:choose>
-                                                                <c:when test="${requestScope.round.roundName eq 'Top4'}">
-                                                                <th scope="col">TOP</th>
-                                                                </c:when>
-                                                            <c:otherwise>
-                                                                <th scope="col">Result</th>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        <th scope="col">Update</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach items="${requestScope.cands}" var="c">
-                                                        <c:if test="${c.result ne 'fail'}">
-                                                        <form action="UpdateCandidatesController" method="GET">
-                                                            <tr>
-                                                                <th scope="row">${c.candidatesID}</th>
-                                                                <td>${c.bird.birdName}</td>
-                                                                <td>${c.bird.account.name}</td>
-
-                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score">
-                                                                    <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
-                                                                        <p style="color:red;">score cannot duplicate</p>
-                                                                    </c:if>
-                                                                </td>
-
-
-                                                                <td><select style="font-weight: bold; color: red" name="result">
-                                                                        <c:if test="${requestScope.round.roundStatus == 1}">
-                                                                            <option style="font-weight: bold; color: red" value="" ${c.result eq '' ? "selected" : ""}></option>
-                                                                        </c:if>
-                                                                        <option style="font-weight: bold; color: red" value="1" ${c.result == 1 ? "selected" : ""}>1</option>
-                                                                        <option style="font-weight: bold; color: red" value="2" ${c.result == 2 ? "selected" : ""}>2</option>
-                                                                        <option style="font-weight: bold; color: red" value="3" ${c.result == 3 ? "selected" : ""}>3</option>
-                                                                        <option style="font-weight: bold; color: red" value="4" ${c.result == 4 ? "selected" : ""}>4</option>
-                                                                        <option style="font-weight: bold; color: red" value="fail" ${c.result eq 'fail' ? "selected" : ""}>fail</option>
-                                                                    </select></td>
-
-
-
-
-                                                            <input type="hidden" value="${requestScope.round.roundID}" name="roundID"  />
-                                                            <input type="hidden" value="${requestScope.round.roundStatus}" name="roundStatus" />
-                                                            <input type="hidden" value="${requestScope.round.roundName}" name="roundName" />
-                                                            <input type="hidden" value="${requestScope.tour.tournamentID}" name="tournamentID" />
-                                                            <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
-
-                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update" /></td>
-
-                                                            </tr>
-                                                        </form>
-                                                    </c:if>
-                                                </c:forEach>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div>
-                                            <h1 class="candidate-heading">Failed</h1>
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">CID</th>
-                                                        <th scope="col">Bird Name</th>
-                                                        <th scope="col">Owner Name</th>
-
-                                                        <th scope="col">Point</th>
-                                                        <th scope="col">Result</th>
-
-                                                        <th scope="col">Update</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach items="${requestScope.cands}" var="c">
-                                                        <c:if test="${c.result eq 'fail'}">
-                                                        <form action="UpdateCandidatesController" method="GET">
-                                                            <tr>
-                                                                <th scope="row">${c.candidatesID}</th>
-                                                                <td>${c.bird.birdName}</td>
-                                                                <td>${c.bird.account.name}</td>
-
-                                                                <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score" >
-                                                                    <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
-                                                                        <p style="color:red;">score cannot duplicate</p>
-                                                                    </c:if>
-                                                                </td>
-                                                                <td><select style="font-weight: bold; color: red" name="result">
-                                                                        <c:if test="${requestScope.round.roundStatus == 1}">
-                                                                            <option style="font-weight: bold; color: red" value="" ></option>
-                                                                        </c:if>
-                                                                        <option style="font-weight: bold; color: red" value="1" >1</option>
-                                                                        <option style="font-weight: bold; color: red" value="2" >2</option>
-                                                                        <option style="font-weight: bold; color: red" value="3" >3</option>
-                                                                        <option style="font-weight: bold; color: red" value="4" >4</option>
-                                                                        <option style="font-weight: bold; color: red" value="fail" ${c.result eq 'fail' ? "selected" : ""}>fail</option>
-                                                                    </select></td>
-                                                            <input type="hidden" value="${requestScope.round.roundID}" name="roundID"  />
-                                                            <input type="hidden" value="${requestScope.round.roundStatus}" name="roundStatus" />
-                                                            <input type="hidden" value="${requestScope.round.roundName}" name="roundName" />
-                                                            <input type="hidden" value="${requestScope.tour.tournamentID}" name="tournamentID" />
-                                                            <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
-
-                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update"/></td>
-
-                                                            </tr>
-                                                        </form>
-                                                    </c:if>
-                                                </c:forEach>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </c:when>
-                                    <c:otherwise>
                                         <div>
                                             <c:choose>
                                                 <c:when test="${requestScope.round.roundStatus == 2 && requestScope.round.roundName eq 'Top4'}">
@@ -418,7 +299,7 @@
                                                         <th scope="col">CID</th>
                                                         <th scope="col">Bird Name</th>
                                                         <th scope="col">Owner Name</th>
-
+                                                        
                                                         <th scope="col">Point</th>
                                                             <c:choose>
                                                                 <c:when test="${requestScope.round.roundName eq 'Top4'}">
@@ -428,66 +309,108 @@
                                                                 <th scope="col">Result</th>
                                                                 </c:otherwise>
                                                             </c:choose>
-
-                                                        <th scope="col">Update</th>
-
+                                                           <c:if  test="${requestScope.nexton eq 'false'}">
+                                                            <th scope="col">Update</th>
+                                                            </c:if>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${requestScope.cands}" var="c">
+                                                    <c:forEach items="${requestScope.cands}" var="c" varStatus="loop">
                                                     <form action="UpdateCandidatesController" method="GET">
                                                         <tr>
                                                             <th scope="row">${c.candidatesID}</th>
                                                             <td>${c.bird.birdName}</td>
                                                             <td>${c.bird.account.name}</td>
-
-                                                            <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score">
-                                                                <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid}">
-                                                                    <p style="color:red;">score cannot duplicate</p>
-                                                                </c:if>
-                                                            </td>
-                                                            <c:choose>
-                                                                <c:when test="${requestScope.round.roundName eq 'Top4'}">
-                                                                    <td><select style="font-weight: bold; color: red" name="result">
-                                                                            <c:if test="${requestScope.round.roundStatus == 1}">
-                                                                                <option style="font-weight: bold; color: red" value="" ${c.result eq '' ? "selected" : ""}></option>
-                                                                            </c:if>
-                                                                            <option style="font-weight: bold; color: red" value="1" ${c.result == 1 ? "selected" : ""}>1</option>
-                                                                            <option style="font-weight: bold; color: red" value="2" ${c.result == 2 ? "selected" : ""}>2</option>
-                                                                            <option style="font-weight: bold; color: red" value="3" ${c.result == 3 ? "selected" : ""}>3</option>
-                                                                            <option style="font-weight: bold; color: red" value="4" ${c.result == 4 ? "selected" : ""}>4</option>
-                                                                            <option style="font-weight: bold; color: red" value="fail" ${c.result eq 'fail' ? "selected" : ""}>fail</option>
-                                                                        </select></td>
+                                                            
+                                                                    <c:choose>
+                                                                    <c:when test="${requestScope.nexton eq 'true'}">
+                                                                    <c:choose>
+                                                                    <c:when test="${requestScope.round.roundID ne c.round.roundID}">
+                                                                       <td></td>
                                                                     </c:when>
-
-                                                                <c:otherwise>
-                                                                    <td><select style="${c.result eq 'pass' ? "font-weight: bold; color: green" : (c.result eq 'fail' ? "font-weight: bold; color: red" : "font-weight: bold; color: black" )}" name="result">
-                                                                            <c:if test="${requestScope.round.roundStatus == 1}">
-                                                                                <option value="" ${c.result eq '' ? "selected" : ""}></option>
-                                                                            </c:if>
-                                                                            <option style="font-weight: bold; color: green" value="pass" ${c.result eq 'pass' ? "selected" : ""}>pass</option>
-                                                                            <option style="font-weight: bold; color: red" value="fail" ${c.result eq 'fail' ? "selected" : ""}>fail</option>
-                                                                        </select></td>
+                                                                    <c:otherwise>
+                                                                       <td>${c.score}</td>
                                                                     </c:otherwise>
-                                                                </c:choose>
-
+                                                                    </c:choose>   
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                       <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score"></td>
+                                                                    </c:otherwise>
+                                                                    </c:choose>      
+                                                              
+                                                            
+                                                            
+                                                                <c:choose>
+                                                                <c:when test="${requestScope.round.roundName eq 'Top4'}">
+                                                                <td><select style="font-weight: bold; color: red" name="result">
+                                                                                <c:if test="${requestScope.round.roundStatus == 1}">
+                                                                                <option style="font-weight: bold; color: red" value="" ${c.result eq '' ? "selected" : ""}></option>
+                                                                                </c:if>
+                                                                                <option style="font-weight: bold; color: red" value="1" ${c.result == 1 ? "selected" : ""}>1</option>
+                                                                                <option style="font-weight: bold; color: red" value="2" ${c.result == 2 ? "selected" : ""}>2</option>
+                                                                                <option style="font-weight: bold; color: red" value="3" ${c.result == 3 ? "selected" : ""}>3</option>
+                                                                                <option style="font-weight: bold; color: red" value="4" ${c.result == 4 ? "selected" : ""}>4</option>
+                                                                </select></td>
+                                                                </c:when>
+                                                                    
+                                                                <c:otherwise>
+                                                                    <c:choose>
+                                                                <c:when test="${requestScope.nexton eq 'false'}">
+                                                                <td><select style="${c.result eq 'pass' ? "font-weight: bold; color: green" : (c.result eq 'fail' ? "font-weight: bold; color: red" : "font-weight: bold; color: black" )}" name="result">
+                                                                                <c:if test="${requestScope.round.roundStatus == 1}">
+                                                                                <option value="" ${c.result eq '' ? "selected" : ""}></option>
+                                                                                </c:if>
+                                                                                <option style="font-weight: bold; color: green" value="pass" ${c.result eq 'pass' ? "selected" : ""}>pass</option>
+                                                                                <option style="font-weight: bold; color: red" value="fail" ${c.result eq 'fail' ? "selected" : ""}>fail</option>
+                                                                </select></td>
+                                                                </c:when>
+                                                                    
+                                                                <c:otherwise>
+                                                                    <c:choose>
+                                                                    <c:when test="${c.result eq 'pass' && requestScope.round.roundID eq c.round.roundID}">
+                                                                        <td style="font-weight: bold; color: green">${c.result}</td>
+                                                                    </c:when>
+                                                                    <c:when test="${c.result eq 'fail' && requestScope.round.roundID eq c.round.roundID}">
+                                                                        <td style="font-weight: bold; color: red">${c.result}</td>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <c:if test="${requestScope.nexton eq 'true' && requestScope.round.roundID ne c.round.roundID}">
+                                                                            <td style="font-weight: bold; color: green">pass</td>
+                                                                        </c:if>
+                                                                    </c:otherwise>
+                                                                    </c:choose>
+                                                                            
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                                
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                               
                                                         <input type="hidden" value="${requestScope.round.roundID}" name="roundID"  />
                                                         <input type="hidden" value="${requestScope.round.roundStatus}" name="roundStatus" />
                                                         <input type="hidden" value="${requestScope.round.roundName}" name="roundName" />
                                                         <input type="hidden" value="${requestScope.tour.tournamentID}" name="tournamentID" />
                                                         <input type="hidden" value="${c.candidatesID}" name="candidatesID" />
-
-                                                        <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update"/></td>
-
+                                                       
+                                                        <c:if  test="${requestScope.nexton eq 'false'}">
+                                                            <td><input class="custom-button_2" type="submit" value="Update" name="action" id="c-update"/></td>
+                                                        </c:if>
+                                                            
+                                                            <td>
+                                                                        <c:if test="${c.score == requestScope.cands[loop.index - 1].score && c.score != 0 && requestScope.round.roundName ne 'Top4' && requestScope.round.roundStatus !=2}">
+                                                                        <p style="color:red;">score duplicate with previous player</p>
+                                                                        </c:if>
+                                                                         <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid && requestScope.round.roundName eq 'Top4'}">
+                                                                        <p style="color:red;">score cannot duplicate in top 4</p>
+                                                                        </c:if>
+                                                            </td>
                                                         </tr>
                                                     </form>
                                                 </c:forEach>
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:if>
                         </c:if>
                     </c:when>
                     <c:otherwise>
@@ -499,17 +422,17 @@
             <%@include file="footer.jsp" %>
         </footer>
     </body>
-    <script>
-        document.addEventListener("DOMContentLoaded", function (event) {
-            var scrollpos = sessionStorage.getItem('scrollpos');
-            if (scrollpos) {
-                window.scrollTo(0, scrollpos);
-                sessionStorage.removeItem('scrollpos');
-            }
-        });
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var scrollpos = sessionStorage.getItem('scrollpos');
+        if (scrollpos) {
+            window.scrollTo(0, scrollpos);
+            sessionStorage.removeItem('scrollpos');
+        }
+    });
 
-        window.addEventListener("beforeunload", function (e) {
-            sessionStorage.setItem('scrollpos', window.scrollY);
-        });
-    </script>
+    window.addEventListener("beforeunload", function (e) {
+        sessionStorage.setItem('scrollpos', window.scrollY);
+    });
+</script>
 </html>

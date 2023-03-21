@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.io.IOException;
@@ -8,7 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
+import registrationform.RegistrationFormDTO;
 import round.RoundDAO;
 import round.RoundDTO;
 import tournament.TournamentDAO;
@@ -20,9 +27,11 @@ public class TournamentDetailController extends HttpServlet {
     private final static String SUCCESS = "tournamentDetail.jsp";
     private final static String ERROR = "error.jsp";
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             String url = ERROR;
             try {
                 TournamentDTO tour = null;
@@ -36,9 +45,9 @@ public class TournamentDetailController extends HttpServlet {
                     RoundDAO roudao = new RoundDAO();
                     request.setAttribute("utour", tour);
                     RegistrationFormDAO rdao = new RegistrationFormDAO();
-                    if (tour.getTournamentStatus() == 1 && tour.getTournamentStatus() == 0) {
+                    if(tour.getTournamentStatus() == 1 && tour.getTournamentStatus() == 0){
                         request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
-                    } else {
+                    }else{
                         request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     }
                     if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
