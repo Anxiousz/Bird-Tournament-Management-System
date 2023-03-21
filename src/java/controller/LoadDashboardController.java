@@ -45,7 +45,7 @@ public class LoadDashboardController extends HttpServlet {
                     request.setAttribute("count_bird", count_bird);
                     request.setAttribute("count_account", count_account);
                     request.setAttribute("count_tournament", count_tournament);
-                    request.setAttribute("count_blog", count_tournament);
+                    request.setAttribute("count_blog", count_blog);
                     request.setAttribute("count_tournament_onGoing", count_tournament_onGoing);
                     request.setAttribute("count_tournament_finised", count_tournament_finised);
                     request.setAttribute("count_tournament_delay", count_tournament_delay);

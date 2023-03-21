@@ -33,7 +33,8 @@ public class BlogDAO implements Serializable {
     private final static String UPDATE_BLOG = "UPDATE Blog\n"
             + "SET Body = ?, Title =?, Media =?, createTime = GETDATE()\n"
             + "WHERE blogID = ?";
-       private final static String DASHBOARD_BLOG = "SELECT COUNT(blogID) as TournamentID FROM Blog";
+    private final static String DASHBOARD_BLOG = "SELECT COUNT(blogID) as blogID FROM Blog";
+
     public static int updateBlog(String Body, String Title, String Media, int blogID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -263,7 +264,7 @@ public class BlogDAO implements Serializable {
         }
         return list;
     }
-    
+
     public int countBlog() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,12 @@
     </head>
     <body>
         <header>
-            <%@include file="userHeader.jsp" %>
+            <c:choose>
+                <c:when test="${sessionScope.acc.role == 0}">
+                    <%@include file="userHeader.jsp" %>
+                </c:when>
+                <c:otherwise><%@include file="adminHeader.jsp" %></c:otherwise>
+            </c:choose>
         </header>
         <section>
             <!-- Both account site -->
