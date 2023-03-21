@@ -60,6 +60,97 @@ public class TournamentDAO implements Serializable {
 
     private final static String DASHBOARD = "SELECT COUNT(TournamentID) as TournamentID\n"
             + "FROM Tournament";
+      private final static String COUNT_ONGOING_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 1 OR  tournamentStatus = 2 OR tournamentStatus = 3";
+      private final static String COUNT_FINISED_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 4";
+      private final static String COUNT_DELAY_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 5";
+      
+    public int countTournamentDelay() throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(COUNT_DELAY_DASHBOARD);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("TournamentID");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
+    public int countTournamentFinised() throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(COUNT_FINISED_DASHBOARD);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("TournamentID");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
+    public int countTournamentOnGoing() throws Exception {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int count = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(COUNT_ONGOING_DASHBOARD);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("TournamentID");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return count;
+    }
 
     public int countTournament() throws Exception {
         Connection con = null;
