@@ -356,3 +356,23 @@ tbody tr td input{
 .highlight-row{
     background-color: yellow;
 }
+.view-ranking-site{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.view-ranking-site a{
+    padding: none !important;
+    font-weight: bolder;
+    color: red;
+    text-decoration: underline !important; 
+    padding: 20px;
+    font-size: 30px;
+    
+}
+.view-ranking-site a:hover{
+    color: #A87B24;
+}
+a{
+    text-decoration: none !important;
+}
