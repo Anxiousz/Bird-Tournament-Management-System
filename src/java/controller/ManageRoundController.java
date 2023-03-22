@@ -104,9 +104,7 @@ public class ManageRoundController extends HttpServlet {
                     List<CandidatesDTO> Fcands = cdao.getFinishCandidates(rid);
                     if (Fcands.isEmpty()) {
                         if (round.getBirdPass() == 0) {
-                            if (cdao.getNumberScored(rid) == 0) {
-                                
-                            } else if (cdao.getNumberScored(rid) >= 35) {
+                            if (cdao.getNumberScored(rid) >= 35) {
                                 cdao.updateResultByTop(30, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
                                 rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid),rid);

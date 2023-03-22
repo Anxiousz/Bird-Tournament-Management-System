@@ -273,7 +273,7 @@
                                     </div>
                                     <div class="player-site">
                                         <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
-                                        <input type="text" value="${requestScope.round.birdPass}" name="birdPass">
+                                        <input type="number" value="${requestScope.round.birdPass}" name="birdPass">
                                     </div>
                                 </div>
                                 <div class="right-button">
@@ -315,7 +315,7 @@
                                                         
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody >
                                                     <c:forEach items="${requestScope.cands}" var="c" varStatus="loop">
                                                     <form action="UpdateCandidatesController" method="GET">
                                                         <tr>
@@ -335,7 +335,7 @@
                                                                     </c:choose>   
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                       <td><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score"></td>
+                                                                       <td style="${c.score == requestScope.cands[loop.index - 1].score && c.score != 0 || c.score == requestScope.cands[loop.index + 1].score && c.score != 0 && requestScope.round.roundName ne 'Top4' ? "background-color: lightsteelblue":""}"><input id="score-save" type="number" min="0" max="100" value="${c.score}" name="score"></td>
                                                                     </c:otherwise>
                                                                     </c:choose>      
                                                               
@@ -398,16 +398,16 @@
                                                         </c:if>
                                                             
                                                             <td>
-                                                                        <c:if test="${c.score == requestScope.cands[loop.index - 1].score && c.score != 0 && requestScope.round.roundName ne 'Top4' && requestScope.round.roundStatus !=2}">
-                                                                        <p style="color:red;">score duplicate with previous player</p>
-                                                                        </c:if>
-                                                                         <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid && requestScope.round.roundName eq 'Top4'}">
-                                                                        <p style="color:red;">score cannot duplicate in top 4</p>
+                                                                        <c:if test="${requestScope.duplicateScore eq 'true' && c.candidatesID == requestScope.cid && requestScope.round.roundName eq 'Top4'}">
+                                                                            <script>
+                                                                                 window.alert("Score cannot duplicate in Top 4");
+                                                                            </script>
                                                                         </c:if>
                                                             </td>
                                                         </tr>
                                                     </form>
                                                 </c:forEach>
+                                                   
                                                 </tbody>
                                             </table>
                                         </div>

@@ -26,6 +26,12 @@ public class UpdateRoundController extends HttpServlet {
         String rstatus = request.getParameter("roundStatus");
         String birdPass = request.getParameter("birdPass");
         String action = request.getParameter("action");
+        if(birdattend.equals("")){
+            birdattend="0";
+        }
+        if(birdPass.equals("")){
+            birdPass="0";
+        }
         int roundtatus = -1;
         if (rstatus.equals("Coming soon")) {
             roundtatus = 0;

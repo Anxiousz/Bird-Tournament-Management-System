@@ -31,6 +31,12 @@ public class UpdateTournamentController extends HttpServlet {
                 String desc = request.getParameter("description");
                 String minp = request.getParameter("minp");
                 String maxp = request.getParameter("maxp");
+                if(minp.equals("")){
+                    minp="0";
+                }
+                if(maxp.equals("")){
+                    maxp="0";
+                }
                 int tourstatus = -1;
                 if (tstatus.equals("Coming soon")) {
                     tourstatus = 0;
