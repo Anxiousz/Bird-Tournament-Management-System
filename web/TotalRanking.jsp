@@ -15,6 +15,9 @@
             <%@include file="userHeader.jsp" %>
         </header>
         <section>
+            <div class="top-bird-heading d-flex justify-content-center align-item-center w-100">
+                <h1>Top Ranking Bird </h1>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
