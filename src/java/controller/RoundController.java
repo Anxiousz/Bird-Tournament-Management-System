@@ -33,18 +33,17 @@ public class RoundController extends HttpServlet {
             int tournamentID = Integer.parseInt(request.getParameter("ID"));
             String rname = request.getParameter("roundName");
             int rid = Integer.parseInt(request.getParameter("roundID"));
-            String rstatus = request.getParameter("roundStatus");
             RoundDTO round = null;
-            if (rstatus.equals("0")) {
-                RoundDAO rdao = new RoundDAO();
+            RoundDAO rdao = new RoundDAO();
+            int rstatus = rdao.getRoundStatusbyName(tournamentID, rname);
+            if (rstatus==0) {
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
                     url = ERROR;
                 }
                 request.setAttribute("uround", round);
                 url = TOURNAMENT_DETAIL;
-            } else if (rstatus.equals("1")) {
-                RoundDAO rdao = new RoundDAO();
+            } else if (rstatus==1) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
@@ -58,8 +57,7 @@ public class RoundController extends HttpServlet {
                     request.setAttribute("ucands", Rcands);
                     url = TOURNAMENT_DETAIL;
                 }
-            } else if (rstatus.equals("2")) {
-                RoundDAO rdao = new RoundDAO();
+            } else if (rstatus==2) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
@@ -79,16 +77,11 @@ public class RoundController extends HttpServlet {
                         }
                         request.setAttribute("ucands", Fcands);
                     }
-                    if (round.getRoundName().equals("Top4") && round.getRoundStatus() == 2) {
-                        request.setAttribute("ufinishTournament", "true");
-                    } else {
-                        request.setAttribute("ufinishTournament", "false");
-                    }
                     request.setAttribute("uround", round);
-
                     url = TOURNAMENT_DETAIL;
                 }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

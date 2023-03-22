@@ -46,9 +46,9 @@ public class ManageRoundController extends HttpServlet {
                 rstatus = "2";
             }else{
             }
-            RoundDTO round = null;
+            RoundDAO rdao = new RoundDAO();
+            RoundDTO round = new RoundDTO();
             if (rstatus.equals("0")) {
-                RoundDAO rdao = new RoundDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
                     url = ERROR;
@@ -65,7 +65,6 @@ public class ManageRoundController extends HttpServlet {
                 request.setAttribute("round", round);
                 url = TOURNAMENT_DETAIL;
             } else if (rstatus.equals("1")) {
-                RoundDAO rdao = new RoundDAO();
                 CandidatesDAO cdao = new CandidatesDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
@@ -95,7 +94,6 @@ public class ManageRoundController extends HttpServlet {
                     url = TOURNAMENT_DETAIL;
                 }
             } else if (rstatus.equals("2")) {
-                RoundDAO rdao = new RoundDAO();
                 CandidatesDAO cdao = new CandidatesDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
@@ -192,13 +190,6 @@ public class ManageRoundController extends HttpServlet {
                         } else if (rdao.getNextRStatus(tournamentID, rid) == 0) {
                             request.setAttribute("nexton", "false");
                         }
-                    }
-
-                    
-                    if (round.getRoundName().equals("Top4") && round.getRoundStatus() == 2) {
-                        request.setAttribute("finishTournament", "true");
-                    } else {
-                        request.setAttribute("finishTournament", "false");
                     }
                     request.setAttribute("round", round);
                     request.setAttribute("cands", Fcands);

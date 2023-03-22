@@ -122,7 +122,10 @@
                              class="avatar-sponsor ">
                     </div>
                 </div>
-                     <a class="custom-button_2" href="LoadTournamentRankingController?action=load&tournamentID=${requestScope.utour.tournamentID}">Ranking</a>
+                        <c:if test="${requestScope.ufinishTournament eq 'true'}">
+                            <a class="custom-button_2" href="LoadTournamentRankingController?action=load&tournamentID=${requestScope.utour.tournamentID}">Ranking</a>
+                        </c:if>
+                     
                 <!-- div-site -->
                 <div class="line-section">
                     <p></p>
@@ -193,7 +196,9 @@
                     </div>
                     </form>
                     
-                            
+                    <c:if test="${not empty ucands}">
+                        
+                    
                             
                                 <div>
                                     <c:choose>
@@ -267,6 +272,7 @@
                                         </tbody>
                                     </table>
                                 </div> 
+                        </c:if>
                 </c:if>
                     </c:if>
                     <c:if test="${empty requestScope.urounds}">
@@ -345,4 +351,17 @@
         <%@ include file="footer.jsp" %>
     </footer>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var scrollpos = sessionStorage.getItem('scrollpos');
+        if (scrollpos) {
+            window.scrollTo(0, scrollpos);
+            sessionStorage.removeItem('scrollpos');
+        }
+    });
+
+    window.addEventListener("beforeunload", function (e) {
+        sessionStorage.setItem('scrollpos', window.scrollY);
+    });
+</script>
 </html>

@@ -48,8 +48,8 @@ public class ManageTournamentDetailController extends HttpServlet {
         try {
             TournamentDAO tdao = new TournamentDAO();
             tour = tdao.getDetail(Integer.parseInt(tournamentID));
+            RoundDAO roudao  = new RoundDAO();
             if (tour != null) {
-                RoundDAO roudao = new RoundDAO();
                 request.setAttribute("tour", tour);
                 RegistrationFormDAO rdao = new RegistrationFormDAO();
                 request.setAttribute("confirmedForm", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
@@ -135,8 +135,14 @@ public class ManageTournamentDetailController extends HttpServlet {
                         url = TOURNAMENT_DETAIL;
                     }
                 }
+                
             } else {
                 url = ERROR;
+            }
+            if (roudao.getRoundStatusbyName(Integer.parseInt(tournamentID), "Top4") == 2) {
+                request.setAttribute("finishTournament", "true");
+            } else {
+                request.setAttribute("finishTournament", "false");
             }
         } catch (Exception e) {
             e.printStackTrace();

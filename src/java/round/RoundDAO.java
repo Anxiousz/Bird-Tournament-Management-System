@@ -40,6 +40,41 @@ public class RoundDAO implements Serializable {
             + " from Round\n"
             + " where tournamentID = ? AND roundID > ? \n"
             + " order by roundID asc";
+    public static String GET_ROUND_STATUS_BY_NAME
+            = "select roundStatus\n"
+            + "from Round\n"
+            + "where tournamentID = ? and roundName = ? ";
+    public int getRoundStatusbyName(int tid, String name) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(GET_ROUND_STATUS_BY_NAME);
+                stm.setInt(1, tid);
+                stm.setString(2, name);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int num = rs.getInt(1);
+                    return num;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
      public int getNextRStatus(int tid, int rid) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
