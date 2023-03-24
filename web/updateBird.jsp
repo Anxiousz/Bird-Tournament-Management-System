@@ -22,7 +22,7 @@
     </head>
     <body>
         <header>
-            <%@include file="adminHeader.jsp" %>
+            <%@include file="userHeader.jsp" %>
         </header>
         <div class="update-bird-form container">
             <div class="update-bird-form-main">
@@ -34,19 +34,19 @@
                     <input type="hidden" name="birdID" class="form-control" value="${sessionScope.birdID}"/>
                     <div class="form-group">
                         <label>Bird Name :</label><br>
-                        <input type="text" value="${requestScope.bird.getBirdName()}" name="bName" class="form-control input-form">
+                        <input type="text" value="${requestScope.bird.getBirdName()}" name="bName" class="form-control input-form" required pattern=".{6,17}">
                     </div>
                     <div class="form-group">
-                        <label>Height :</label><br>
-                        <input type="tet" value="${requestScope.bird.getHeight()}" name="bHeight" class="form-control input-form">
+                        <label>Height(cm) :</label><br>
+                        <input type="tet" value="${requestScope.bird.getHeight()}" name="bHeight" class="form-control input-form" required>
                     </div>
                     <div class="form-group">
-                        <label>Weight :</label><br>
-                        <input type="tet" value="${requestScope.bird.getWeight()}" name="bWeight" class="form-control input-form">
+                        <label>Weight(gam) :</label><br>
+                        <input type="tet" value="${requestScope.bird.getWeight()}" name="bWeight" class="form-control input-form" required> 
                     </div>
                     <div class="form-group">
                         Select categories: 
-                        <select name="bCate">
+                        <select name="bCate" required>
                             <c:forEach var="b" items="${sessionScope.BIRD_CATE}">
                                 <option value="${b.categoriesID}">${b.categoriesName}</option>
                             </c:forEach>
@@ -54,18 +54,27 @@
                     </div>
                     <div class="form-group">
                         <label>Color :</label><br>
-                        <input type="tet"  value="${requestScope.bird.getColor()}" name="bColor" class="form-control input-form">
+                        <input type="text"  value="${requestScope.bird.getColor()}" name="bColor" class="form-control input-form" required>
                     </div>
                     <div class="form-group">
                         <label>Status: </label>
-                        <select name="bStatus">
-                            <option value=0> Dead</option>
-                            <option value=1> Alive</option>
-                        </select>
+                        <c:choose>
+                            <c:when test="${requestScope.bird.getBirdStatus() == 1}">
+                                <select name="bStatus" required>
+                                    <option value=0> Dead</option>
+                                    <option value=1> Alive</option>
+                                </select>
+                            </c:when>
+                            <c:otherwise>
+                                <select name="bStatus">
+                                    <option value=0> Dead</option>
+                                </select>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Dentification</label>
-                        <input type="input" class="form-control" name="denfitication">
+                        <input type="text" class="form-control" name="denfitication" required value="${requestScope.bird.getDentification()}">
                     </div>
 
                     <div class="form-group">
@@ -73,20 +82,20 @@
                         <button type="button"onclick="document.getElementById('input-img2').click()">Upload</button>
                         <div>
                             <label for="input-img2" class="preview">
-                                <img class="tournament-img" id="previewImg2" src="">
+                                <img class="tournament-img" id="previewImg2" src="${requestScope.bird.getBirdPhoto()}">
                             </label>
-                            <input type="file" hidden id="input-img2" name="image"/>
+                            <input type="file" hidden id="input-img2" name="image" required/>
                         </div>
                     </div>
                     <div class=" btn-update-bird">
                         <button type="submit" class="btn btn-primary" name="action" value="updateBird">Update</button>
                     </div>
-                </form>
-            </div>
+            </form>
         </div>
-    <foote>
-        <%@include file="footer.jsp" %>
-    </foote>
+    </div>
+<foote>
+    <%@include file="footer.jsp" %>
+</foote>
 </body>
 <script> const fileInput2 = document.getElementById('input-img2');
     const previewImg2 = document.getElementById('previewImg2');

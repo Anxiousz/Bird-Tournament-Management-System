@@ -34,16 +34,16 @@
                         <input type="hidden" name="accID" value="${sessionScope.acc.accountID}"/>
                         <div class="form-group">
                             <label>Bird Name</label>
-                            <input type="input" class="form-control" name="bName">
+                            <input type="text" class="form-control" name="bName" required pattern=".{6,17}">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label>Bird Height</label>
-                            <input type="input" class="form-control" name="bHeight">
+                            <input type="text" class="form-control" name="bHeight" required>
                         </div>
                         <div class="form-group">
                             <label>Bird Weight</label>
-                            <input type="input" class="form-control" name="bWeight">
+                            <input type="input" class="form-control" name="bWeight" required>
                         </div>
 
                         <div class="form-group">
@@ -56,12 +56,12 @@
                         </div>
                         <div class="form-group">
                             <label>Bird Color</label>
-                            <input type="input" class="form-control" name="bColor">
+                            <input type="input" class="form-control" name="bColor" required>
                         </div>
 
                         <div class="form-group">
                             <label>Dentification</label>
-                            <input type="input" class="form-control" name="denfitication">
+                            <input type="input" class="form-control" name="denfitication" required>
                         </div>
                         <div class="form-group">
                             <label >Tournament Image:</label>
@@ -70,7 +70,7 @@
                                 <label for="input-img2" class="preview">
                                     <img class="tournament-img" id="previewImg2" src="">
                                 </label>
-                                <input type="file" hidden id="input-img2" name="image"/>
+                                <input type="file" hidden id="input-img2" name="image" required/>
                             </div>
                         </div>
                         <div class="btn-add-bird">

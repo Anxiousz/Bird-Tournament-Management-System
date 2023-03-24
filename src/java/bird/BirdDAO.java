@@ -13,7 +13,7 @@ import utils.DBContext;
 
 public class BirdDAO implements Serializable {
 
-    private static final String GET_INFORMATION_BIRD = "SELECT b.birdName, b.height, b.weight,b.color,b.birdStatus\n"
+    private static final String GET_INFORMATION_BIRD = "SELECT b.birdName, b.height, b.weight,b.color,b.dentification,b.birdStatus, b.birdPhoto\n"
             + "FROM Bird b\n"
             + "WHERE b.birdID = ?";
 
@@ -82,8 +82,8 @@ public class BirdDAO implements Serializable {
             + "WHERE accountID= ?";
     private static final String DASHBOARD = "SELECT COUNT(BirdID) as BirdID\n"
             + "FROM Bird";
-private static final String TOTAL_RANKING
-             = "SELECT Bird.birdName,\n"
+    private static final String TOTAL_RANKING
+            = "SELECT Bird.birdName,\n"
             + "  Account.name,\n"
             + "  Achievement.totalScore,\n"
             + "  Achievement.rank\n"
@@ -94,7 +94,8 @@ private static final String TOTAL_RANKING
             + "    Achievement.birdID\n"
             + "	where totalScore != 0 and totalScore is not null\n"
             + "order by rank asc";
-     public List<BirdDTO> getTotalRanking() throws SQLException {
+
+    public List<BirdDTO> getTotalRanking() throws SQLException {
         List<BirdDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
@@ -133,6 +134,7 @@ private static final String TOTAL_RANKING
         }
         return list;
     }
+
     public int countBird() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
@@ -337,7 +339,10 @@ private static final String TOTAL_RANKING
                     String height = rs.getString("height");
                     String weight = rs.getString("weight");
                     String color = rs.getString("color");
-                    BirdDTO bird = new BirdDTO(birdName, height, weight, color);
+                    String dentification = rs.getString("dentification");
+                    int birdStatus = rs.getInt("birdStatus");
+                    String birdPhoto = rs.getString("birdPhoto");
+                    BirdDTO bird = new BirdDTO(birdName, height, weight, color, dentification, birdStatus,birdPhoto);
                     return bird;
                 }
             }

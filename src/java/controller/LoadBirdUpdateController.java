@@ -26,6 +26,7 @@ public class LoadBirdUpdateController extends HttpServlet {
                 String id = request.getParameter("birdID");
                 BirdDAO bdao = new BirdDAO();
                 BirdDTO bird = bdao.getBirdFormByID(Integer.parseInt(id));
+                out.print(bird);
                 if (bird != null) {
                     request.setAttribute("bird", bird);
                     s.setAttribute("birdID", id);

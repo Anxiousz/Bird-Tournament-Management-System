@@ -34,8 +34,6 @@ public class LoginController extends HttpServlet {
                 if (a.getRole() == 0) {
                     if (a.getAccountStatus() == 1) {
                         session.setAttribute("acc", a);
-                        int count = r.countTournament(a.getAccountID());
-                        session.setAttribute("count", count);
                         url = SUCCESS;
                     } else {
                         session.setAttribute("mess", "Your account blocked. Please contact Admin !!!!");

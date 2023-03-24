@@ -66,12 +66,12 @@
                                 <div class="card-body main-body-bird">
                                     <div class="left-achivement-site">
                                         <li>Achievement:</li>
-                                        <c:choose>
-                                            <c:when test="${bird.achivement.totalScore==0}">
+                                            <c:choose>
+                                                <c:when test="${bird.achivement.totalScore==0}">
                                                 <li>this bird have not won any tournament</li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li>Description: ${bird.achivement.description}</li>
+                                                <li>Description: ${bird.achivement.description}</li>
                                                     <c:forEach items="${fn:split(bird.achivement.medals,';')}" var="medals">
                                                     <li>${medals} times</li>
                                                     </c:forEach>
@@ -82,7 +82,12 @@
                                     </div>
                                 </div>
                                 <div class="btn-update-bird">
-                                    <a href="MainController?action=getBirdUpdate&birdID=${bird.birdID}" class="btn btn-success">Update Bird</a>
+                                    <c:choose>
+                                        <c:when test="${bird.birdStatus != 0}">
+                                            <a href="MainController?action=getBirdUpdate&birdID=${bird.birdID}" class="btn btn-success">Update Bird</a>
+                                        </c:when>
+                                        <c:otherwise></c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                         </div>

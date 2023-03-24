@@ -36,7 +36,6 @@
                 <div class="left-site-account">
                     <div class="left-top-site-account">
                         <img src="${sessionScope.acc.profilePhoto}" alt="Avatar" class="avatar1">
-                        <a href=""><i class='fas fa-edit' style='font-size:24px'></i></a>
                         <p>${sessionScope.acc.name}</p>
                     </div>
                     <div class="left-bottom-site-account">
@@ -85,24 +84,24 @@
                                         <a href=""> <i class='fas fa-pen' style='font-size:20px'></i></a>
                                     </div>
                                     <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${requestScope.Profile_Form.getEmail()}" placeholder="Enter email" name="email-update">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${requestScope.Profile_Form.getEmail()}" placeholder="Enter email" name="email-update" required pattern=".{1,40}@gmail\.com">
                                     <small id="emailHelp" class="form-text text-muted">You never share your email with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Telephone number</label>
-                                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Telephone" value="${requestScope.Profile_Form.getPhone()}" name="phone-update">
+                                    <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="Telephone" value="${requestScope.Profile_Form.getPhone()}" name="phone-update" required pattern="[0-9]{10}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Full Name</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" value="${requestScope.Profile_Form.getName()}" name="name-update">
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" value="${requestScope.Profile_Form.getName()}" name="name-update" required pattern=".{6,17}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="password-update">
+                                    <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="password-update" placeholder="*******" required pattern=".{1,50}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Re-Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="repass-update">
+                                    <input type="password" class="form-control" id="exampleInputPassword1"value="${requestScope.Profile_Form.getPassword()}" name="repass-update" placeholder="*******" required pattern=".{1,50}">
                                 </div>
                                 <div class="btn-update-acc">
                                     <a class="btn btn-danger btn-close" href="homePage.jsp"><p>Close</p></a>

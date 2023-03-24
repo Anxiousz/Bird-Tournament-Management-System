@@ -22,13 +22,13 @@
         <div class="footer-site"> 
             <p class="footer-heading">@Copyright2023</p>
             <div class="wrapper">
-                <a href="">
+                <a href="https://www.facebook.com/imojiiii12042002/">
                     <div class="icon facebook">
                         <i class="fab fa-facebook-f"></i>
                         <span class="tooltip">Facebook</span>
                     </div>
                 </a>
-                <a href="">
+                <a href="https://github.com/ledinhduyan">
                     <div class="icon github">
                         <i class="fab fa-github"></i>
                         <span class="tooltip">Github</span>
@@ -40,13 +40,13 @@
                         <span class="tooltip">Twitter</span>
                     </div>
                 </a>
-                <a href="">
+                <a href="https://www.instagram.com/imojiiii12042002/">
                     <div class="icon instagram">
                         <i class="fab fa-instagram"></i>
                         <span class="tooltip">Instagram</span>
                     </div>
                 </a>
-                <a href="">
+                <a href="https://www.youtube.com/channel/UCJxGW3RJg1HjdsQS7hI59ig">
                     <div class="icon youtube">
                         <i class="fab fa-youtube"></i>
                         <span class="tooltip">Youtube</span>
