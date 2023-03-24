@@ -76,12 +76,9 @@ public class ManageRoundController extends HttpServlet {
                             if (!rname.equals("Qualified")) {
                                 cdao.resetResultCandidates(rid, tournamentID, 1);
                             }
-                        rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid), rid);
+                        rdao.updateAttendPassCandidates(rid);
                         Rcands = cdao.getCandidatesByRID(1,rid);
                         round = rdao.getRoundByID(rid);
-                    }
-                    if (Rcands.isEmpty()) {
-                        request.setAttribute("error", "there is not any bird in this round");
                     }
                     if(cdao.getNumberScored(rid)<4){
                         request.setAttribute("emptyscored", "true");
@@ -102,21 +99,21 @@ public class ManageRoundController extends HttpServlet {
                     List<CandidatesDTO> Fcands = cdao.getFinishCandidates(rid);
                     if (Fcands.isEmpty()) {
                         if (round.getBirdPass() == 0) {
-                            if (cdao.getNumberScored(rid) >= 35) {
+                            int numberScored = cdao.getNumberScored(rid);
+                            if (numberScored >= 35) {
                                 cdao.updateResultByTop(30, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
-                                rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid),rid);
-                            } else if (cdao.getNumberScored(rid) >= 25 || cdao.getNumberScored(rid) >= 20 && cdao.numberCAttend(rid)>=25) {
+                                rdao.updateAttendPassCandidates(rid);
+                            } else if (numberScored >= 25 || numberScored >= 20 && cdao.numberCAttend(rid)>=25) {
                                 if (rdao.getNumberOfRound(tournamentID) > 4) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(tournamentID, "Top30");
                                     }
                                 }
-                                
                                 cdao.updateResultByTop(20, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
-                                rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid), rid);
-                            } else if (cdao.getNumberScored(rid) >= 15 || cdao.getNumberScored(rid) >= 10 && cdao.numberCAttend(rid)>=15) {
+                                rdao.updateAttendPassCandidates(rid);
+                            } else if (numberScored >= 15 || numberScored >= 10 && cdao.numberCAttend(rid)>=15) {
                                     if (rdao.getNumberOfRound(tournamentID) > 3) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(tournamentID, "Top30");
@@ -127,8 +124,8 @@ public class ManageRoundController extends HttpServlet {
                                 }
                                 cdao.updateResultByTop(10, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
-                                rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid), rid);
-                            } else if (cdao.getNumberScored(rid) >= 10 || cdao.getNumberScored(rid) >= 2 && cdao.numberCAttend(rid)>=10) {
+                                rdao.updateAttendPassCandidates(rid);
+                            } else if (numberScored >= 10 || numberScored >= 2 && cdao.numberCAttend(rid)>=10) {
                                 if (rdao.getNumberOfRound(tournamentID) > 2) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(tournamentID, "Top30");
@@ -143,13 +140,10 @@ public class ManageRoundController extends HttpServlet {
                                 }
                                 cdao.updateResultByTop(4, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
-                                rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid), rid);
-                            } else if (cdao.getNumberScored(rid) <= 4) {
-                                if(cdao.getNumberScored(rid)==1){
-                                    
-                                }
+                                rdao.updateAttendPassCandidates(rid);
+                            } else if (numberScored <= 4) {
                                 AchievementDAO adao = new AchievementDAO();
-                                List<CandidatesDTO> top4 = cdao.getIDListByTop(cdao.getNumberScored(rid), rid);
+                                List<CandidatesDTO> top4 = cdao.getIDListByTop(numberScored, rid);
                                 for (int i = 1; i <= top4.size(); i++) {
                                     cdao.updateResultByID(Integer.toString(i), top4.get(i - 1).getCandidatesID());
                                     int birdid = cdao.getBirdId(top4.get(i - 1).getCandidatesID());
@@ -171,17 +165,14 @@ public class ManageRoundController extends HttpServlet {
                                 }
                                 adao.updateRanking();
                                 cdao.updateFailedCandidates("fail", 2, rid);
-                                rdao.updateAttendPassCandidates(cdao.numberCAttend(rid), cdao.numberCPass(rid), rid);
+                                rdao.updateAttendPassCandidates(rid);
                             }
                             Fcands = cdao.getFinishCandidates(rid);
                             round = rdao.getRoundByID(rid);
                             
                         }
-
                     }
-                    if (Fcands.isEmpty()) {
-                        request.setAttribute("error", "result have not set");
-                    } else {
+                    if (!Fcands.isEmpty()) {
                         if (rdao.getNextRStatus(tournamentID, rid) == 1 || rdao.getNextRStatus(tournamentID, rid) == 2) {
                             List<CandidatesDTO> fpcands = cdao.getFinishPassedCandidates(rid);
                             Fcands.addAll(0,cdao.getFinishPassedCandidates(rid));

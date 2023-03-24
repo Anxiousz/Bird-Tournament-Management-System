@@ -18,9 +18,19 @@ public class RoundDAO implements Serializable {
             + "WHERE tournamentID = ? ";
 
     private static String GET_ROUND_BY_RID = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus FROM Round WHERE roundID = ? ";
-    public static String UPDATE_ATTEND_PASS_CANDIDATES = "UPDATE Round \n"
-            + "SET     birdAttend = ?, birdPass = ? \n"
-            + "WHERE  roundID = ? ";
+    public static String UPDATE_ATTEND_PASS_CANDIDATES 
+            = "declare @birda as int\n"
+            + "declare @birdp as int\n"
+            + "set @birda=(SELECT COUNT(candidatesID) as birdAttend\n"
+            + "            FROM Candidates\n"
+            + "            WHERE roundID = ?)\n"
+            + "\n"
+            + "set @birdp=(SELECT COUNT(candidatesID) as birdPass\n"
+            + "            FROM Candidates\n"
+            + "            WHERE roundID = ? AND result != 'fail' AND result IS NOT NULL)\n"
+            + "UPDATE Round \n"
+            + "            SET     birdAttend = @birda , birdPass = @birdp\n"
+            + "            WHERE  roundID = ?";
     private final static String UPDATE_ROUND = "UPDATE Round\n"
             + "SET  typeOfRound = ? , birdAttend = ? , birdPass = ? , roundStatus = ?\n"
             + "WHERE roundID = ? ";
@@ -318,7 +328,7 @@ public class RoundDAO implements Serializable {
         return list;
     }
 
-    public boolean updateAttendPassCandidates(int attend, int pass, int RID) throws SQLException {
+    public boolean updateAttendPassCandidates(int RID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -326,8 +336,8 @@ public class RoundDAO implements Serializable {
             con = DBContext.getConnection();
             if (con != null) {
                 stm = con.prepareStatement(UPDATE_ATTEND_PASS_CANDIDATES);
-                stm.setInt(1, attend);
-                stm.setInt(2, pass);
+                stm.setInt(1, RID);
+                stm.setInt(2, RID);
                 stm.setInt(3, RID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
