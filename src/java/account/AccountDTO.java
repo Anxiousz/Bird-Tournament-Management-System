@@ -38,6 +38,13 @@ public class AccountDTO implements Serializable {
         this.accountStatus = accountStatus;
     }
 
+    public AccountDTO(int accountID, String email, String password, int phone) {
+        this.accountID = accountID;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+    }
+    
     public int getAccountID() {
         return accountID;
     }

@@ -41,6 +41,9 @@ public class MainController extends HttpServlet {
     private static final String LOAD_BLOG = "BLOG";
     private static final String LOAD_BLOG_DETAIL = "BlogDetail";
     private static final String SUBMIT_FEEDBACK = "Submit Feedback";
+    private static final String PASSWORD_FORGOT_SEARCH = "forgotPaasswordSearch";
+    private static final String PASSWORD_RESET = "resetPasswordUpdate";
+    
 
     //value of action of Admin
     private static final String MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
@@ -86,6 +89,8 @@ public class MainController extends HttpServlet {
     private static final String LOAD_BLOG_CONTROLLER = "LoadBlogController";
     private static final String LOAD_BLOG_DETAIL_CONTROLLER = "LoadBlogDetailController";
     private static final String SUBMIT_FEEDBACK_CONTROLLER = "SubmitFeedbackController";
+    private static final String LOAD_PASSWORD_FORGOT_CONTROLLER ="checkForgotController";
+    private static final String RESET_FORGOT_PASSWORD ="ResetPasswordController";
 
     // link to servlet of Admin
     private static final String MANAGE_ACCOUNT_CONTROLLER = "ManageAccountController";
@@ -244,6 +249,12 @@ public class MainController extends HttpServlet {
                         break;
                     case DASHBOARD:
                         url = LOAD_DASHBOARD_CONTROLLER;
+                        break;
+                    case PASSWORD_FORGOT_SEARCH:
+                        url = LOAD_PASSWORD_FORGOT_CONTROLLER;
+                        break;
+                    case PASSWORD_RESET :
+                        url = RESET_FORGOT_PASSWORD;
                         break;
                 }
             }

@@ -21,7 +21,9 @@ public class AccountDAO implements Serializable {
     private static final String UPDATE_ACCOUNT_NEW = "UPDATE Account SET email= ?, password = ?, name = ?, phone = ?  WHERE accountID = ? ";
     private static final String DASHBOARD = "SELECT COUNT(AccountID) as AccountID\n"
             + "FROM Bird";
-
+    private static final String FIND_ACCOUNT_BY_EMAIL ="SELECT accountID,email,password,phone FROM Account WHERE email = ?";
+    private static final String FIND_ACCOUNT_BY_PHONE ="SELECT accountID,email,[password] FROM Account WHERE phone =?"; 
+    private static final String RESET_ACCOUNT_PASSWORD = "UPDATE Account SET password = ? WHERE accountID = ?";
     public int countAccount() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
@@ -315,5 +317,98 @@ public class AccountDAO implements Serializable {
         }
         return result;
     }
-
+  public AccountDTO checkAccountByEmail(String email) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        AccountDTO acc = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(FIND_ACCOUNT_BY_EMAIL);
+                stm.setString(1, email);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int accountID = rs.getInt("accountID");
+                    String nemail = rs.getString("email");
+                    String password = rs.getString("password");
+                    int phone = rs.getInt("phone");
+                    acc = new AccountDTO(accountID, nemail, password, phone);
+                    return acc;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
+  public AccountDTO checkAccountByPhone(int phone) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        AccountDTO acc = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(FIND_ACCOUNT_BY_PHONE);
+                stm.setInt(1, phone);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int accountID = rs.getInt("accountID");
+                    String nemail = rs.getString("email");
+                    String password = rs.getString("password");
+                    int nphone = rs.getInt("phone");
+                    acc = new AccountDTO(accountID, nemail, password, nphone);
+                    return acc;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
+    public static int updateAccountPassword( String password,int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(UPDATE_ACCOUNT_NEW);
+                stm.setString(1, password);
+                stm.setInt(2, id);
+                result = stm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 }

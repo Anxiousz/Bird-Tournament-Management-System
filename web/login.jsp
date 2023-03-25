@@ -38,6 +38,7 @@
                                     <p class="text-danger">${sessionScope.mess}</p>
                                     <input type="email" name="email" value="" class="form-control" placeholder="Enter email"required="" >
                                     <input type="password" name="password" value="" class="form-control" placeholder="Password"required="" >
+                                    <a href="forgotPassword.jsp">Forgot Password</a>
                                     <button type="submit" name="action" value="Login"  class="btn btn-login">Sign in</button>
                                 </form>
                             </div>
