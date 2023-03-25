@@ -183,7 +183,7 @@
                 </div>
                 <c:choose>
                     <c:when test="${!empty requestScope.rounds}">
-                        <form action="UpdateRoundController" method="GET">
+                        <form action="UpdateRoundController" method="POST">
                             <div class="tnm-heading mt-5">
                                 <h1>Round</h1>
                             </div>

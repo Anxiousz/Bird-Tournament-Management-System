@@ -1,5 +1,6 @@
 package tournament;
 
+import account.AccountDTO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +49,48 @@ public class TournamentDAO implements Serializable {
     private final static String COUNT_ONGOING_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 1 OR  tournamentStatus = 2 OR tournamentStatus = 3";
     private final static String COUNT_FINISED_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 4";
     private final static String COUNT_DELAY_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 5";
-
+    private final static String CHECK_IF_USER_REGISTERED
+            = "SELECT Account.accountID\n"
+            + "FROM Account\n"
+            + "  INNER JOIN RegistrationForm\n"
+            + "    ON Account.accountID =\n"
+            + "    RegistrationForm.accountID\n"
+            + "  INNER JOIN Tournament\n"
+            + "    ON Tournament.tournamentID =\n"
+            + "    RegistrationForm.tournamentID\n"
+            + "where Account.accountID = ? and Tournament.tournamentID = ?";
+    public AccountDTO checkUserRegistered(int aid, int tid) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBContext.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(CHECK_IF_USER_REGISTERED);
+                stm.setInt(1, aid);
+                stm.setInt(2, tid);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    AccountDTO acc = new AccountDTO();
+                    acc.setAccountID(rs.getInt(1));
+                    return acc;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return null;
+    }
     public int countTournamentDelay() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;

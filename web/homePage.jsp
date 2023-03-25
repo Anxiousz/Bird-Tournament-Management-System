@@ -78,20 +78,9 @@
                                         <p>${list.prize} VND</p>
                                     </div>
                                 </div>
-                                <c:choose>
-                                    <c:when test="${sessionScope.acc.role == 0}">
                                         <div class="card-end">
                                             <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
-                                            <a href="MainController?action=RegisterForm&tID=${list.tournamentID}&aID=${sessionScope.acc.accountID}">Register</a>
                                         </div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="card-end">
-                                            <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
-                                            <a href="login.jsp">Register</a>
-                                        </div>
-                                    </c:otherwise>
-                                </c:choose>
                             </div>
                         </div>
                     </c:forEach>
