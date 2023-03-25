@@ -78,20 +78,9 @@
                                         <p>${list.prize} VND</p>
                                     </div>
                                 </div>
-                                <c:choose>
-                                    <c:when test="${sessionScope.acc.role == 0}">
                                         <div class="card-end">
                                             <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
-                                            <a href="MainController?action=RegisterForm&tID=${list.tournamentID}&aID=${sessionScope.acc.accountID}">Register</a>
                                         </div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="card-end">
-                                            <a href="MainController?action=TOURNAMENT_DETAIL&ID=${list.tournamentID}">More Detail</a>
-                                            <a href="login.jsp">Register</a>
-                                        </div>
-                                    </c:otherwise>
-                                </c:choose>
                             </div>
                         </div>
                     </c:forEach>
@@ -158,7 +147,9 @@
                         </div>
                     </c:forEach>
                 </div>
-                <div class="view-ranking-site w-100 d-flex justify-content-end align-item-center"> <a class="custom-button_2" style="font-size: 20px; text-decoration: underline;" href="LoadTotalRankingController?action=load">View Ranking</a></div>
+                <div class="view-ranking-site w-100 d-flex justify-content-end align-item-center">
+                    <a class="custom-button_2" href="LoadTotalRankingController?action=load">View Ranking</a>
+                </div>
             </div>
            
             <c:if test="${sessionScope.acc.role != 1}">

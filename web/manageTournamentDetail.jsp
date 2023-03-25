@@ -39,9 +39,6 @@
                              alt="Card image cap">
                     </div>
                 </div>
-                <div class="right-button">
-                    <input type="submit" value="Update Tournament Picture">
-                </div> 
                 <!-- section 2  -->
                 <form action="UpdateTournamentController" method="POST">
                     <div class="tnm-heading mt-5">
@@ -115,15 +112,15 @@
                     <div class="basic-tnm-form">
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-solid fa-clock"></i>  Date and Time</h1>
-                            <input type="text" value="${requestScope.tour.dateTime}" name="dateTime">
+                            <input type="text" value="${requestScope.tour.dateTime}" name="dateTime" required="">
                         </div>
                         <div class="basic-tnm-form-categories" style="border-left: 4px solid #A87B24; border-right: 4px solid #A87B24;">
                             <h1><i class="fa-solid fa-location-dot"></i>  Location</h1>
-                            <input type="text" maxlength="50" value="${requestScope.tour.location}" name="location">
+                            <input type="text" maxlength="50" value="${requestScope.tour.location}" name="location" required="">
                         </div>
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-sharp fa-solid fa-money-bill"></i> Fee</h1>
-                            <input type="text" maxlength="50" value="${requestScope.tour.fee}VND" name="fee">
+                            <input type="text" maxlength="50" value="${requestScope.tour.fee}VND" name="fee" required="">
                         </div>
                     </div>
                     <!-- div line -->
@@ -137,19 +134,19 @@
                             <c:forEach items="${fn:split(requestScope.tour.prize,';')}" var="prizes">
                                 <p>${prizes}</p>
                             </c:forEach>
-                            <p>Change Prize: <input type="text" value="${requestScope.tour.prize}" name="prize"></p>
+                            <p>Change Prize: <input type="text" value="${requestScope.tour.prize}" name="prize" required=""></p>
                         </div>
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-sharp fa-solid fa-person"></i> Number of Player:  </h1>
-                            <input type="text" value="${requestScope.numberPlayer}" >
+                            <input type="text" value="${requestScope.numberPlayer}">
                         </div>
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-sharp fa-solid fa-person"></i> Min Player:  </h1>
-                            <input type="number" min="10" max="${requestScope.tour.maxParticipant - 10}" value="${requestScope.tour.minParticipant}" name="minp">
+                            <input  type="number" min="10" max="50" value="${requestScope.tour.minParticipant}" name="minp" required="">
                         </div>
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-sharp fa-solid fa-person"></i> Max Player:  </h1>
-                            <input type="number" min="${requestScope.tour.minParticipant + 10}" max="50" value="${requestScope.tour.maxParticipant}" name="maxp">
+                            <input  type="number" min="10" max="50" value="${requestScope.tour.maxParticipant}" name="maxp" required="">
                         </div>
                     </div>
                     <!-- div line -->
@@ -183,7 +180,7 @@
                 </div>
                 <c:choose>
                     <c:when test="${!empty requestScope.rounds}">
-                        <form action="UpdateRoundController" method="GET">
+                        <form action="UpdateRoundController" method="POST">
                             <div class="tnm-heading mt-5">
                                 <h1>Round</h1>
                             </div>
@@ -224,7 +221,7 @@
                                 <div class="round-detail">
                                     <div class="round-detail-site" style="border-right: 4px solid #A87B24;">
                                         <p>Type of Round: <input type="text" maxlength="50" value="${requestScope.round.typeOfRound}" name="typeOfRound"></p>
-                                        <p>Number Bird Attend:   <input type="number" type="number" value="${requestScope.round.birdAttend}" name="birdAttend"></p>
+                                        <p>Number Bird Attend:   <input type="number" type="number" value="${requestScope.round.birdAttend}" name="birdAttend" required=""></p>
                                         <p>
                                             Status: 
                                             <c:choose>
@@ -277,7 +274,7 @@
                                     </div>
                                     <div class="player-site">
                                         <h1><i class="fa-sharp fa-solid fa-person"></i> Number Bird Pass</h1>
-                                        <input type="number" max="${requestScope.round.birdAttend}" value="${requestScope.round.birdPass}" name="birdPass">
+                                        <input type="number" max="${requestScope.round.birdAttend}" value="${requestScope.round.birdPass}" name="birdPass" required="">
                                     </div>
                                 </div>
                                 <div class="right-button">

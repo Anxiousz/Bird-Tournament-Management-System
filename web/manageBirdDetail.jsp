@@ -72,8 +72,8 @@
                         <form action="ManageBirdDetailController" method="GET">
                             <div class="card-body main-body-bird">
                                 <div class="left-achivement-site">
-                                    <li>Description: <input type="text" value="${bird.achivement.description}" name="description"></li>
-                                        <c:forEach items="${fn:split(bird.achivement.medals,';')}" var="medals">
+                                    <h1>Achievement</h1>
+                                    <c:forEach items="${fn:split(bird.achivement.medals,';')}" var="medals">
                                         <li>${medals} times</li>
                                         </c:forEach>
                                     <li>Medals: <input type="text" value="${bird.achivement.medals}" name="medals"></li>

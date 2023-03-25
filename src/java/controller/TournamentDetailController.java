@@ -5,6 +5,7 @@
  */
 package controller;
 
+import account.AccountDTO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
 import round.RoundDAO;
 import round.RoundDTO;
@@ -34,29 +36,41 @@ public class TournamentDetailController extends HttpServlet {
             String rid = request.getParameter("roundID");
             String rname = request.getParameter("roundName");
             String rstatus = request.getParameter("roundStatus");
-            String tournamentID = request.getParameter("ID");
+            int tournamentID = Integer.parseInt(request.getParameter("ID"));
             TournamentDAO tdao = new TournamentDAO();
-            tour = tdao.getDetail(Integer.parseInt(tournamentID));
+            tour = tdao.getDetail(tournamentID);
             RoundDAO roudao = new RoundDAO();
+            HttpSession s = request.getSession(false);
+            AccountDTO acc = (AccountDTO)s.getAttribute("acc");
             if (tour != null) {
                 request.setAttribute("utour", tour);
                 RegistrationFormDAO rdao = new RegistrationFormDAO();
                 if (tour.getTournamentStatus() == 1 && tour.getTournamentStatus() == 0) {
-                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, tournamentID));
                 } else {
-                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, tournamentID));
                 }
                 if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
+                    if (acc == null) {
+                        acc = new AccountDTO();
+                        acc.setAccountID(0);
+                    }
+                    if (tdao.checkUserRegistered(acc.getAccountID(), tournamentID) == null) {
+                        request.setAttribute("registered", "false");
+                    } else {
+                        request.setAttribute("registered", "true");
+                    }
+
                     url = SUCCESS;
                 } else if (tour.getTournamentStatus() == 5 || tour.getTournamentStatus() == 4 || tour.getTournamentStatus() == 3) {
-                    List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
+                    List<RoundDTO> rounds = roudao.getAllByTID(tournamentID);
                     request.setAttribute("urounds", rounds);
                     url = SUCCESS;
                 }
             } else {
                 url = ERROR;
             }
-            if (roudao.getRoundStatusbyName(Integer.parseInt(tournamentID), "Top4") == 2) {
+            if (roudao.getRoundStatusbyName(tournamentID, "Top4") == 2) {
                 request.setAttribute("ufinishTournament", "true");
             } else {
                 request.setAttribute("ufinishTournament", "false");

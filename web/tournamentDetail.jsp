@@ -275,7 +275,7 @@
                         </c:if>
                 </c:if>
                     </c:if>
-                    <c:if test="${empty requestScope.urounds}">
+                    <c:if test="${empty requestScope.urounds && requestScope.registered eq 'false'}">
                 <c:choose>
                     <c:when test="${requestScope.utour.tournamentStatus == 0}">
                         <div class="regis-site container">
@@ -292,7 +292,14 @@
                                 <div class="regis-left-site">
                                     <h1><a>PLAY WITH US NOW</h1>
                                     <p>Gift, Achievement waiting you</p>
-                                    <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${requestScope.utour.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                    <c:choose>
+                                        <c:when test="${!empty sessionScope.acc}">
+                                            <a class="left-join-tnm" style="color: white" href="MainController?action=RegisterForm&tID=${requestScope.utour.tournamentID}&aID=${sessionScope.acc.accountID}">PLAY NOW</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="left-join-tnm" style="color: white" href="login.jsp">PLAY NOW</a>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                         </div>

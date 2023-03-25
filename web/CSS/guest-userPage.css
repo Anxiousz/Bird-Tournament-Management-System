@@ -221,7 +221,7 @@ body{
 }
 .bird-info-site{
     margin-top: 30px;
-    height: inherit;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -400,4 +400,17 @@ p{
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.4rem;
+}
+.custom-button_2{
+    font-size: 20px !important; 
+    text-decoration: underline !important;
+    color: #A87B24 !important;
+    font-weight: bold;
+}
+.custom-button_2:hover{
+    font-size: 20px !important; 
+    text-decoration: underline !important;
+    color: #A87B24 !important;
+    font-weight: bold;
+    opacity: 0.75;
 }

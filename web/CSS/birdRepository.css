@@ -79,6 +79,12 @@ body{
     font-family: 'Baloo';
     font-size: 20px;
 }
+.left-achivement-site h1{
+    margin-right: 30px;
+    font-family: 'Baloo';
+    text-align: right !important;
+    color: #A87B24 !important;
+}
 .left-achivement-site input{
     list-style: none;
     font-family: 'Baloo';

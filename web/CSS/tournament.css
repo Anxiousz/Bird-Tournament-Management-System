@@ -119,6 +119,7 @@ body{
 }
 /* Search site */
 .search-tnm-main-site{
+    margin-top: 75px;
     margin-left: 200px;
     width: 80%;
     top: 760px;
@@ -134,7 +135,7 @@ body{
 }
 /* Categpries heading  */
 .tnm-categories-heading{
-    margin-top: 25px;
+    margin-top: 75px;
     height: 100px;
     display: flex;
     align-items: center;
@@ -383,4 +384,5 @@ body{
 .card-img-top{
     height: 30rem;
 }
+
 
