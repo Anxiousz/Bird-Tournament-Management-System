@@ -144,7 +144,6 @@
                     <div class="list-tournment-site">
                         <div class="list-tournament-heading-site d-flex justify-content-between">
                             <h1 style=" font-family: 'Ubuntu', sans-serif; color: #A87B24;"> <i class="fa-solid fa-star" style="color:yellow;"></i>     All Tournament</h1>
-                            <a href="" style="border-radius: 5px; padding: 20px;  font-family: 'Ubuntu', sans-serif; font-size: 20px; background-color: #A87B24" class="bg-info text-white">View Detail</a>
                         </div>
                         <div class="tournament-table">
                             <table class="table table-hover">
