@@ -18,30 +18,31 @@ public class UpdateRoundController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        String tid = request.getParameter("tournamentID");
-        String rid = request.getParameter("roundID");
-        String rname = request.getParameter("roundName");
-        String typeofround = request.getParameter("typeOfRound");
-        String birdattend = request.getParameter("birdAttend");
-        String rstatus = request.getParameter("roundStatus");
-        String birdPass = request.getParameter("birdPass");
-        String action = request.getParameter("action");
-        if(birdattend.equals("")){
-            birdattend="0";
-        }
-        if(birdPass.equals("")){
-            birdPass="0";
-        }
-        int roundtatus = -1;
-        if (rstatus.equals("Coming soon")) {
-            roundtatus = 0;
-        } else if (rstatus.equals("On Going")) {
-            roundtatus = 1;
-        } else if (rstatus.equals("Finish")) {
-            roundtatus = 2;
-        } else {
-        }
         try {
+            String tid = request.getParameter("tournamentID");
+            String rid = request.getParameter("roundID");
+            String rname = request.getParameter("roundName");
+            String typeofround = request.getParameter("typeOfRound");
+            String birdattend = request.getParameter("birdAttend");
+            String rstatus = request.getParameter("roundStatus");
+            String birdPass = request.getParameter("birdPass");
+            String action = request.getParameter("action");
+            if (birdattend.equals("")) {
+                birdattend = "0";
+            }
+            if (birdPass.equals("")) {
+                birdPass = "0";
+            }
+            int roundtatus = -1;
+            if (rstatus.equals("Coming soon")) {
+                roundtatus = 0;
+            } else if (rstatus.equals("On Going")) {
+                roundtatus = 1;
+            } else if (rstatus.equals("Finish")) {
+                roundtatus = 2;
+            } else {
+            }
+
             if (action.equals("Update Round")) {
                 RoundDAO rdao = new RoundDAO();
                 CandidatesDAO cdao = new CandidatesDAO();

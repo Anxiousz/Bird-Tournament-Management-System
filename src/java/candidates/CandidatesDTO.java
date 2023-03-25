@@ -6,7 +6,8 @@ import registrationform.RegistrationFormDTO;
 import round.RoundDTO;
 import tournament.TournamentDTO;
 
-public class CandidatesDTO implements Serializable{
+public class CandidatesDTO implements Serializable {
+
     private int candidatesID;
     private RoundDTO round;
     private TournamentDTO tournament;
@@ -16,7 +17,7 @@ public class CandidatesDTO implements Serializable{
     private String result;
     private int candidatesStatus;
 
-    public CandidatesDTO(){
+    public CandidatesDTO() {
     }
 
     public CandidatesDTO(int candidatesID, RoundDTO round, TournamentDTO tournament, RegistrationFormDTO form, BirdDTO bird, int score, String result, int candidatesStatus) {
@@ -29,6 +30,7 @@ public class CandidatesDTO implements Serializable{
         this.result = result;
         this.candidatesStatus = candidatesStatus;
     }
+
     public int getCandidatesID() {
         return candidatesID;
     }

@@ -7,10 +7,7 @@ package controller;
 
 import bird.BirdDAO;
 import bird.BirdDTO;
-import candidates.CandidatesDAO;
-import candidates.CandidatesDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "LoadTotalRankingController", urlPatterns = {"/LoadTotalRankingController"})
 public class LoadTotalRankingController extends HttpServlet {
- private final String ERROR = "error.jsp";
+
+    private final String ERROR = "error.jsp";
     private final String SUCCESS = "TotalRanking.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,23 +38,22 @@ public class LoadTotalRankingController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try  {
+        try {
             String action = request.getParameter("action");
-            if(action.equals("load")){
+            if (action.equals("load")) {
                 BirdDAO bdao = new BirdDAO();
                 List<BirdDTO> brank = bdao.getTotalRanking();
-                if(!brank.isEmpty()){
+                if (!brank.isEmpty()) {
                     request.setAttribute("brank", brank);
-                    url=SUCCESS;
-                }else{
-                    url=ERROR;
+                    url = SUCCESS;
+                } else {
+                    url = ERROR;
                 }
             }
-            
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

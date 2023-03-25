@@ -45,10 +45,10 @@ public class TournamentDAO implements Serializable {
             + "WHERE tournamentID = ?";
     private final static String DASHBOARD = "SELECT COUNT(TournamentID) as TournamentID\n"
             + "FROM Tournament";
-      private final static String COUNT_ONGOING_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 1 OR  tournamentStatus = 2 OR tournamentStatus = 3";
-      private final static String COUNT_FINISED_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 4";
-      private final static String COUNT_DELAY_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 5";
-      
+    private final static String COUNT_ONGOING_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 1 OR  tournamentStatus = 2 OR tournamentStatus = 3";
+    private final static String COUNT_FINISED_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 4";
+    private final static String COUNT_DELAY_DASHBOARD = "SELECT COUNT(tournamentID) as TournamentID FROM Tournament WHERE tournamentStatus = 5";
+
     public int countTournamentDelay() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
@@ -78,6 +78,7 @@ public class TournamentDAO implements Serializable {
         }
         return count;
     }
+
     public int countTournamentFinised() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;
@@ -107,6 +108,7 @@ public class TournamentDAO implements Serializable {
         }
         return count;
     }
+
     public int countTournamentOnGoing() throws Exception {
         Connection con = null;
         PreparedStatement stm = null;

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ManageBirdDetailController extends HttpServlet {
 
     private final String ERROR = "error.jsp";
-    private final String SUCCES = "manageBirdDetail.jsp";
+    private final String SUCCES = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,7 +34,7 @@ public class ManageBirdDetailController extends HttpServlet {
                 adto.setTop(Integer.parseInt(top));
                 adto.setTotalScore(Integer.parseInt(totalScore));
                 if (adao.updateAchievementByBID(adto)) {
-                    url = SUCCES;
+                    url = "ManageBirdController?action=Detail&birdID=" + Integer.parseInt(birdID);
                 } else {
                     url = ERROR;
                 }
@@ -42,12 +42,7 @@ public class ManageBirdDetailController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (url == SUCCES) {
-                url = "ManageBirdController?action=Detail&birdID=" + Integer.parseInt(birdID);
-                request.getRequestDispatcher(url).forward(request, response);
-            } else {
-                request.getRequestDispatcher(url).forward(request, response);
-            }
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

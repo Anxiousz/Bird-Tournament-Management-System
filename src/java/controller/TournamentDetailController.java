@@ -6,16 +6,13 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
 import round.RoundDAO;
 import round.RoundDTO;
 import tournament.TournamentDAO;
@@ -30,47 +27,46 @@ public class TournamentDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String url = ERROR;
-            try {
-                TournamentDTO tour = null;
-                String rid = request.getParameter("roundID");
-                String rname = request.getParameter("roundName");
-                String rstatus = request.getParameter("roundStatus");
-                String tournamentID = request.getParameter("ID");
-                TournamentDAO tdao = new TournamentDAO();
-                tour = tdao.getDetail(Integer.parseInt(tournamentID));
-                RoundDAO roudao = new RoundDAO();
-                if (tour != null) {
-                    request.setAttribute("utour", tour);
-                    RegistrationFormDAO rdao = new RegistrationFormDAO();
-                    if(tour.getTournamentStatus() == 1 && tour.getTournamentStatus() == 0){
-                        request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
-                    }else{
-                        request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
-                    }
-                    if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
-                        url = SUCCESS;
-                    } else if (tour.getTournamentStatus() == 5 || tour.getTournamentStatus() == 4 || tour.getTournamentStatus() == 3) {
-                        List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
-                        request.setAttribute("urounds", rounds);
-                        url = SUCCESS;
-                    }
+        /* TODO output your page here. You may use following sample code. */
+        String url = ERROR;
+        try {
+            TournamentDTO tour = null;
+            String rid = request.getParameter("roundID");
+            String rname = request.getParameter("roundName");
+            String rstatus = request.getParameter("roundStatus");
+            String tournamentID = request.getParameter("ID");
+            TournamentDAO tdao = new TournamentDAO();
+            tour = tdao.getDetail(Integer.parseInt(tournamentID));
+            RoundDAO roudao = new RoundDAO();
+            if (tour != null) {
+                request.setAttribute("utour", tour);
+                RegistrationFormDAO rdao = new RegistrationFormDAO();
+                if (tour.getTournamentStatus() == 1 && tour.getTournamentStatus() == 0) {
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)));
                 } else {
-                    url = ERROR;
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                 }
-                if (roudao.getRoundStatusbyName(Integer.parseInt(tournamentID), "Top4") == 2) {
-                    request.setAttribute("ufinishTournament", "true");
-                } else {
-                    request.setAttribute("ufinishTournament", "false");
+                if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
+                    url = SUCCESS;
+                } else if (tour.getTournamentStatus() == 5 || tour.getTournamentStatus() == 4 || tour.getTournamentStatus() == 3) {
+                    List<RoundDTO> rounds = roudao.getAllByTID(Integer.parseInt(tournamentID));
+                    request.setAttribute("urounds", rounds);
+                    url = SUCCESS;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                request.getRequestDispatcher(url).forward(request, response);
+            } else {
+                url = ERROR;
             }
+            if (roudao.getRoundStatusbyName(Integer.parseInt(tournamentID), "Top4") == 2) {
+                request.setAttribute("ufinishTournament", "true");
+            } else {
+                request.setAttribute("ufinishTournament", "false");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

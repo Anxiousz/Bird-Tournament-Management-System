@@ -18,7 +18,7 @@ public class RoundDAO implements Serializable {
             + "WHERE tournamentID = ? ";
 
     private static String GET_ROUND_BY_RID = "SELECT roundID, tournamentID, roundName, typeOfRound, birdPass, birdAttend, roundStatus FROM Round WHERE roundID = ? ";
-    public static String UPDATE_ATTEND_PASS_CANDIDATES 
+    public static String UPDATE_ATTEND_PASS_CANDIDATES
             = "declare @birda as int\n"
             + "declare @birdp as int\n"
             + "set @birda=(SELECT COUNT(candidatesID) as birdAttend\n"
@@ -54,6 +54,7 @@ public class RoundDAO implements Serializable {
             = "select roundStatus\n"
             + "from Round\n"
             + "where tournamentID = ? and roundName = ? ";
+
     public int getRoundStatusbyName(int tid, String name) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -85,7 +86,8 @@ public class RoundDAO implements Serializable {
         }
         return 0;
     }
-     public int getNextRStatus(int tid, int rid) throws SQLException {
+
+    public int getNextRStatus(int tid, int rid) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -116,6 +118,7 @@ public class RoundDAO implements Serializable {
         }
         return 0;
     }
+
     public int getPreviousRStatus(int tid, int rid) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;

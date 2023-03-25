@@ -97,7 +97,7 @@ public class CandidatesDAO implements Serializable {
             + "    BirdTournament.dbo.Account.accountID = BirdTournament.dbo.Bird.accountID\n"
             + "WHERE Candidates.result IS NOT NULL AND Candidates.roundID = ? \n"
             + "ORDER BY score desc";
-    
+
     public static String UPDATE_FAILED_CANDIDATES
             = "UPDATE Candidates \n"
             + "SET     result = ?, candidatesStatus = ?\n"
@@ -177,6 +177,7 @@ public class CandidatesDAO implements Serializable {
             + "    Account.accountID = Bird.accountID\n"
             + "	where Candidates.tournamentID =?\n"
             + "order by roundID desc, score desc";
+
     public List<CandidatesDTO> getListTopCandidates(int TID) throws SQLException {
         List<CandidatesDTO> list = new ArrayList<>();
         Connection con = null;
@@ -217,6 +218,7 @@ public class CandidatesDAO implements Serializable {
         }
         return list;
     }
+
     public List<CandidatesDTO> getFinishPassedCandidates(int RID) throws SQLException {
         List<CandidatesDTO> list = new ArrayList<>();
         Connection con = null;
@@ -232,7 +234,7 @@ public class CandidatesDAO implements Serializable {
                     CandidatesDTO cands = new CandidatesDTO();
                     BirdDTO bird = new BirdDTO();
                     AccountDTO acc = new AccountDTO();
-                    RoundDTO rou =new RoundDTO();
+                    RoundDTO rou = new RoundDTO();
                     cands.setCandidatesID(rs.getInt(1));
                     bird.setBirdName(rs.getString(2));
                     cands.setBird(bird);
@@ -263,6 +265,7 @@ public class CandidatesDAO implements Serializable {
         }
         return list;
     }
+
     public boolean checkDuplicateScore(int score, int rid) throws SQLException {
         boolean check = false;
         Connection con = null;
@@ -294,6 +297,7 @@ public class CandidatesDAO implements Serializable {
         }
         return check;
     }
+
     public int getBirdId(int CID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -324,6 +328,7 @@ public class CandidatesDAO implements Serializable {
         }
         return 0;
     }
+
     public int getNumberFailed(int RID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -386,7 +391,7 @@ public class CandidatesDAO implements Serializable {
         return 0;
     }
 
-    public boolean updateScoreResult(int score,String rs,int cstatus, int CID) throws SQLException {
+    public boolean updateScoreResult(int score, String rs, int cstatus, int CID) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -395,9 +400,9 @@ public class CandidatesDAO implements Serializable {
             if (con != null) {
                 stm = con.prepareStatement(UPDATE_SCORE_RESULT);
                 stm.setInt(1, score);
-                if(rs==null){
+                if (rs == null) {
                     stm.setNull(2, Types.NVARCHAR);
-                }else{
+                } else {
                     stm.setString(2, rs);
                 }
                 stm.setInt(3, cstatus);
@@ -548,7 +553,7 @@ public class CandidatesDAO implements Serializable {
                     CandidatesDTO cands = new CandidatesDTO();
                     BirdDTO bird = new BirdDTO();
                     AccountDTO acc = new AccountDTO();
-                    RoundDTO rou =new RoundDTO();
+                    RoundDTO rou = new RoundDTO();
                     cands.setCandidatesID(rs.getInt(1));
                     bird.setBirdName(rs.getString(2));
                     cands.setBird(bird);
@@ -685,7 +690,7 @@ public class CandidatesDAO implements Serializable {
                     CandidatesDTO cands = new CandidatesDTO();
                     BirdDTO bird = new BirdDTO();
                     AccountDTO acc = new AccountDTO();
-                    RoundDTO rou =new RoundDTO();
+                    RoundDTO rou = new RoundDTO();
                     cands.setCandidatesID(rs.getInt(1));
                     bird.setBirdName(rs.getString(2));
                     cands.setBird(bird);
@@ -717,7 +722,7 @@ public class CandidatesDAO implements Serializable {
         return list;
     }
 
-    public boolean updateRoundCandidates(int RID, int TID,int cstatus) throws SQLException {
+    public boolean updateRoundCandidates(int RID, int TID, int cstatus) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean check = false;
@@ -760,7 +765,7 @@ public class CandidatesDAO implements Serializable {
                     CandidatesDTO cands = new CandidatesDTO();
                     BirdDTO bird = new BirdDTO();
                     AccountDTO acc = new AccountDTO();
-                    RoundDTO rou =new RoundDTO();
+                    RoundDTO rou = new RoundDTO();
                     cands.setCandidatesID(rs.getInt(1));
                     bird.setBirdName(rs.getString(2));
                     cands.setBird(bird);

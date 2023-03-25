@@ -7,13 +7,11 @@ package controller;
 
 import candidates.CandidatesDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import round.RoundDAO;
 
 /**
  *
@@ -38,50 +36,51 @@ public class UpdateCandidatesController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        String tid = request.getParameter("tournamentID");
-        String rid = request.getParameter("roundID");
-        String cid = request.getParameter("candidatesID");
-        String rname = request.getParameter("roundName");
-        String rstatus = request.getParameter("roundStatus");
-        String score = request.getParameter("score");
-        String action = request.getParameter("action");
-        String result = request.getParameter("result");
-        int cstatus = 0;
-        if(result.equals("fail")){
-            cstatus = 2;
-        }else if (result.equals("")){
-            cstatus = 1;
-            result = null;
-        }else{
-            cstatus = 1;
-        }
         try {
+            String tid = request.getParameter("tournamentID");
+            String rid = request.getParameter("roundID");
+            String cid = request.getParameter("candidatesID");
+            String rname = request.getParameter("roundName");
+            String rstatus = request.getParameter("roundStatus");
+            String score = request.getParameter("score");
+            String action = request.getParameter("action");
+            String result = request.getParameter("result");
+            int cstatus = 0;
+            if (result.equals("fail")) {
+                cstatus = 2;
+            } else if (result.equals("")) {
+                cstatus = 1;
+                result = null;
+            } else {
+                cstatus = 1;
+            }
+
             if (action.equals("Update")) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 if (score == null) {
                     score = "0";
                 }
-                if(score.equals("0")){
-                    if(cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))){
+                if (score.equals("0")) {
+                    if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
                         url = SUCCESS;
-                    }else{
+                    } else {
                         url = ERROR;
                     }
-                }else{
-                    if(rname.equals("Top4")){
-                    if(cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))){
-                        request.setAttribute("duplicateScore", "true");
-                        request.setAttribute("cid", cid);
-                        url = SUCCESS;
-                    }else{
-                        if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
-                            request.setAttribute("duplicateScore", "fase");
+                } else {
+                    if (rname.equals("Top4")) {
+                        if (cdao.checkDuplicateScore(Integer.parseInt(score), Integer.parseInt(rid))) {
+                            request.setAttribute("duplicateScore", "true");
+                            request.setAttribute("cid", cid);
                             url = SUCCESS;
                         } else {
-                            url = ERROR;
+                            if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
+                                request.setAttribute("duplicateScore", "fase");
+                                url = SUCCESS;
+                            } else {
+                                url = ERROR;
+                            }
                         }
-                    }
-                    }else{
+                    } else {
                         if (cdao.updateScoreResult(Integer.parseInt(score), result, cstatus, Integer.parseInt(cid))) {
                             request.setAttribute("duplicateScore", "fase");
                             url = SUCCESS;
@@ -90,7 +89,7 @@ public class UpdateCandidatesController extends HttpServlet {
                         }
                     }
                 }
-                
+
             }
 
         } catch (Exception e) {

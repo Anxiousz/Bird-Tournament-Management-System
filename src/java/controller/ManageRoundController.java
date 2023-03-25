@@ -6,20 +6,15 @@
 package controller;
 
 import achievement.AchievementDAO;
-import achievement.AchievementDTO;
 import candidates.CandidatesDAO;
 import candidates.CandidatesDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import round.RoundDAO;
 import round.RoundDTO;
 
@@ -38,13 +33,13 @@ public class ManageRoundController extends HttpServlet {
             String rname = request.getParameter("roundName");
             int rid = Integer.parseInt(request.getParameter("roundID"));
             String rstatus = request.getParameter("roundStatus");
-            if(rstatus.equals("Coming soon")){
+            if (rstatus.equals("Coming soon")) {
                 rstatus = "0";
-            }else if (rstatus.equals("On Going")){
+            } else if (rstatus.equals("On Going")) {
                 rstatus = "1";
-            }else if (rstatus.equals("Finish")){
+            } else if (rstatus.equals("Finish")) {
                 rstatus = "2";
-            }else{
+            } else {
             }
             RoundDAO rdao = new RoundDAO();
             RoundDTO round = new RoundDTO();
@@ -53,15 +48,15 @@ public class ManageRoundController extends HttpServlet {
                 if (round == null) {
                     url = ERROR;
                 }
-                    if(!rname.equals("Qualified")){
-                        if(rdao.getPreviousRStatus(tournamentID, rid)==2){
-                            request.setAttribute("prerfinish", "true");
-                        }else{
-                            request.setAttribute("prerfinish", "false");
-                        }
-                    }else{
+                if (!rname.equals("Qualified")) {
+                    if (rdao.getPreviousRStatus(tournamentID, rid) == 2) {
                         request.setAttribute("prerfinish", "true");
+                    } else {
+                        request.setAttribute("prerfinish", "false");
                     }
+                } else {
+                    request.setAttribute("prerfinish", "true");
+                }
                 request.setAttribute("round", round);
                 url = TOURNAMENT_DETAIL;
             } else if (rstatus.equals("1")) {
@@ -70,19 +65,19 @@ public class ManageRoundController extends HttpServlet {
                 if (round == null) {
                     url = ERROR;
                 } else {
-                    List<CandidatesDTO> Rcands = cdao.getCandidatesByRID(1,rid);
+                    List<CandidatesDTO> Rcands = cdao.getCandidatesByRID(1, rid);
                     if (Rcands.isEmpty()) {
-                            cdao.updateRoundCandidates(rid, tournamentID, 1);
-                            if (!rname.equals("Qualified")) {
-                                cdao.resetResultCandidates(rid, tournamentID, 1);
-                            }
+                        cdao.updateRoundCandidates(rid, tournamentID, 1);
+                        if (!rname.equals("Qualified")) {
+                            cdao.resetResultCandidates(rid, tournamentID, 1);
+                        }
                         rdao.updateAttendPassCandidates(rid);
-                        Rcands = cdao.getCandidatesByRID(1,rid);
+                        Rcands = cdao.getCandidatesByRID(1, rid);
                         round = rdao.getRoundByID(rid);
                     }
-                    if(cdao.getNumberScored(rid)<4){
+                    if (cdao.getNumberScored(rid) < 4) {
                         request.setAttribute("emptyscored", "true");
-                    }else{
+                    } else {
                         request.setAttribute("emptyscored", "false");
                     }
                     request.setAttribute("round", round);
@@ -104,7 +99,7 @@ public class ManageRoundController extends HttpServlet {
                                 cdao.updateResultByTop(30, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
                                 rdao.updateAttendPassCandidates(rid);
-                            } else if (numberScored >= 25 || numberScored >= 20 && cdao.numberCAttend(rid)>=25) {
+                            } else if (numberScored >= 25 || numberScored >= 20 && cdao.numberCAttend(rid) >= 25) {
                                 if (rdao.getNumberOfRound(tournamentID) > 4) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(tournamentID, "Top30");
@@ -113,8 +108,8 @@ public class ManageRoundController extends HttpServlet {
                                 cdao.updateResultByTop(20, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
                                 rdao.updateAttendPassCandidates(rid);
-                            } else if (numberScored >= 15 || numberScored >= 10 && cdao.numberCAttend(rid)>=15) {
-                                    if (rdao.getNumberOfRound(tournamentID) > 3) {
+                            } else if (numberScored >= 15 || numberScored >= 10 && cdao.numberCAttend(rid) >= 15) {
+                                if (rdao.getNumberOfRound(tournamentID) > 3) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(tournamentID, "Top30");
                                         rdao.deleteByName(tournamentID, "Top20");
@@ -125,7 +120,7 @@ public class ManageRoundController extends HttpServlet {
                                 cdao.updateResultByTop(10, rid, "pass");
                                 cdao.updateFailedCandidates("fail", 2, rid);
                                 rdao.updateAttendPassCandidates(rid);
-                            } else if (numberScored >= 10 || numberScored >= 2 && cdao.numberCAttend(rid)>=10) {
+                            } else if (numberScored >= 10 || numberScored >= 2 && cdao.numberCAttend(rid) >= 10) {
                                 if (rdao.getNumberOfRound(tournamentID) > 2) {
                                     if (rname.equals("Qualified")) {
                                         rdao.deleteByName(tournamentID, "Top30");
@@ -151,7 +146,8 @@ public class ManageRoundController extends HttpServlet {
                                     if (medals == null) {
                                         adao.updateMedals("Top1:0;Top2:0;Top3:0;Top4:0", birdid);
                                         medals = adao.getMedalsByBid(birdid);
-                                    }if(medals != null){
+                                    }
+                                    if (medals != null) {
                                         String[] topValues = medals.split(";");
                                         String[] parts = topValues[i - 1].split(":");
                                         String top = parts[0];
@@ -169,13 +165,13 @@ public class ManageRoundController extends HttpServlet {
                             }
                             Fcands = cdao.getFinishCandidates(rid);
                             round = rdao.getRoundByID(rid);
-                            
+
                         }
                     }
                     if (!Fcands.isEmpty()) {
                         if (rdao.getNextRStatus(tournamentID, rid) == 1 || rdao.getNextRStatus(tournamentID, rid) == 2) {
                             List<CandidatesDTO> fpcands = cdao.getFinishPassedCandidates(rid);
-                            Fcands.addAll(0,cdao.getFinishPassedCandidates(rid));
+                            Fcands.addAll(0, cdao.getFinishPassedCandidates(rid));
                             request.setAttribute("nexton", "true");
 
                         } else if (rdao.getNextRStatus(tournamentID, rid) == 0) {

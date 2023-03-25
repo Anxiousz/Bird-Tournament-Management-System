@@ -5,21 +5,14 @@
  */
 package controller;
 
-import account.AccountDAO;
-import account.AccountDTO;
-import candidates.CandidatesDAO;
-import candidates.CandidatesDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import registrationform.RegistrationFormDAO;
-import registrationform.RegistrationFormDTO;
 import round.RoundDAO;
 import round.RoundDTO;
 import tournament.TournamentDAO;
@@ -48,7 +41,7 @@ public class ManageTournamentDetailController extends HttpServlet {
         try {
             TournamentDAO tdao = new TournamentDAO();
             tour = tdao.getDetail(Integer.parseInt(tournamentID));
-            RoundDAO roudao  = new RoundDAO();
+            RoundDAO roudao = new RoundDAO();
             if (tour != null) {
                 request.setAttribute("tour", tour);
                 RegistrationFormDAO rdao = new RegistrationFormDAO();
@@ -56,7 +49,7 @@ public class ManageTournamentDetailController extends HttpServlet {
                 if (tour.getTournamentStatus() == 0) {
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 1) {
-                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID))+rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
+                    request.setAttribute("numberPlayer", rdao.getNumberRegistered(1, Integer.parseInt(tournamentID)) + rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
                     url = TOURNAMENT_DETAIL;
                 } else if (tour.getTournamentStatus() == 2) {
                     request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, Integer.parseInt(tournamentID)));
@@ -135,7 +128,7 @@ public class ManageTournamentDetailController extends HttpServlet {
                         url = TOURNAMENT_DETAIL;
                     }
                 }
-                
+
             } else {
                 url = ERROR;
             }

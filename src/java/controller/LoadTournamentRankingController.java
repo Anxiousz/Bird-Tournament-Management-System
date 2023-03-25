@@ -8,7 +8,6 @@ package controller;
 import candidates.CandidatesDAO;
 import candidates.CandidatesDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "LoadTournamentRankingController", urlPatterns = {"/LoadTournamentRankingController"})
 public class LoadTournamentRankingController extends HttpServlet {
+
     private final String ERROR = "error.jsp";
     private final String SUCCESS = "TournamentRanking.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,24 +38,23 @@ public class LoadTournamentRankingController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try  {
+        try {
             int tid = Integer.parseInt(request.getParameter("tournamentID"));
             String action = request.getParameter("action");
-            if(action.equals("load")){
+            if (action.equals("load")) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 List<CandidatesDTO> rcands = cdao.getListTopCandidates(tid);
-                if(!rcands.isEmpty()){
+                if (!rcands.isEmpty()) {
                     request.setAttribute("rcands", rcands);
-                    url=SUCCESS;
-                }else{
-                    url=ERROR;
+                    url = SUCCESS;
+                } else {
+                    url = ERROR;
                 }
             }
-            
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

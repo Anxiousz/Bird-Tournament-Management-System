@@ -8,14 +8,12 @@ package controller;
 import candidates.CandidatesDAO;
 import candidates.CandidatesDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import round.RoundDAO;
 import round.RoundDTO;
 
@@ -36,14 +34,14 @@ public class RoundController extends HttpServlet {
             RoundDTO round = null;
             RoundDAO rdao = new RoundDAO();
             int rstatus = rdao.getRoundStatusbyName(tournamentID, rname);
-            if (rstatus==0) {
+            if (rstatus == 0) {
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
                     url = ERROR;
                 }
                 request.setAttribute("uround", round);
                 url = TOURNAMENT_DETAIL;
-            } else if (rstatus==1) {
+            } else if (rstatus == 1) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
@@ -57,7 +55,7 @@ public class RoundController extends HttpServlet {
                     request.setAttribute("ucands", Rcands);
                     url = TOURNAMENT_DETAIL;
                 }
-            } else if (rstatus==2) {
+            } else if (rstatus == 2) {
                 CandidatesDAO cdao = new CandidatesDAO();
                 round = rdao.getRoundByID(rid);
                 if (round == null) {
@@ -66,10 +64,10 @@ public class RoundController extends HttpServlet {
                     List<CandidatesDTO> Fcands = cdao.getFinishCandidates(rid);
                     if (Fcands.isEmpty()) {
                         request.setAttribute("error", "result have not set");
-                    }else {
+                    } else {
                         if (rdao.getNextRStatus(tournamentID, rid) == 1 || rdao.getNextRStatus(tournamentID, rid) == 2) {
                             List<CandidatesDTO> fpcands = cdao.getFinishPassedCandidates(rid);
-                            Fcands.addAll(0,cdao.getFinishPassedCandidates(rid));
+                            Fcands.addAll(0, cdao.getFinishPassedCandidates(rid));
                             request.setAttribute("unexton", "true");
 
                         } else if (rdao.getNextRStatus(tournamentID, rid) == 0) {
@@ -81,7 +79,7 @@ public class RoundController extends HttpServlet {
                     url = TOURNAMENT_DETAIL;
                 }
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
