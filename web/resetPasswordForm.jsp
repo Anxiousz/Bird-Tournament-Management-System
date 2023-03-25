@@ -24,13 +24,13 @@
                 <h3>Update new Password</h3>
                 <form action="MainController" method="POST">
                     <div class="forgot-password-form form-control">
-                        <input type="hidden" class="form-control" value="${requestScope.accountdto.getEmail()}" name="idReset">
+                        <input type="hidden" class="form-control" value="${requestScope.accountdto.getAccountID()}" name="idReset">
                         <input type="text" class="form-control" value="${requestScope.accountdto.getEmail()}" name="emailReset">  
                         <input type="text" class="form-control" value="${requestScope.accountdto.getPhone()}">  
                         <label for="">Please input new password:</label>
-                        <input type="text" class="form-control" placeholder="New Password" name="newpassword">  
+                        <input type="password" class="form-control" placeholder="New Password" name="newpassword">  
                         <label for="">Please enter again:</label>
-                        <input type="text" class="form-control" placeholder="New PASS" name="renewpassword">      
+                        <input type="password" class="form-control" placeholder="New PASS" name="renewpassword">      
                         <div class="forgot-password-button-site">
                             <button class="btn btn-secondary" name="action" value="resetPasswordCancel">Cancel</button>
                             <button class="btn btn-primary" name="action" value="resetPasswordUpdate">Update</button>

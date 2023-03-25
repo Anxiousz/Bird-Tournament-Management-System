@@ -29,15 +29,14 @@ public class ResetPasswordController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String url =  ERROR;
             try {
-                int result = 0;
+                boolean result = false;
                 String id = request.getParameter("idReset");
                 String password = request.getParameter("newpassword");
                 String repassword = request.getParameter("renewpassword");
                 AccountDAO account =  new AccountDAO();
-                AccountDTO accoundto = new AccountDTO();
-                if (password.equals(repassword) == true){
+                if (password.equals(repassword)){
                    result = account.updateAccountPassword(password,Integer.valueOf(id));
-                   if (result != 0){
+                   if (result == true){
                        url = SUCCESS;
                    }else{
                        url =ERROR;

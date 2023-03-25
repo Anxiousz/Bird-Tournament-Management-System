@@ -387,18 +387,43 @@ public class AccountDAO implements Serializable {
         }
         return null;
     }
-    public static int updateAccountPassword( String password,int id) throws SQLException {
+//    public static boolean updateAccountPassword( String password,int id) throws SQLException {
+//        Connection con = null;
+//        PreparedStatement stm = null;
+//        int result = 0;
+//        try {
+//            con = DBContext.getConnection();
+//            if (con != null) {
+//                stm = con.prepareStatement(UPDATE_ACCOUNT_NEW);
+//                stm.setString(1, password);
+//                stm.setInt(2, id);
+//                result = stm.executeUpdate();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (stm != null) {
+//                stm.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//        return result;
+//    }
+     public boolean updateAccountPassword( String password,int id) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
-        int result = 0;
+        boolean check = false;
         try {
             con = DBContext.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(UPDATE_ACCOUNT_NEW);
+                stm = con.prepareStatement(RESET_ACCOUNT_PASSWORD);
                 stm.setString(1, password);
                 stm.setInt(2, id);
-                result = stm.executeUpdate();
+                check = stm.executeUpdate() > 0 ? true : false;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -409,6 +434,6 @@ public class AccountDAO implements Serializable {
                 con.close();
             }
         }
-        return result;
+        return check;
     }
 }
