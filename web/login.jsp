@@ -35,7 +35,7 @@
                             <div class="login-register">
                                 <!-- Login Form -->
                                 <form action="MainController" method="post">
-                                    <p class="text-danger">${sessionScope.mess}</p>
+                                    <p class="text-danger">${requestScope.mess}</p>
                                     <input type="email" name="email" value="" class="form-control" placeholder="Enter email"required="" >
                                     <input type="password" name="password" value="" class="form-control" placeholder="Password"required="" >
                                     <button type="submit" name="action" value="Login"  class="btn btn-login">Sign in</button>

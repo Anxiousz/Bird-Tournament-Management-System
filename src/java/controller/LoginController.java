@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
             AccountDTO a = adb.checkLogin(email, password);
             RegistrationFormDAO r = new RegistrationFormDAO();
             if (a == null) {
-                session.setAttribute("mess", "Wrong email or pass");
+                request.setAttribute("mess", "Wrong email or pass");
                 url = ERROR;
             } else {
                 if (a.getRole() == 0) {
@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
                         session.setAttribute("acc", a);
                         url = SUCCESS;
                     } else {
-                        session.setAttribute("mess", "Your account blocked. Please contact Admin !!!!");
+                        request.setAttribute("mess", "Your account blocked. Please contact Admin !!!!");
                         url = ERROR;
                     }
                 } else {
