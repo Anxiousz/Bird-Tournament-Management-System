@@ -142,11 +142,11 @@
                         </div>
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-sharp fa-solid fa-person"></i> Min Player:  </h1>
-                            <input type="number" min="10" max="${requestScope.tour.maxParticipant - 10}" value="${requestScope.tour.minParticipant}" name="minp" required="">
+                            <input  type="number" min="10" max="50" value="${requestScope.tour.minParticipant}" name="minp" required="">
                         </div>
                         <div class="basic-tnm-form-categories">
                             <h1><i class="fa-sharp fa-solid fa-person"></i> Max Player:  </h1>
-                            <input type="number" min="${requestScope.tour.minParticipant + 10}" max="50" value="${requestScope.tour.maxParticipant}" name="maxp" required="">
+                            <input  type="number" min="10" max="50" value="${requestScope.tour.maxParticipant}" name="maxp" required="">
                         </div>
                     </div>
                     <!-- div line -->

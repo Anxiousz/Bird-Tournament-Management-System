@@ -27,13 +27,10 @@ public class UpdateTournamentController extends HttpServlet {
             String prize = request.getParameter("prize");
             String action = request.getParameter("action");
             String desc = request.getParameter("description");
-            String minp = request.getParameter("minp");
-            String maxp = request.getParameter("maxp");
-            if (minp.equals("")) {
-                minp = "0";
-            }
-            if (maxp.equals("")) {
-                maxp = "0";
+            int minp = Integer.parseInt(request.getParameter("minp"));
+            int maxp = Integer.parseInt(request.getParameter("maxp"));
+            if(minp>maxp){
+                minp=maxp;
             }
             int tourstatus = -1;
             if (tstatus.equals("Coming soon")) {
@@ -56,7 +53,7 @@ public class UpdateTournamentController extends HttpServlet {
             }
             if (action.equals("Update Tournament")) {
                 TournamentDAO tdao = new TournamentDAO();
-                if (tdao.updateTournament(tourstatus, dateTime, Integer.parseInt(minp), Integer.parseInt(maxp), desc, location, fee, prize, Integer.parseInt(tid))) {
+                if (tdao.updateTournament(tourstatus, dateTime, minp, maxp, desc, location, fee, prize, Integer.parseInt(tid))) {
                     url = TOURNAMENT_DETAIL;
                 } else {
                     url = ERROR;

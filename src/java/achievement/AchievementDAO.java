@@ -26,10 +26,10 @@ public class AchievementDAO implements Serializable {
     private static final String UPDATE_TOTALSCORE = "UPDATE Achievement SET totalScore= 0 WHERE totalScore IS NULL\n"
             + "UPDATE Achievement SET totalScore = totalScore + ? WHERE birdID = ?";
     private static final String UPDATE_RANKING = "UPDATE Achievement\n"
-            + "SET rank = (SELECT COUNT(*) FROM Achievement WHERE totalScore > s.totalScore AND totalScore IS NOT NULL) + 1\n"
+            + "SET rank = (SELECT COUNT(*) FROM Achievement WHERE totalScore > s.totalScore AND totalScore IS NOT NULL AND totalScore != 0) + 1\n"
             + "FROM Achievement AS s\n"
             + "WHERE s.totalScore IS NOT NULL";
-
+    
     public boolean updateAchievementByBID(AchievementDTO ach) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
