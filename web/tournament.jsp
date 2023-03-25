@@ -71,7 +71,7 @@
             </div>     
         </div>
         <!-- tnm categories heading  -->
-        <div class=" container tnm-categories-heading">
+        <div class="container tnm-categories-heading">
             <a href="MainController?action=TOURNAMENT"><p>All Tournaments     <i class='fas fa-award' style='font-size:24px;color: #dbbd0e;;'></i></p></a>
             <a href="MainController?action=ON_GOING_TOURNAMENT"><p>On Going Tournaments</p></a>
             <a href="MainController?action=OLD_TOURNAMENT"><p>Old Tournaments</p></a>

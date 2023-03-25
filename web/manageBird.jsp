@@ -24,7 +24,6 @@
                         <th scope="col">Status</th>
                         <th scope="col">Block</th>
                         <th scope="col">Unblock</th>
-                        <th scope="col">Remove</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
@@ -54,9 +53,6 @@
                                         <a class="custom-button_2" href="ManageBirdController?action=Unblock&birdID=${b.birdID}">Unblock</a>
                                     </c:otherwise>
                                 </c:choose>
-                            </td>
-                            <td>
-                                <a class="custom-button_2" href="ManageBirdController?action=Remove&birdID=${b.birdID}">Remove</a>
                             </td>
                             <td>
                                 <a class="custom-button_2" href="ManageBirdController?action=Detail&birdID=${b.birdID}">Detail</a>

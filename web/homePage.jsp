@@ -158,7 +158,9 @@
                         </div>
                     </c:forEach>
                 </div>
-                <div class="view-ranking-site w-100 d-flex justify-content-end align-item-center"> <a class="custom-button_2" style="font-size: 20px; text-decoration: underline;" href="LoadTotalRankingController?action=load">View Ranking</a></div>
+                <div class="view-ranking-site w-100 d-flex justify-content-end align-item-center">
+                    <a class="custom-button_2" href="LoadTotalRankingController?action=load">View Ranking</a>
+                </div>
             </div>
            
             <c:if test="${sessionScope.acc.role != 1}">

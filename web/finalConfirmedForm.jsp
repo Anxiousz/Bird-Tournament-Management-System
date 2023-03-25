@@ -46,28 +46,28 @@
                                 <form action="">
                                     <div class="form-group top-right">
                                         <label >Tournament name</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.tournamentName}">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.tournamentName}" readonly="">
                                     </div>
                                     <div class="form-group top-right">
                                         <label >Location</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.location}">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.location}" readonly="">
                                     </div>
                                     <div class="form-group top-right">
                                         <label > Present Telephone</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.acc.phone}">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.acc.phone}" readonly="">
                                     </div>
                                     <div class="tnm-right-match-top-small-info">
                                         <div class="form-group top-right">
                                             <label >Fee</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.fee}">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.fee}" readonly="">
                                         </div>
                                         <div class="Date Time top-right">
                                             <label >Date Time</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.dateTime}">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.dateTime}" readonly="">
                                         </div>
                                         <div class="form-group top-right">
                                             <label >Player</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.minParticipant}">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" value="${sessionScope.DETAIL_TOUR.tour.minParticipant}" readonly="">
                                         </div>
                                     </div>
                                 </form>   
