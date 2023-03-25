@@ -51,16 +51,16 @@ public class TournamentDetailController extends HttpServlet {
                     request.setAttribute("numberPlayer", rdao.getNumberRegistered(2, tournamentID));
                 }
                 if (tour.getTournamentStatus() == 0 || tour.getTournamentStatus() == 1 || tour.getTournamentStatus() == 2 || tour.getTournamentStatus() == 6) {
-                    if(acc==null){
-                       acc= new AccountDTO();
-                       acc.setAccountID(0);
-                        if(tdao.checkUserRegistered(acc.getAccountID(), tournamentID)==null){
-                            request.setAttribute("registered", "false");
-                        }else{
-                            request.setAttribute("registered", "true");
-                        }
+                    if (acc == null) {
+                        acc = new AccountDTO();
+                        acc.setAccountID(0);
                     }
-          
+                    if (tdao.checkUserRegistered(acc.getAccountID(), tournamentID) == null) {
+                        request.setAttribute("registered", "false");
+                    } else {
+                        request.setAttribute("registered", "true");
+                    }
+
                     url = SUCCESS;
                 } else if (tour.getTournamentStatus() == 5 || tour.getTournamentStatus() == 4 || tour.getTournamentStatus() == 3) {
                     List<RoundDTO> rounds = roudao.getAllByTID(tournamentID);
