@@ -376,3 +376,15 @@ tbody tr td input{
 a{
     text-decoration: none !important;
 }
+.custom-button_2{
+    font-family: 'Baloo';
+    font-size: 30px;
+    color: #A87B24;
+}
+.custom-button_2:hover{
+    font-family: 'Baloo';
+    font-size: 30px;
+    color: #A87B24;
+    text-decoration: none;
+    opacity: 0.75;
+}

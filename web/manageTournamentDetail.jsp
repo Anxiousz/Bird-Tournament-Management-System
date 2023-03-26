@@ -170,8 +170,11 @@
                         <input type="submit" value="Update Tournament" name="action">
                     </div>  
                 </form>
+                <div class="line-section">
+                    <p></p>
+                </div>
                 <c:if test="${requestScope.finishTournament eq 'true'}">
-                    <div class="view-ranking-site">
+                    <div class="sponsor-site">
                         <a class="custom-button_2" href="LoadTournamentRankingController?action=load&tournamentID=${requestScope.tour.tournamentID}">Ranking</a>
                     </div>
                 </c:if>
