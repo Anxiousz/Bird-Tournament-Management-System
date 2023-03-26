@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Telephone number</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="${sessionScope.acc.phone}" readonly="">
+                                <input type="text" class="form-control" id="exampleInputPassword1" value="0${sessionScope.acc.phone}" readonly="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Full Name</label>

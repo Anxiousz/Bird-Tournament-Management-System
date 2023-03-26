@@ -190,8 +190,6 @@
                             <div class="basic-tnm-form">
                                 <c:forEach items="${requestScope.rounds}" var="r" varStatus="status">
                                     <div class="basic-tnm-form-categories">
-
-
                                         <c:choose>
                                             <c:when test="${requestScope.round.roundID == r.roundID}">
                                                 <a style="color:burlywood" id="roud-id" href="ManageRoundController?roundID=${r.roundID}&roundStatus=${r.roundStatus}&roundName=${r.roundName}&tournamentID=${tour.tournamentID}">${r.roundName}</a><br/>
@@ -304,7 +302,6 @@
                                                 <th scope="col">CID</th>
                                                 <th scope="col">Bird Name</th>
                                                 <th scope="col">Owner Name</th>
-
                                                 <th scope="col">Point</th>
                                                     <c:choose>
                                                         <c:when test="${requestScope.round.roundName eq 'Top4'}">
