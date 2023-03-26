@@ -90,6 +90,7 @@
                                         <input type="radio" name="birdName" id="birdName_${loop.index}" value="${b.bird.birdName}" required="">
                                         <label for="birdName_${loop.index}" class="form-label lable-right">Bird ${b.bird.birdName}</label>
                                         <img src="${b.bird.birdPhoto}" width="150" height="150">
+                                        <input type="hidden" name="birdPhoto" value="${b.bird.birdPhoto}">
                                     </div>
                                 </c:forEach>
                             </div>

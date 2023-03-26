@@ -24,7 +24,7 @@ public class ConfirmFormController extends HttpServlet {
             try {
                 int accID = Integer.parseInt(request.getParameter("accID"));
                 String birdName = request.getParameter("birdName");
-                String birdPhoto = "image/" + birdName + ".jpg";
+                String birdPhoto = request.getParameter("birdPhoto");
                 BirdDTO birdID = b.FindBird(accID, birdName);
                 s.setAttribute("BIRD_NAME", birdName);
                 s.setAttribute("IMAGE", birdPhoto);
